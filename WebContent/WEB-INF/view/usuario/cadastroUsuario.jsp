@@ -9,21 +9,12 @@
 
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/bootstrap/css/bootstrap.min.css" />
-<script type="text/javascript"
+<link type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/bootstrap/js/bootstrap.min.js">
 	
-</script>
-<script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
 
-	function validarSenha() {
-		Senha = document.getElementById("senha").value;
-		Confirmar = document.getElementById("repetir_senha").value
-		if (Senha = !Confirmar) {
-			alert("Senha diferentes. Por favor repita a senha corretamente.");
 
-		}
-
-	}
 </script>
 
 <style>
@@ -58,24 +49,25 @@
         <legend>Cadastre-se</legend>
 		<div class="form-group">
 			<label for="inputNome">Nome:</label> <input type="text"
-				id="inputDescricao" class="form-control" name="nome"
+				id="inputNome" class="form-control" name="nome"
 				style="width: 500px;" maxlength="100" required="required" pattern="^[a-zA-Z\u00C0-\u00FF\s]*$" placeholder="Digite seu nome..." />
 		</div>
 		<div class="form-group">
 			<label for="inputEmail">Email:</label> <input type="text"
-				id="inputDescricao" class="form-control" name="email"
-				style="width: 500px;" maxlength="100" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Digite seu Email..." />
+				id="inputEmail" class="form-control" name="email"
+				style="width: 500px;" maxlength="100" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Digite seu Email..." onblur="validarEmail()"/>
+				<label style="display: none;" id="mensagem">Este e-mail já existe</label>
 		</div>
 		<div class="form-group">
 			<label for="inputSenha">Senha:</label> <input type="password"
-				id="inputDescricao" class="form-control" name="senha"
+				id="inputSenha" class="form-control" name="senha"
 				style="width: 500px;" maxlength="100" required="required" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Digite sua senha..."
 			title="Deve ser Preenchido com pelo menos 8 caracteres, mínimo uma letra minúscula, uma letra Maiúsculo e um número" />
 		</div>
 
 		<div class="form-group">
 			<label for="inputRepetirSenha">Repita a senha:</label> <input
-				type="password" id="inputDescricao" class="form-control"
+				type="password" id="inputRepetir" class="form-control"
 				name="repetirSenha" style="width: 500px;" maxlength="100"
 				required="required" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Repita sua senha..." />
 		</div>
@@ -87,8 +79,6 @@
 				<br />
 				<option type="radio" value="M" name="sexo">Masculino</option>
 				<br />
-				<option type="radio" value="O" name="sexo">Outro</option>
-				
 
 			</select>
 		</div>
@@ -110,5 +100,33 @@
 	</div>
 	
 	</div>
+	<script>
+
+	function validarSenha() {
+		Senha = document.getElementById("senha").value;
+		Confirmar = document.getElementById("repetir_senha").value
+		if (Senha = !Confirmar) {
+			alert("Senha diferentes. Por favor repita a senha corretamente.");
+
+		}
+
+	}
+	
+	function validarEmail(){
+		
+		
+		$.post("check",{"email": $("#inputEmail").val()}, function(data){
+			if(data == "true") {
+			
+			} else {
+				
+				$("#mensagem").css("display","block");
+				
+			}
+		});
+	
+		
+	}
+	</script>
 </body>
 </html>

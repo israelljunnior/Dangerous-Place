@@ -42,7 +42,7 @@
 <c:import url="menu.jsp" />
 
 <c:import url="login.jsp" />
-
+<c:import url="loginGoogle.jsp" />
 
 
 <div class="row">
@@ -50,7 +50,7 @@
 
 		<div class="col-sm-4">
 		
-		<form action="save" method="post">
+		<form action="efetuarLogin" method="post">
 
 		<fieldset class="modais">
         <center><legend>Login</legend>
@@ -60,7 +60,7 @@
 		onlogin="checkLoginState();">
 	</fb:login-button>
         
-       <c:import url="loginGoogle.jsp" />
+       
       
         
       

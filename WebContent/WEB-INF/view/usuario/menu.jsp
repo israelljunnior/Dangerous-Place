@@ -6,9 +6,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/bootstrap/css/bootstrap.min.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+	
+	
 
-<script type="text/javascript" src="<%=request.getContextPath()%>/resources/bootstrap/js/bootstrap.min.js">
 </script>
+
 <title>Menu</title>
 <style type="text/css">
 .names{
@@ -32,6 +35,10 @@
 				<li><a href="#" data-toggle="tooltip"><p class="names">Sobre Nós</p></a></li>
 
 				<li><a href="#" data-toggle="tooltip"><p class="names">Gerar Relatório</p></a></li>
+				
+				
+				<li><a href="/PP2-DangerousPlace/usuario/login " data-toggle="tooltip"><p class="names">Login Danger</p></a></li>
+				<li><a href="/PP2-DangerousPlace/usuario/cadastro" data-toggle="tooltip"><p class="names">Cadastro Danger</p></a></li>
 
 
 			</ul>
