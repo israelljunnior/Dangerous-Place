@@ -6,17 +6,35 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Jquery validate -->
+	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/localization/messages_pt_BR.js"></script>
 
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/bootstrap/css/bootstrap.min.css" />
 <link type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/bootstrap/js/bootstrap.min.js">
-	
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
 
-
+<script>
+	$(document).ready(function(){
+		
+		$("#formCadastro").validate({
+			rules:{
+				nome:{
+					required:true,
+				}
+			}, messages:{
+				nome:{
+					required:"add pls"
+				}
+			}
+			
+		});
+		
+	});
 </script>
-
 <style>
 .inputs {
 	font-size: 15px;
@@ -43,33 +61,33 @@
 
 		<div class="col-sm-4">
 
-	<form action="save" method="post">
+	<form action="save" method="post" id="formCadastro">
 	<fieldset class="modais">
 	  <center>
         <legend>Cadastre-se</legend>
 		<div class="form-group">
-			<label for="inputNome">Nome:</label> <input type="text"
-				id="inputNome" class="form-control" name="nome"
-				style="width: 500px;" maxlength="100" required="required" pattern="^[a-zA-Z\u00C0-\u00FF\s]*$" placeholder="Digite seu nome..." />
+			<label for="nome">Nome:</label> <input type="text"
+				id="nome" class="form-control" name="nome"
+				style="width: 500px;" maxlength="100" pattern="^[a-zA-Z\u00C0-\u00FF\s]*$" placeholder="Digite seu nome..." />
 		</div>
 		<div class="form-group">
-			<label for="inputEmail">Email:</label> <input type="text"
-				id="inputEmail" class="form-control" name="email"
-				style="width: 500px;" maxlength="100" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Digite seu Email..." onblur="validarEmail()"/>
+			<label for="email">Email:</label> <input type="text"
+				id="email" class="form-control" name="email"
+				style="width: 500px;" maxlength="100" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Digite seu Email..." />
 				<label style="display: none;" id="mensagem">Este e-mail já existe</label>
 		</div>
 		<div class="form-group">
-			<label for="inputSenha">Senha:</label> <input type="password"
-				id="inputSenha" class="form-control" name="senha"
-				style="width: 500px;" maxlength="100" required="required" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Digite sua senha..."
-			title="Deve ser Preenchido com pelo menos 8 caracteres, mínimo uma letra minúscula, uma letra Maiúsculo e um número" />
+			<label for="senha">Senha:</label> <input type="password"
+				id="senha" class="form-control" name="senha"
+				style="width: 500px;" maxlength="100" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Digite sua senha..."
+				title="Deve ser Preenchido com pelo menos 8 caracteres, mínimo uma letra minúscula, uma letra Maiúsculo e um número" />
 		</div>
 
 		<div class="form-group">
-			<label for="inputRepetirSenha">Repita a senha:</label> <input
-				type="password" id="inputRepetir" class="form-control"
+			<label for="repetirSenha">Repita a senha:</label> <input
+				type="password" id="repetirSenha" class="form-control"
 				name="repetirSenha" style="width: 500px;" maxlength="100"
-				required="required" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Repita sua senha..." />
+				pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Repita sua senha..." />
 		</div>
 		<div class="form-group">
 			<label for="inputSexo">Sexo:</label>
@@ -86,13 +104,13 @@
 		<div class="form-group">
 			<label for="inputEndereco">CEP:</label> <input type="text"
 				id="inputDescricao" class="form-control" name="endereco"
-				style="width: 500px;" required="required" pattern="[0-9]{8}" placeholder="Digite seu CEP" />
+				style="width: 500px;"  pattern="[0-9]{8}" placeholder="Digite seu CEP" />
 		</div>
 
 		<button type="reset" class="btn btn-danger" style="background-color:#B22222;color: white">Cancelar</button>
 		&nbsp; 
 
-		<button type="submit" class="btn btn-primary" style="background-color: black;color: white;margin-left:10px" onClick = "validarSenha()" >&nbsp;
+		<button type="submit" class="btn btn-primary" style="background-color: black;color: white;margin-left:10px">&nbsp;
 			Inserir&nbsp;</button>
  </fieldset>
 	</form>
@@ -100,9 +118,10 @@
 	</div>
 	
 	</div>
+	
 	<script>
 
-	function validarSenha() {
+	/*function validarSenha() {
 		Senha = document.getElementById("senha").value;
 		Confirmar = document.getElementById("repetir_senha").value
 		if (Senha = !Confirmar) {
@@ -126,7 +145,10 @@
 		});
 	
 		
-	}
+	}*/
+
+
+	
 	</script>
 </body>
 </html>
