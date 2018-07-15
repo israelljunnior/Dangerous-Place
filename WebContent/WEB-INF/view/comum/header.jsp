@@ -1,16 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/bootstrap/css/bootstrap.min.css" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
-	
-	
-
-</script>
 
 <title>Menu</title>
 <style type="text/css">
@@ -47,5 +35,13 @@
 </nav>
 
 <br/>
-</body>
-</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/resources/jquery-validation-1.17.0/dist/jquery.validate.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/resources/jquery-validation-1.17.0/dist/additional-methods.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/resources/localization/messages_pt_BR.js"></script>
+
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/resources/bootstrap/css/bootstrap.min.css" />
+<link type="text/javascript"
+	src="<%=request.getContextPath()%>/resources/bootstrap/js/bootstrap.min.js">

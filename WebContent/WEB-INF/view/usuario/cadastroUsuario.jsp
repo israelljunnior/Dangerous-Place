@@ -5,36 +5,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-<!-- Jquery validate -->
-	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.validate.min.js"></script>
-	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/localization/messages_pt_BR.js"></script>
 
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/resources/bootstrap/css/bootstrap.min.css" />
-<link type="text/javascript"
-	src="<%=request.getContextPath()%>/resources/bootstrap/js/bootstrap.min.js">
-
-<script>
-	$(document).ready(function(){
-		
-		$("#formCadastro").validate({
-			rules:{
-				nome:{
-					required:true,
-				}
-			}, messages:{
-				nome:{
-					required:"add pls"
-				}
-			}
-			
-		});
-		
-	});
-</script>
 <style>
 .inputs {
 	font-size: 15px;
@@ -55,7 +29,7 @@
 
 <body>
 
-	<c:import url="menu.jsp"></c:import>
+	<c:import url="../comum/header.jsp"></c:import>
 	<div class="row">
 		<div class="col-sm-4"></div>
 
@@ -67,27 +41,20 @@
         <legend>Cadastre-se</legend>
 		<div class="form-group">
 			<label for="nome">Nome:</label> <input type="text"
-				id="nome" class="form-control" name="nome"
-				style="width: 500px;" maxlength="100" pattern="^[a-zA-Z\u00C0-\u00FF\s]*$" placeholder="Digite seu nome..." />
+				id="nome" class="form-control" name="nome" style="width: 500px;" placeholder="Digite seu nome..."/>
 		</div>
 		<div class="form-group">
 			<label for="email">Email:</label> <input type="text"
-				id="email" class="form-control" name="email"
-				style="width: 500px;" maxlength="100" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Digite seu Email..." />
-				<label style="display: none;" id="mensagem">Este e-mail já existe</label>
+				id="email" class="form-control" name="email" style="width: 500px;" placeholder="Digite seu Email..." />
 		</div>
 		<div class="form-group">
 			<label for="senha">Senha:</label> <input type="password"
-				id="senha" class="form-control" name="senha"
-				style="width: 500px;" maxlength="100" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Digite sua senha..."
-				title="Deve ser Preenchido com pelo menos 8 caracteres, mínimo uma letra minúscula, uma letra Maiúsculo e um número" />
+				id="senha" class="form-control" name="senha" style="width: 500px;" placeholder="Digite sua senha..." />
 		</div>
-
 		<div class="form-group">
 			<label for="repetirSenha">Repita a senha:</label> <input
 				type="password" id="repetirSenha" class="form-control"
-				name="repetirSenha" style="width: 500px;" maxlength="100"
-				pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Repita sua senha..." />
+				name="repetirSenha" style="width: 500px;"  placeholder="Repita sua senha..." />
 		</div>
 		<div class="form-group">
 			<label for="inputSexo">Sexo:</label>
@@ -104,7 +71,7 @@
 		<div class="form-group">
 			<label for="inputEndereco">CEP:</label> <input type="text"
 				id="inputDescricao" class="form-control" name="endereco"
-				style="width: 500px;"  pattern="[0-9]{8}" placeholder="Digite seu CEP" />
+				style="width: 500px;"  pattern="" placeholder="Digite seu CEP" />
 		</div>
 
 		<button type="reset" class="btn btn-danger" style="background-color:#B22222;color: white">Cancelar</button>
@@ -121,34 +88,84 @@
 	
 	<script>
 
-	/*function validarSenha() {
-		Senha = document.getElementById("senha").value;
-		Confirmar = document.getElementById("repetir_senha").value
-		if (Senha = !Confirmar) {
-			alert("Senha diferentes. Por favor repita a senha corretamente.");
-
-		}
-
-	}
-	
-	function validarEmail(){
+$(document).ready(function(){
 		
-		
-		$.post("check",{"email": $("#inputEmail").val()}, function(data){
-			if(data == "true") {
+		$("#formCadastro").validate({
 			
-			} else {
+			rules: {
+				nome: {
+					required: true,
+					minlength:2,
+					maxlength:50,
+					pattern: /^[a-zA-Z]+([\s]+)?[']?([a-zA-Z]+)?$/
+				},
+				email: {
+					required:true,
+					maxlength:130,
+					email:true,
+					remote:{
+						url:"check",
+						type:"post",
+						data:{
+							email: function(){
+								return $("#email").val();
+								}
+							}
+						}
+				},
+				senha: {
+					required: true,
+					pattern: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/,
+				},
 				
-				$("#mensagem").css("display","block");
+				repetirSenha: {
+					required: true,
+					equalTo : "#senha"
+				},
+				endereco: {
+					required: true,
+					pattern: /[0-9]{8}/,
+					
+				}
+				
+			}, messages:{
+				nome: {
+					required:"<div class='alert alert-danger alert-dismissible fade in' style=''>É necessário preencher o campo</div>",
+					minlength: "<div class='alert alert-danger alert-dismissible fade in' style=''>É necessário Pelo menos duas letras</div>",
+					maxlength: "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve Conter menos que 50 Letras</div>",
+					pattern: "<div class='alert alert-danger alert-dismissible fade in' style=''>É necessário Conter Somente Letras</div>"
+				},
+				email: {
+					required: "<div class='alert alert-danger alert-dismissible fade in' style=''>É necessário preencher o campo</div>",
+					maxlength: "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve Conter Menos de 130 caracteres</div>",
+					email: "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve ter Formato válido de Email</div>",
+					remote: "<div class='alert alert-danger alert-dismissible fade in' style=''>Email não Está disponível</div>"
+				},
+				senha: {
+					required: "<div class='alert alert-danger alert-dismissible fade in' style=''>É necessário preencher o campo</div>",
+					pattern: "<div class='alert alert-danger alert-dismissible fade in' style=''>Senha deve Conter pelo menos 1 Letra Maiúscula, Minúscula, Numeros e pelo menos 8 caracteres </div>",
+					
+				},
+				repetirSenha: {
+					required: "<div class='alert alert-danger alert-dismissible fade in' style=''>É necessário preencher o campo</div>",
+					equalTo: "<div class='alert alert-danger alert-dismissible fade in' style=''>As duas senhas devem ser iguais</div>", 					
+				},
+				endereco: {
+					required:"<div class='alert alert-danger alert-dismissible fade in' style=''>É necessário preencher o campo</div>",
+					pattern: "<div class='alert alert-danger alert-dismissible fade in' style=''> Deve Conter Formato Válido</div>"
+				}
+				
+				
 				
 			}
+			
 		});
-	
 		
-	}*/
+	});
+</script> 
 
 
 	
-	</script>
+	
 </body>
 </html>

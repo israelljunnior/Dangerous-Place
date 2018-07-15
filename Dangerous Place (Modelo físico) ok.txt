@@ -4,7 +4,7 @@ use dangerousplace;
 create table usuario(
 	id_usuario int AUTO_INCREMENT PRIMARY KEY,
 	nome varchar(50) not null,
-	email varchar(65) not null unique,
+	email varchar(130) not null unique,
 	senha varchar(130) not null,
 	sexo char(1) not null,
 	endereco varchar(70) not null
