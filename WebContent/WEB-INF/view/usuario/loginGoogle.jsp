@@ -4,7 +4,7 @@
 <meta name="google-signin-client_id"
 	content="370392271351-agk25s6n5142efjgpi1ec0ms0mdpln9k.apps.googleusercontent.com">
 
-	<div class="g-signin2" data-onsuccess="onSignIn"></div>
+	
 
 	<script>
 		function onSignIn(googleUser) {

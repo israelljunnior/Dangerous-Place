@@ -56,16 +56,13 @@
         <center><legend>Login</legend>
 
 
-  <fb:login-button scope="public_profile,email"
-		onlogin="checkLoginState();">
-	</fb:login-button>
-        
+   
        
       
         
       
 
-    </center>  
+    
 
 			
 			<p class="inputs">E-mail: <br/><input class="input" type="text" name="email"></p>
@@ -74,6 +71,10 @@
 			
 				 <center><button class="button" style="background-color: black;color: white" >Entrar</button><br/><br/></center>
 				 <br/>
+		<!--   abaixo estão os 2 códigos para o botão do facebook e google(use para colocar no lugar deseja) -->
+		<fb:login-button scope="public_profile,email"
+		onlogin="checkLoginState();">
+	</fb:login-button>       <div class="g-signin2" data-onsuccess="onSignIn"></div>
 		</center>
 			
 

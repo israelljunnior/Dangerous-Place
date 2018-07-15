@@ -40,7 +40,7 @@
 				<li><a href="/PP2-DangerousPlace/usuario/login " data-toggle="tooltip"><p class="names">Login Danger</p></a></li>
 				<li><a href="/PP2-DangerousPlace/usuario/cadastro" data-toggle="tooltip"><p class="names">Cadastro Danger</p></a></li>
 
-
+			
 			</ul>
 		</div>
 	</div>

@@ -65,4 +65,13 @@ public class SistemaController {
 	return "usuario/loginUsuario";
 	}
 
+	@RequestMapping("usuario/alterarDados")
+	public String alterar() {
+		System.out.println("Dangerous Places login");
+		return "usuario/alterarDadosUsuario";
+	}
+
+	
+	
+	
 }
