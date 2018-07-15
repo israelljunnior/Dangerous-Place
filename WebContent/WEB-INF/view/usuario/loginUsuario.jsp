@@ -39,7 +39,7 @@
 	</style>
 </head>
 <body>
-<c:import url="menu.jsp" />
+<c:import url="../comum/header.jsp"></c:import>
 
 <c:import url="login.jsp" />
 <c:import url="loginGoogle.jsp" />
