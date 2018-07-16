@@ -43,6 +43,13 @@ public class SistemaController {
 		return disponivel.toString();
 	}
 	
+	@RequestMapping("usuario/check")
+	@ResponseBody
+	public String validarCep(@RequestParam("endereco") String cep){
+		
+		return "";
+	}
+	
 
 	@RequestMapping("/usuario/save")
 	public String save(Usuario usuario, @RequestParam("selectSexo") String sexo) {
@@ -65,4 +72,13 @@ public class SistemaController {
 	return "usuario/loginUsuario";
 	}
 
+	@RequestMapping("usuario/alterarDados")
+	public String alterar() {
+		System.out.println("Dangerous Places login");
+		return "usuario/alterarDadosUsuario";
+	}
+
+	
+	
+	
 }

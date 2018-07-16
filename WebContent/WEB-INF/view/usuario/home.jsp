@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<<<<<<< HEAD
 <title>Insert title here</title>
 </head>
 
@@ -14,6 +15,30 @@
 <div align="right" style="color: #6E6E6E; marginright:
 2%;">
  Bem vindo, ${usuarioLogado.nome}
+=======
+
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/resources/bootstrap/css/bootstrap.min.css" />
+<link type="text/javascript"
+	src="<%=request.getContextPath()%>/resources/bootstrap/js/bootstrap.min.js">
+	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+
+
+</script>
+
+</head>
+
+<body style="margin-left: 5%; margin-right: 5%;">
+<br />
+<c:import url="/WEB-INF/view/comum/loginUsuario.jsp" />
+
+<div align="right" style="color: #6E6E6E; marginright:
+2%;">
+ Bem vindo, ${usuarioLogado.nome}
+
+
+>>>>>>> branch 'master' of https://github.com/israelljunnior/Dangerous-Place
 </div>
 </body>
 </html>
