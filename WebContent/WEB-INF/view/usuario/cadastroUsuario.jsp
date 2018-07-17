@@ -70,8 +70,8 @@
 
 		<div class="form-group">
 			<label for="inputEndereco">CEP:</label> <input type="text"
-				id="inputDescricao" class="form-control" name="endereco"
-				style="width: 500px;"  pattern="" placeholder="Digite seu CEP" />
+				id="endereco" class="form-control" name="endereco"
+				style="width: 500px;" placeholder="Digite seu CEP" />
 		</div>
 
 		<button type="reset" class="btn btn-danger" style="background-color:#B22222;color: white">Cancelar</button>
@@ -97,7 +97,7 @@ $(document).ready(function(){
 					required: true,
 					minlength:2,
 					maxlength:50,
-					pattern: /^[a-zA-Z]+([\s]+)?[']?([a-zA-Z]+)?$/
+					pattern: /^[a-zA-Z\s]*$/
 				},
 				email: {
 					required:true,
@@ -125,7 +125,17 @@ $(document).ready(function(){
 				endereco: {
 					required: true,
 					pattern: /[0-9]{8}/,
-					
+					/*remote: {
+						url: "https://viacep.com.br/ws/"+$("#endereco").val()+"/json/",
+						type: "post",
+						data: {
+							endereco: function(data){
+								if(data != null){
+									return $("#endereco").val();
+								}
+							}
+						}
+					}*/
 				}
 				
 			}, messages:{
@@ -152,7 +162,10 @@ $(document).ready(function(){
 				},
 				endereco: {
 					required:"<div class='alert alert-danger alert-dismissible fade in' style=''>É necessário preencher o campo</div>",
-					pattern: "<div class='alert alert-danger alert-dismissible fade in' style=''> Deve Conter Formato Válido</div>"
+					pattern: "<div class='alert alert-danger alert-dismissible fade in' style=''> Deve Conter Formato Válido</div>",
+					//remote: "<div class='alert alert-danger alert-dismissible fade in' style=''> Cep inválido</div>"
+					
+				
 				}
 				
 				
