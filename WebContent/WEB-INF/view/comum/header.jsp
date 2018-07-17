@@ -22,7 +22,7 @@
 
 				<li><a href="#" data-toggle="tooltip"><p class="names">Sobre Nós</p></a></li>
 
-				<li><a href="#" data-toggle="tooltip"><p class="names">Gerar Relatório</p></a></li>
+				<li><a href="#" data-toggle="tooltip"><p class="names">Gerar Relatório </p></a></li>
 				
 				
 				<li><a href="/PP2-DangerousPlace/usuario/login " data-toggle="tooltip"><p class="names">Login Danger</p></a></li>

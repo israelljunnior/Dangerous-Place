@@ -70,8 +70,12 @@
 
 		<div class="form-group">
 			<label for="inputEndereco">CEP:</label> <input type="text"
+<<<<<<< HEAD
 				id="endereco" class="form-control" name="endereco"
 				style="width: 500px;" placeholder="Digite seu CEP" />
+=======
+				id="inputDescricao" class="form-control" name="endereco" style="width: 500px;" placeholder="Digite seu CEP" />
+>>>>>>> branch 'master' of https://github.com/israelljunnior/Dangerous-Place
 		</div>
 
 		<button type="reset" class="btn btn-danger" style="background-color:#B22222;color: white">Cancelar</button>
