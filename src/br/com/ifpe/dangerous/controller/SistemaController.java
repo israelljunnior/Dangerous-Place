@@ -78,7 +78,11 @@ public class SistemaController {
 		return "usuario/alterarDadosUsuario";
 	}
 
-	
+	@RequestMapping("usuario/forum")
+	public String comentando() {
+		System.out.println("Comentando no fórum do Dangerous Places");
+		return "usuario/forum";
+	}
 	
 	
 }
