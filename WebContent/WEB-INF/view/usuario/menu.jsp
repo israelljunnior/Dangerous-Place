@@ -26,7 +26,7 @@
 		<div class="collapse navbar-collapse" style="margin-top: 3px" >
 				<ul class="nav navbar-nav" >
 					
-				<li><a href="#" data-toggle="tooltip"><p class="names">Home</p></a></li>
+				<li><a href="/PP2-DangerousPlace/home" data-toggle="tooltip"><p class="names">Home</p></a></li>
 
 				<li><a href="#" data-toggle="tooltip"><p class="names">Fórum</p></a></li>
 
