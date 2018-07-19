@@ -27,7 +27,7 @@
 		border: 1px solid #696969;
 		font-family: 'Montserrat', sans-serif;
 		font-size: 16px;
-		height: 400px;
+		height: 300px;
 		width: 550px;
 	}
 </style>

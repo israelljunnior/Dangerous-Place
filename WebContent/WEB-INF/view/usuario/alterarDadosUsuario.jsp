@@ -37,7 +37,7 @@
 
 <body>
 
-	<c:import url="header.jsp"></c:import>
+	<c:import url="../comum/header.jsp"></c:import>
 	<div class="row">
 		<div class="col-sm-4"></div>
 
