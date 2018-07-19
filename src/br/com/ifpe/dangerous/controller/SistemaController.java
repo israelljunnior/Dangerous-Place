@@ -43,12 +43,7 @@ public class SistemaController {
 		return disponivel.toString();
 	}
 	
-	@RequestMapping("usuario/check")
-	@ResponseBody
-	public String validarCep(@RequestParam("endereco") String cep){
-		
-		return "";
-	}
+	
 	
 
 	@RequestMapping("/usuario/save")
