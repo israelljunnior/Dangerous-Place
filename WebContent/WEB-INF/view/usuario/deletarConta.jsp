@@ -7,6 +7,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
+<<<<<<< HEAD
+=======
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/resources/bootstrap/css/bootstrap.min.css" />
+<link type="text/javascript"
+	src="<%=request.getContextPath()%>/resources/bootstrap/js/bootstrap.min.js">
+	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+>>>>>>> 4d18f43734ef6c4daad7de8789bf5d20c1650a0d
 
 
 </script>
@@ -31,7 +40,11 @@
 
 <body>
 
+<<<<<<< HEAD
 <c:import url="../comum/header.jsp"></c:import>
+=======
+	<c:import url="menu.jsp"></c:import>
+>>>>>>> 4d18f43734ef6c4daad7de8789bf5d20c1650a0d
 	<div class="row">
 		<div class="col-sm-4"></div>
 

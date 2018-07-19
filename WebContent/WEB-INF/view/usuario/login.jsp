@@ -7,8 +7,11 @@
 <title>Login com o Facebook</title>
 </head>
 <body>
+<<<<<<< HEAD
 
 <c:import url="../comum/header.jsp"></c:import>
+=======
+>>>>>>> 4d18f43734ef6c4daad7de8789bf5d20c1650a0d
 	<!--  	
 <script>
   window.fbAsyncInit = function() {
