@@ -34,6 +34,7 @@ public class SistemaController {
 		return "usuario/cadastroUsuario";
 	}
 	
+   
 	@RequestMapping("usuario/check")
 	@ResponseBody
 	public String validarEmail(@RequestParam("email") String email, UsuarioDao user) {
@@ -43,7 +44,7 @@ public class SistemaController {
 		return disponivel.toString();
 	}
 	
-	@RequestMapping("usuario/check")
+	@RequestMapping("usuario/checkk")
 	@ResponseBody
 	public String validarCep(@RequestParam("endereco") String cep){
 		
@@ -84,5 +85,9 @@ public class SistemaController {
 		return "usuario/forum";
 	}
 	
-	
+	@RequestMapping("logout")
+	public String logout(HttpSession session) {
+	session.invalidate();
+	return "usuario/home";
+	}
 }
