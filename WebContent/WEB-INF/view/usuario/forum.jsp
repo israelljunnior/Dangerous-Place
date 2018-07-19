@@ -32,7 +32,6 @@
 	<center>
 		<h1>Tópico 1</h1>
 		<textarea placeholder="Escreva seu topico aqui:"
-<<<<<<< HEAD
 			style="width: 1000px; height: 500px;"></textarea>
 			<br><br>
 	</center>

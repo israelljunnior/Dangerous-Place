@@ -7,13 +7,6 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-
-
-<<<<<<< HEAD
-	
-
-=======
->>>>>>> 4d18f43734ef6c4daad7de8789bf5d20c1650a0d
 <style>
 .inputs {
 	font-size: 15px;
@@ -85,19 +78,10 @@
 			Inserir&nbsp;</button>
  </fieldset>
 	</form>
-<<<<<<< HEAD
-
-=======
-	
->>>>>>> 4d18f43734ef6c4daad7de8789bf5d20c1650a0d
 	</div>
 	
 	</div>
 	
-<<<<<<< HEAD
-
-=======
->>>>>>> 4d18f43734ef6c4daad7de8789bf5d20c1650a0d
 	<script>
 
 $(document).ready(function(){
@@ -109,11 +93,7 @@ $(document).ready(function(){
 					required: true,
 					minlength:2,
 					maxlength:50,
-<<<<<<< HEAD
-					pattern: /^[a-zA-Z]+([\s]+)?['']?([a-zA-Z]+)?$/
-=======
 					pattern: /^[a-zA-Z]+([\s]+)?[']?([a-zA-Z]+)?$/
->>>>>>> 4d18f43734ef6c4daad7de8789bf5d20c1650a0d
 				},
 				email: {
 					required:true,
@@ -131,21 +111,15 @@ $(document).ready(function(){
 				},
 				senha: {
 					required: true,
-<<<<<<< HEAD
 					minlength:2,
 					maxlength:10,
-=======
->>>>>>> 4d18f43734ef6c4daad7de8789bf5d20c1650a0d
 					pattern: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/,
 				},
 				
 				repetirSenha: {
 					required: true,
-<<<<<<< HEAD
 					minlength:2,
 					maxlength:10,
-=======
->>>>>>> 4d18f43734ef6c4daad7de8789bf5d20c1650a0d
 					equalTo : "#senha"
 				},
 				endereco: {
@@ -181,20 +155,12 @@ $(document).ready(function(){
 					pattern: "<div class='alert alert-danger alert-dismissible fade in' style=''> Deve Conter Formato Válido</div>"
 				}
 				
-				
-				
 			}
 			
 		});
 		
 	});
 </script> 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 4d18f43734ef6c4daad7de8789bf5d20c1650a0d
-	
 	
 </body>
 </html>

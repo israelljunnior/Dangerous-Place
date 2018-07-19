@@ -19,7 +19,7 @@ public class SistemaController {
 	@RequestMapping("")
 	public String homePage() {
 		System.out.println("Dangerous Places Running");
-		return "home";
+		return "usuario/home";
 	}
 	
 	@RequestMapping("home")
@@ -64,7 +64,7 @@ public class SistemaController {
 		usuario.setSexo(sexo);
 		dao.salvar(usuario);
 		
-		return "usuario/menu";
+		return "usuario/cadastroSucesso";
 	}
 	
 	@RequestMapping("/usuario/efetuarLogin")
