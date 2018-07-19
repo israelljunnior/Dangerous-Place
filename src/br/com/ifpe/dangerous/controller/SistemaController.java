@@ -21,6 +21,12 @@ public class SistemaController {
 		System.out.println("Dangerous Places Running");
 		return "home";
 	}
+	
+	@RequestMapping("home")
+	public String home() {
+		System.out.println("Dangerous Places Running");
+		return "usuario/home";
+	}
 
 	@RequestMapping("usuario/login")
 	public String loginUsuario() {
@@ -79,15 +85,43 @@ public class SistemaController {
 		return "usuario/alterarDadosUsuario";
 	}
 
+	@RequestMapping("usuario/deletarConta")
+	public String deletar() {
+		System.out.println("Dangerous Places login");
+		return "usuario/deletarConta";
+	} 
+		
+	@RequestMapping("/usuario/update")
+	public String update(Usuario usuario, Model model, @RequestParam("selectSexo") String sexo) {
+	UsuarioDao dao = new UsuarioDao();
+	usuario.setSexo(sexo);
+	dao.alterar(usuario);
+	model.addAttribute("mensagem", "Usuario Alterado com Sucesso !");
+	return "usuario/home";
+	}
+	
+	
 	@RequestMapping("usuario/forum")
 	public String comentando() {
 		System.out.println("Comentando no fórum do Dangerous Places");
 		return "usuario/forum";
 	}
 	
+
 	@RequestMapping("logout")
 	public String logout(HttpSession session) {
 	session.invalidate();
 	return "usuario/home";
 	}
+
+	@RequestMapping("/usuario/delete")
+	public String delete(@RequestParam("id") Integer id, Model model) {
+	UsuarioDao dao = new UsuarioDao();
+	dao.remover(id);
+	model.addAttribute("mensagem", "Usuario Removido com Sucesso");
+	return "usuario/menu";
+	}
+	
+	
+
 }

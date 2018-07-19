@@ -14,6 +14,15 @@ Bem Vindo, ${usuarioLogado.nome} <a href="<%=request.getContextPath()%>/logout">
 
 
 
+ 
+<a href="/PP2-DangerousPlace/usuario/alterarDados">Alterar Dados</a> &nbsp; &nbsp;
+ 
+ 
+ <br/>
+
+<a href="/PP2-DangerousPlace/usuario/deletarConta" >Remover minha conta</a>
+
+
 
 </body>
 </html>

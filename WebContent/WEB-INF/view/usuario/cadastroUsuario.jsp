@@ -129,28 +129,28 @@ $(document).ready(function(){
 				
 			}, messages:{
 				nome: {
-					required:"<div class='alert alert-danger alert-dismissible fade in' style=''>É necessário preencher o campo</div>",
-					minlength: "<div class='alert alert-danger alert-dismissible fade in' style=''>É necessário Pelo menos duas letras</div>",
-					maxlength: "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve Conter menos que 50 Letras</div>",
+					required:"<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+					minlength: "<div class='alert alert-danger alert-dismissible fade in' style=''>É necessário no mínimo duas letras</div>",
+					maxlength: "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve conter no máximo 50 letras</div>",
 					pattern: "<div class='alert alert-danger alert-dismissible fade in' style=''>É necessário Conter Somente Letras</div>"
 				},
 				email: {
-					required: "<div class='alert alert-danger alert-dismissible fade in' style=''>É necessário preencher o campo</div>",
-					maxlength: "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve Conter Menos de 130 caracteres</div>",
-					email: "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve ter Formato válido de Email</div>",
+					required: "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+					maxlength: "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve no máximo 130 caracteres</div>",
+					email: "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve conter o formato 'exemplo@exemplo.com'</div>",
 					remote: "<div class='alert alert-danger alert-dismissible fade in' style=''>Email não Está disponível</div>"
 				},
 				senha: {
-					required: "<div class='alert alert-danger alert-dismissible fade in' style=''>É necessário preencher o campo</div>",
-					pattern: "<div class='alert alert-danger alert-dismissible fade in' style=''>Senha deve Conter pelo menos 1 Letra Maiúscula, Minúscula, Numeros e pelo menos 8 caracteres </div>",
+					required: "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+					pattern: "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve conter pelo menos 1 letra maiúscula, 1 letra minúscula, numeros e pelo menos 8 caracteres. </div>",
 					
 				},
 				repetirSenha: {
-					required: "<div class='alert alert-danger alert-dismissible fade in' style=''>É necessário preencher o campo</div>",
+					required: "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
 					equalTo: "<div class='alert alert-danger alert-dismissible fade in' style=''>As duas senhas devem ser iguais</div>", 					
 				},
 				endereco: {
-					required:"<div class='alert alert-danger alert-dismissible fade in' style=''>É necessário preencher o campo</div>",
+					required:"<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
 					pattern: "<div class='alert alert-danger alert-dismissible fade in' style=''> Deve Conter Formato Válido</div>"
 				}
 				
