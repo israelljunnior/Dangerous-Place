@@ -75,7 +75,7 @@
 		&nbsp; 
 
 		<button type="submit" class="btn btn-primary" style="background-color: black;color: white;margin-left:10px">&nbsp;
-			Inserir&nbsp;</button>
+			Inserir &nbsp;</button>
  </fieldset>
 	</form>
 	</div>

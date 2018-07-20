@@ -8,11 +8,7 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/bootstrap/css/bootstrap.min.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
 	
-<<<<<<< HEAD
 <c:import url="../comum/header.jsp"></c:import>
-=======
-	
->>>>>>> 4d18f43734ef6c4daad7de8789bf5d20c1650a0d
 
 </script>
 
