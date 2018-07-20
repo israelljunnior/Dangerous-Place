@@ -19,15 +19,9 @@ public class SistemaController {
 	@RequestMapping("")
 	public String homePage() {
 		System.out.println("Dangerous Places Running");
-		return "usuario/home";
+		return "home";
 	}
 	
-	@RequestMapping("home")
-	public String home() {
-		System.out.println("Dangerous Places Running");
-		return "usuario/home";
-	}
-
 	@RequestMapping("usuario/login")
 	public String loginUsuario() {
 		System.out.println("Dangerous Places login");

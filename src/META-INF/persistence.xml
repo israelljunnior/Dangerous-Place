@@ -15,11 +15,8 @@ http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 				value="jdbc:mysql://localhost:3306/dangerousplace?
 useTimezone=true&amp;serverTimezone=UTC" />
 			<property name="javax.persistence.jdbc.user" value="root" />
-<<<<<<< HEAD
 			<property name="javax.persistence.jdbc.password" value="ifpe1234" />
-=======
 			<property name="javax.persistence.jdbc.password" value="" />
->>>>>>> 4d18f43734ef6c4daad7de8789bf5d20c1650a0d
 			<!-- Configurações específicas do Hibernate -->
 			<property name="hibernate.dialect"
 				value="org.hibernate.dialect.MySQL5InnoDBDialect" />

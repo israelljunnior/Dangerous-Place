@@ -8,11 +8,6 @@
 
 <c:import url="../comum/header.jsp"></c:import>
 
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/resources/bootstrap/css/bootstrap.min.css" />
-<link type="text/javascript"
-	src="<%=request.getContextPath()%>/resources/bootstrap/js/bootstrap.min.js">
-
 <title>Fórum</title>
 </head>
 <body>
