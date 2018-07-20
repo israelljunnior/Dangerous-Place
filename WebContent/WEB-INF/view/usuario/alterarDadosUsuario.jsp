@@ -37,7 +37,7 @@
 
 <body>
 
-	<c:import url="menu.jsp"></c:import>
+	<c:import url="../comum/header.jsp"></c:import>
 	<div class="row">
 		<div class="col-sm-4"></div>
 
@@ -52,18 +52,18 @@
 		<div class="form-group">
 			<label for="inputNome">Nome:</label> <input type="text"
 				id="inputNome" class="form-control" name="nome" value="${usuarioLogado.nome}"
-				style="width: 500px;" maxlength="100" required="required" pattern="^[a-zA-Z\u00C0-\u00FF\s]*$"  />
+				style="width: 500px;" maxlength="100" pattern="^[a-zA-Z\u00C0-\u00FF\s]*$"  />
 		</div>
 		<div class="form-group">
 			<label for="inputEmail">Email:</label> <input type="text"
 				id="inputEmail" class="form-control" name="email"	value="${usuarioLogado.email}"
-				style="width: 500px;" maxlength="100" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  onblur="validarEmail()"/>
+				style="width: 500px;" maxlength="100" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  onblur="validarEmail()"/>
 				<label style="display: none;" id="mensagem">Este e-mail já existe</label>
 		</div>
 		<div class="form-group">
 			<label for="inputSenha">Senha:</label> <input type="password"
 				id="inputSenha" class="form-control" name="senha" value="${usuarioLogado.senha}"
-				style="width: 500px;" maxlength="100" required="required" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+				style="width: 500px;" maxlength="100"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
 			title="Deve ser Preenchido com pelo menos 8 caracteres, mínimo uma letra minúscula, uma letra Maiúsculo e um número" />
 		</div>
 
@@ -71,12 +71,12 @@
 			<label for="inputRepetirSenha">Repita a senha:</label> <input
 				type="password" id="inputRepetir" class="form-control"
 				name="repetirSenha" style="width: 500px;" maxlength="100"
-				required="required" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Repita sua senha..." />
+				 pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Repita sua senha..." />
 		</div>
 		<div class="form-group">
 			<label for="inputSexo">Sexo:</label>
 				 <select name="selectSexo">
-				<option id="inputSexo" class="form-control" required="required"
+				<option id="inputSexo" class="form-control" 
 				type="radio" value="F" name="sexo">Feminino</option>
 				<br />
 				<option type="radio" value="M" name="sexo">Masculino</option>
@@ -88,7 +88,7 @@
 		<div class="form-group">
 			<label for="inputEndereco">CEP:</label> <input type="text"
 				id="inputDescricao" class="form-control" name="endereco" value="${usuarioLogado.endereco}"
-				style="width: 500px;" required="required" pattern="[0-9]{8}"  />
+				style="width: 500px;" pattern="[0-9]{8}"  />
 		</div>
 
 		<button type="reset" class="btn btn-danger" style="background-color:#B22222;color: white">Cancelar</button>

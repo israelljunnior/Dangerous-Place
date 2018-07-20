@@ -20,6 +20,15 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	<!-- A linha abaixo é necessária para poder carregar nos JSP os arquivos 
 		CSS, imagens, JavaScript e etc -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
-	<mvc:annotation-driven />
+	<mvc:annotation-driven conversion-service="conversionService" />
+	<bean id="conversionService"
+class="org.springframework.context.support.ConversionServiceFactoryBean">
+ <property name="converters">
+ <list>
+ <bean class="br.com.dangerous.converters.UsuarioConverter" />
+ <bean class="br.com.dangerous.converters.AdmConverter" />
+ </list>
+ </property>
+</bean>
 
 </beans>
