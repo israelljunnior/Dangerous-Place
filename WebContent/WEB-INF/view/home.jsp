@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:import url="../comum/header.jsp"></c:import>
+	<c:import url="./comum/header.jsp"></c:import>
 
 Bem Vindo, ${usuarioLogado.nome} <a href="<%=request.getContextPath()%>/logout">Logout</a>
 
