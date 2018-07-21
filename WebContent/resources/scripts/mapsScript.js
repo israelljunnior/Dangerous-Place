@@ -1,4 +1,4 @@
-var map;
+ var map;
     var geocoder; 
     var infoWindow;
     var markison;
