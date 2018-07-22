@@ -35,7 +35,7 @@ public class SistemaController {
 	}
 	
    
-	@RequestMapping("usuario/check")
+	@RequestMapping("check")
 	@ResponseBody
 	public String validarEmail(@RequestParam("email") String email, UsuarioDao user) {
 		
@@ -45,7 +45,7 @@ public class SistemaController {
 	}
 	
 
-	@RequestMapping("/usuario/save")
+	@RequestMapping("save")
 	public String save(Usuario usuario, @RequestParam("selectSexo") String sexo) {
 		UsuarioDao dao = new UsuarioDao();
 		usuario.setSexo(sexo);
