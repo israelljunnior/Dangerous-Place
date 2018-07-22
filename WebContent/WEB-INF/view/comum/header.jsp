@@ -31,20 +31,120 @@
       <li><a href="#">Sobre nós</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-    	<li><a href="/PP2-DangerousPlace/usuario/login " data-toggle="tooltip"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-    	<li><a href="/PP2-DangerousPlace/usuario/cadastro" data-toggle="tooltip"><span class="glyphicon glyphicon-user"></span> Cadastre-se</a></li>
+    	<!-- <li><a href="/PP2-DangerousPlace/usuario/login " data-toggle="tooltip"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    	<li><a href="/PP2-DangerousPlace/usuario/cadastro" data-toggle="tooltip"><span class="glyphicon glyphicon-user"></span> Cadastre-se</a></li> -->
+    	<li><input type="submit" class=" btn btn-default swing" data-toggle="modal" data-target="#modalCadastro" value="Cadastre-se"></li>
+    	<li><input type="submit" class="buttonper btn btn-default swing"  data-toggle="modal" data-target="#modalLogin" value="Login"></li>
     </ul>
   </div>
 </nav> 
 
-<br/>
+
+		<!-- Modal Login -->
+		<div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" media="all" data-backdrop="static">
+			<div class="modal-dialog modal-xs" role="document" >
+				<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				</div>
+				<div class="modal-body">
+					<form action="efetuarLogin" method="post">
+				<fieldset class="modais">
+					<center>
+						<legend>Login</legend>
+				<div class="form-group">
+						<label for="email">Email:</label> <input type="text" id="email"
+							class="form-control" name="email" style="width: 500px;"
+							placeholder="Digite seu Email." />
+					</div>
+				<div class="form-group">
+						<label for="senha">Senha:</label> <input type="password"
+							id="senha" class="form-control" name="senha"
+							style="width: 500px;" placeholder="Digite sua senha." />
+					</div>
+				<div class="btn-group btn-group-lg" style="text-align: center";>
+					<button type="reset" class="btn btn-danger" style="background-color:#B22222;color: white" data-toggle="tooltip">Cancelar</button></a>
+				</div>
+                <div class="btn-group btn-group-lg" style="text-align: center";>
+					<button type="submit" class="btn btn-primary"
+						style="background-color:#555555" a href="/PP2-DangerousPlace/usuario/home" data-toggle="tooltip">Entrar</button></a>
+				</div>
+		</center> 
+	</fieldset>
+		</form>
+		</div>
+		</div>
+		</div>
+		</div>
+
+
+
+	<!-- Tela modal para cadastro -->
+	<div class="modal fade" id="modalCadastro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" >
+		<div class="modal-dialog modal-xs" role="document">
+			<div class="modal-content">
+			<div class="modal-header">		
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			</div>			
+			<div class="modal-body">
+
+			<form action="save" method="post" id="formCadastro">
+				<fieldset class="modais">
+	  				<center>
+        		<legend>Cadastre-se</legend>
+					<div class="form-group">
+					<label for="nome">Nome:</label> <input type="text"
+				id="nome" class="form-control" name="nome" style="width: 500px;" placeholder="Digite seu nome."/>
+			</div>
+			<div class="form-group">
+				<label for="email">Email:</label> <input type="text"
+				id="email" class="form-control" name="email" style="width: 500px;" placeholder="Digite seu Email..." />
+			</div>
+			<div class="form-group">
+				<label for="senha">Senha:</label> <input type="password"
+				id="senha" class="form-control" name="senha" style="width: 500px;" placeholder="Digite sua senha..." />
+			</div>
+			<div class="form-group">
+				<label for="repetirSenha">Repita a senha:</label> <input
+				type="password" id="repetirSenha" class="form-control"
+				name="repetirSenha" style="width: 500px;"  placeholder="Repita sua senha..." />
+			</div>
+			<div class="form-group">
+				<label for="inputSexo">Sexo:</label>
+					 <select name="selectSexo">
+					<option id="inputSexo" class="form-control" required="required"
+				type="radio" value="F" name="sexo">Feminino</option>
+				<br />
+				<option type="radio" value="M" name="sexo">Masculino</option>
+				<br />
+					</select>
+			</div>
+
+			<div class="form-group">
+				<label for="inputEndereco">CEP:</label> <input type="text"
+				id="inputDescricao" class="form-control" name="endereco" style="width: 500px;" placeholder="Digite seu CEP" />
+			</div>
+			<button type="reset" class="btn btn-danger" style="background-color:#B22222;color: white">Cancelar</button>
+			&nbsp; 
+			<button type="submit" class="btn btn-primary" style="background-color: black;color: white;margin-left:10px">&nbsp;
+			Inserir &nbsp;</button>
+		 </fieldset>
+	 </form>
+		</div>
+		</div>
+		</div>
+		</div>
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" media="all">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" media="all"></script>
+
 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/jquery-validation-1.17.0/dist/jquery.validate.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/jquery-validation-1.17.0/dist/additional-methods.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/localization/messages_pt_BR.js"></script>
-
+<!-- 
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/bootstrap/css/bootstrap.min.css" />
 <link type="text/javascript"
-	src="<%=request.getContextPath()%>/resources/bootstrap/js/bootstrap.min.js">
+	src="<%=request.getContextPath()%>/resources/bootstrap/js/bootstrap.min.js"> -->
