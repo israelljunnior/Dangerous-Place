@@ -54,13 +54,13 @@ public class SistemaController {
 		return "usuario/cadastroSucesso";
 	}
 	
-	@RequestMapping("/usuario/efetuarLogin")
+	@RequestMapping("efetuarLogin")
 	public String efetuarLogin(Usuario usuario, HttpSession session, Model model) {
 	UsuarioDao dao = new UsuarioDao();
 	Usuario usuarioLogado = dao.buscarUsuario(usuario);
 	if (usuarioLogado != null) {
 	 session.setAttribute("usuarioLogado", usuarioLogado);
-	 return "usuario/home";
+	 return "home";
 	}
 	model.addAttribute("msg", "Não foi encontrado um usuário com o login e senha informados.");
 	return "usuario/loginUsuario";
@@ -72,11 +72,6 @@ public class SistemaController {
 		return "usuario/alterarDadosUsuario";
 	}
 
-	@RequestMapping("usuario/deletarConta")
-	public String deletar() {
-		System.out.println("Dangerous Places login");
-		return "usuario/deletarConta";
-	} 
 		
 	@RequestMapping("/usuario/update")
 	public String update(Usuario usuario, Model model, @RequestParam("selectSexo") String sexo) {
@@ -101,14 +96,6 @@ public class SistemaController {
 	return "usuario/home";
 	}
 
-	@RequestMapping("/usuario/delete")
-	public String delete(@RequestParam("id") Integer id, Model model) {
-	UsuarioDao dao = new UsuarioDao();
-	dao.remover(id);
-	model.addAttribute("mensagem", "Usuario Removido com Sucesso");
-	return "usuario/menu";
-	}
-	
 	
 
 }

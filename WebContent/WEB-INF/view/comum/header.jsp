@@ -19,6 +19,8 @@
 </style>
 </head>
 <body>
+<c:import url="../usuario/login.jsp" />
+	<c:import url="../usuario/loginGoogle.jsp" />
 <nav class="navbar navbar-inverse names">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -33,8 +35,9 @@
     <ul class="nav navbar-nav navbar-right">
     	<!-- <li><a href="/PP2-DangerousPlace/usuario/login " data-toggle="tooltip"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
     	<li><a href="/PP2-DangerousPlace/usuario/cadastro" data-toggle="tooltip"><span class="glyphicon glyphicon-user"></span> Cadastre-se</a></li> -->
-    	<li><input type="submit" class=" btn btn-default swing" data-toggle="modal" data-target="#modalCadastro" value="Cadastre-se"></li>
-    	<li><input type="submit" class="buttonper btn btn-default swing"  data-toggle="modal" data-target="#modalLogin" value="Login"></li>
+    	<li><a type="submit" data-toggle="modal" data-target="#modalLogin"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    	<li><a type="submit" data-toggle="modal" data-target="#modalCadastro"><span class="glyphicon glyphicon-user"></span> Cadastre-se</a></li>
+    	
     </ul>
   </div>
 </nav> 
@@ -46,12 +49,13 @@
 				<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<center><h3>Login</h3></center>
 				</div>
 				<div class="modal-body">
 					<form action="efetuarLogin" method="post">
-				<fieldset class="modais">
+				
 					<center>
-						<legend>Login</legend>
+						
 				<div class="form-group">
 						<label for="email">Email:</label> <input type="text" id="email"
 							class="form-control" name="email" style="width: 500px;"
@@ -62,6 +66,9 @@
 							id="senha" class="form-control" name="senha"
 							style="width: 500px;" placeholder="Digite sua senha." />
 					</div>
+				<!-- 	<fb:login-button scope="public_profile,email"
+							onlogin="checkLoginState();"> 
+						</fb:login-button> -->
 				<div class="btn-group btn-group-lg" style="text-align: center";>
 					<button type="reset" class="btn btn-danger" style="background-color:#B22222;color: white" data-toggle="tooltip">Cancelar</button></a>
 				</div>
@@ -79,19 +86,19 @@
 
 
 
-	<!-- Tela modal para cadastro -->
+	<!-- Modal cadastro -->
 	<div class="modal fade" id="modalCadastro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" >
 		<div class="modal-dialog modal-xs" role="document">
 			<div class="modal-content">
 			<div class="modal-header">		
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<center><h3>Cadastre-se</h3></center>
 			</div>			
 			<div class="modal-body">
 
 			<form action="save" method="post" id="formCadastro">
-				<fieldset class="modais">
-	  				<center>
-        		<legend>Cadastre-se</legend>
+					<center>
+        		
 					<div class="form-group">
 					<label for="nome">Nome:</label> <input type="text"
 				id="nome" class="form-control" name="nome" style="width: 500px;" placeholder="Digite seu nome."/>
@@ -128,12 +135,98 @@
 			&nbsp; 
 			<button type="submit" class="btn btn-primary" style="background-color: black;color: white;margin-left:10px">&nbsp;
 			Inserir &nbsp;</button>
-		 </fieldset>
+		 
+
 	 </form>
 		</div>
 		</div>
 		</div>
 		</div>
+
+
+
+</body>
+
+		 
+<script>
+
+$(document).ready(function(){
+		
+		$("#formCadastro").validate({
+			
+			rules: {
+				nome: {
+					required: true,
+					minlength:2,
+					maxlength:50,
+					pattern: /^[a-zA-Z]+([\s]+)?[']?([a-zA-Z]+)?$/
+				},
+				email: {
+					required:true,
+					maxlength:130,
+					email:true,
+					remote:{
+						url:"check",
+						type:"post",
+						data:{
+							email: function(){
+								return $("#email").val();
+								}
+							}
+						}
+				},
+				senha: {
+					required: true,
+					minlength:2,
+					maxlength:10,
+					pattern: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/,
+				},
+				
+				repetirSenha: {
+					required: true,
+					minlength:2,
+					maxlength:10,
+					equalTo : "#senha"
+				},
+				endereco: {
+					required: true,
+					pattern: /[0-9]{8}/,
+					
+				}
+				
+			}, messages:{
+				nome: {
+					required:"<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+					minlength: "<div class='alert alert-danger alert-dismissible fade in' style=''>É necessário no mínimo duas letras</div>",
+					maxlength: "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve conter no máximo 50 letras</div>",
+					pattern: "<div class='alert alert-danger alert-dismissible fade in' style=''>É necessário Conter Somente Letras</div>"
+				},
+				email: {
+					required: "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+					maxlength: "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve no máximo 130 caracteres</div>",
+					email: "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve conter o formato 'exemplo@exemplo.com'</div>",
+					remote: "<div class='alert alert-danger alert-dismissible fade in' style=''>Email não Está disponível</div>"
+				},
+				senha: {
+					required: "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+					pattern: "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve conter pelo menos 1 letra maiúscula, 1 letra minúscula, numeros e pelo menos 8 caracteres. </div>",
+					
+				},
+				repetirSenha: {
+					required: "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+					equalTo: "<div class='alert alert-danger alert-dismissible fade in' style=''>As duas senhas devem ser iguais</div>", 					
+				},
+				endereco: {
+					required:"<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+					pattern: "<div class='alert alert-danger alert-dismissible fade in' style=''> Deve Conter Formato Válido</div>"
+				}
+				
+			}
+			
+		});
+		
+	});
+</script> 
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
