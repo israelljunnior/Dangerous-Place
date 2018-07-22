@@ -6,8 +6,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" media="all">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" media="all"></script>
 
+<script type="text/javascript" src="<%=request.getContextPath()%>/resources/jquery-validation-1.17.0/dist/jquery.validate.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/resources/jquery-validation-1.17.0/dist/additional-methods.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/resources/localization/messages_pt_BR.js"></script>
 
 <title>Menu</title>
 <style type="text/css">
@@ -57,13 +62,13 @@
 					<center>
 						
 				<div class="form-group">
-						<label for="email">Email:</label> <input type="text" id="email"
+						<label for="email">Email:</label> <input type="text" id="emailLogin"
 							class="form-control" name="email" style="width: 500px;"
 							placeholder="Digite seu Email." />
 					</div>
 				<div class="form-group">
 						<label for="senha">Senha:</label> <input type="password"
-							id="senha" class="form-control" name="senha"
+							id="senhaLogin" class="form-control" name="senha"
 							style="width: 500px;" placeholder="Digite sua senha." />
 					</div>
 				<!-- 	<fb:login-button scope="public_profile,email"
@@ -159,7 +164,7 @@ $(document).ready(function(){
 					required: true,
 					minlength:2,
 					maxlength:50,
-					pattern: /^[a-zA-Z]+([\s]+)?[']?([a-zA-Z]+)?$/
+					pattern: /^[a-zA-Z\s]+$/
 				},
 				email: {
 					required:true,
@@ -229,15 +234,5 @@ $(document).ready(function(){
 </script> 
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" media="all">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" media="all"></script>
 
-<script type="text/javascript" src="<%=request.getContextPath()%>/resources/jquery-validation-1.17.0/dist/jquery.validate.min.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/resources/jquery-validation-1.17.0/dist/additional-methods.min.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/resources/localization/messages_pt_BR.js"></script>
-<!-- 
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/resources/bootstrap/css/bootstrap.min.css" />
-<link type="text/javascript"
-	src="<%=request.getContextPath()%>/resources/bootstrap/js/bootstrap.min.js"> -->
+

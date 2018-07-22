@@ -22,19 +22,6 @@ public class SistemaController {
 		return "home";
 	}
 	
-	@RequestMapping("usuario/login")
-	public String loginUsuario() {
-		System.out.println("Dangerous Places login");
-		return "usuario/loginUsuario";
-	}
-
-	@RequestMapping("usuario/cadastro")
-	public String cadastroUsuario() {
-		System.out.println("Dangerous Places cadastro");
-		return "usuario/cadastroUsuario";
-	}
-	
-   
 	@RequestMapping("check")
 	@ResponseBody
 	public String validarEmail(@RequestParam("email") String email, UsuarioDao user) {
