@@ -95,5 +95,4 @@ public class UsuarioDao {
 		manager.close();
 		factory.close();
 		}
-	
 }
