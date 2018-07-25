@@ -75,7 +75,7 @@ public class SistemaController {
 		System.out.println("Comentando no fórum do Dangerous Places");
 		return "usuario/forum";
 	}
-        //Deletar o comentário.
+        //Deletar o comentário .
         @RequestMapping("/produto/delete")
 	public String delete(@RequestParam("id") Integer id, Model model) {
 		UsuarioDao dao = new UsuarioDao();
