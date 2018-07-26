@@ -50,7 +50,7 @@ public class SistemaController {
 	 return "home";
 	}
 	model.addAttribute("msg", "Não foi encontrado um usuário com o login e senha informados.");
-	return "usuario/loginUsuario";
+	return "comum/header";
 	}
 
 	@RequestMapping("usuario/alterarDados")
@@ -87,6 +87,6 @@ public class SistemaController {
 	@RequestMapping("logout")
 	public String logout(HttpSession session) {
 	session.invalidate();
-	return "usuario/home";
+	return "home";
 	}
 }
