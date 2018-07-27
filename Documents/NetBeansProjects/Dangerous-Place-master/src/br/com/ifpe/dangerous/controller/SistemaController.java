@@ -16,7 +16,7 @@ public class SistemaController {
 	
 	 
 	
-	@RequestMapping("")
+	@RequestMapping("home")
 	public String homePage() {
 		System.out.println("Dangerous Places Running");
 		return "home";
@@ -66,11 +66,11 @@ public class SistemaController {
 	usuario.setSexo(sexo);
 	dao.alterar(usuario);
 	model.addAttribute("mensagem", "Usuario Alterado com Sucesso !");
-	return "usuario/home";
+	return "home";
 	}
 	
 	
-	@RequestMapping("usuario/forum")
+	@RequestMapping("forum")
 	public String comentando() {
 		System.out.println("Comentando no fórum do Dangerous Places");
 		return "usuario/forum";

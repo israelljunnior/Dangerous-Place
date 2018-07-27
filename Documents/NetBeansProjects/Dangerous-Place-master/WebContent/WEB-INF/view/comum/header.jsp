@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <link href="https://fonts.googleapis.com/css?family=Montserrat"
 	rel="stylesheet">
@@ -37,31 +37,41 @@
 		<ul class="nav navbar-nav">
 			<li class="active"><a href="/PP2-DangerousPlace/home">Home</a></li>
 			<li><a href="#">Mapa</a></li>
-			<li><a href="/PP2-DangerousPlace/usuario/forum">Fórum</a></li>
+			<li><a href="/PP2-DangerousPlace/forum">Fórum</a></li>
 			<li><a href="#">Sobre nós</a></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
 			<!-- <li><a href="/PP2-DangerousPlace/usuario/login " data-toggle="tooltip"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
     	<li><a href="/PP2-DangerousPlace/usuario/cadastro" data-toggle="tooltip"><span class="glyphicon glyphicon-user"></span> Cadastre-se</a></li> -->
 			
+	
+	
+	 <c:choose>
+<c:when test="${not empty usuarioLogado.nome}">
+<li><a href="/PP2-DangerousPlace/usuario/alterarDados">Bem Vindo,  ${usuarioLogado.nome}</a></li>
+<li><a href="<%=request.getContextPath()%>/logout">Sair</a></li>
+</c:when>
+<c:otherwise>
+	<li><a type="submit" data-toggle="modal"
+							data-target="#modalLogin"><span
+								class="glyphicon glyphicon-log-in"></span> Login</a></li>
+						<li><a type="submit" data-toggle="modal"
+							data-target="#modalCadastro"><span
+								class="glyphicon glyphicon-user"></span> Cadastre-se</a></li>
+</c:otherwise>
+</c:choose>
+	
 			
+	<!-- 		
+		<a href="/PP2-DangerousPlace/usuario/alterarDados">${usuarioLogado.nome}</a>
 			
-			
-			
-			<c:choose>
-					<c:when test="${not empty usuarioLogado.nome}">
-					${usuarioLogado.nome} <a href="<%=request.getContextPath()%>/logout">Sair</a>  
-			</c:when>
-					<c:otherwise>
 						<a type="submit" data-toggle="modal"
 							data-target="#modalLogin"><span
 								class="glyphicon glyphicon-log-in"></span> Login</a>
 						<a type="submit" data-toggle="modal"
 							data-target="#modalCadastro"><span
 								class="glyphicon glyphicon-user"></span> Cadastre-se</a>
-					</c:otherwise>
-				</c:choose>
-
+ -->
 		</ul>
 	</div>
 	</nav>
