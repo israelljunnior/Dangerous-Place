@@ -36,10 +36,10 @@
 	<button type="submit" class="btn btn-primary"
 		style="align:rigth; background-color: black; color: white">Crie</button>
 		
-		<button type="submit" class="btn btn-primary"
-		style="align:rigth; background-color: black; color: white">Comente
-			esse topico aqui</button>
-	 
+	<button type="submit" class="btn btn-primary"
+		style="align:rigth; background-color: black; color: white">Comente esse topico aqui</button>
+        <!--Deleta o comentário, creio que tenha que ser testado -->        
+        <button type="submit" class="btn btn-primary" style="align:rigth; background-color: black; color: white" value="delete?id=${produto.id}">Remover comentário</button>
 	 </div>
 	 <div class="col-sm-3"></div>
 	 
