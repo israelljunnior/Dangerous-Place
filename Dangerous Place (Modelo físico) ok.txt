@@ -7,15 +7,12 @@ create table usuario(
 	email varchar(130) not null unique,
 	senha varchar(130) not null,
 	sexo char(1) not null,
-	endereco varchar(70) not null
+	endereco varchar(70) not null,
+	nivel_acesso varchar(7) not null
+
 );
 
-create table adm(
-	id_adm int AUTO_INCREMENT PRIMARY KEY,
-	nome varchar(45) not null,
-	email varchar(45) not null unique,
-	senha varchar(120) not null
-);
+
 
 create table publicacao(
 	id_publicacao int AUTO_INCREMENT PRIMARY KEY,

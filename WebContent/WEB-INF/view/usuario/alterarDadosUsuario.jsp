@@ -81,7 +81,7 @@
 				id="inputDescricao" class="form-control" name="endereco" value="${usuarioLogado.endereco}"
 				style="width: 500px;" pattern="[0-9]{8}"  />
 		</div>
-
+			<input type="hidden" name="nivel_acesso" value="usuario"  >
 		<button type="reset" class="btn btn-danger" style="background-color:#B22222;color: white">Cancelar</button>
 		&nbsp; 
 

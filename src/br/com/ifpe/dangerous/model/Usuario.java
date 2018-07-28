@@ -25,6 +25,17 @@ private String senha;
 private String sexo;
 @Column
 private String endereco;
+@Column
+private String nivel_acesso;
+
+
+public String getNivel_acesso() {
+	return nivel_acesso;
+}
+
+public void setNivel_acesso(String nivel_acesso) {
+	this.nivel_acesso = nivel_acesso;
+}
 
 public int getId() {
 	return id;
