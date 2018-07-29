@@ -1,56 +1,136 @@
- var map;
-    var geocoder; 
-    var infoWindow;
-    var markison;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -8.34551115, lng: -35.23796773},
-          zoom: 8
-        });
-        
-        infoWindow = new google.maps.InfoWindow();
-        geocoder = new google.maps.Geocoder();
-        
-        google.maps.event.addListener(map, 'click', function (event){ 
-          
-          if(markison != null ){
-            markison.setMap(null)
-            markison = null
-          }
-          markison = new google.maps.Marker({
-              map: map,
-              draggable: true,
-              position:(event.latLng)
-          })
+var map;
+var geocoder;
+var infoWindow;
+var markison;
+function initMap() {
+	map = new google.maps.Map(document.getElementById('map'), {
+		center : {
+			lat : -8.34551115,
+			lng : -35.23796773
+		},
+		zoom : 8
+	});
 
-          markison.addListener('click', function () {
-              infoWindow.open(map, this);
-          });
+	infoWindow = new google.maps.InfoWindow();
+	geocoder = new google.maps.Geocoder();
 
-          markison.addListener('dblclick', function(){
-            markison.setMap(null)
-            markison = null
-          });
-          
-          geocoder.geocode({'latLng': markison.getPosition()}, function (results, status){
-            if(status == google.maps.GeocoderStatus.OK)
-              if(results[0])
-                infoWindow.setContent(results[0].formatted_address);
-                infoWindow.open(map, markison);
-          })
+	/* buttonLocalizacao.addEventListener("click", function() {
 
-          markison.addListener('dragend', function() {
-            
-            geocoder.geocode({'latLng': markison.getPosition()}, function(results, status) {
-              if (status == google.maps.GeocoderStatus.OK) {
-                if (results[0]){
-                  infoWindow.setContent(results[0].formatted_address);  
-                  infoWindow.open(map, markison);
-                  }
-                }
-              });
-            });
+		;*/
+    
+    var centerControlDiv = document.createElement('div');
+    var centerControl = new CenterControl(centerControlDiv, map);
 
-          });
+    centerControlDiv.index = 1;
+    map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
+  
+	google.maps.event.addListener(map, 'click', function(event) {
 
-      };
+		if (markison != null) {
+			markison.setMap(null)
+			markison = null
+		}
+		markison = new google.maps.Marker({
+			map : map,
+			draggable : true,
+			position : (event.latLng)
+		})
+
+		markison.addListener('click', function() {
+			infoWindow.open(map, this);
+		});
+
+		markison.addListener('dblclick', function() {
+			markison.setMap(null)
+			markison = null
+		});
+
+		geocoder.geocode({
+			'latLng' : markison.getPosition()
+		}, function(results, status) {
+			if (status == google.maps.GeocoderStatus.OK)
+				if (results[0])
+					infoWindow.setContent(results[0].formatted_address);
+			infoWindow.open(map, markison);
+		})
+
+		markison.addListener('dragend', function() {
+
+			geocoder.geocode({
+				'latLng' : markison.getPosition()
+			}, function(results, status) {
+				if (status == google.maps.GeocoderStatus.OK) {
+					if (results[0]) {
+						infoWindow.setContent(results[0].formatted_address);
+						infoWindow.open(map, markison);
+					}
+				}
+			});
+		});
+
+	});
+
+};
+
+function handleLocationError(browserHasGeolocation, infoWindowLocalizacao, pos) {
+	infoWindowLocalizacao.setPosition(pos);
+	infoWindowLocalizacao
+			.setContent(browserHasGeolocation ? 'Error: The Geolocation service failed.'
+					: 'Error: Your browser doesn\'t support geolocation.');
+	infoWindowLocalizacao.open(map);
+}
+
+
+function CenterControl(controlDiv, map) {
+
+    // Set CSS for the control border.
+    var controlUI = document.createElement('div');
+    controlUI.style.backgroundColor = '#fff';
+    controlUI.style.border = '2px solid #fff';
+    controlUI.style.borderRadius = '3px';
+    controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+    controlUI.style.cursor = 'pointer';
+    controlUI.style.marginBottom = '22px';
+    controlUI.style.textAlign = 'center';
+    controlUI.title = 'Click to recenter the map';
+    controlDiv.appendChild(controlUI);
+    // Set CSS for the control interior.
+    var controlText = document.createElement('div');
+    controlText.style.color = 'rgb(25,25,25)';
+    controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+    controlText.style.fontSize = '16px';
+    controlText.style.lineHeight = '38px';
+    controlText.style.paddingLeft = '5px';
+    controlText.style.paddingRight = '5px';
+    controlText.innerHTML = 'Center Map';
+    controlUI.appendChild(controlText);
+
+    // Setup the click event listeners: simply set the map to Chicago.
+    controlUI.addEventListener('click', function() {
+    	var infoWindowLocalizacao = new google.maps.InfoWindow;
+
+		// Try HTML5 geolocation.
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(function(position) {
+				var pos = {
+					lat : position.coords.latitude,
+					lng : position.coords.longitude
+				};
+
+				infoWindowLocalizacao.setPosition(pos);
+				infoWindowLocalizacao.setContent('Location found.');
+				infoWindowLocalizacao.open(map);
+				map.setCenter(pos);
+			}, function() {
+				handleLocationError(true, infoWindowLocalizacao, map
+						.getCenter());
+			});
+		} else {
+			// Browser doesn't support Geolocation
+			handleLocationError(false, infoWindowLocalizacao, map.getCenter());
+		}
+
+	//})
+    });
+
+  }
