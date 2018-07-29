@@ -111,13 +111,13 @@
 						<center>
 
 							<div class="form-group">
-								<label for="email">Email:</label> <input type="text"
-									id="emailLogin" class="form-control" name="email"
+								<label for="emailLogin">Email:</label> <input type="text"
+									id="emailLogin" class="form-control" name="emaiLogin"
 									style="width: 500px;" placeholder="Digite seu Email." />
 							</div>
 							<div class="form-group">
-								<label for="senha">Senha:</label> <input type="password"
-									id="senhaLogin" class="form-control" name="senha"
+								<label for="senhaLogin">Senha:</label> <input type="password"
+									id="senhaLogin" class="form-control" name="senhaLogin"
 									style="width: 500px;" placeholder="Digite sua senha." />
 							</div>
 
