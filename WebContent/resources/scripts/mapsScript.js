@@ -49,17 +49,29 @@ function initMap() {
 		geocoder.geocode({
 			'latLng' : markison.getPosition()
 		}, function(results, status) {
-			if (status == google.maps.GeocoderStatus.OK)
-				if (results[0]){
-					alert(results[0].address_components[2].short_name);
-					if(results[0].address_components[2].short_name == "PE"){
-						infoWindow.setContent(results[0].formatted_address);
+			if (status == google.maps.GeocoderStatus.OK){
+				if (results[0]) {
+					var isAvailable = false;
+					var indexState;
+					for(i = 0; i < results[0].address_components.length; i++){
+						if(results[0].address_components[i].types[0] == "administrative_area_level_1"){
+								indexState = i;
+								if(results[0].address_components[i].short_name == "PE"){
+									isAvailable = true;
+									break;
+								}
+							}
+					}	
+					if(isAvailable){
+						infoWindow.setContent("Dados disponível "+results[0].formatted_address);
 						infoWindow.open(map, markison);
-						} else {
-							infoWindow.setContent("Dados não disponíveis em :"+results[0].formatted_address);
-							infoWindow.open(map, markison);
-						}
-				}	
+					} else {
+						infoWindow.setContent("Dados não disponíveis em: "+results[0].address_components[indexState].short_name
+								+"<br />"+results[0].formatted_address);
+						infoWindow.open(map, markison);
+					}
+				}
+			}	
 		})
 
 		markison.addListener('dragend', function() {
@@ -69,15 +81,23 @@ function initMap() {
 			}, function(results, status) {
 				if (status == google.maps.GeocoderStatus.OK) {
 					if (results[0]) {
-						for(i = 0; results[0].address_components.length; i++){
-							
-						}
-						alert(results[0].address_components[5].short_name);
-						if(results[0].address_components[5].short_name == "PE"){
-						infoWindow.setContent(results[0].formatted_address);
-						infoWindow.open(map, markison);
+						var isAvailable = false;
+						var indexState;
+						for(i = 0; i < results[0].address_components.length; i++){
+							if(results[0].address_components[i].types[0] == "administrative_area_level_1"){
+									indexState = i;
+									if(results[0].address_components[i].short_name == "PE"){
+										isAvailable = true;
+										break;
+									}
+								}
+						}	
+						if(isAvailable){
+							infoWindow.setContent("Dados disponível "+results[0].formatted_address);
+							infoWindow.open(map, markison);
 						} else {
-							infoWindow.setContent("Dados não disponíveis em :"+results[0].formatted_address);
+							infoWindow.setContent("Dados não disponíveis em: "+results[0].address_components[indexState].short_name
+									+"<br />"+results[0].formatted_address);
 							infoWindow.open(map, markison);
 						}
 					}
