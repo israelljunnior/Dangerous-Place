@@ -1,3 +1,4 @@
+
 var map;
 var geocoder;
 var infoWindow;
@@ -49,9 +50,16 @@ function initMap() {
 			'latLng' : markison.getPosition()
 		}, function(results, status) {
 			if (status == google.maps.GeocoderStatus.OK)
-				if (results[0])
-					infoWindow.setContent(results[0].formatted_address);
-			infoWindow.open(map, markison);
+				if (results[0]){
+					alert(results[0].address_components[2].short_name);
+					if(results[0].address_components[2].short_name == "PE"){
+						infoWindow.setContent(results[0].formatted_address);
+						infoWindow.open(map, markison);
+						} else {
+							infoWindow.setContent("Dados não disponíveis em :"+results[0].formatted_address);
+							infoWindow.open(map, markison);
+						}
+				}	
 		})
 
 		markison.addListener('dragend', function() {
@@ -61,8 +69,17 @@ function initMap() {
 			}, function(results, status) {
 				if (status == google.maps.GeocoderStatus.OK) {
 					if (results[0]) {
+						for(i = 0; results[0].address_components.length; i++){
+							
+						}
+						alert(results[0].address_components[5].short_name);
+						if(results[0].address_components[5].short_name == "PE"){
 						infoWindow.setContent(results[0].formatted_address);
 						infoWindow.open(map, markison);
+						} else {
+							infoWindow.setContent("Dados não disponíveis em :"+results[0].formatted_address);
+							infoWindow.open(map, markison);
+						}
 					}
 				}
 			});
@@ -107,8 +124,9 @@ function CenterControl(controlDiv, map) {
 
     // Setup the click event listeners: simply set the map to Chicago.
     controlUI.addEventListener('click', function() {
+        
     	var infoWindowLocalizacao = new google.maps.InfoWindow;
-
+        var geocoder = new google.maps.Geocoder();
 		// Try HTML5 geolocation.
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(function(position) {
@@ -116,9 +134,23 @@ function CenterControl(controlDiv, map) {
 					lat : position.coords.latitude,
 					lng : position.coords.longitude
 				};
+                
+                geocoder.geocode({"latLng":pos}, function(results, status){
+                    if(status == google.maps.GeocoderStatus.OK){
+                        if(results[0] != null){
+                        	if(results[0].address_components[5].short_name == "PE"){
+                        		infoWindowLocalizacao.setContent("<h3>Sua Localização<br></h3>" + results[0].formatted_address);
+                        	} else { 
+                        		infoWindowLocalizacao.setContent("<h3>Os dados ainda não estão disponíveis em seu Estado"+
+                        				results[0].address_components[5].short_name+"<br></h3>" + results[0].formatted_address);
+                        	}
+                        	
+                        	
+                        }
+                    }
 
+                });
 				infoWindowLocalizacao.setPosition(pos);
-				infoWindowLocalizacao.setContent('Location found.');
 				infoWindowLocalizacao.open(map);
 				map.setCenter(pos);
 			}, function() {
