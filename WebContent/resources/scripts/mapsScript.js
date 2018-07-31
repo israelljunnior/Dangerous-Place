@@ -182,10 +182,6 @@ function initMap() {
 	infoWindow = new google.maps.InfoWindow();
 	geocoder = new google.maps.Geocoder();
 
-	/* buttonLocalizacao.addEventListener("click", function() {
-
-		;*/
-    
     var centerControlDiv = document.createElement('div');
     var centerControl = new CenterControl(centerControlDiv, map);
 
@@ -337,12 +333,12 @@ function CenterControl(controlDiv, map) {
     								}
     						}	
     						if(isAvailable){
-    							infoWindow.setContent("Dados disponível "+results[0].formatted_address);
+    							infoWindowLocalizacao.setContent("Dados disponível "+results[0].formatted_address);
     							infoWindow.open(map, markison);
     						} else {
-    							infoWindow.setContent("Dados não disponíveis em: "+results[0].address_components[indexState].short_name
+    							infoWindowLocalizacao.setContent("Dados não disponíveis em: "+results[0].address_components[indexState].short_name
     									+"<br />"+results[0].formatted_address);
-    							infoWindow.open(map, markison);
+    							infoWindowLocalizacao.open(map, markison);
     						}
     					}
                     }
