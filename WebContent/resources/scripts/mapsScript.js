@@ -1,4 +1,170 @@
-
+var style = [
+    {
+        "featureType": "all",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "saturation": 36
+            },
+            {
+                "color": "#a81010"
+            },
+            {
+                "lightness": 40
+            }
+        ]
+    },
+    {
+        "featureType": "all",
+        "elementType": "labels.text.stroke",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "color": "#000000"
+            },
+            {
+                "lightness": 16
+            }
+        ]
+    },
+    {
+        "featureType": "all",
+        "elementType": "labels.icon",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#a81010"
+            },
+            {
+                "lightness": 20
+            }
+        ]
+    },
+    {
+        "featureType": "administrative",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "color": "#a81010"
+            },
+            {
+                "lightness": 17
+            },
+            {
+                "weight": 1.2
+            }
+        ]
+    },
+    {
+        "featureType": "landscape",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "lightness": 20
+            },
+            {
+                "color": "#383838"
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#000000"
+            },
+            {
+                "lightness": 21
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#000000"
+            },
+            {
+                "lightness": 17
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "color": "#000000"
+            },
+            {
+                "lightness": 29
+            },
+            {
+                "weight": 0.2
+            }
+        ]
+    },
+    {
+        "featureType": "road.arterial",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#000000"
+            },
+            {
+                "lightness": 18
+            }
+        ]
+    },
+    {
+        "featureType": "road.local",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#a81010"
+            },
+            {
+                "lightness": 16
+            }
+        ]
+    },
+    {
+        "featureType": "transit",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "lightness": 19
+            },
+            {
+                "color": "#404040"
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#000000"
+            },
+            {
+                "lightness": 17
+            }
+        ]
+    }
+];
 var map;
 var geocoder;
 var infoWindow;
@@ -6,10 +172,11 @@ var markison;
 function initMap() {
 	map = new google.maps.Map(document.getElementById('map'), {
 		center : {
-			lat : -8.34551115,
-			lng : -35.23796773
+			lat : -8.23271878,
+			lng : -37.80602193
 		},
-		zoom : 8
+		zoom : 13,
+		styles:style
 	});
 
 	infoWindow = new google.maps.InfoWindow();
@@ -157,16 +324,27 @@ function CenterControl(controlDiv, map) {
                 
                 geocoder.geocode({"latLng":pos}, function(results, status){
                     if(status == google.maps.GeocoderStatus.OK){
-                        if(results[0] != null){
-                        	if(results[0].address_components[5].short_name == "PE"){
-                        		infoWindowLocalizacao.setContent("<h3>Sua Localização<br></h3>" + results[0].formatted_address);
-                        	} else { 
-                        		infoWindowLocalizacao.setContent("<h3>Os dados ainda não estão disponíveis em seu Estado"+
-                        				results[0].address_components[5].short_name+"<br></h3>" + results[0].formatted_address);
-                        	}
-                        	
-                        	
-                        }
+                    	if (results[0]) {
+    						var isAvailable = false;
+    						var indexState;
+    						for(i = 0; i < results[0].address_components.length; i++){
+    							if(results[0].address_components[i].types[0] == "administrative_area_level_1"){
+    									indexState = i;
+    									if(results[0].address_components[i].short_name == "PE"){
+    										isAvailable = true;
+    										break;
+    									}
+    								}
+    						}	
+    						if(isAvailable){
+    							infoWindow.setContent("Dados disponível "+results[0].formatted_address);
+    							infoWindow.open(map, markison);
+    						} else {
+    							infoWindow.setContent("Dados não disponíveis em: "+results[0].address_components[indexState].short_name
+    									+"<br />"+results[0].formatted_address);
+    							infoWindow.open(map, markison);
+    						}
+    					}
                     }
 
                 });
