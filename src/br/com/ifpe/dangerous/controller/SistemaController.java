@@ -41,6 +41,21 @@ public class SistemaController {
 		return "usuario/cadastroSucesso";
 	}
 	
+	
+	@RequestMapping("saveADM")
+	public String saveADM(Usuario usuario, @RequestParam("selectSexo") String sexo,@RequestParam("selectNivel_acesso") String nivel_acesso) {
+		UsuarioDao dao = new UsuarioDao();
+		usuario.setSexo(sexo);
+		usuario.setNivel_acesso(nivel_acesso);
+		dao.salvar(usuario);
+		
+		return "usuario/cadastroSucesso";
+	}
+	
+	
+	
+	
+	
 	@RequestMapping("efetuarLogin")
 	public String efetuarLogin(Usuario usuario, HttpSession session, Model model) {
 	UsuarioDao dao = new UsuarioDao();
@@ -50,7 +65,7 @@ public class SistemaController {
 	 return "home";
 	}
 	model.addAttribute("msg", "Não foi encontrado um usuário com o login e senha informados.");
-	return "comum/header";
+	return "home";
 	}
 
 	@RequestMapping("usuario/alterarDados")

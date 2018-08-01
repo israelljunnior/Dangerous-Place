@@ -50,18 +50,19 @@
 
 			<c:if test="${usuarioLogado.nivel_acesso == 'admSup'}">
 				<li><a type="submit" data-toggle="modal"
-						data-target="#modalCadastroADM">Cadastrar ADM</a></li>
+					data-target="#modalCadastroADM">Cadastrar ADM</a></li>
 				<li><a href="#">Inserir Dados</a></li>
-				
-                                    </c:if>
-             <c:if test="${usuarioLogado.nivel_acesso == 'adm'}">
-				
-				<li><a href="#">Inserir Dados</a></li></li>
-				
-                                    </c:if>
-	
-    
-     
+
+			</c:if>
+			<c:if test="${usuarioLogado.nivel_acesso == 'adm'}">
+
+				<li><a href="#">Inserir Dados</a></li>
+				</li>
+
+			</c:if>
+
+
+
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
 			<!-- <li><a href="/PP2-DangerousPlace/usuario/login " data-toggle="tooltip"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
@@ -70,7 +71,8 @@
 
 			<c:choose>
 				<c:when test="${not empty usuarioLogado.nome}">
-					<li><a href="/PP2-DangerousPlace/usuario/alterarDados">Bem Vindo, ${usuarioLogado.nome}</a></li>
+					<li><a href="/PP2-DangerousPlace/usuario/alterarDados">Bem
+							Vindo, ${usuarioLogado.nome}</a></li>
 					<li><a href="<%=request.getContextPath()%>/logout">Sair</a></li>
 				</c:when>
 				<c:otherwise>
@@ -111,13 +113,13 @@
 						<center>
 
 							<div class="form-group">
-								<label for="emailLogin">Email:</label> <input type="text"
-									id="emailLogin" class="form-control" name="emaiLogin"
+								<label for="email">Email:</label> <input type="text"
+									id="emailLogin" class="form-control" name="email"
 									style="width: 500px;" placeholder="Digite seu Email." />
 							</div>
 							<div class="form-group">
-								<label for="senhaLogin">Senha:</label> <input type="password"
-									id="senhaLogin" class="form-control" name="senhaLogin"
+								<label for="senha">Senha:</label> <input type="password"
+									id="senhaLogin" class="form-control" name="senha"
 									style="width: 500px;" placeholder="Digite sua senha." />
 							</div>
 
@@ -139,7 +141,6 @@
 			</div>
 		</div>
 	</div>
-
 
 
 	<!-- Modal cadastro -->
@@ -205,7 +206,6 @@
 							<button type="submit" class="btn btn-primary"
 								style="background-color: black; color: white; margin-left: 10px">&nbsp;
 								Inserir &nbsp;</button>
-					
 					</form>
 				</div>
 			</div>
@@ -213,7 +213,7 @@
 	</div>
 
 
-<!-- Modal cadastroADM -->
+	<!-- Modal cadastroADM -->
 	<div class="modal fade" id="modalCadastroADM" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" data-backdrop="static">
 		<div class="modal-dialog modal-xs" role="document">
@@ -229,7 +229,7 @@
 				</div>
 				<div class="modal-body">
 
-					<form action="save" method="post" id="formCadastro">
+					<form action="saveADM" method="post" id="formCadastro">
 						<center>
 
 							<div class="form-group">
@@ -269,7 +269,7 @@
 									style="width: 500px;" placeholder="Digite seu CEP" />
 							</div>
 							<div class="form-group">
-								<label for="inputNivel_acesso">Nivel de Acesso:</label> <select name="SelectNivel_acesso">
+								<label for="inputNivel_acesso">Nivel de Acesso:</label> <select name="selectNivel_acesso">
 									<option id="inputSexo" class="form-control" required="required"
 										type="radio" value="usuario" name="nivel_acesso">usuario</option>
 									<br />
