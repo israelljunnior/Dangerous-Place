@@ -1,17 +1,3 @@
-<%-- 
-    Document   : tipos
-    Created on : 31/07/2018, 22:10:43
-    Author     : ATC-INFOR
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
       <style type="text/css">
 
 #h4{
@@ -52,7 +38,7 @@
 <div class="balao2">
 	<div class="container">
   <div class="row">
-    <h4 id="h4">Selecione os tipos de dados que vocÃª deseja:</h4>
+    <h4 id="h4">Selecione os tipos de dados que você deseja:</h4>
     <div class="col-sm-2" >
          <button type="button" id="Assassinatos" class="btn btn-danger" style="margin-top: 50px; color:#000000 ">Assassinatos</button>
     </div>
@@ -69,5 +55,4 @@
 </div>
 
         
-    </body>
-</html>
+   
