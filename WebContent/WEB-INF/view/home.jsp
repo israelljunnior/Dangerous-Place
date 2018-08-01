@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="initial-scale=1.0">
 
-<title>Insert title here</title>
+<title>Dangerous Place</title>
 <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -16,7 +16,7 @@
         
       }
        html, body {
-        height: 100%;
+        height:100%;
         margin: 0;
         padding: 0;
       }
@@ -24,8 +24,9 @@
     </style>
 </head>
 <body>
-	<c:import url="./comum/header.jsp"></c:import>
 
+	
+	<c:import url="./comum/header.jsp"></c:import>
     <c:import url="./maps/googlemaps.jsp"></c:import>	
 
 </body>
