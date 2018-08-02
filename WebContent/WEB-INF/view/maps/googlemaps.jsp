@@ -1,8 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <div id="map"></div>
-
- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNfNAauPjQGeqfDl1rhKTSzcSHZ_lk7PE&callback=initMap"></script>   
 <script>
+
 
 var style = [
     {
@@ -232,7 +231,7 @@ function initMap() {
 							}
 					}	
 					if(isAvailable){
-						infoWindow.setContent("Dados disponível "+results[0].formatted_address);
+						infoWindow.setContent("<style type='text/css'> #h4{ margin-right: 685px;}.balao2{background:  #ffffff;border-radius: 15px; width: 500px;height: 150px;margin-top: 100px;  margin-bottom: 100px; margin-right: 150px;margin-left: 80px;text-align: center;position: relative;}.balao2:after{ content: '';width: 50px;height: 0px;position: absolute;border-left: 20px solid transparent;border-right: 20px solid transparent;border-top: 20px solid #ffffff;bottom: -20px;left: 30%;}</style><div class='balao2'><div class='container'> <div class='row'><h4 id='h4'>Selecione os tipos de dados que você deseja:</h4><div class='col-sm-2' > <button type='button' id='Assassinatos' class='btn btn-danger' style='margin-top: 50px; color:#000000 '>Assassinatos</button></div> <div class='col-sm-1'><button type='button' id='Assaltos' class='btn btn-danger' style='margin-top: 50px;' >Assaltos</button></div> <div class='col-sm-2'><button type='button' id='Acidentes' class='btn btn-danger' style='margin-top: 50px;' >Acidentes</button></div> </div></div></div>");
 						infoWindow.open(map, markison);
 					} else {
 						infoWindow.setContent("Dados não disponíveis em: "+results[0].address_components[indexState].short_name
@@ -262,7 +261,8 @@ function initMap() {
 								}
 						}	
 						if(isAvailable){
-							//infoWindow.setContent("<c:import url='../comum/tipos.jsp'></c:import>");
+					 		infoWindow.setContent("<style type='text/css'>#h4{    margin-right: 685px;}.balao2{    background:  #ffffff;    border-radius: 15px;    width: 200px;    height: 100px;    margin-top: 100px;    margin-bottom: 100px;    margin-right: 150px;    margin-left: 80px;    text-align: center;    position: relative;} 	</style><div class='balao2'>	<div class='container'>  <div class='row'>    <h4 id='h4'>Selecione os tipos de dados que você deseja:</h4>    <div class='col-sm-2' >         <button type='button' id='Assassinatos' class='btn btn-danger' style='margin-top: 50px; color:#000000 '>Assassinatos</button>    </div>    <div class='col-sm-1'>        <button type='button' id='Assaltos' class='btn btn-danger' style='margin-top: 50px;' >Assaltos</button>    </div>    <div class='col-sm-2'>        <button type='button' id='Acidentes' class='btn btn-danger' style='margin-top: 50px;' >Acidentes</button>    </div>  </div></div>    </div>");
+							infoWindow.setContent("");
 							infoWindow.open(map, markison);
 						} else {
 							infoWindow.setContent("Dados não disponíveis em: "+results[0].address_components[indexState].short_name
@@ -339,7 +339,7 @@ function CenterControl(controlDiv, map) {
     								}
     						}	
     						if(isAvailable){
-    							infoWindowLocalizacao.setContent("Dados disponível "+results[0].formatted_address);
+    							infoWindow.setContent("<style type='text/css'> #h4{ margin-right: 685px;}.balao2{background:  #ffffff;border-radius: 15px; width: 500px;height: 150px;margin-top: 100px;  margin-bottom: 100px; margin-right: 150px;margin-left: 80px;text-align: center;position: relative;}.balao2:after{ content: '';width: 50px;height: 0px;position: absolute;border-left: 20px solid transparent;border-right: 20px solid transparent;border-top: 20px solid #ffffff;bottom: -20px;left: 30%;}</style><div class='balao2'><div class='container'> <div class='row'><h4 id='h4'>Selecione os tipos de dados que você deseja:</h4><div class='col-sm-2' > <button type='button' id='Assassinatos' class='btn btn-danger' style='margin-top: 50px; color:#000000 '>Assassinatos</button></div> <div class='col-sm-1'><button type='button' id='Assaltos' class='btn btn-danger' style='margin-top: 50px;' >Assaltos</button></div> <div class='col-sm-2'><button type='button' id='Acidentes' class='btn btn-danger' style='margin-top: 50px;' >Acidentes</button></div> </div></div></div>");
     							infoWindow.open(map, markison);
     						} else {
     							infoWindowLocalizacao.setContent("Dados não disponíveis em: "+results[0].address_components[indexState].short_name
@@ -362,12 +362,12 @@ function CenterControl(controlDiv, map) {
 			handleLocationError(false, infoWindowLocalizacao, map.getCenter());
 		}
 
-	//})
     });
 
   }
 
 
 </script>    
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNfNAauPjQGeqfDl1rhKTSzcSHZ_lk7PE&callback=initMap"></script>   
     
 

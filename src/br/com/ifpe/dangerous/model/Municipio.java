@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 public class Municipio {
 	
@@ -13,6 +15,28 @@ public class Municipio {
 	private int id;
 	@Column(name="dados_municipios")
 	private String nomeMunicipio;
+	@ManyToOne
+	@JoinColumn(name="id_dados_regioes")
+	private Regiao regiao;
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getNomeMunicipio() {
+		return nomeMunicipio;
+	}
+	public void setNomeMunicipio(String nomeMunicipio) {
+		this.nomeMunicipio = nomeMunicipio;
+	}
+	public Regiao getRegiao() {
+		return regiao;
+	}
+	public void setRegiao(Regiao regiao) {
+		this.regiao = regiao;
+	}
 	
 
 }
