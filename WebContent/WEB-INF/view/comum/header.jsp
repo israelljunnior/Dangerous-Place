@@ -2,28 +2,15 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<link href="https://fonts.googleapis.com/css?family=Montserrat"
-	rel="stylesheet">
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-	media="all">
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-	media="all"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" media="all">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" media="all"></script>
 
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/resources/jquery-validation-1.17.0/dist/jquery.validate.min.js"></script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/resources/jquery-validation-1.17.0/dist/additional-methods.min.js"></script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/resources/localization/messages_pt_BR.js"></script>
+<script type="text/javascript"  src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/additional-methods.min.js"></script>
 
 <title>Menu</title>
 
@@ -33,8 +20,9 @@
 	font-size: 16px;
 	color: white;
 }
+
+
 </style>
-</head>
 <body>
 
 	<nav class="navbar navbar-inverse names">
@@ -44,7 +32,7 @@
 		</div>
 		<ul class="nav navbar-nav">
 			<li class="active"><a href="/PP2-DangerousPlace/home">Home</a></li>
-			<li><a href="#">Mapa</a></li>
+			<li><a href="/PP2-DangerousPlace/home">Mapa</a></li>
 			<li><a href="/PP2-DangerousPlace/forum">Fórum</a></li>
 			<li><a href="#">Sobre nós</a></li>
 
@@ -71,7 +59,7 @@
 
 			<c:choose>
 				<c:when test="${not empty usuarioLogado.nome}">
-					<li><a href="/PP2-DangerousPlace/usuario/alterarDados">Bem
+					<li><a type="submit" data-toggle="modal" data-target="#modalAlterarDados">Bem
 							Vindo, ${usuarioLogado.nome}</a></li>
 					<li><a href="<%=request.getContextPath()%>/logout">Sair</a></li>
 				</c:when>
@@ -228,7 +216,6 @@
 					</center>
 				</div>
 				<div class="modal-body">
-
 					<form action="saveADM" method="post" id="formCadastro">
 						<center>
 
@@ -293,91 +280,249 @@
 
 
 
+<!-- Modal AlterarDados -->
+	<div class="modal fade" id="modalAlterarDados" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" media="all" data-backdrop="static">
+		<div class="modal-dialog modal-xs" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<center>
+						<h3>Alterar Dados</h3>					
+					</center>
+				</div>
+				<div class="modal-body">
+					
+
+						<form action="update" id="alterarDados" method="post">
+	<fieldset class="modais">
+	  <center>
+        
+			<input type="hidden" name="id" value="${usuarioLogado.id}"> 
+		
+		<div class="form-group">
+			<label for="inputNome">Nome:</label> <input type="text"
+				id="inputNomeAlterar" class="form-control" name="inputNomeAlterar" value="${usuarioLogado.nome}"
+				style="width: 500px;" />
+		</div>
+		<div class="form-group">
+			<label for="inputEmail">Email:</label> <input type="text"
+				id="inputEmailAlterar" class="form-control" name="inputEmailAlterar" value="${usuarioLogado.email}"
+				style="width: 500px;" />
+				<label style="display: none;" id="mensagem">Este e-mail já existe</label>
+		</div>
+		<div class="form-group">
+			<label for="inputSenha">Senha:</label> <input type="password"
+				id="inputSenhaAlterar" class="form-control" name="inputSenhaAlterar" value="${usuarioLogado.senha}"
+				style="width: 500px;"  
+			title="Deve ser Preenchido com pelo menos 8 caracteres, mínimo uma letra minúscula, uma letra Maiúsculo e um número" />
+		</div>
+
+		<div class="form-group">
+			<label for="inputRepetirSenhaAlterar">Repita a senha:</label> <input
+				type="password" id="inputRepetirAlterar" class="form-control"
+				name="inputSenhaRepetirAlterar" style="width: 500px;"  placeholder="Repita sua senha..." />
+		</div>
+		<div class="form-group">
+			<label for="inputSexo">Sexo:</label>
+				 <select name="selectSexoAlterar">
+				<option id="inputSexoAlterarF" class="form-control" 
+				type="radio" value="F" name="sexo">Feminino</option>
+				<br />
+				<option id="selectSexoAlterarM" type="radio" value="M" name="sexo">Masculino</option>
+				<br />
+
+			</select>
+		</div>
+
+		<div class="form-group">
+			<label for="inputEndereco">CEP:</label> <input type="text"
+				id="inputEnderecoAlterar" class="form-control" name="inputEnderecoAlterar" value="${usuarioLogado.endereco}"
+				style="width: 500px;" />
+		</div>
+			<input type="hidden" name="nivel_acesso" value="adm"  >
+		<button type="reset" class="btn btn-danger" style="background-color:#B22222;color: white">Cancelar</button>
+		&nbsp; 
+
+		<button type="submit" class="btn btn-primary" style="background-color: black;color: white;margin-left:10px" onClick = "validarSenha()" >&nbsp;
+			Inserir&nbsp;</button>
+ </fieldset>
+	</form>
+	
+				</div>
+			</div>
+		</div>
+	</div>
+
+
 </body>
 
 
 <script>
-	$(document)
-			.ready(
-					function() {
+$(document)
+.ready(
+		function() {
 
-						$("#formCadastro")
-								.validate(
-										{
-
-											rules : {
-												nome : {
-													required : true,
-													minlength : 2,
-													maxlength : 50,
-													pattern : /^[a-zA-Z\s]+$/
-												},
-												email : {
-													required : true,
-													maxlength : 130,
-													email : true,
-													remote : {
-														url : "check",
-														type : "post",
-														data : {
-															email : function() {
-																return $(
-																		"#email")
-																		.val();
-															}
-														}
-													}
-												},
-												senha : {
-													required : true,
-													minlength : 2,
-													maxlength : 10,
-													pattern : /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/,
-												},
-
-												repetirSenha : {
-													required : true,
-													minlength : 2,
-													maxlength : 10,
-													equalTo : "#senha"
-												},
-												endereco : {
-													required : true,
-													pattern : /[0-9]{8}/,
-
+			$("#formCadastro")
+					.validate({
+								rules : {
+									nome : {
+										required : true,
+										minlength : 2,
+										maxlength : 50,
+										pattern : /^[a-zA-Z\s]+$/
+									},
+									email : {
+										required : true,
+										maxlength : 130,
+										email : true,
+										remote : {
+											url : "check",
+											type : "post",
+											data : {
+												email : function() {
+													return $(
+															"#email")
+															.val();
 												}
-
-											},
-											messages : {
-												nome : {
-													required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
-													minlength : "<div class='alert alert-danger alert-dismissible fade in' style=''>É necessário no mínimo duas letras</div>",
-													maxlength : "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve conter no máximo 50 letras</div>",
-													pattern : "<div class='alert alert-danger alert-dismissible fade in' style=''>É necessário Conter Somente Letras</div>"
-												},
-												email : {
-													required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
-													maxlength : "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve no máximo 130 caracteres</div>",
-													email : "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve conter o formato 'exemplo@exemplo.com'</div>",
-													remote : "<div class='alert alert-danger alert-dismissible fade in' style=''>Email não Está disponível</div>"
-												},
-												senha : {
-													required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
-													pattern : "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve conter pelo menos 1 letra maiúscula, 1 letra minúscula, numeros e pelo menos 8 caracteres. </div>",
-
-												},
-												repetirSenha : {
-													required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
-													equalTo : "<div class='alert alert-danger alert-dismissible fade in' style=''>As duas senhas devem ser iguais</div>",
-												},
-												endereco : {
-													required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
-													pattern : "<div class='alert alert-danger alert-dismissible fade in' style=''> Deve Conter Formato Válido</div>"
-												}
-
 											}
+										}
+									},
+									senha : {
+										required : true,
+										minlength : 2,
+										maxlength : 10,
+										pattern : /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/,
+									},
 
-										});
+									repetirSenha : {
+										required : true,
+										minlength : 2,
+										maxlength : 10,
+										equalTo : "#senha"
+									},
+									endereco : {
+										required : true,
+										pattern : /[0-9]{8}/,
 
-					});
+									}
+
+								},
+								messages : {
+									nome : {
+										required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+										minlength : "<div class='alert alert-danger alert-dismissible fade in' style=''>É necessário no mínimo duas letras</div>",
+										maxlength : "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve conter no máximo 50 letras</div>",
+										pattern : "<div class='alert alert-danger alert-dismissible fade in' style=''>É necessário Conter Somente Letras</div>"
+									},
+									email : {
+										required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+										maxlength : "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve no máximo 130 caracteres</div>",
+										email : "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve conter o formato 'exemplo@exemplo.com'</div>",
+										remote : "<div class='alert alert-danger alert-dismissible fade in' style=''>Email não Está disponível</div>"
+									},
+									senha : {
+										required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+										pattern : "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve conter pelo menos 1 letra maiúscula, 1 letra minúscula, numeros e pelo menos 8 caracteres. </div>",
+									},
+									repetirSenha : {
+										required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+										equalTo : "<div class='alert alert-danger alert-dismissible fade in' style=''>As duas senhas devem ser iguais</div>",
+									},
+									endereco : {
+										required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+										pattern : "<div class='alert alert-danger alert-dismissible fade in' style=''> Deve Conter Formato Válido</div>"
+									}
+
+								}
+
+							});
+				
+			
+			//Validação Login
+			
+					
+		});
+		
+$( document ).ready(function() { 
+	$("#alterarDados").validate({
+
+		rules : {
+			inputNomeAlterar : {
+				required : true,
+				minlength : 2,
+				maxlength : 50,
+				pattern : /^[a-zA-Z\s]+$/
+			},
+			inputEmailAlterar : {
+				required : true,
+				maxlength : 130,
+				email : true,
+				remote : {
+					url : "check",
+					type : "post",
+					data : {
+						email : function() {
+							return $(
+									"#email")
+									.val();
+						}
+					}
+				}
+			},
+			inputSenhaAlterar : {
+				required : true,
+				minlength : 2,
+				maxlength : 10,
+				pattern : /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/,
+			},
+
+			inputSenhaRepetirAlterar : {
+				required : true,
+				minlength : 2,
+				maxlength : 10,
+				equalTo : "#senha"
+			},
+			inputEnderecoAlterar : {
+				required : true,
+				pattern : /[0-9]{8}/,
+
+			}
+
+		},
+		messages : {
+			inputNomeAlterar : {
+				required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+				minlength : "<div class='alert alert-danger alert-dismissible fade in' style=''>É necessário no mínimo duas letras</div>",
+				maxlength : "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve conter no máximo 50 letras</div>",
+				pattern : "<div class='alert alert-danger alert-dismissible fade in' style=''>É necessário Conter Somente Letras</div>"
+			},
+			inputEmailAlterar : {
+				required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+				maxlength : "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve no máximo 130 caracteres</div>",
+				email : "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve conter o formato 'exemplo@exemplo.com'</div>",
+				remote : "<div class='alert alert-danger alert-dismissible fade in' style=''>Email não Está disponível</div>"
+			},
+			inputSenhaAlterar : {
+				required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+				pattern : "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve conter pelo menos 1 letra maiúscula, 1 letra minúscula, numeros e pelo menos 8 caracteres. </div>",
+			},
+			inputEnderecoAlterar : {
+				required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+				equalTo : "<div class='alert alert-danger alert-dismissible fade in' style=''>As duas senhas devem ser iguais</div>",
+			},
+			inputEnderecoAlterar : {
+				required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+				pattern : "<div class='alert alert-danger alert-dismissible fade in' style=''> Deve Conter Formato Válido</div>"
+			}
+
+		}
+	});
+
+};
+});
+
 </script>

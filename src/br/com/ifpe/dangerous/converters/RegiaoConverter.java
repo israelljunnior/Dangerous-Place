@@ -1,4 +1,4 @@
-package converters;
+package br.com.ifpe.dangerous.converters;
 
 import org.springframework.core.convert.converter.Converter;
 

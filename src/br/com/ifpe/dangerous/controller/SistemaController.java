@@ -75,7 +75,7 @@ public class SistemaController {
 	}
 
 		
-	@RequestMapping("/usuario/update")
+	@RequestMapping("update")
 	public String update(Usuario usuario, Model model, @RequestParam("selectSexo") String sexo) {
 	UsuarioDao dao = new UsuarioDao();
 	usuario.setSexo(sexo);
@@ -85,7 +85,7 @@ public class SistemaController {
 	}
 	
 	
-	@RequestMapping("forum")
+	@RequestMapping("/forum")
 	public String comentando() {
 		System.out.println("Comentando no fórum do Dangerous Places");
 		return "usuario/forum";

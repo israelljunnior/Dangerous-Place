@@ -16,9 +16,13 @@ public class AutorizadorInterceptor extends HandlerInterceptorAdapter {
 		|| uri.contains("css") 
 		|| uri.contains("img") 
 		|| uri.contains("js") 	
+		|| uri.contains("jquery-validation-1.17.0")
+		|| uri.contains("localization")
+		|| uri.contains("jquery.validate.min")
 		|| uri.endsWith("save")
 		|| uri.endsWith("home")
-		|| uri.endsWith("efetuarLogin")) {	
+		|| uri.endsWith("efetuarLogin"
+		)) {	
 	    return true;
 	}
 
