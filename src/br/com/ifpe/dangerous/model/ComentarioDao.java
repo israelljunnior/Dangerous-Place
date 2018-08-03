@@ -4,68 +4,55 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-public class PublicacaoDao {
+public class ComentarioDao {
 	
-
 	private static final String PERSISTENCE_UNIT = "danger";
 
-	public void salvar(Publicacao Publicacao) {
+	public void salvar(Comentario Comentario) {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
 		manager.getTransaction().begin();
-		manager.persist(Publicacao);
+		manager.persist(Comentario);
 		manager.getTransaction().commit();
 		manager.close();
 		factory.close();
 	}
 	
-	public List<Publicacao> listar(Publicacao Publicacao) {
+	public List<Comentario> listar(Comentario Comentario) {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
 		Query query = null;
-		String Titulo = Publicacao != null ? Publicacao.getTitulo() : "";
-		String Tema = Publicacao != null ? Publicacao.getTema() : "";
-		if (!Titulo.equals("") && Tema.equals("")) {
-			query = manager.createQuery("FROM Publicacao WHERE Titulo LIKE :paramTitulo ORDER BY Tema");
-			query.setParameter("paramTitulo", "%" + Titulo + "%");
-		} else if (Titulo.equals("") && !Tema.equals("")) {
-			query = manager.createQuery("FROM Publicacao WHERE Tema LIKE :paramTema ORDER BY Tema");
-			query.setParameter("paramTema", "%" + Tema + "%");
-		} else if (!Titulo.equals("") && !Tema.equals("")) {
-			query = manager.createQuery(
-					"FROM Publicacao WHERE Titulo LIKE :paramTitulo AND Tema LIKE :paramTema ORDER BY Tema");
-			query.setParameter("paramTitulo", "%" + Titulo + "%");
-			query.setParameter("paramTema", "%" + Tema + "%");
-		} else {
-			query = manager.createQuery("FROM Publicacao ORDER BY Tema");
+		Publicacao publicacao = Comentario != null ? Comentario.getPublicacao() : null;
+		if (!publicacao.equals(null)) {
+			query = manager.createQuery("FROM Comentario WHERE publicacao.id LIKE :paramId ORDER BY Data");
+			query.setParameter("paramId", "%" + publicacao.getId() + "%");
 		}
-		List<Publicacao> lista = query.getResultList();
+		List<Comentario> lista = query.getResultList();
 		manager.close();
 		factory.close();
 		return lista;
 	}
 	
-	public Publicacao buscarPorId(int id) {
-		Publicacao obj = null;
+	public Comentario buscarPorId(int id) {
+		Comentario obj = null;
 		EntityManagerFactory factory =
 		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
-		obj = manager.find(Publicacao.class, id);
+		obj = manager.find(Comentario.class, id);
 		manager.close();
 		factory.close();
 		return obj;
 		}
 	
-	public void alterar(Publicacao Publicacao) {
+	public void alterar(Comentario Comentario) {
 		EntityManagerFactory factory =
 		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
 		manager.getTransaction().begin();
-		manager.merge(Publicacao);
+		manager.merge(Comentario);
 		manager.getTransaction().commit();
 		manager.close();
 		factory.close();
@@ -76,12 +63,13 @@ public class PublicacaoDao {
 		EntityManagerFactory factory =
 		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
-		Publicacao Publicacao = manager.find(Publicacao.class, id);
+		Comentario Comentario = manager.find(Comentario.class, id);
 		manager.getTransaction().begin();
-		manager.remove(Publicacao);
+		manager.remove(Comentario);
 		manager.getTransaction().commit();
 		manager.close();
 		factory.close();
 		}
+
 
 }

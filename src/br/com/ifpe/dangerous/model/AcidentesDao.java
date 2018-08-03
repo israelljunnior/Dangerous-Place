@@ -8,64 +8,61 @@ import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-public class PublicacaoDao {
+public class AcidentesDao {
 	
 
 	private static final String PERSISTENCE_UNIT = "danger";
 
-	public void salvar(Publicacao Publicacao) {
+	public void salvar(Acidentes Acidentes) {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
 		manager.getTransaction().begin();
-		manager.persist(Publicacao);
+		manager.persist(Acidentes);
 		manager.getTransaction().commit();
 		manager.close();
 		factory.close();
 	}
 	
-	public List<Publicacao> listar(Publicacao Publicacao) {
+	public Acidentes buscarPorEmail(String email) {
+
+		Acidentes obj = null;
+
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
 		Query query = null;
-		String Titulo = Publicacao != null ? Publicacao.getTitulo() : "";
-		String Tema = Publicacao != null ? Publicacao.getTema() : "";
-		if (!Titulo.equals("") && Tema.equals("")) {
-			query = manager.createQuery("FROM Publicacao WHERE Titulo LIKE :paramTitulo ORDER BY Tema");
-			query.setParameter("paramTitulo", "%" + Titulo + "%");
-		} else if (Titulo.equals("") && !Tema.equals("")) {
-			query = manager.createQuery("FROM Publicacao WHERE Tema LIKE :paramTema ORDER BY Tema");
-			query.setParameter("paramTema", "%" + Tema + "%");
-		} else if (!Titulo.equals("") && !Tema.equals("")) {
-			query = manager.createQuery(
-					"FROM Publicacao WHERE Titulo LIKE :paramTitulo AND Tema LIKE :paramTema ORDER BY Tema");
-			query.setParameter("paramTitulo", "%" + Titulo + "%");
-			query.setParameter("paramTema", "%" + Tema + "%");
-		} else {
-			query = manager.createQuery("FROM Publicacao ORDER BY Tema");
+		query = manager.createQuery("FROM Acidentes WHERE email = :paramEmail");
+		query.setParameter("paramEmail", email);
+		
+		try {
+			obj = (Acidentes) query.getSingleResult();
+		}catch(NoResultException nre) {
+			return null;
 		}
-		List<Publicacao> lista = query.getResultList();
+		
 		manager.close();
 		factory.close();
-		return lista;
+		
+		return obj;
+	    
 	}
 	
-	public Publicacao buscarPorId(int id) {
-		Publicacao obj = null;
+	public Acidentes buscarPorId(int id) {
+		Acidentes obj = null;
 		EntityManagerFactory factory =
 		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
-		obj = manager.find(Publicacao.class, id);
+		obj = manager.find(Acidentes.class, id);
 		manager.close();
 		factory.close();
 		return obj;
 		}
 	
-	public void alterar(Publicacao Publicacao) {
+	public void alterar(Acidentes Acidentes) {
 		EntityManagerFactory factory =
 		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
 		manager.getTransaction().begin();
-		manager.merge(Publicacao);
+		manager.merge(Acidentes);
 		manager.getTransaction().commit();
 		manager.close();
 		factory.close();
@@ -76,9 +73,9 @@ public class PublicacaoDao {
 		EntityManagerFactory factory =
 		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
-		Publicacao Publicacao = manager.find(Publicacao.class, id);
+		Acidentes Acidentes = manager.find(Acidentes.class, id);
 		manager.getTransaction().begin();
-		manager.remove(Publicacao);
+		manager.remove(Acidentes);
 		manager.getTransaction().commit();
 		manager.close();
 		factory.close();

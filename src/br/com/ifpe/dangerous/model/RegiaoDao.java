@@ -46,22 +46,6 @@ public class RegiaoDao {
 	    
 	}
 	
-	public Regiao buscarRegiao(Regiao Regiao) {
-		EntityManagerFactory factory =
-		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
-		EntityManager manager = factory.createEntityManager();
-		Query query = manager.createQuery("FROM Regiao WHERE Email LIKE :paramEmail");
-		query.setParameter("paramEmail", Regiao.getNomeRegiao());
-		List<Regiao> registros = query.getResultList();
-		Regiao obj = null;
-		if (!registros.isEmpty()) {
-		 obj = (Regiao) registros.get(0);
-		}
-		manager.close();
-		factory.close();
-		return obj;
-		}
-	
 	public Regiao buscarPorId(int id) {
 		Regiao obj = null;
 		EntityManagerFactory factory =

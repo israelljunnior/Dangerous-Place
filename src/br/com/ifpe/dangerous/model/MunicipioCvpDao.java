@@ -8,38 +8,38 @@ import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-public class MunicipioCvliDao {
+public class MunicipioCvpDao {
 	
 
 	private static final String PERSISTENCE_UNIT = "danger";
 
-	public void salvar(MunicipioCvli MunicipioCvli) {
+	public void salvar(MunicipioCvp MunicipioCvp) {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
 		manager.getTransaction().begin();
-		manager.persist(MunicipioCvli);
+		manager.persist(MunicipioCvp);
 		manager.getTransaction().commit();
 		manager.close();
 		factory.close();
 	}
 	
-	public MunicipioCvli buscarPorId(int id) {
-		MunicipioCvli obj = null;
+	public MunicipioCvp buscarPorId(int id) {
+		MunicipioCvp obj = null;
 		EntityManagerFactory factory =
 		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
-		obj = manager.find(MunicipioCvli.class, id);
+		obj = manager.find(MunicipioCvp.class, id);
 		manager.close();
 		factory.close();
 		return obj;
 		}
 	
-	public void alterar(MunicipioCvli MunicipioCvli) {
+	public void alterar(MunicipioCvp MunicipioCvp) {
 		EntityManagerFactory factory =
 		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
 		manager.getTransaction().begin();
-		manager.merge(MunicipioCvli);
+		manager.merge(MunicipioCvp);
 		manager.getTransaction().commit();
 		manager.close();
 		factory.close();
@@ -50,9 +50,9 @@ public class MunicipioCvliDao {
 		EntityManagerFactory factory =
 		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
-		MunicipioCvli MunicipioCvli = manager.find(MunicipioCvli.class, id);
+		MunicipioCvp MunicipioCvp = manager.find(MunicipioCvp.class, id);
 		manager.getTransaction().begin();
-		manager.remove(MunicipioCvli);
+		manager.remove(MunicipioCvp);
 		manager.getTransaction().commit();
 		manager.close();
 		factory.close();

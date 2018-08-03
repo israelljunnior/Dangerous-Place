@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 public class MunicipioCvli {
 	
@@ -11,22 +13,38 @@ public class MunicipioCvli {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_dados_municipios_cvli")
 	private int id;
-	@Column
+	@Column(name="total_cvli")
 	private int totalCvli;
+	@Column(name="qtd_mulher")
 	private int quantidadeMulher;
+	@Column(name="qtd_homem")
 	private int quantidadeHomem;
+	@Column(name="qtd_conflito")
 	private int quantidadeConflitoFam;
+	@Column(name="qtd_cinflito")
 	private int quantidadeConflitoComu;
+	@Column(name="qtd_criminal")
 	private int quantidadeCriminal;
+	@Column(name="qtd_homicidio")
 	private int quantidadeHomicidio;
+	@Column(name="qtd_latrocinio")
 	private int quantidadeLatrocinio;
+	@Column(name="qtd_lesado_morte")
 	private int quantidadeLesadoMorte;
+	@Column(name="qtd_armabranca")
 	private int quantidadeArmabranca;
+	@Column(name="qtd_armafogo")
 	private int quantidadeArmafogo;
+	@Column(name="idade_Ate12")
 	private int idadeAte12;
+	@Column(name="idade_13a17")
 	private int idade13a17;
+	@Column(name="idade_18a30")
 	private int idade18a30;
+	@Column(name="idade_31a65")
 	private int idade31a65;
+	@ManyToOne
+	@JoinColumn(name="id_dados_municipios")
 	private Municipio municipio;
 	
 	public int getId() {

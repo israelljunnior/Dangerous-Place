@@ -30,7 +30,5 @@ public class Regiao {
 	public void setNomeRegiao(String nomeRegiao) {
 		this.nomeRegiao = nomeRegiao;
 	}
-	
-	
 
 }

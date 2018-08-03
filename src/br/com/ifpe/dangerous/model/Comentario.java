@@ -11,18 +11,12 @@ import javax.persistence.ManyToOne;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-public class Publicacao {
+public class Comentario {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id_publicacao")
+	@Column(name="id_comentario")
 	private int id;
-	@Column
-	private String tipo;
-	@Column
-	private String titulo;
-	@Column
-	private String tema;
 	@Column
 	private String conteudo;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
@@ -30,30 +24,15 @@ public class Publicacao {
 	@ManyToOne
 	@JoinColumn(name="id_usuario")
 	private Usuario usuario;
+	@ManyToOne
+	@JoinColumn(name="id_publicacao")
+	private Publicacao publicacao;
 	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
-	}
-	public String getTipo() {
-		return tipo;
-	}
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
-	public String getTitulo() {
-		return titulo;
-	}
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
-	}
-	public String getTema() {
-		return tema;
-	}
-	public void setTema(String tema) {
-		this.tema = tema;
 	}
 	public String getConteudo() {
 		return conteudo;
@@ -73,7 +52,11 @@ public class Publicacao {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-
-	
+	public Publicacao getPublicacao() {
+		return publicacao;
+	}
+	public void setPublicacao(Publicacao publicacao) {
+		this.publicacao = publicacao;
+	}
 
 }
