@@ -32,7 +32,6 @@
 		</div>
 		<ul class="nav navbar-nav">
 			<li class="active"><a href="/PP2-DangerousPlace/home">Home</a></li>
-			<li><a href="/PP2-DangerousPlace/home">Mapa</a></li>
 			<li><a href="/PP2-DangerousPlace/forum">Fórum</a></li>
 			<li><a href="#">Sobre nós</a></li>
 
@@ -79,6 +78,13 @@
 	</div>
 	</nav>
 
+<c:if test="${msg != null }">
+<script type="text/javascript">$(document).ready(function() {
+    $('#modalLogin').modal('show');
+});
+</script>
+</c:if>
+
 
 	<!-- Modal Login -->
 	<div class="modal fade" id="modalLogin" tabindex="-1" role="dialog"
@@ -92,7 +98,11 @@
 					</button>
 					<center>
 						<h3>Login</h3>
-						<p>${msg}</p>
+						<c:if test="${msg ne null}">
+			<div class="alert alert-danger" style="width: 80%;">
+				${msg}
+			</div>
+		</c:if>
 					</center>
 				</div>
 				<div class="modal-body">
@@ -328,7 +338,7 @@
 		</div>
 		<div class="form-group">
 			<label for="inputSexo">Sexo:</label>
-				 <select name="selectSexoAlterar">
+				 <select name="selectSexo">
 				<option id="inputSexoAlterarF" class="form-control" 
 				type="radio" value="F" name="sexo">Feminino</option>
 				<br />
@@ -343,7 +353,19 @@
 				id="inputEnderecoAlterar" class="form-control" name="inputEnderecoAlterar" value="${usuarioLogado.endereco}"
 				style="width: 500px;" />
 		</div>
-			<input type="hidden" name="nivel_acesso" value="adm"  >
+
+<c:if test="${usuarioLogado.nivel_acesso == 'adm'}">
+<input type="hidden" name="nivel_acesso" value="adm"  >
+</c:if>
+
+<c:if test="${usuarioLogado.nivel_acesso == 'usuario'}">
+<input type="hidden" name="nivel_acesso" value="usuario"  >
+</c:if>
+
+<c:if test="${usuarioLogado.nivel_acesso == 'admSup'}">
+<input type="hidden" name="nivel_acesso" value="admSup"  >
+</c:if>
+			
 		<button type="reset" class="btn btn-danger" style="background-color:#B22222;color: white">Cancelar</button>
 		&nbsp; 
 
@@ -362,6 +384,8 @@
 
 
 <script>
+
+
 $(document)
 .ready(
 		function() {
@@ -460,18 +484,7 @@ $( document ).ready(function() {
 			inputEmailAlterar : {
 				required : true,
 				maxlength : 130,
-				email : true,
-				remote : {
-					url : "check",
-					type : "post",
-					data : {
-						email : function() {
-							return $(
-									"#email")
-									.val();
-						}
-					}
-				}
+				email : true,				
 			},
 			inputSenhaAlterar : {
 				required : true,
@@ -484,7 +497,7 @@ $( document ).ready(function() {
 				required : true,
 				minlength : 2,
 				maxlength : 10,
-				equalTo : "#senha"
+				equalTo : "#inputSenhaAlterar"
 			},
 			inputEnderecoAlterar : {
 				required : true,

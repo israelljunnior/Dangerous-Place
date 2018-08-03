@@ -64,7 +64,7 @@ public class SistemaController {
 	 session.setAttribute("usuarioLogado", usuarioLogado);
 	 return "home";
 	}
-	model.addAttribute("msg", "Não foi encontrado um usuário com o login e senha informados.");
+	model.addAttribute("msg","Não foi encontrado um usuário com o login e senha informados.");
 	return "home";
 	}
 
@@ -76,10 +76,17 @@ public class SistemaController {
 
 		
 	@RequestMapping("update")
-	public String update(Usuario usuario, Model model, @RequestParam("selectSexo") String sexo) {
+	public String update(Usuario usuario, Model model,@RequestParam("inputNomeAlterar") String nome,
+			@RequestParam("inputEmailAlterar") String email,@RequestParam("inputSenhaAlterar") String senha	
+			, @RequestParam("inputEnderecoAlterar") String endereco ,@RequestParam("selectSexo") String sexo) {
 	UsuarioDao dao = new UsuarioDao();
+	usuario.setNome(nome);
+	usuario.setEmail(email);
+	usuario.setSenha(senha);
+	usuario.setEndereco(endereco);
 	usuario.setSexo(sexo);
 	dao.alterar(usuario);
+	
 	model.addAttribute("mensagem", "Usuario Alterado com Sucesso !");
 	return "home";
 	}
