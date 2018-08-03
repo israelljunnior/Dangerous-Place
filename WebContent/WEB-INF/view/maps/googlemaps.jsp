@@ -173,49 +173,55 @@ var style = [
 var map;
 var geocoder;
 var infoWindow;
-var markison;
+var markers = []
+var buttons = []
 function initMap() {
 	map = new google.maps.Map(document.getElementById('map'), {
 		center : {
 			lat : -8.23271878,
 			lng : -37.80602193
 		},
-		zoom : 13,
+		zoom: 8,
 		styles:style
 	});
 
 	infoWindow = new google.maps.InfoWindow();
 	geocoder = new google.maps.Geocoder();
 
-    var centerControlDiv = document.createElement('div');
-    var centerControl = new CenterControl(centerControlDiv, map);
-
-    centerControlDiv.index = 1;
-    map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
+     //buttons
+	var localitionControlDiv = document.createElement('div');
+    var localitionControl = new LocalitionControl(localitionControlDiv, map);
+	
+    localitionControlDiv.index = 1;
+    map.controls[google.maps.ControlPosition.TOP_CENTER].push(localitionControlDiv);
   
+    var cleanControlDiv = document.createElement('div');
+    var cleanControl = new CleanControl(cleanControlDiv, map);
+    
+    localitionControlDiv.index = 1;
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(cleanControlDiv);
+    
 	google.maps.event.addListener(map, 'click', function(event) {
-
-		if (markison != null) {
-			markison.setMap(null)
-			markison = null
-		}
-		markison = new google.maps.Marker({
+		
+		var marker;
+		
+		marker = new google.maps.Marker({
 			map : map,
 			draggable : true,
 			position : (event.latLng)
 		})
 
-		markison.addListener('click', function() {
+		marker.addListener('click', function() {
 			infoWindow.open(map, this);
 		});
 
-		markison.addListener('dblclick', function() {
-			markison.setMap(null)
-			markison = null
+		marker.addListener('dblclick', function() {
+			marker.setMap(null)
+			marker = null
 		});
 
 		geocoder.geocode({
-			'latLng' : markison.getPosition()
+			'latLng' : marker.getPosition()
 		}, function(results, status) {
 			if (status == google.maps.GeocoderStatus.OK){
 				if (results[0]) {
@@ -232,20 +238,20 @@ function initMap() {
 					}	
 					if(isAvailable){
 						infoWindow.setContent("<style type='text/css'> #h4{ margin-right: 685px;}.balao2{background:  #ffffff;border-radius: 15px; width: 500px;height: 150px;margin-top: 100px;  margin-bottom: 100px; margin-right: 150px;margin-left: 80px;text-align: center;position: relative;}.balao2:after{ content: '';width: 50px;height: 0px;position: absolute;border-left: 20px solid transparent;border-right: 20px solid transparent;border-top: 20px solid #ffffff;bottom: -20px;left: 30%;}</style><div class='balao2'><div class='container'> <div class='row'><h4 id='h4'>Selecione os tipos de dados que você deseja:</h4><div class='col-sm-2' > <button type='button' id='Assassinatos' class='btn btn-danger' style='margin-top: 50px; color:#000000 '>Assassinatos</button></div> <div class='col-sm-1'><button type='button' id='Assaltos' class='btn btn-danger' style='margin-top: 50px;' >Assaltos</button></div> <div class='col-sm-2'><button type='button' id='Acidentes' class='btn btn-danger' style='margin-top: 50px;' >Acidentes</button></div> </div></div></div>");
-						infoWindow.open(map, markison);
+						infoWindow.open(map, marker);
 					} else {
 						infoWindow.setContent("Dados não disponíveis em: "+results[0].address_components[indexState].short_name
 								+"<br />"+results[0].formatted_address);
-						infoWindow.open(map, markison);
+						infoWindow.open(map, marker);
 					}
 				}
 			}	
 		})
 
-		markison.addListener('dragend', function() {
+		marker.addListener('dragend', function() {
 
 			geocoder.geocode({
-				'latLng' : markison.getPosition()
+				'latLng' : marker.getPosition()
 			}, function(results, status) {
 				if (status == google.maps.GeocoderStatus.OK) {
 					if (results[0]) {
@@ -263,16 +269,16 @@ function initMap() {
 						if(isAvailable){
 					 		infoWindow.setContent("<style type='text/css'>#h4{ margin-right: 685px;}.balao2{    background:  #ffffff;    border-radius: 15px;    width: 200px;    height: 100px;    margin-top: 100px;    margin-bottom: 100px;    margin-right: 150px;    margin-left: 80px;    text-align: center;    position: relative;} 	</style><div class='balao2'>	<div class='container'>  <div class='row'>    <h4 id='h4'>Selecione os tipos de dados que você deseja:</h4>    <div class='col-sm-2' >         <button type='button' id='Assassinatos' class='btn btn-danger' style='margin-top: 50px; color:#000000 '>Assassinatos</button>    </div>    <div class='col-sm-1'>        <button type='button' id='Assaltos' class='btn btn-danger' style='margin-top: 50px;' >Assaltos</button>    </div>    <div class='col-sm-2'>        <button type='button' id='Acidentes' class='btn btn-danger' style='margin-top: 50px;' >Acidentes</button>    </div>  </div></div>    </div>");
 							infoWindow.setContent("");
-							infoWindow.open(map, markison);
+							infoWindow.open(map, marker);
 						} else {
 							infoWindow.setContent("Dados não disponíveis em: "+results[0].address_components[indexState].short_name
 									+"<br />"+results[0].formatted_address);
-							infoWindow.open(map, markison);
+							infoWindow.open(map, marker);
 						}
 					}
 				}
 			});
-		});
+		}); markers.push(marker);
 
 	});
 
@@ -287,7 +293,7 @@ function handleLocationError(browserHasGeolocation, infoWindowLocalizacao, pos) 
 }
 
 
-function CenterControl(controlDiv, map) {
+function LocalitionControl(controlDiv, map) {
 
     // Set CSS for the control border.
     var controlUI = document.createElement('div');
@@ -308,7 +314,7 @@ function CenterControl(controlDiv, map) {
     controlText.style.lineHeight = '38px';
     controlText.style.paddingLeft = '5px';
     controlText.style.paddingRight = '5px';
-    controlText.innerHTML = 'Center Map';
+    controlText.innerHTML = 'Minha Localização';
     controlUI.appendChild(controlText);
 
     // Setup the click event listeners: simply set the map to Chicago.
@@ -340,11 +346,11 @@ function CenterControl(controlDiv, map) {
     						}	
     						if(isAvailable){
     							infoWindow.setContent("<style type='text/css'> #h4{ margin-right: 685px;}.balao2{background:  #ffffff;border-radius: 15px; width: 500px;height: 150px;margin-top: 100px;  margin-bottom: 100px; margin-right: 150px;margin-left: 80px;text-align: center;position: relative;}.balao2:after{ content: '';width: 50px;height: 0px;position: absolute;border-left: 20px solid transparent;border-right: 20px solid transparent;border-top: 20px solid #ffffff;bottom: -20px;left: 30%;}</style><div class='balao2'><div class='container'> <div class='row'><h4 id='h4'>Selecione os tipos de dados que você deseja:</h4><div class='col-sm-2' > <button type='button' id='Assassinatos' class='btn btn-danger' style='margin-top: 50px; color:#000000 '>Assassinatos</button></div> <div class='col-sm-1'><button type='button' id='Assaltos' class='btn btn-danger' style='margin-top: 50px;' >Assaltos</button></div> <div class='col-sm-2'><button type='button' id='Acidentes' class='btn btn-danger' style='margin-top: 50px;' >Acidentes</button></div> </div></div></div>");
-    							infoWindow.open(map, markison);
+    							infoWindow.open(map)
     						} else {
     							infoWindowLocalizacao.setContent("Dados não disponíveis em: "+results[0].address_components[indexState].short_name
     									+"<br />"+results[0].formatted_address);
-    							infoWindowLocalizacao.open(map, markison);
+    							infoWindowLocalizacao.open(map);
     						}
     					}
                     }
@@ -366,6 +372,40 @@ function CenterControl(controlDiv, map) {
 
   }
 
+
+function CleanControl(controlDiv, map) {
+
+    // Set CSS for the control border.
+    var controlUI = document.createElement('div');
+    controlUI.style.backgroundColor = '#fff';
+    controlUI.style.border = '2px solid #fff';
+    controlUI.style.borderRadius = '3px';
+    controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+    controlUI.style.cursor = 'pointer';
+    controlUI.style.marginBottom = '22px';
+    controlUI.style.textAlign = 'center';
+    controlUI.title = 'Click to recenter the map';
+    controlDiv.appendChild(controlUI);
+    // Set CSS for the control interior.
+    var controlText = document.createElement('div');
+    controlText.style.color = 'rgb(25,25,25)';
+    controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+    controlText.style.fontSize = '16px';
+    controlText.style.lineHeight = '38px';
+    controlText.style.paddingLeft = '5px';
+    controlText.style.paddingRight = '5px';
+    controlText.innerHTML = 'Desfazer Marcações';
+    controlUI.appendChild(controlText);
+
+    // Setup the click event listeners: simply set the map to Chicago.
+    controlUI.addEventListener('click', function() {
+    	
+    	markers.forEach(m => {
+    		m.setMap(null)
+    	});
+    	
+    });
+  }
 
 </script>    
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNfNAauPjQGeqfDl1rhKTSzcSHZ_lk7PE&callback=initMap"></script>   
