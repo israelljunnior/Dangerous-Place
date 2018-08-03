@@ -522,7 +522,6 @@ $( document ).ready(function() {
 		}
 	});
 
-};
 });
 
 </script>
