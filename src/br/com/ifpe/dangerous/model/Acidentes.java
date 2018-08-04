@@ -1,17 +1,21 @@
 package br.com.ifpe.dangerous.model;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="dados_acidentes")
 public class Acidentes {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id_dados_municipios")
+	@Column(name="id_dados_acidentes")
 	private int id;
 	@Column
 	private String natureza;
@@ -30,7 +34,7 @@ public class Acidentes {
 	@Column
 	private int pedestre;
 	@Column
-	private int Ciclista;
+	private int ciclista;
 	@Column
 	private int auto;
 	@Column
@@ -91,10 +95,10 @@ public class Acidentes {
 		this.pedestre = pedestre;
 	}
 	public int getCiclista() {
-		return Ciclista;
+		return ciclista;
 	}
 	public void setCiclista(int ciclista) {
-		Ciclista = ciclista;
+		ciclista = ciclista;
 	}
 	public int getAuto() {
 		return auto;
