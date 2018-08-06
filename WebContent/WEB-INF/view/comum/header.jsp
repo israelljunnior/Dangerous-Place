@@ -25,7 +25,7 @@
 </style>
 <body>
 
-	<nav class="navbar navbar-inverse names">
+	<nav class="navbar-inverse names">
 	<div class="container-fluid">
 		<div class="navbar-header">
 			<a class="navbar-brand" href="#">DangerousPlace</a>
