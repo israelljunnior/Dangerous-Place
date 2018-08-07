@@ -16,15 +16,12 @@ create table usuario(
 
 create table publicacao(
 	id_publicacao int AUTO_INCREMENT PRIMARY KEY,
-	tipo int not null,
 	titulo varchar(30) not null,
 	tema varchar(20) not null,
 	conteudo varchar(400) not null,
 	data_hora timestamp not null,
 	id_usuario int not null,
-	id_adm int not null,
-	FOREIGN KEY (id_usuario) references usuario (id_usuario),
-	FOREIGN KEY(id_adm) references adm (id_adm)
+	FOREIGN KEY (id_usuario) references usuario (id_usuario)
 );
 
 create table comentario(

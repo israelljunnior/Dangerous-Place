@@ -218,7 +218,7 @@
 
 
 	<!-- Modal cadastroADM -->
-	<div class="modal fade" id="modalCadastroADM" tabindex="-1"
+	<%-- <div class="modal fade" id="modalCadastroADM" tabindex="-1"
 		role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
 		<div class="modal-dialog modal-xs" role="document">
 			<div class="modal-content">
@@ -292,7 +292,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> --%>
 
 
 
@@ -409,8 +409,10 @@
 					</center>
 				</div>
 				<div class="modal-body">
-					<form action="publicar" method="post">
-
+					<form action="publicar" id="formModalPublicar"method="post">
+					
+					
+						<input type="hidden" id="idPublicar" name="usuario" value="${usuarioLogado.id }">
 						<div class="form-group">
 								<label for="inputTema">Tema da Publicação:</label> <select id="inputTema" name="Tema">
 									<option  class="form-control" required="required"
@@ -425,13 +427,13 @@
 						<div class="form-group">
 					
 							<label for="inputTema">Titulo:</label> <input type="text"
-								id="inputTema" class="form-control" name="tema"
+								id="inputTema" class="form-control" name="titulo"
 								style="width: 100%;" placeholder="Digite o titulo de sua publicação" />
 						</div>
 
 
 						<div class="form-group">
-							<textarea class="form-control" rows="5" id="conteudo"
+							<textarea class="form-control" rows="5" form="formModalPublicar" name="textAreaPublicar" id="conteudo"
 								placeholder="digite aqui o conteúdo de sua publicação"
 								style="resize: none;"></textarea>
 						</div>

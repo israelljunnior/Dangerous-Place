@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import br.com.ifpe.dangerous.converters.UsuarioConverter;
 import br.com.ifpe.dangerous.model.Publicacao;
 import br.com.ifpe.dangerous.model.PublicacaoDao;
 import br.com.ifpe.dangerous.model.Usuario;
@@ -116,9 +117,13 @@ public class SistemaController {
 
 
 	@RequestMapping("publicar")
-	public String savePublic(Publicacao publicacao, @RequestParam("Tema") String tema) {
+	public String savePublic(Publicacao publicacao, @RequestParam("Tema") String tema,
+			@RequestParam("textAreaPublicar") String conteudo,  @RequestParam("usuario") String id) {
 		PublicacaoDao dao = new PublicacaoDao();
 		publicacao.setTema(tema);
+		UsuarioConverter convert = new UsuarioConverter();
+		publicacao.setUsuario(convert.convert(id));
+		publicacao.setConteudo(conteudo);
 		dao.salvar(publicacao);
 		
 		return "usuario/cadastroSucesso";
