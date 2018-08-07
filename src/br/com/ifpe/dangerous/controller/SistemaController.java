@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import br.com.ifpe.dangerous.model.Publicacao;
+import br.com.ifpe.dangerous.model.PublicacaoDao;
 import br.com.ifpe.dangerous.model.Usuario;
 import br.com.ifpe.dangerous.model.UsuarioDao;
 
@@ -111,4 +113,20 @@ public class SistemaController {
 	session.invalidate();
 	return "home";
 	}
+
+
+	@RequestMapping("publicar")
+	public String savePublic(Publicacao publicacao, @RequestParam("Tema") String tema) {
+		PublicacaoDao dao = new PublicacaoDao();
+		publicacao.setTema(tema);
+		dao.salvar(publicacao);
+		
+		return "usuario/cadastroSucesso";
+	}
+
+
+
+
+
+
 }

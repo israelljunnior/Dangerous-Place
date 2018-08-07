@@ -20,14 +20,11 @@
 #container {
 	margin-bottom: 20px;
 	margin-top: -14px;
-	
-	left: 17%;
-	
-	
+	left: 14%;
 }
 
 #tabel_publicacao {
-	width: 95%;
+	width: 100%;
 	border-style: solid;
 	border-color: red;
 }
@@ -48,7 +45,6 @@
 
 #titulo_publicacao {
 	font-size: 1.4em;
-	
 }
 
 #conteudo_publicacao {
@@ -113,38 +109,47 @@
 
 		<h2 id="titulo_forum">Fórum</h2>
 
-<div class="container">
+		<table border="0">
+			<tr>
+				<td colspan="5" style="width:100%;"><input class="form-control" id="myInput" type="text"
+					style="width: 300px;" placeholder="Search.." /></td>
+				
+				
+				<td>
+					<button type="button" class="btn btn-primary"  data-toggle="modal"
+						data-target="#modalPublicar"
+						 style="align:rigth; background-color: #555555; color: white">Publicar</button>
+					 
+				</td>
+			</tr>
+		</table>
 
-  <input class="form-control" id="myInput" type="text" style="width:1000px;" placeholder="Search..">
-  <br>
-  <ul class="list-group" id="myList">
-   
-  </ul>  
-</div>
+
 
 		<table id="tabel_publicacao" border="0">
 
 			<tr id="coluna_assunto">
 				<!-- assunto da publicacção-->
 				<td id="assunto_publicacao" colspan="3"><b>Assunto: </b>
-					Assunto vai aqui<td><div id="div_space"></div></td></td>
+					Assunto vai aqui <td><div id="div_space"></div></td>
+	</td>
 			</tr>
 
 			<tr style="margin-left: 4px">
 
 				<!-- Foto do usuário que publicou-->
 				<td><a data-toggle="modal" data-target="#modal"><img
-						class='img-thumbnail' src="" alt='Foto de exibição' width='55px'
-						height='40px' />"</a></td>
+				class='img-thumbnail' src="" alt='Foto de exibição' width='55px'
+				height='40px' />"</a></td>
 
 				<!-- Nome do usuário que publicou-->
 				<td id="nome_usuaro_publicacao"><a data-toggle="modal"
-					data-target="#modal"> Diego Passos</td>
+			data-target="#modal"> Diego Passos</td>
 
 				<!-- Data da públicação-->
 				<td><b>Publicado na data:</b> 23/03/1199</td>
 
-				<td><button class="btn btn-danger">Apagar</button></td>
+				<td><button class="btn btn-danger" style="float:right;" >Apagar</button></td>
 
 			</tr>
 
@@ -153,24 +158,22 @@
 			<tr>
 
 				<!-- Título da publicação -->
-				<td colspan="3" id="titulo_publicacao"><br>
-				<b>Titulo:</b> Título aqui</td>
-			<tr>
+				<td colspan="3" id="titulo_publicacao"><br> <b>Titulo:</b>
+					Título aqui</td>
+			
+	<tr>
 				<!-- O conteúdo em si do comentário -->
 				<td colspan="3">
 					<p id="conteudo_publicacao">Conteúdo aqui</p>
 				</td>
-				<td><br>
-				<br>
-				<br>
-				<br></td>
+				<td><br> <br> <br> <br></td>
 			</tr>
 
 			<!-- *************************************************************************************** -->
 
 			<!-- Modal para perfil no fórum -->
 			<div class="modal fade" id="modal" tabindex="-1" role="dialog"
-				aria-labelledby="exampleModalLabel" aria-hidden="true">
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -178,7 +181,7 @@
 								<h3 class="modal-title">Perfil</h3>
 							</center>
 							<button type="button" class="close" data-dismiss="modal"
-								aria-label="Close">
+						aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
 						</div>
@@ -187,8 +190,8 @@
 								<li><center>Foto</center></li>
 								<br>
 								<br>
-								<li><label>Número de postagem que o usuário já
-										fez: </label><br> 0</li>
+								<li><label>Número de postagem que o usuário já fez:
+								</label><br> 0</li>
 								<br>
 
 								<li><label>Nome:&nbsp;&nbsp;</label> Diego</li>
@@ -203,10 +206,11 @@
 								<br>
 								<li><label>Descrição do usuário:&nbsp;&nbsp;</label> Minha
 									descrição</li>
-						</div>
+						
+				</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary"
-								data-dismiss="modal">Fechar</button>
+						data-dismiss="modal">Fechar</button>
 						</div>
 					</div>
 				</div>
@@ -216,14 +220,13 @@
 
 
 			<tr>
-				<td colspan="3"><br> <!-- Botão que irá iniciar uma função do bootstrap collapse e irá exibir todos comentários -->
+				<td colspan="3"><br> 
+				<!-- Botão que irá iniciar uma função do bootstrap collapse e irá exibir todos comentários -->
 					<button id="mostrar_comentario" type="button"
-						class="btn btn-default" data-toggle="collapse"
-						data-target="#comentario">Mostrar comentários</button> <label
-					style="margin-left: 4px;">Quantidade de comentários: 0 </label> <br>
-				<br>
-				<br>
-				<br>
+				class="btn btn-default" data-toggle="collapse"
+				data-target="#comentario" >Mostrar comentários</button> <label
+			style="margin-left: 4px;">Quantidade de comentários: 0 </label> <br>
+					<br> <br> <br>
 
 					<div id="comentario" class="collapse">
 						<table border="0" style="width: 70%; float: right;">
@@ -232,11 +235,7 @@
 								<td>Foto do usuário</td>
 
 								<!--Espaço -->
-								<td><br>
-								<br>
-								<br>
-								<br>
-								<br></td>
+								<td><br> <br> <br> <br> <br></td>
 
 								<!-- Nome do usuário que postou o comentário -->
 								<td><b>Diego</b></td>
@@ -251,45 +250,42 @@
 
 							<tr>
 								<!-- O comentário em si está aqui -->
-								<td colspan="6">Comentário fica aqui <br>
-								<br> <!-- Colocando uma linha para separar cada comentário -->
+								<td colspan="6">Comentário fica aqui <br> <br> <!-- Colocando uma linha para separar cada comentário -->
 									<hr id="linha" />
 								</td>
 							</tr>
 						</table>
 
-						<!-- Área de enviar comentáro-->
-						<table border="0" style="width: 70%; float: right;">
-							<tr>
-								<td><br>
-								<br>
-								<br></td>
-							</tr>
-							<tr>
-								<td>
-									<!-- Campo de formulário pra enviar um novo comentário -->
-									<form action="" method="post"">
+						
+<!-- Área de enviar comentáro-->
+					<table border="0" style="width: 70%; float: right;">
+						<tr>
+							<td><br> <br> <br></td>
+						</tr>
+						<tr>
+							<td>
+								<!-- Campo de formulário pra enviar um novo comentário -->
+								<form action="" method="post"">
 
-										<textarea style="resize: none;" rows="6" cols="5"
-											class="form-control" minlength="1" required=""
-											name="conteudo" placeholder="Escreva um comentário "></textarea>
-										<br> <input class="btn btn-primary" type="submit"
-											value="Enviar Comentário" style="float: right;"> <br>
-										<br>
-									</form>
+									<textarea style="resize: none;" rows="6" cols="5"
+										class="form-control" minlength="1" required="" name="conteudo"
+										placeholder="Escreva um comentário "></textarea>
+									<br> <input class="btn btn-primary" type="submit"
+										value="Enviar Comentário" style="float: right;"> <br>
+									<br>
+								</form>
 
-								</td>
-							</tr>
-						</table>
-						<!-- Fim de Área de enviar comentáro-->
-
-					</div></td>
-			</tr>
-		</table>
-	</div>
+							</td>
+						</tr>
+					</table> <!-- Fim de Área de enviar comentáro--> 
+					
+					
+					
+					<!-- Modal publicar  está no header -->
+					
 
 
 
 
-</body>
+	</body>
 </html>

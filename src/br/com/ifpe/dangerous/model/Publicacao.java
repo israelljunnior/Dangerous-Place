@@ -22,15 +22,13 @@ public class Publicacao {
 	@Column(name="id_publicacao")
 	private int id;
 	@Column
-	private String tipo;
-	@Column
 	private String titulo;
 	@Column
 	private String tema;
 	@Column
 	private String conteudo;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private Date data;
+	private Date data; 
 	@ManyToOne
 	@JoinColumn(name="id_usuario")
 	private Usuario usuario;
@@ -41,12 +39,7 @@ public class Publicacao {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getTipo() {
-		return tipo;
-	}
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
+	
 	public String getTitulo() {
 		return titulo;
 	}
