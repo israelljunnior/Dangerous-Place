@@ -1,5 +1,7 @@
 package br.com.ifpe.dangerous.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -96,8 +98,12 @@ public class SistemaController {
 	
 	
 	@RequestMapping("/forum")
-	public String comentando() {
-		System.out.println("Comentando no fórum do Dangerous Places");
+	public String listarPublicacao(Model model) {
+	
+		PublicacaoDao dao = new PublicacaoDao();
+		List<Publicacao> listaPublicacao = dao.listar(null);
+
+		model.addAttribute("listaPublicacao", listaPublicacao);
 		return "usuario/forum";
 	}
         //Deletar o comentário .

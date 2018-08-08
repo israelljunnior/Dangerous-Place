@@ -1,5 +1,5 @@
-﻿create database dangerousplace;
-use dangerousplace;
+﻿create database dangerousplace1;
+use dangerousplace1;
 
 create table usuario(
 	id_usuario int AUTO_INCREMENT PRIMARY KEY,

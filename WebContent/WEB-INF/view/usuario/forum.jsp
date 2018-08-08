@@ -105,6 +105,9 @@
 	 <div class="col-sm-3"></div>
 	  -->
 
+
+
+
 	<div id="container" class="container col-sm-8">
 
 		<h2 id="titulo_forum">Fórum</h2>
@@ -124,6 +127,13 @@
 			</tr>
 		</table>
 
+<c:forEach var="publicacao" items="${listaPublicacao}">
+<p>${publicacao.tema}</p>
+<p>${publicacao.titulo}</p>
+<p>${publicacao.conteudo}</p>
+<p>${publicacao.id}</p>
+<p>${publicacao.usuario}</p>
+<p>${publicacao.data}</p>
 
 
 		<table id="tabel_publicacao" border="0">
@@ -215,6 +225,8 @@
 					</div>
 				</div>
 			</div>
+</table>
+</c:forEach>
 			<!-- Fim modal -->
 			<!-- *************************************************************************************** -->
 
@@ -286,6 +298,7 @@
 
 
 
+		
 
 	</body>
 </html>
