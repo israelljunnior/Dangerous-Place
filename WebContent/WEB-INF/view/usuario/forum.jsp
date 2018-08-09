@@ -128,12 +128,11 @@
 		</table>
 
 <c:forEach var="publicacao" items="${listaPublicacao}">
-<p>${publicacao.tema}</p>
-<p>${publicacao.titulo}</p>
-<p>${publicacao.conteudo}</p>
+
+
+
 <p>${publicacao.id}</p>
-<p>${publicacao.usuario}</p>
-<p>${publicacao.data}</p>
+
 
 
 		<table id="tabel_publicacao" border="0">
@@ -141,7 +140,7 @@
 			<tr id="coluna_assunto">
 				<!-- assunto da publicacção-->
 				<td id="assunto_publicacao" colspan="3"><b>Assunto: </b>
-					Assunto vai aqui <td><div id="div_space"></div></td>
+					${publicacao.tema} <td><div id="div_space"></div></td>
 	</td>
 			</tr>
 
@@ -157,7 +156,7 @@
 			data-target="#modal"> Diego Passos</td>
 
 				<!-- Data da públicação-->
-				<td><b>Publicado na data:</b> 23/03/1199</td>
+				<td><b>Publicado na data:</b> ${publicacao.data}</td>
 
 				<td><button class="btn btn-danger" style="float:right;" >Apagar</button></td>
 
@@ -169,15 +168,26 @@
 
 				<!-- Título da publicação -->
 				<td colspan="3" id="titulo_publicacao"><br> <b>Titulo:</b>
-					Título aqui</td>
+					${publicacao.titulo}</td>
 			
 	<tr>
-				<!-- O conteúdo em si do comentário -->
+				<!-- O conteúdo em si do publicação -->
 				<td colspan="3">
-					<p id="conteudo_publicacao">Conteúdo aqui</p>
+					<p id="conteudo_publicacao">${publicacao.conteudo}</p>
 				</td>
 				<td><br> <br> <br> <br></td>
 			</tr>
+
+				<tr>
+				<td colspan="3"><br> 
+				<!-- Botão que irá iniciar uma função do bootstrap collapse e irá exibir todos comentários -->
+					<button id="mostrar_comentario" type="button"
+				class="btn btn-default" data-toggle="collapse"
+				data-target="#comentario" >Mostrar comentários</button> <label
+			style="margin-left: 4px;">Quantidade de comentários: 0 </label> <br>
+					<br> <br> <br>
+
+</c:forEach>
 
 			<!-- *************************************************************************************** -->
 
@@ -226,19 +236,12 @@
 				</div>
 			</div>
 </table>
-</c:forEach>
+
 			<!-- Fim modal -->
 			<!-- *************************************************************************************** -->
 
 
-			<tr>
-				<td colspan="3"><br> 
-				<!-- Botão que irá iniciar uma função do bootstrap collapse e irá exibir todos comentários -->
-					<button id="mostrar_comentario" type="button"
-				class="btn btn-default" data-toggle="collapse"
-				data-target="#comentario" >Mostrar comentários</button> <label
-			style="margin-left: 4px;">Quantidade de comentários: 0 </label> <br>
-					<br> <br> <br>
+			
 
 					<div id="comentario" class="collapse">
 						<table border="0" style="width: 70%; float: right;">

@@ -427,7 +427,7 @@
 						<div class="form-group">
 					
 							<label for="inputTema">Titulo:</label> <input type="text"
-								id="inputTema" class="form-control" name="titulo"
+								id="inputTitulo" class="form-control" name="titulo"
 								style="width: 100%;" placeholder="Digite o titulo de sua publicação" />
 						</div>
 
@@ -454,7 +454,7 @@
 
 
 <script>
-	$(document)
+/*	$(document) 
 			.ready(
 					function() {
 
@@ -536,7 +536,7 @@
 
 						//Validação Login
 
-					});
+					}); */
 
 	$(document)
 			.ready(
