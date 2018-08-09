@@ -132,7 +132,7 @@ public class SistemaController {
 		publicacao.setConteudo(conteudo);
 		dao.salvar(publicacao);
 		
-		return "usuario/cadastroSucesso";
+		return "usuario/PublicarSucesso";
 	}
 
 

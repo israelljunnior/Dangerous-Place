@@ -418,7 +418,7 @@
 									<option  class="form-control" required="required"
 										type="radio" value="Assaltos" name="Assaltos">Assaltos</option>
 									<br />
-									<option type="radio" value="Acidentes de Trânsito" name="AcidentesTrans">Acidentes de Trânsito</option>
+									<option class="form-control" required="required" type="radio" value="Acidentes de Trânsito" name="Acidentes de Trânsito">Acidentes de Trânsito</option>
 									<br />
 								</select>
 							</div>

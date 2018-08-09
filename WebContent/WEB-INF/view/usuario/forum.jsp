@@ -57,15 +57,7 @@
 	background-color: rgba(0, 191, 255, 0.2);
 }
 
-#linha {
-	height: 1px;
-	border: none;
-	color: #606060;
-	background-color: white;
-	margin-top: 0px;
-	margin-bottom: 0px;
-	border-style: inset;
-}
+
 </style>
 
 
@@ -157,9 +149,9 @@
 
 				<!-- Data da públicação-->
 				<td><b>Publicado na data:</b> ${publicacao.data}</td>
-
-				<td><button class="btn btn-danger" style="float:right;" >Apagar</button></td>
-
+		
+				<td><button class="btn btn-danger" style="float:right;" >Excluir</button></td>
+			
 			</tr>
 
 
@@ -180,13 +172,21 @@
 
 				<tr>
 				<td colspan="3"><br> 
-				<!-- Botão que irá iniciar uma função do bootstrap collapse e irá exibir todos comentários -->
-					<button id="mostrar_comentario" type="button"
-				class="btn btn-default" data-toggle="collapse"
-				data-target="#comentario" >Mostrar comentários</button> <label
-			style="margin-left: 4px;">Quantidade de comentários: 0 </label> <br>
+				<!-- Botão que  irá exibir todos comentários -->
+					<a  data-toggle="modal" data-target="#modalComentario">Mostrar Comentários</a>
+					
+					 <label style="margin-left: 4px;">Quantidade de comentários: 0 </label> <br>
 					<br> <br> <br>
 
+
+
+			
+
+						
+						
+						 
+						
+						
 </c:forEach>
 
 			<!-- *************************************************************************************** -->
@@ -241,9 +241,7 @@
 			<!-- *************************************************************************************** -->
 
 
-			
-
-					<div id="comentario" class="collapse">
+			<div id="comentario" class="collapse">
 						<table border="0" style="width: 70%; float: right;">
 							<tr>
 								<!-- Foto do usuário que postou o comentário -->
@@ -265,11 +263,16 @@
 
 							<tr>
 								<!-- O comentário em si está aqui -->
-								<td colspan="6">Comentário fica aqui <br> <br> <!-- Colocando uma linha para separar cada comentário -->
+								<td colspan="6">Comentário fica aqui <br> <br> 
+								<!-- Colocando uma linha para separar cada comentário -->
 									<hr id="linha" />
 								</td>
 							</tr>
 						</table>
+
+			
+
+					
 
 						
 <!-- Área de enviar comentáro-->
@@ -293,11 +296,91 @@
 							</td>
 						</tr>
 					</table> <!-- Fim de Área de enviar comentáro--> 
-					
+					</div>
 					
 					
 					<!-- Modal publicar  está no header -->
 					
+
+<!-- modal comentario -->
+
+
+  <a  data-toggle="modal" data-target="#modalComentario">Mostrar Comentários</a>
+
+  <!-- Modal -->
+  <div class="modal fade" id="modalComentario" role="dialog" >
+    <div class="modal-dialog" style="width:60%;">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h2 class="modal-title">Comentários</h2>
+        </div>
+        <div class="modal-body">
+          <table border="0" style="width: 100%;" >
+							<tr>
+								<!-- Foto do usuário que postou o comentário -->
+								<td>Foto do usuário</td>
+
+								<!--Espaço -->
+								<td><br> <br> <br> <br> <br></td>
+
+								<!-- Nome do usuário que postou o comentário -->
+								<td><b>Diego</b></td>
+
+								<!-- Data que comentário foi postado -->
+
+								<td>23/03/3232</td>
+								<!-- Opção de apagar o comentário -->
+								<td><button class="btn btn-danger">Apagar</button></td>
+
+							</tr>
+
+							<tr>
+								<!-- O comentário em si está aqui -->
+								<td colspan="6">Comentário fica aqui <br> <br> 
+								<!-- Colocando uma linha para separar cada comentário -->
+									<hr />
+								</td>
+							</tr>
+						</table>
+        
+        
+        <table border="0" style="width: 100%; ">
+						<tr>
+							<td><br> <br> <br></td>
+						</tr>
+						<tr>
+							<td>
+								<!-- Campo de formulário pra enviar um novo comentário -->
+								<form action="" method="post"">
+
+									<textarea style="resize: none;" rows="6" cols="5"
+										class="form-control" minlength="1" required="" name="conteudo"
+										placeholder="Escreva um comentário "></textarea>
+									<br> <input class="btn btn-primary" type="submit"
+										 value="Enviar Comentário" style=" float: right; background-color: #555555;"> <br>
+									<br>
+								</form>
+
+							</td>
+						</tr>
+					</table> <!-- Fim de Área de enviar comentáro-->
+        
+        
+        
+        
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+
 
 
 
