@@ -431,12 +431,13 @@
 						<input type="hidden" id="idPublicar" name="usuario" value="${usuarioLogado.id }">
 						<div class="form-group">
 								<label for="inputTema">Tema da Publicação:</label> <select id="inputTema" name="Tema">
-									<option  class="form-control" required="required"
-										type="radio" value="Assaltos" name="Assaltos">Assaltos</option>
+									<option  class="form-control" required="required" type="radio" value="Assaltos" name="Assaltos">Assaltos</option>
 									<br />
 									<option class="form-control" required="required" type="radio" value="Acidentes de Trânsito" name="Acidentes de Trânsito">Acidentes de Trânsito</option>
 									<br />
-								</select>
+									<option class = "form-control" required = "required" type = "radio" value = "Assassinatos" name = "Assassinatos">Assassinatos</option>
+									
+									</select>
 							</div>
 						
 						
