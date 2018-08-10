@@ -141,7 +141,11 @@ public class SistemaController {
 		return "usuario/gerarRelatorio";
 	}
 
-
+	@RequestMapping("sobreNos")
+	public String sobreNos() {
+		System.out.println("Nosso sobre nós");
+		return "sobreNos";
+	}
 
 
 }

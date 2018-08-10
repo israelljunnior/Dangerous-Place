@@ -5,9 +5,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-
-<c:import url="../comum/header.jsp"></c:import>
-
 <title>Fórum</title>
 
 <style type="text/css">
@@ -63,6 +60,10 @@
 
 
 </head>
+
+<c:import url="../comum/header.jsp"></c:import>
+
+
 <body>
 	<!--  ANTIGO FÓRUM
 

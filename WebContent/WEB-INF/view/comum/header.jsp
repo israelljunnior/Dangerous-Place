@@ -52,7 +52,7 @@
 				<li class="active"><a href="/PP2-DangerousPlace/home">Home</a></li>
 				<li><a href="/PP2-DangerousPlace/forum">Fórum</a></li>
 				<li><a href="/PP2-DangerousPlace/gerandoRelatorio">Gerar Relatório</a></li>
-				<li><a href="#">Sobre nós</a></li>
+				<li><a href="/PP2-DangerousPlace/sobreNos">Sobre nós</a></li>
 				<button onClick="fonte('a');">+</button>
 				<button onClick="fonte('d');">-</button>
 
