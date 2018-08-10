@@ -30,6 +30,19 @@
 </style>
 <body>
 
+
+<script type="text/javascript"> var tam = 15;
+ function fonte(e){
+    var elemento = $("#container");
+    var fonte = elemento.css('font-size');
+    if (e == 'a') {
+        elemento.css("fontSize", parseInt(fonte) + 1);
+    } else if('d'){
+        elemento.css("fontSize", parseInt(fonte) - 1);
+    }
+}
+</script>
+
 	<nav class="navbar-inverse names">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -38,7 +51,10 @@
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="/PP2-DangerousPlace/home">Home</a></li>
 				<li><a href="/PP2-DangerousPlace/forum">Fórum</a></li>
+				<li><a href="/PP2-DangerousPlace/gerandoRelatorio">Gerar Relatório</a></li>
 				<li><a href="#">Sobre nós</a></li>
+				<button onClick="fonte('a');">+</button>
+				<button onClick="fonte('d');">-</button>
 
 				<c:if test="${usuarioLogado.nivel_acesso == 'admSup'}">
 					<li><a type="submit" data-toggle="modal"
