@@ -553,7 +553,7 @@
 
 						//Validação Login
 
-					}); */
+					}); f*/
 
 	$(document)
 			.ready(
