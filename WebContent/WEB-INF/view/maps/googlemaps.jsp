@@ -102,7 +102,7 @@ var style = [
                 "color": "#000000"
             },
             {
-                "lightness": 17 
+                "lightness": 17  
             }
         ]
     },
