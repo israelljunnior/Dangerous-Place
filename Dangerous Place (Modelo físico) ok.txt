@@ -16,9 +16,9 @@ create table usuario(
 
 create table publicacao(
 	id_publicacao int AUTO_INCREMENT PRIMARY KEY,
-	titulo varchar(30) not null,
-	tema varchar(20) not null,
-	conteudo varchar(400) not null,
+	titulo varchar(300) not null,
+	tema varchar(40) not null,
+	conteudo varchar(4000) not null,
 	data_hora timestamp not null,
 	id_usuario int not null,
 	FOREIGN KEY (id_usuario) references usuario (id_usuario)

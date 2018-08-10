@@ -132,10 +132,14 @@ public class SistemaController {
 		publicacao.setConteudo(conteudo);
 		dao.salvar(publicacao);
 		
-		return "usuario/cadastroSucesso";
+		return "usuario/PublicarSucesso";
 	}
 
-
+	@RequestMapping("/gerandoRelatorio")
+	public String novoRelatorio() {
+		System.out.println("Mostrando a página de geração de relatórios");
+		return "usuario/gerarRelatorio";
+	}
 
 
 
