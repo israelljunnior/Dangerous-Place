@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<script src="<%=request.getContextPath()%>/resources/scripts/gerarGrafico.js"></script>
 <div id="map"></div>
 <script>
 
@@ -176,6 +177,7 @@ var infoWindows = [];
 var markers = [];
 var buttons = [];
 var selected = "r";
+var municipio;
 function initMap() {
 	map = new google.maps.Map(document.getElementById('map'), {
 		center : {
@@ -209,6 +211,8 @@ function initMap() {
     map.controls[google.maps.ControlPosition.TOP_CENTER].push(selectDiv);
     
 	google.maps.event.addListener(map, 'click', function(event) {
+		
+		
 		
 		var marker;
 		infoWindowMaker = new google.maps.InfoWindow();
@@ -264,7 +268,10 @@ function initMap() {
 
                             });
                         }
-
+						municipio = localidade
+						alert(municipio);
+						gerarGrafico(municipio);	
+						
 						infoWindowMaker.setContent("<style type='text/css'> #h4{ margin-right: 685px;}.balao2{background:  #ffffff;border-radius: 15px; width: 500px;height: 150px;margin-top: 100px;  margin-bottom: 100px; margin-right: 150px;margin-left: 80px;text-align: center;position: relative;}.balao2:after{ content: '';width: 50px;height: 0px;position: absolute;border-left: 20px solid transparent;border-right: 20px solid transparent;border-top: 20px solid #ffffff;bottom: -20px;left: 30%;}</style><div class='balao2'><div class='container'> <div class='row'><h4 id='h4'>Selecione os tipos de dados que você deseja referente à "+localidade+":</h4><div class='col-sm-2' > <button type='button' id='Assassinatos' class='btn btn-danger' style='margin-top: 50px; color:#000000 '>Assassinatos</button></div> <div class='col-sm-1'><button type='button' id='Assaltos' class='btn btn-danger' style='margin-top: 50px;' >Assaltos</button></div> <div class='col-sm-2'><button type='button' id='Acidentes' class='btn btn-danger' style='margin-top: 50px;' >Acidentes</button></div> </div></div></div>");
 						infoWindowMaker.open(map, marker);
 					} else {
@@ -316,6 +323,7 @@ function initMap() {
     
                                 });
                             }
+    						municipio = localidade
     						infoWindowMaker.setContent("<style type='text/css'> #h4{ margin-right: 685px;}.balao2{background:  #ffffff;border-radius: 15px; width: 500px;height: 150px;margin-top: 100px;  margin-bottom: 100px; margin-right: 150px;margin-left: 80px;text-align: center;position: relative;}.balao2:after{ content: '';width: 50px;height: 0px;position: absolute;border-left: 20px solid transparent;border-right: 20px solid transparent;border-top: 20px solid #ffffff;bottom: -20px;left: 30%;}</style><div class='balao2'><div class='container'> <div class='row'><h4 id='h4'>Selecione os tipos de dados que você deseja referente à "+localidade+":</h4><div class='col-sm-2' > <button type='button' id='Assassinatos' class='btn btn-danger' style='margin-top: 50px; color:#000000 '>Assassinatos</button></div> <div class='col-sm-1'><button type='button' id='Assaltos' class='btn btn-danger' style='margin-top: 50px;' >Assaltos</button></div> <div class='col-sm-2'><button type='button' id='Acidentes' class='btn btn-danger' style='margin-top: 50px;' >Acidentes</button></div> </div></div></div>");
 							infoWindowMaker.open(map, marker);
 						} else {
@@ -326,7 +334,7 @@ function initMap() {
 					}
 				}
 			});
-		}); markers.push(marker); infoWindows.push(infoWindowMakerMaker);
+		}); markers.push(marker); infoWindows.push(infoWindowMaker);
 
 	});
 
@@ -397,28 +405,24 @@ function LocalitionControl(controlDiv, map) {
     						if(isAvailable){
                                 var localidade = "";
     						if(selected == "m"){
-                                alert("Condition 1");
                                 var filtroMun = "administrative_area_level_2";
                                 results[0].address_components.forEach(ac => {
                                     if(ac.types[0] == filtroMun){
                                         localidade = ac.short_name;
-                                        alert(localidade);
                                     }
     
                                 });
     						} else {
-                                alert("Condition 2");
                                 var filtroReg = "administrative_area_level_3";
                                 
                                 results[0].address_components.forEach(ac => {
                                     if(ac.types[0] == filtroReg){
                                         localidade = ac.short_name;
-                                        alert(localidade);
                                     }
     
                                 });
                             }
-                            
+    						municipio = localidade
     						infoWindowLocalizacao.setContent("<style type='text/css'> #h4{ margin-right: 685px;}.balao2{background:  #ffffff;border-radius: 15px; width: 500px;height: 150px;margin-top: 100px;  margin-bottom: 100px; margin-right: 150px;margin-left: 80px;text-align: center;position: relative;}.balao2:after{ content: '';width: 50px;height: 0px;position: absolute;border-left: 20px solid transparent;border-right: 20px solid transparent;border-top: 20px solid #ffffff;bottom: -20px;left: 30%;}</style><div class='balao2'><div class='container'> <div class='row'><h4 id='h4'>Selecione os tipos de dados que você deseja referente à "+localidade+":</h4><div class='col-sm-2' > <button type='button' id='Assassinatos' class='btn btn-danger' style='margin-top: 50px; color:#000000 '>Assassinatos</button></div> <div class='col-sm-1'><button type='button' id='Assaltos' class='btn btn-danger' style='margin-top: 50px;' >Assaltos</button></div> <div class='col-sm-2'><button type='button' id='Acidentes' class='btn btn-danger' style='margin-top: 50px;' >Acidentes</button></div> </div></div></div>");
     						infoWindowLocalizacao.open(map)
     						} else {
