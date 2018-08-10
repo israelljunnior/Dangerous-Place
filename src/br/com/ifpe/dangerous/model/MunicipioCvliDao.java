@@ -34,6 +34,17 @@ public class MunicipioCvliDao {
 		return obj;
 		}
 	
+	public MunicipioCvli buscarPorNome(String nome) {
+		MunicipioCvli obj = null;
+		EntityManagerFactory factory =
+		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+		EntityManager manager = factory.createEntityManager();
+		obj = manager.find(MunicipioCvli.class, nome);
+		manager.close();
+		factory.close();
+		return obj;
+		}
+	
 	public void alterar(MunicipioCvli MunicipioCvli) {
 		EntityManagerFactory factory =
 		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);

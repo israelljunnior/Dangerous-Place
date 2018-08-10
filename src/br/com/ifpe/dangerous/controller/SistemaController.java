@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.ifpe.dangerous.converters.UsuarioConverter;
+import br.com.ifpe.dangerous.model.MunicipioCvliDao;
 import br.com.ifpe.dangerous.model.Publicacao;
 import br.com.ifpe.dangerous.model.PublicacaoDao;
 import br.com.ifpe.dangerous.model.Usuario;
@@ -145,6 +146,15 @@ public class SistemaController {
 	public String sobreNos() {
 		System.out.println("Nosso sobre nós");
 		return "sobreNos";
+	}
+	
+	@RequestMapping("/dadosMuncipios")
+	public @ResponseBody String pegarMunicipio(@RequestParam("data") String data, Model model) {
+		System.out.println(data);
+		MunicipioCvliDao dao = new MunicipioCvliDao();
+		model.addAttribute("dado", dao.buscarPorNome(data));
+		
+		return data.toString();
 	}
 
 
