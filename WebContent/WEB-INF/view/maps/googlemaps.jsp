@@ -102,7 +102,7 @@ var style = [
                 "color": "#000000"
             },
             {
-                "lightness": 17
+                "lightness": 17 
             }
         ]
     },
@@ -172,9 +172,10 @@ var style = [
 ];
 var map;
 var geocoder;
-var infoWindow;
-var markers = []
-var buttons = []
+var infoWindows = [];
+var markers = [];
+var buttons = [];
+var selected = "r";
 function initMap() {
 	map = new google.maps.Map(document.getElementById('map'), {
 		center : {
@@ -185,7 +186,7 @@ function initMap() {
 		styles:style
 	});
 
-	infoWindow = new google.maps.InfoWindow();
+	
 	geocoder = new google.maps.Geocoder();
 
      //buttons
@@ -193,17 +194,24 @@ function initMap() {
     var localitionControl = new LocalitionControl(localitionControlDiv, map);
 	
     localitionControlDiv.index = 1;
-    map.controls[google.maps.ControlPosition.TOP_CENTER].push(localitionControlDiv);
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(localitionControlDiv);
   
     var cleanControlDiv = document.createElement('div');
     var cleanControl = new CleanControl(cleanControlDiv, map);
     
-    localitionControlDiv.index = 1;
+    cleanControl.index = 1;
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(cleanControlDiv);
+    
+    var selectDiv = document.createElement('div');
+    var selectDivControl = new selectRM(selectDiv, map);
+	
+    selectDivControl.index = 1;
+    map.controls[google.maps.ControlPosition.TOP_CENTER].push(selectDiv);
     
 	google.maps.event.addListener(map, 'click', function(event) {
 		
 		var marker;
+		infoWindowMaker = new google.maps.InfoWindow();
 		
 		marker = new google.maps.Marker({
 			map : map,
@@ -212,7 +220,7 @@ function initMap() {
 		})
 
 		marker.addListener('click', function() {
-			infoWindow.open(map, this);
+			infoWindowMaker.open(map, this);
 		});
 
 		marker.addListener('dblclick', function() {
@@ -227,6 +235,7 @@ function initMap() {
 				if (results[0]) {
 					var isAvailable = false;
 					var indexState;
+				
 					for(i = 0; i < results[0].address_components.length; i++){
 						if(results[0].address_components[i].types[0] == "administrative_area_level_1"){
 								indexState = i;
@@ -237,12 +246,31 @@ function initMap() {
 							}
 					}	
 					if(isAvailable){
-						infoWindow.setContent("<style type='text/css'> #h4{ margin-right: 685px;}.balao2{background:  #ffffff;border-radius: 15px; width: 500px;height: 150px;margin-top: 100px;  margin-bottom: 100px; margin-right: 150px;margin-left: 80px;text-align: center;position: relative;}.balao2:after{ content: '';width: 50px;height: 0px;position: absolute;border-left: 20px solid transparent;border-right: 20px solid transparent;border-top: 20px solid #ffffff;bottom: -20px;left: 30%;}</style><div class='balao2'><div class='container'> <div class='row'><h4 id='h4'>Selecione os tipos de dados que você deseja:</h4><div class='col-sm-2' > <button type='button' id='Assassinatos' class='btn btn-danger' style='margin-top: 50px; color:#000000 '>Assassinatos</button></div> <div class='col-sm-1'><button type='button' id='Assaltos' class='btn btn-danger' style='margin-top: 50px;' >Assaltos</button></div> <div class='col-sm-2'><button type='button' id='Acidentes' class='btn btn-danger' style='margin-top: 50px;' >Acidentes</button></div> </div></div></div>");
-						infoWindow.open(map, marker);
+                        var localidade = "";
+                        if(selected == "m"){
+                            var filtroMun = "administrative_area_level_2";
+                            results[0].address_components.forEach(ac => {
+                                if(ac.types[0] == filtroMun){
+                                    localidade = ac.short_name;
+                                }
+
+                            });
+                        } else {
+                            var filtroReg = "administrative_area_level_3";
+                            results[0].address_components.forEach(ac => {
+                                if(ac.types[0] == filtroReg){
+                                    localidade = ac.short_name;
+                                }
+
+                            });
+                        }
+
+						infoWindowMaker.setContent("<style type='text/css'> #h4{ margin-right: 685px;}.balao2{background:  #ffffff;border-radius: 15px; width: 500px;height: 150px;margin-top: 100px;  margin-bottom: 100px; margin-right: 150px;margin-left: 80px;text-align: center;position: relative;}.balao2:after{ content: '';width: 50px;height: 0px;position: absolute;border-left: 20px solid transparent;border-right: 20px solid transparent;border-top: 20px solid #ffffff;bottom: -20px;left: 30%;}</style><div class='balao2'><div class='container'> <div class='row'><h4 id='h4'>Selecione os tipos de dados que você deseja referente à "+localidade+":</h4><div class='col-sm-2' > <button type='button' id='Assassinatos' class='btn btn-danger' style='margin-top: 50px; color:#000000 '>Assassinatos</button></div> <div class='col-sm-1'><button type='button' id='Assaltos' class='btn btn-danger' style='margin-top: 50px;' >Assaltos</button></div> <div class='col-sm-2'><button type='button' id='Acidentes' class='btn btn-danger' style='margin-top: 50px;' >Acidentes</button></div> </div></div></div>");
+						infoWindowMaker.open(map, marker);
 					} else {
-						infoWindow.setContent("Dados não disponíveis em: "+results[0].address_components[indexState].short_name
+						infoWindowMaker.setContent("Dados não disponíveis em: "+results[0].address_components[indexState].short_name
 								+"<br />"+results[0].formatted_address);
-						infoWindow.open(map, marker);
+						infoWindowMaker.open(map, marker);
 					}
 				}
 			}	
@@ -257,6 +285,7 @@ function initMap() {
 					if (results[0]) {
 						var isAvailable = false;
 						var indexState;
+						
 						for(i = 0; i < results[0].address_components.length; i++){
 							if(results[0].address_components[i].types[0] == "administrative_area_level_1" ){
 									indexState = i;
@@ -267,18 +296,37 @@ function initMap() {
 								}
 						}	
 						if(isAvailable){
-					 		infoWindow.setContent("<style type='text/css'>#h4{ margin-right: 685px;}.balao2{    background:  #ffffff;    border-radius: 15px;    width: 200px;    height: 100px;    margin-top: 100px;    margin-bottom: 100px;    margin-right: 150px;    margin-left: 80px;    text-align: center;    position: relative;} 	</style><div class='balao2'>	<div class='container'>  <div class='row'>    <h4 id='h4'>Selecione os tipos de dados que você deseja:</h4>    <div class='col-sm-2' >         <button type='button' id='Assassinatos' class='btn btn-danger' style='margin-top: 50px; color:#000000 '>Assassinatos</button>    </div>    <div class='col-sm-1'>        <button type='button' id='Assaltos' class='btn btn-danger' style='margin-top: 50px;' >Assaltos</button>    </div>    <div class='col-sm-2'>        <button type='button' id='Acidentes' class='btn btn-danger' style='margin-top: 50px;' >Acidentes</button>    </div>  </div></div>    </div>");
-							infoWindow.setContent("");
-							infoWindow.open(map, marker);
+                            var localidade = "";
+    						if(selected == "m"){
+                                var filtroMun = "administrative_area_level_2";
+                                results[0].address_components.forEach(ac => {
+                                    if(ac.types[0] == filtroMun){
+                                        localidade = ac.short_name;
+                                        alert(localidade);
+                                    }
+    
+                                });
+    						} else {
+    						    var filtroReg = "administrative_area_level_3";
+                                results[0].address_components.forEach(ac => {
+                                    if(ac.types[0] == filtroReg){
+                                        localidade = ac.short_name;
+                                        alert(localidade);
+                                    }
+    
+                                });
+                            }
+    						infoWindowMaker.setContent("<style type='text/css'> #h4{ margin-right: 685px;}.balao2{background:  #ffffff;border-radius: 15px; width: 500px;height: 150px;margin-top: 100px;  margin-bottom: 100px; margin-right: 150px;margin-left: 80px;text-align: center;position: relative;}.balao2:after{ content: '';width: 50px;height: 0px;position: absolute;border-left: 20px solid transparent;border-right: 20px solid transparent;border-top: 20px solid #ffffff;bottom: -20px;left: 30%;}</style><div class='balao2'><div class='container'> <div class='row'><h4 id='h4'>Selecione os tipos de dados que você deseja referente à "+localidade+":</h4><div class='col-sm-2' > <button type='button' id='Assassinatos' class='btn btn-danger' style='margin-top: 50px; color:#000000 '>Assassinatos</button></div> <div class='col-sm-1'><button type='button' id='Assaltos' class='btn btn-danger' style='margin-top: 50px;' >Assaltos</button></div> <div class='col-sm-2'><button type='button' id='Acidentes' class='btn btn-danger' style='margin-top: 50px;' >Acidentes</button></div> </div></div></div>");
+							infoWindowMaker.open(map, marker);
 						} else {
-							infoWindow.setContent("Dados não disponíveis em: "+results[0].address_components[indexState].short_name
+							infoWindowMaker.setContent("Dados não disponíveis em: "+results[0].address_components[indexState].short_name
 									+"<br />"+results[0].formatted_address);
-							infoWindow.open(map, marker);
+							infoWindowMaker.open(map, marker);
 						}
 					}
 				}
 			});
-		}); markers.push(marker);
+		}); markers.push(marker); infoWindows.push(infoWindowMakerMaker);
 
 	});
 
@@ -335,6 +383,8 @@ function LocalitionControl(controlDiv, map) {
                     	if (results[0]) {
     						var isAvailable = false;
     						var indexState;
+    						
+    						
     						for(i = 0; i < results[0].address_components.length; i++){
     							if(results[0].address_components[i].types[0] == "administrative_area_level_1"){
     									indexState = i;
@@ -345,8 +395,32 @@ function LocalitionControl(controlDiv, map) {
     								}
     						}	
     						if(isAvailable){
-    							infoWindow.setContent("<style type='text/css'> #h4{ margin-right: 685px;}.balao2{background:  #ffffff;border-radius: 15px; width: 500px;height: 150px;margin-top: 100px;  margin-bottom: 100px; margin-right: 150px;margin-left: 80px;text-align: center;position: relative;}.balao2:after{ content: '';width: 50px;height: 0px;position: absolute;border-left: 20px solid transparent;border-right: 20px solid transparent;border-top: 20px solid #ffffff;bottom: -20px;left: 30%;}</style><div class='balao2'><div class='container'> <div class='row'><h4 id='h4'>Selecione os tipos de dados que você deseja:</h4><div class='col-sm-2' > <button type='button' id='Assassinatos' class='btn btn-danger' style='margin-top: 50px; color:#000000 '>Assassinatos</button></div> <div class='col-sm-1'><button type='button' id='Assaltos' class='btn btn-danger' style='margin-top: 50px;' >Assaltos</button></div> <div class='col-sm-2'><button type='button' id='Acidentes' class='btn btn-danger' style='margin-top: 50px;' >Acidentes</button></div> </div></div></div>");
-    							infoWindow.open(map)
+                                var localidade = "";
+    						if(selected == "m"){
+                                alert("Condition 1");
+                                var filtroMun = "administrative_area_level_2";
+                                results[0].address_components.forEach(ac => {
+                                    if(ac.types[0] == filtroMun){
+                                        localidade = ac.short_name;
+                                        alert(localidade);
+                                    }
+    
+                                });
+    						} else {
+                                alert("Condition 2");
+                                var filtroReg = "administrative_area_level_3";
+                                
+                                results[0].address_components.forEach(ac => {
+                                    if(ac.types[0] == filtroReg){
+                                        localidade = ac.short_name;
+                                        alert(localidade);
+                                    }
+    
+                                });
+                            }
+                            
+    						infoWindowLocalizacao.setContent("<style type='text/css'> #h4{ margin-right: 685px;}.balao2{background:  #ffffff;border-radius: 15px; width: 500px;height: 150px;margin-top: 100px;  margin-bottom: 100px; margin-right: 150px;margin-left: 80px;text-align: center;position: relative;}.balao2:after{ content: '';width: 50px;height: 0px;position: absolute;border-left: 20px solid transparent;border-right: 20px solid transparent;border-top: 20px solid #ffffff;bottom: -20px;left: 30%;}</style><div class='balao2'><div class='container'> <div class='row'><h4 id='h4'>Selecione os tipos de dados que você deseja referente à "+localidade+":</h4><div class='col-sm-2' > <button type='button' id='Assassinatos' class='btn btn-danger' style='margin-top: 50px; color:#000000 '>Assassinatos</button></div> <div class='col-sm-1'><button type='button' id='Assaltos' class='btn btn-danger' style='margin-top: 50px;' >Assaltos</button></div> <div class='col-sm-2'><button type='button' id='Acidentes' class='btn btn-danger' style='margin-top: 50px;' >Acidentes</button></div> </div></div></div>");
+    						infoWindowLocalizacao.open(map)
     						} else {
     							infoWindowLocalizacao.setContent("Dados não disponíveis em: "+results[0].address_components[indexState].short_name
     									+"<br />"+results[0].formatted_address);
@@ -405,7 +479,39 @@ function CleanControl(controlDiv, map) {
     	});
     	
     });
+    
+    
   }
+  
+function selectRM(controlDiv, map) {
+
+    // Set CSS for the control border.
+    var controlUI = document.createElement('div');
+    controlUI.style.backgroundColor = '#fff';
+    controlUI.style.border = '2px solid #fff';
+    controlUI.style.borderRadius = '3px';
+    controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+    controlUI.style.cursor = 'pointer';
+    controlUI.style.marginBottom = '22px';
+    controlUI.style.textAlign = 'center';
+    controlUI.title = 'Click to recenter the map';
+    controlDiv.appendChild(controlUI);
+    // Set CSS for the control interior.
+    var controlText = document.createElement('div');
+    controlText.style.color = 'rgb(25,25,25)';
+    controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+    controlText.style.fontSize = '16px';
+    controlText.style.lineHeight = '38px';
+    controlText.style.paddingLeft = '5px';
+    controlText.style.paddingRight = '5px';
+    controlText.innerHTML = '<select id="selectMunicipioOrRegiao"class="selectpicker" onchange="changeSelected()"><option value="r">Região</option><option value="m">Município</option></select>';
+    controlUI.appendChild(controlText);
+    }
+    
+    function changeSelected() {
+    	var select = document.getElementById("selectMunicipioOrRegiao");
+    	selected = select.options[select.selectedIndex].value;
+    }
 
 </script>    
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAU4tZgF7qKxiAMdKz8j0Pa3_TVyNdZgjM&callback=initMap"></script>   
