@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import br.com.ifpe.dangerous.converters.PublicacaoConverter;
 import br.com.ifpe.dangerous.converters.UsuarioConverter;
+import br.com.ifpe.dangerous.model.Comentario;
+import br.com.ifpe.dangerous.model.ComentarioDao;
 import br.com.ifpe.dangerous.model.MunicipioCvliDao;
 import br.com.ifpe.dangerous.model.Publicacao;
 import br.com.ifpe.dangerous.model.PublicacaoDao;
@@ -157,5 +160,20 @@ public class SistemaController {
 		return data.toString();
 	}
 
-
+	@RequestMapping("comentar")
+	public String saveComent(Comentario comentario ,@RequestParam("conteudoComent") String conteudo,
+			@RequestParam("idUsuComent") String id,@RequestParam("idPubComent") String publicacao) {
+		
+		UsuarioConverter convert = new UsuarioConverter();
+		comentario.setUsuario(convert.convert(id));
+		
+		PublicacaoConverter convert1 = new PublicacaoConverter();
+		
+		comentario.setPublicacao(convert1.convert(publicacao));
+		comentario.setConteudo(conteudo);
+		ComentarioDao dao = new ComentarioDao();
+		dao.salvar(comentario);
+		
+		return "usuario/PublicarSucesso";
+	}
 }
