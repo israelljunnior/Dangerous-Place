@@ -1,8 +1,5 @@
 function gerarGrafico(dados) {
-	alert(dados+"p1");
 	$.post("dadosMuncipios", {"data":dados}, function(result){
-		
-		alert(result);
 	});
 
 /*var color = Chart.helpers.color;

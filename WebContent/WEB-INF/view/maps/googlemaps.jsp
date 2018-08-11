@@ -259,6 +259,7 @@ function initMap() {
                             }
 
                         });
+                        alert(localidade);
 					} else {
 
                         results[0].address_components.forEach(ac => {
@@ -281,12 +282,12 @@ function initMap() {
                             if(typeof ositionMesorregiao !== "undefined"){break;}
                         }
                         mesorregiao = arrayMesorregiaos[positionMesorregiao];
-                        
-
+                        alert(mesorregiao);
+						
                     }
-						localidade
-						alert(localidade);
-						alert(mesorregiao);
+						
+						
+						
 						gerarGrafico(municipio);	
 						
 						infoWindowMaker.setContent("<style type='text/css'> #h4{ margin-right: 685px;}.balao2{background:  #ffffff;border-radius: 15px; width: 500px;height: 150px;margin-top: 100px;  margin-bottom: 100px; margin-right: 150px;margin-left: 80px;text-align: center;position: relative;}.balao2:after{ content: '';width: 50px;height: 0px;position: absolute;border-left: 20px solid transparent;border-right: 20px solid transparent;border-top: 20px solid #ffffff;bottom: -20px;left: 30%;}</style><div class='balao2'><div class='container'> <div class='row'><h4 id='h4'>Selecione os tipos de dados que você deseja referente à "+localidade+":</h4><div class='col-sm-2' > <button type='button' id='Assassinatos' class='btn btn-danger' style='margin-top: 50px; color:#000000 '>Assassinatos</button></div> <div class='col-sm-1'><button type='button' id='Assaltos' class='btn btn-danger' style='margin-top: 50px;' >Assaltos</button></div> <div class='col-sm-2'><button type='button' id='Acidentes' class='btn btn-danger' style='margin-top: 50px;' >Acidentes</button></div> </div></div></div>");
@@ -329,6 +330,7 @@ function initMap() {
                                 }
 
                             });
+                            alert(localidade);
 						} else {
 
                             results[0].address_components.forEach(ac => {
@@ -351,10 +353,10 @@ function initMap() {
                                 if(typeof ositionMesorregiao !== "undefined"){break;}
                             }
                             mesorregiao = arrayMesorregiaos[positionMesorregiao];
-                            
+                            alert(mesorregiao);
 
                         }
-    						municipio = localidade
+    						
     						infoWindowMaker.setContent("<style type='text/css'> #h4{ margin-right: 685px;}.balao2{background:  #ffffff;border-radius: 15px; width: 500px;height: 150px;margin-top: 100px;  margin-bottom: 100px; margin-right: 150px;margin-left: 80px;text-align: center;position: relative;}.balao2:after{ content: '';width: 50px;height: 0px;position: absolute;border-left: 20px solid transparent;border-right: 20px solid transparent;border-top: 20px solid #ffffff;bottom: -20px;left: 30%;}</style><div class='balao2'><div class='container'> <div class='row'><h4 id='h4'>Selecione os tipos de dados que você deseja referente à "+localidade+":</h4><div class='col-sm-2' > <button type='button' id='Assassinatos' class='btn btn-danger' style='margin-top: 50px; color:#000000 '>Assassinatos</button></div> <div class='col-sm-1'><button type='button' id='Assaltos' class='btn btn-danger' style='margin-top: 50px;' >Assaltos</button></div> <div class='col-sm-2'><button type='button' id='Acidentes' class='btn btn-danger' style='margin-top: 50px;' >Acidentes</button></div> </div></div></div>");
 							infoWindowMaker.open(map, marker);
 						} else {
@@ -443,6 +445,7 @@ function LocalitionControl(controlDiv, map) {
                                     }
     
                                 });
+                                alert(localidade);
     						} else {
 
                                 results[0].address_components.forEach(ac => {
@@ -466,9 +469,9 @@ function LocalitionControl(controlDiv, map) {
                                 }
                                 mesorregiao = arrayMesorregiaos[positionMesorregiao];
                                 
-
+                                alert(mesorregiao);
                             }
-    						municipio = localidade
+    						
     						infoWindowLocalizacao.setContent("<style type='text/css'> #h4{ margin-right: 685px;}.balao2{background:  #ffffff;border-radius: 15px; width: 500px;height: 150px;margin-top: 100px;  margin-bottom: 100px; margin-right: 150px;margin-left: 80px;text-align: center;position: relative;}.balao2:after{ content: '';width: 50px;height: 0px;position: absolute;border-left: 20px solid transparent;border-right: 20px solid transparent;border-top: 20px solid #ffffff;bottom: -20px;left: 30%;}</style><div class='balao2'><div class='container'> <div class='row'><h4 id='h4'>Selecione os tipos de dados que você deseja referente à "+localidade+":</h4><div class='col-sm-2' > <button type='button' id='Assassinatos' class='btn btn-danger' style='margin-top: 50px; color:#000000 '>Assassinatos</button></div> <div class='col-sm-1'><button type='button' id='Assaltos' class='btn btn-danger' style='margin-top: 50px;' >Assaltos</button></div> <div class='col-sm-2'><button type='button' id='Acidentes' class='btn btn-danger' style='margin-top: 50px;' >Acidentes</button></div> </div></div></div>");
     						infoWindowLocalizacao.open(map)
     						} else {
