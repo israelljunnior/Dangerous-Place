@@ -251,25 +251,42 @@ function initMap() {
 					}	
 					if(isAvailable){
                         var localidade = "";
-                        if(selected == "m"){
-                            var filtroMun = "administrative_area_level_2";
-                            results[0].address_components.forEach(ac => {
-                                if(ac.types[0] == filtroMun){
-                                    localidade = ac.short_name;
-                                }
+                        var filtroMun = "administrative_area_level_2";
+					if(selected == "m"){
+                        results[0].address_components.forEach(ac => {
+                            if(ac.types[0] == filtroMun){
+                                localidade = ac.short_name;
+                            }
 
-                            });
-                        } else {
-                            var filtroReg = "administrative_area_level_3";
-                            results[0].address_components.forEach(ac => {
-                                if(ac.types[0] == filtroReg){
-                                    localidade = ac.short_name;
-                                }
+                        });
+					} else {
 
-                            });
+                        results[0].address_components.forEach(ac => {
+                            if(ac.types[0] == filtroMun){
+                                localidade = ac.short_name;
+                                
+                            }
+
+                        });
+                        var mesorregiao;
+                        var positionMesorregiao;
+                        var arrayMesorregiaos= ["Agreste Central","Agreste Meridional","Agreste Setentrional","Mata Norte","Mata Sul","Metropolitana","Sertão Central","Sertão De Itaparica","Sertão Do Araripe","Sertão Do Moxoto","Sertão Do Pajeu","Sertão Do São Francisco"]
+                        for(i = 0; i < regioes.length; i++) {
+                        	for(j = 0; j < regioes[i].length; j++){
+                                if(regioes[i][j] == localidade){
+                                    positionMesorregiao = i;
+                                    break;
+                                }
+                            }
+                            if(typeof ositionMesorregiao !== "undefined"){break;}
                         }
-						municipio = localidade
-						alert(municipio);
+                        mesorregiao = arrayMesorregiaos[positionMesorregiao];
+                        
+
+                    }
+						localidade
+						alert(localidade);
+						alert(mesorregiao);
 						gerarGrafico(municipio);	
 						
 						infoWindowMaker.setContent("<style type='text/css'> #h4{ margin-right: 685px;}.balao2{background:  #ffffff;border-radius: 15px; width: 500px;height: 150px;margin-top: 100px;  margin-bottom: 100px; margin-right: 150px;margin-left: 80px;text-align: center;position: relative;}.balao2:after{ content: '';width: 50px;height: 0px;position: absolute;border-left: 20px solid transparent;border-right: 20px solid transparent;border-top: 20px solid #ffffff;bottom: -20px;left: 30%;}</style><div class='balao2'><div class='container'> <div class='row'><h4 id='h4'>Selecione os tipos de dados que você deseja referente à "+localidade+":</h4><div class='col-sm-2' > <button type='button' id='Assassinatos' class='btn btn-danger' style='margin-top: 50px; color:#000000 '>Assassinatos</button></div> <div class='col-sm-1'><button type='button' id='Assaltos' class='btn btn-danger' style='margin-top: 50px;' >Assaltos</button></div> <div class='col-sm-2'><button type='button' id='Acidentes' class='btn btn-danger' style='margin-top: 50px;' >Acidentes</button></div> </div></div></div>");
@@ -304,25 +321,39 @@ function initMap() {
 						}	
 						if(isAvailable){
                             var localidade = "";
-    						if(selected == "m"){
-                                var filtroMun = "administrative_area_level_2";
-                                results[0].address_components.forEach(ac => {
-                                    if(ac.types[0] == filtroMun){
-                                        localidade = ac.short_name;
-                                        alert(localidade);
+                            var filtroMun = "administrative_area_level_2";
+						if(selected == "m"){
+                            results[0].address_components.forEach(ac => {
+                                if(ac.types[0] == filtroMun){
+                                    localidade = ac.short_name;
+                                }
+
+                            });
+						} else {
+
+                            results[0].address_components.forEach(ac => {
+                                if(ac.types[0] == filtroMun){
+                                    localidade = ac.short_name;
+                                    
+                                }
+
+                            });
+                            var mesorregiao;
+                            var positionMesorregiao;
+                            var arrayMesorregiaos= ["Agreste Central","Agreste Meridional","Agreste Setentrional","Mata Norte","Mata Sul","Metropolitana","Sertão Central","Sertão De Itaparica","Sertão Do Araripe","Sertão Do Moxoto","Sertão Do Pajeu","Sertão Do São Francisco"]
+                            for(i = 0; i < regioes.length; i++) {
+                            	for(j = 0; j < regioes[i].length; j++){
+                                    if(regioes[i][j] == localidade){
+                                        positionMesorregiao = i;
+                                        break;
                                     }
-    
-                                });
-    						} else {
-    						    var filtroReg = "administrative_area_level_3";
-                                results[0].address_components.forEach(ac => {
-                                    if(ac.types[0] == filtroReg){
-                                        localidade = ac.short_name;
-                                        alert(localidade);
-                                    }
-    
-                                });
+                                }
+                                if(typeof ositionMesorregiao !== "undefined"){break;}
                             }
+                            mesorregiao = arrayMesorregiaos[positionMesorregiao];
+                            
+
+                        }
     						municipio = localidade
     						infoWindowMaker.setContent("<style type='text/css'> #h4{ margin-right: 685px;}.balao2{background:  #ffffff;border-radius: 15px; width: 500px;height: 150px;margin-top: 100px;  margin-bottom: 100px; margin-right: 150px;margin-left: 80px;text-align: center;position: relative;}.balao2:after{ content: '';width: 50px;height: 0px;position: absolute;border-left: 20px solid transparent;border-right: 20px solid transparent;border-top: 20px solid #ffffff;bottom: -20px;left: 30%;}</style><div class='balao2'><div class='container'> <div class='row'><h4 id='h4'>Selecione os tipos de dados que você deseja referente à "+localidade+":</h4><div class='col-sm-2' > <button type='button' id='Assassinatos' class='btn btn-danger' style='margin-top: 50px; color:#000000 '>Assassinatos</button></div> <div class='col-sm-1'><button type='button' id='Assaltos' class='btn btn-danger' style='margin-top: 50px;' >Assaltos</button></div> <div class='col-sm-2'><button type='button' id='Acidentes' class='btn btn-danger' style='margin-top: 50px;' >Acidentes</button></div> </div></div></div>");
 							infoWindowMaker.open(map, marker);
@@ -404,8 +435,8 @@ function LocalitionControl(controlDiv, map) {
     						}	
     						if(isAvailable){
                                 var localidade = "";
-    						if(selected == "m"){
                                 var filtroMun = "administrative_area_level_2";
+    						if(selected == "m"){
                                 results[0].address_components.forEach(ac => {
                                     if(ac.types[0] == filtroMun){
                                         localidade = ac.short_name;
@@ -413,14 +444,29 @@ function LocalitionControl(controlDiv, map) {
     
                                 });
     						} else {
-                                var filtroReg = "administrative_area_level_3";
-                                
+
                                 results[0].address_components.forEach(ac => {
-                                    if(ac.types[0] == filtroReg){
+                                    if(ac.types[0] == filtroMun){
                                         localidade = ac.short_name;
+                                        
                                     }
     
                                 });
+                                var mesorregiao;
+                                var positionMesorregiao;
+                                var arrayMesorregiaos= ["Agreste Central","Agreste Meridional","Agreste Setentrional","Mata Norte","Mata Sul","Metropolitana","Sertão Central","Sertão De Itaparica","Sertão Do Araripe","Sertão Do Moxoto","Sertão Do Pajeu","Sertão Do São Francisco"]
+                                for(i = 0; i < regioes.length; i++) {
+                                	for(j = 0; j < regioes[i].length; j++){
+                                        if(regioes[i][j] == localidade){
+                                            positionMesorregiao = i;
+                                            break;
+                                        }
+                                    }
+                                    if(typeof ositionMesorregiao !== "undefined"){break;}
+                                }
+                                mesorregiao = arrayMesorregiaos[positionMesorregiao];
+                                
+
                             }
     						municipio = localidade
     						infoWindowLocalizacao.setContent("<style type='text/css'> #h4{ margin-right: 685px;}.balao2{background:  #ffffff;border-radius: 15px; width: 500px;height: 150px;margin-top: 100px;  margin-bottom: 100px; margin-right: 150px;margin-left: 80px;text-align: center;position: relative;}.balao2:after{ content: '';width: 50px;height: 0px;position: absolute;border-left: 20px solid transparent;border-right: 20px solid transparent;border-top: 20px solid #ffffff;bottom: -20px;left: 30%;}</style><div class='balao2'><div class='container'> <div class='row'><h4 id='h4'>Selecione os tipos de dados que você deseja referente à "+localidade+":</h4><div class='col-sm-2' > <button type='button' id='Assassinatos' class='btn btn-danger' style='margin-top: 50px; color:#000000 '>Assassinatos</button></div> <div class='col-sm-1'><button type='button' id='Assaltos' class='btn btn-danger' style='margin-top: 50px;' >Assaltos</button></div> <div class='col-sm-2'><button type='button' id='Acidentes' class='btn btn-danger' style='margin-top: 50px;' >Acidentes</button></div> </div></div></div>");
@@ -518,6 +564,235 @@ function selectRM(controlDiv, map) {
     }
 
 </script>    
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAU4tZgF7qKxiAMdKz8j0Pa3_TVyNdZgjM&callback=initMap"></script>   
-    
 
+    <script>
+
+    var regioes = [
+                        [
+                        'Caruaru',
+                        'Ibirajuba',
+                        'Alagoinha',
+                        'Sairé',
+                        'Riacho das Almas',
+                        'Jataúba',
+                        'Sanharó',
+                        'Tacaimbó',
+                        'Camocim de São Félix',
+                        'Agrestina',
+                        'Panelas',
+                        'Cachoeirinha',
+                        'Bezerros',
+                        'Belo Jardim',
+                        'Gravatá',
+                        'Poção',
+                        'Barra de Guabiraba',
+                        'Lagoa dos Gatos',
+                        'Altinho',
+                        'São Caitano',
+                        'Pesqueira',
+                        'Bonito',
+                        'Brejo da Madre de Deus',
+                        'São Joaquim do Monte',
+                        'São Bento do Una',
+                        'Cupira'
+                        ],
+
+                        [
+                        'Garanhuns',
+                        'Calçado',
+                        'Saloá',
+                        'Correntes',
+                        'Iati',
+                        'Jurema',
+                        'Bom Conselho',
+                        'Jupi',
+                        'Itaíba',
+                        'Pedra',
+                        'Caetés',
+                        'Águas Belas',
+                        'Buíque',
+                        'Lajedo',
+                        'Garanhuns',
+                        'Lagoa do Ouro',
+                        'Palmeirina',
+                        'Terezinha',
+                        'Angelim',
+                        'Jucati',
+                        'Paranatama',
+                        'Brejão',
+                        'Canhotinho',
+                        'Capoeiras',
+                        'Tupanatinga',
+                        'São João',
+                        'Venturosa',
+                        ],
+
+                        [
+                        'Cumaru',
+                        'Salgadinho',
+                        'Frei Miguelinho',
+                        'Feira Nova',
+                        'Machados',
+                        'João Alfredo',
+                        'Vertentes',
+                        'Limoeiro',
+                        'Surubim',
+                        'Taquaritinga do Norte',
+                        'Bom Jardim',
+                        'Santa Cruz do Capibaribe',
+                        'Toritama',
+                        'Vertente do Lério',
+                        'Orobó',
+                        'Passira',
+                        'Casinhas',
+                        'Santa Maria do Cambucá',
+                        'São Vicente Ferrer'
+                        ],
+
+                        [
+                        'Camutanga',
+                        'Ferreiros',
+                        'Itaquitinga',
+                        'Buenos Aires',
+                        'Chã de Alegria',
+                        'Macaparana',
+                        'Condado',
+                        'Glória do Goitá',
+                        'Nazaré da Mata',
+                        'Lagoa de Itaenga',
+                        'Lagoa do Carro',
+                        'Timbaúba',
+                        'Paudalho',
+                        'Tracunhaém',
+                        'Aliança',
+                        'Vicência',
+                        'Itambé',
+                        'Goiana',
+                        'Carpina'
+                        ],
+
+                        [
+                        'Vitória de Santo Antão',
+                        'Belém de Maria',
+                        'Joaquim Nabuco',
+                        'Quipapá',
+                        'Cortês',
+                        'Jaqueira',
+                        'Maraial',
+                        'Água Preta',
+                        'Chã Grande',
+                        'São Benedito do Sul',
+                        'Barreiros',
+                        'Palmares',
+                        'São José da Coroa Grande',
+                        'Sirinhaém',
+                        'Escada',
+                        'Primavera',
+                        'Xexéu',
+                        'Tamandaré',
+                        'Pombos',
+                        'Rio Formoso',
+                        'Amaraji',
+                        'Catende',
+                        'Gameleira',
+                        'Ribeirão'
+                        ],
+
+                        [
+                        'Cabo de Santo Agostinho',
+                        'Camaragibe',
+                        'Igarassu',
+                        'Jaboatão dos Guararapes',
+                        'Olinda',
+                        'Paulista',
+                        'Recife',
+                        'São Lourenço da Mata',
+                        'Fernando de Noronha',
+                        'Itapissuma',
+                        'Ilha de Itamaracá',
+                        'Moreno',
+                        'Abreu e Lima',
+                        'Ipojuca',
+                        'Araçoiaba'
+                        ],
+
+                        [
+                        'Mirandiba',
+                        'Cedro',
+                        'Salgueiro',
+                        'Serrita',
+                        'Terra Nova',
+                        'Verdejante',
+                        'Parnamirim',
+                        'São José do Belmonte'
+                        ],
+
+                        [
+                        'Itacuruba',
+                        'Jatobá',
+                        'Carnaubeira da Penha',
+                        'Belém do São Francisco',
+                        'Tacaratu',
+                        'Petrolândia',
+                        'Floresta'
+                        ],
+
+                        [
+                        'Granito',
+                        'Moreilândia',
+                        'Santa Cruz',
+                        'Santa Filomena',
+                        'Bodocó',
+                        'Ipubi',
+                        'Exu',
+                        'Ouricuri',
+                        'Trindade',
+                        'Araripina'
+                        ],
+
+                        [
+                        'Betânia',
+                        'Manari',
+                        'Custódia',
+                        'Ibimirim',
+                        'Inajá',
+                        'Sertânia',
+                        'Arcoverde'
+                        ],
+
+                        [
+                        'Brejinho',
+                        'Carnaíba',
+                        'Flores',
+                        'Santa Cruz da Baixa Verde',
+                        'Itapetim',
+                        'Ingazeira',
+                        'Calumbi',
+                        'Quixaba',
+                        'Solidão',
+                        'Iguaraci',
+                        'Triunfo',
+                        'Tuparetama',
+                        'Santa Terezinha',
+                        'Tabira',
+                        'São José do Egito',
+                        'Afogados da Ingazeira',
+                        'Serra Talhada'
+                        ],
+
+                        [
+                        'Petrolina',
+                        'Afrânio',
+                        'Dormentes',
+                        'Orocó',
+                        'Cabrobó',
+                        'Lagoa Grande',
+                        'Santa Maria da Boa Vista'
+                        ]
+
+                        ]
+
+
+    </script>
+    
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAU4tZgF7qKxiAMdKz8j0Pa3_TVyNdZgjM&callback=initMap"></script>   
