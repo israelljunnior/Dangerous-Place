@@ -471,7 +471,7 @@
 
 
 <script>
-/*	$(document) 
+	$(document) 
 			.ready(
 					function() {
 
@@ -494,9 +494,7 @@
 														type : "post",
 														data : {
 															email : function() {
-																return $(
-																		"#email")
-																		.val();
+																return $("#email").val();
 															}
 														}
 													}
@@ -553,7 +551,7 @@
 
 						//Validação Login
 
-					}); f*/
+					}); 
 
 	$(document)
 			.ready(
