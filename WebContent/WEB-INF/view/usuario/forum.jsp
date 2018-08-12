@@ -13,13 +13,7 @@
 #titulo_forum {
 	color: black;
 	font-size: 3.5em;
-	text-align: center;
-}
-
-#container {
-	margin-bottom: 20px;
-	margin-top: -14px;
-	left: 14%;
+	font-family: 'Montserrat',sans-serif;
 }
 
 #tabel_publicacao {
@@ -56,21 +50,35 @@
 	background-color: rgba(0, 191, 255, 0.2);
 }
 </style>
-
-
-
 </head>
 
 <c:import url="../comum/header.jsp"></c:import>
 
-
 <body>
 	
-	<div id="container" class="container col-sm-8">
+<script type="text/javascript"> var tam = 15;
+ function fonte(e){
+    var elemento = $("#container");
+    var fonte = elemento.css('font-size');
+    if (e == 'a') {
+        elemento.css("fontSize", parseInt(fonte) + 1);
+    } else if('d'){
+        elemento.css("fontSize", parseInt(fonte) - 1);
+    }
+}
+</script>
+<button onClick="fonte('a');">+</button>
+	<button onClick="fonte('d');">-</button>
 
-		<h2 id="titulo_forum">Fórum</h2>
+			<center><h2 id="titulo_forum">Fórum</h2></center>
 
-		<table border="0">
+<div class="row"  style="margin-top: 20px;margin-bottom: 20px;font-family: 'Montserrat',sans-serif">
+
+	<div class="col-sm-2"></div>
+	
+	<div id="container" class="col-sm-8" style="box-shadow: 0 6px 10px 6px rgba(0,0,0,0.6), 0 6px 14px 0 rgba(0,0,0,0.6);">		
+
+		<table border="0" style="margin-top: 20px;">
 			<tr>
 				<td colspan="5" style="width:100%;"><input class="form-control" id="myInput" type="text"
 					style="width: 300px;" placeholder="Search.." /></td>
@@ -84,45 +92,36 @@
 				</td>
 			</tr>
 		</table>
+		<br><br>
 
 <c:forEach var="publicacao" items="${listaPublicacao}">
 
-
-
-<p>${publicacao.id}</p>
-
-
-
 		<table id="tabel_publicacao" border="0">
 
-			<tr id="coluna_assunto">
-				<!-- assunto da publicacção-->
-				<td id="assunto_publicacao" colspan="3"><b>Assunto: </b>
-					${publicacao.tema} <td><div id="div_space"></div></td>
-	</td>
+			<tr>
+				<td id="assunto_publicacao" colspan="3"><b>Tema: </b>
+					${publicacao.tema}</td>
 			</tr>
 
 			<tr style="margin-left: 4px">
 
-				<!-- Foto do usuário que publicou-->
+	<!-- Foto do usuário que publicou
 				<td><a data-toggle="modal" data-target="#modal"><img
 				class='img-thumbnail' src="" alt='Foto de exibição' width='55px'
-				height='40px' />"</a></td>
+				height='40px' />"</a></td> -->
 
 				<!-- Nome do usuário que publicou-->
 				<td id="nome_usuaro_publicacao"><a data-toggle="modal"
 			data-target="#modal"> ${publicacao.usuario.nome}</td>
 
 				<!-- Data da públicação-->
-				<td><b>Publicado na data:</b> ${publicacao.data}</td>
+				<td><b>Publicado em:</b> <fmt:formatDate value="${publicacao.data}" pattern="dd/MM/yyyy" /></td>
 		
 						<c:if test="${usuarioLogado.id == publicacao.usuario.id}">
         
 				<td><button class="btn btn-danger" style="float:right;" >Excluir</button></td>
 		    </c:if>	
 			</tr>
-
-
 
 			<tr>
 
@@ -141,9 +140,10 @@
 				<tr>
 				<td colspan="3"><br> 
 				<!-- Botão que  irá exibir todos comentários -->
-					<a  data-toggle="modal" data-target="#modalComentario${ publicacao.id}">Mostrar Comentários</a>
+					<button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#modalComentario${ publicacao.id}"
+						 style="background-color: #555555; color: white">Comentários</button>
 					
-					 <label style="margin-left: 4px;">Quantidade de comentários: 0 </label> <br>
+					<!--  <label style="margin-left: 4px;">Quantidade de comentários: 0 </label> <br> -->
 					<br> <br> <br>
 					
 					
@@ -293,15 +293,6 @@
 				</div>
 			</div>
 </table>
-
-			<!-- Fim modal -->
-			<!-- *************************************************************************************** -->
-
-
-			<!-- Modal publicar  está no header -->
-					
-
-
 
   
 </body>

@@ -25,7 +25,7 @@
 			<br />
 
 			<p class="pOk">A equipe de desenvolvimento do projeto Dangerous Place é
-				composta pelos estudantes Chirleny França, Gleice Kelly, Israel
+				composta pelos estudantes Chirleny França, Diego Passos, Gleice Kelly, Israel
 				Júnior e Yuri Ferreira. Todos discentes do Instituto Federal de
 				Educação, Ciência e Tecnologia de Pernambuco (IFPE), do curso
 				Técnico em Informática para Internet. O projeto foi idealizado a
