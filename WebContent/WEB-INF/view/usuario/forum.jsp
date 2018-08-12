@@ -241,7 +241,7 @@
 
 								<td>23/03/3232</td>
 								
-							
+	      
 								<!-- Opção de apagar o comentário -->
 								<td><button class="btn btn-danger">Apagar</button></td>
 
