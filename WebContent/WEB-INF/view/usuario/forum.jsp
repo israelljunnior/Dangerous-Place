@@ -114,8 +114,10 @@
 				<!-- Data da públicação-->
 				<td><b>Publicado na data:</b> ${publicacao.data}</td>
 		
+						<c:if test="${usuarioLogado.id == publicacao.usuario.id}">
+        
 				<td><button class="btn btn-danger" style="float:right;" >Excluir</button></td>
-			
+		    </c:if>	
 			</tr>
 
 
@@ -238,6 +240,8 @@
 								<!-- Data que comentário foi postado -->
 
 								<td>23/03/3232</td>
+								
+							
 								<!-- Opção de apagar o comentário -->
 								<td><button class="btn btn-danger">Apagar</button></td>
 
@@ -267,14 +271,15 @@
 						<tr>
 							<td>
 								<!-- Campo de formulário pra enviar um novo comentário -->
-								<form action="comentar" method="post"">
+								<form action="comentar" id="formComent" method="post"">
 			
 								<input type="hidden" id="idUsuComent" name="idUsuComent" value="${usuarioLogado.id }">
 								<input type="hidden" id="idPubComent" name="idPubComent" value="${publicacao.id }">
 			
 									<textarea style="resize: none;" rows="6" cols="5"
-										class="form-control" minlength="1" required="" name="conteudoComent"
+										class="form-control" minlength="1" form="formComent" name="conteudoComent"
 										placeholder="Escreva um comentário "></textarea>
+									
 									<br> <input class="btn btn-primary" type="submit"
 										 value="Enviar Comentário" style=" float: right; background-color: #555555;"> <br>
 									<br>

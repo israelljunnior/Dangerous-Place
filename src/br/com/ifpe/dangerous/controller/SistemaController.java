@@ -107,7 +107,11 @@ public class SistemaController {
 		PublicacaoDao dao = new PublicacaoDao();
 		List<Publicacao> listaPublicacao = dao.listar(null);
 
+		
+		
 		model.addAttribute("listaPublicacao", listaPublicacao);
+	
+		
 		return "usuario/forum";
 	}
         //Deletar o comentário .
@@ -165,8 +169,9 @@ public class SistemaController {
 			@RequestParam("idUsuComent") String id,@RequestParam("idPubComent") String publicacao) {
 		
 		UsuarioConverter convert = new UsuarioConverter();
-		comentario.setUsuario(convert.convert(id));
 		
+		comentario.setUsuario(convert.convert(id));
+		System.out.print(publicacao);
 		PublicacaoConverter convert1 = new PublicacaoConverter();
 		
 		comentario.setPublicacao(convert1.convert(publicacao));
