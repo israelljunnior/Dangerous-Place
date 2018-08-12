@@ -117,10 +117,11 @@
 				<!-- Data da públicação-->
 				<td><b>Publicado em:</b> <fmt:formatDate value="${publicacao.data}" pattern="dd/MM/yyyy" /></td>
 		
-						<c:if test="${usuarioLogado.id == publicacao.usuario.id}">
-        
-				<td><button class="btn btn-danger" style="float:right;" >Excluir</button></td>
-		    </c:if>	
+		
+							<td><button class="btn btn-danger" style="float:right;" >Excluir</button></td>       				
+	       			
+				
+		   
 			</tr>
 
 			<tr>
@@ -177,20 +178,32 @@
 
 								<td><fmt:formatDate value="${comentario.data}" pattern="dd/MM/yyyy" /></td>
 								
-	      
-								<!-- Opção de apagar o comentário -->
+	      <c:choose> 
+	       				<c:when test="${comentario.usuario.id == usuarioLogado.id}">
+	       				<!-- Opção de apagar o comentário -->
 								<td><button class="btn btn-danger">Apagar</button></td>
-
+	       				
+	       				</c:when>  
+	       				<c:otherwise>
+	       				<c:if test="${comentario.usuario.nivel_acesso == 'adm' || 'admSup' }">
+	       				<!-- Opção de apagar o comentário -->
+								<td><button class="btn btn-danger">Apagar</button></td>
+	       				</c:if>
+	       				
+	       				</c:otherwise>
+	       				
+	       				</c:choose>
 							</tr>
-							</c:if>
-						</c:forEach>
+							
 							<tr>
 								<!-- O comentário em si está aqui -->
-								<td colspan="6">Comentário fica aqui <br> <br> 
+								<td colspan="6"><p>${comentario.conteudo}</p><<br> <br> 
 								<!-- Colocando uma linha para separar cada comentário -->
 									<hr />
 								</td>
 							</tr>
+					</c:if>
+						</c:forEach>
 						</table>
         
         
