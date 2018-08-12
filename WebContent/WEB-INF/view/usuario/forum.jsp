@@ -214,7 +214,7 @@
 								<input type="hidden" id="idPubComent${publicacao.id }" name="idPubComent" value="${publicacao.id}" />
 			
 									<textarea style="resize: none;" rows="6" cols="5"
-										class="form-control" minlength="1" form="formComent" name="conteudoComent"
+										class="form-control" minlength="1" form="formComent${publicacao.id}" name="conteudoComent"
 										placeholder="Escreva um comentário "></textarea>
 									
 									<br> <input class="btn btn-primary" type="submit"
