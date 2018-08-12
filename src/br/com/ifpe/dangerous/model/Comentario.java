@@ -24,6 +24,7 @@ public class Comentario {
 	@Column
 	private String conteudo;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@Column(name="data_hora")
 	private Date data;
 	@ManyToOne
 	@JoinColumn(name="id_usuario")

@@ -106,10 +106,13 @@ public class SistemaController {
 	
 		PublicacaoDao dao = new PublicacaoDao();
 		List<Publicacao> listaPublicacao = dao.listar(null);
-
+		
+		ComentarioDao daoComen = new ComentarioDao();
+		List<Comentario> listaComentario = daoComen.listar();
 		
 		
 		model.addAttribute("listaPublicacao", listaPublicacao);
+		model.addAttribute("listaComentario", listaComentario);
 	
 		
 		return "usuario/forum";
@@ -168,10 +171,12 @@ public class SistemaController {
 	public String saveComent(Comentario comentario ,@RequestParam("conteudoComent") String conteudo,
 			@RequestParam("idUsuComent") String id,@RequestParam("idPubComent") String publicacao) {
 		
+		System.out.print("id user"+id);
+		System.out.print("id public"+publicacao);
 		UsuarioConverter convert = new UsuarioConverter();
 		
 		comentario.setUsuario(convert.convert(id));
-		System.out.print(publicacao);
+		
 		PublicacaoConverter convert1 = new PublicacaoConverter();
 		
 		comentario.setPublicacao(convert1.convert(publicacao));

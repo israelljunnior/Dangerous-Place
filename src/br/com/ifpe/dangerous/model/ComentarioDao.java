@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import javax.xml.crypto.Data;
 
 public class ComentarioDao {
 	
@@ -21,20 +22,15 @@ public class ComentarioDao {
 		factory.close();
 	}
 	
-	public List<Comentario> listar(Comentario Comentario) {
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+	public List<Comentario> listar() {
+		EntityManagerFactory factory =
+		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
-		Query query = null;
-		Publicacao publicacao = Comentario != null ? Comentario.getPublicacao() : null;
-		if (!publicacao.equals(null)) {
-			query = manager.createQuery("FROM Comentario WHERE publicacao.id LIKE :paramId ORDER BY Data");
-			query.setParameter("paramId", "%" + publicacao.getId() + "%");
-		}
-		List<Comentario> lista = query.getResultList();
+		List<Comentario> lista = manager.createQuery("FROM Comentario ORDER BY data").getResultList();
 		manager.close();
 		factory.close();
 		return lista;
-	}
+		}
 	
 	public Comentario buscarPorId(int id) {
 		Comentario obj = null;

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -139,10 +141,100 @@
 				<tr>
 				<td colspan="3"><br> 
 				<!-- Botão que  irá exibir todos comentários -->
-					<a  data-toggle="modal" data-target="#modalComentario">Mostrar Comentários</a>
+					<a  data-toggle="modal" data-target="#modalComentario${ publicacao.id}">Mostrar Comentários</a>
 					
 					 <label style="margin-left: 4px;">Quantidade de comentários: 0 </label> <br>
 					<br> <br> <br>
+					
+					
+					
+					<!-- Modal -->
+  <div class="modal fade" id="modalComentario${ publicacao.id}" role="dialog" >
+    <div class="modal-dialog" style="width:60%;">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h2 class="modal-title">Comentários</h2>
+        </div>
+        <div class="modal-body">
+          <table border="0" style="width: 100%;" >
+          
+							<c:forEach var="comentario" items="${listaComentario}">
+							<c:if test="${ comentario.publicacao.id == publicacao.id}">
+							<tr>
+								<!-- Foto do usuário que postou o comentário -->
+								<td>Foto do usuário</td>
+
+								<!--Espaço -->
+								<td><br> <br> <br> <br> <br></td>
+
+								<!-- Nome do usuário que postou o comentário -->
+								<td><b>${comentario.usuario.nome }</b></td>
+
+								<!-- Data que comentário foi postado -->
+
+								<td><fmt:formatDate value="${comentario.data}" pattern="dd/MM/yyyy" /></td>
+								
+	      
+								<!-- Opção de apagar o comentário -->
+								<td><button class="btn btn-danger">Apagar</button></td>
+
+							</tr>
+							</c:if>
+						</c:forEach>
+							<tr>
+								<!-- O comentário em si está aqui -->
+								<td colspan="6">Comentário fica aqui <br> <br> 
+								<!-- Colocando uma linha para separar cada comentário -->
+									<hr />
+								</td>
+							</tr>
+						</table>
+        
+        
+    
+        
+        
+        
+        </div>
+        <div class="modal-footer">
+<table border="0" style="width: 100%; ">
+						<tr>
+							<td><br> <br> <br></td>
+						</tr>
+						
+						<tr>
+							<td>
+								<!-- Campo de formulário pra enviar um novo comentário -->
+								<form action="comentar" id="formComent${publicacao.id}" method="post"">
+			
+								<input type="hidden" id="idUsuComent${publicacao.id } " name="idUsuComent" value="${usuarioLogado.id}" />
+								<input type="hidden" id="idPubComent${publicacao.id }" name="idPubComent" value="${publicacao.id}" />
+			
+									<textarea style="resize: none;" rows="6" cols="5"
+										class="form-control" minlength="1" form="formComent" name="conteudoComent"
+										placeholder="Escreva um comentário "></textarea>
+									
+									<br> <input class="btn btn-primary" type="submit"
+										 value="Enviar Comentário" style=" float: right; background-color: #555555;"> <br>
+									<br>
+									
+								</form>
+
+							</td>
+						</tr>
+					</table> <!-- Fim de Área de enviar comentáro-->
+
+
+
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
 
 
 
@@ -209,94 +301,8 @@
 			<!-- Modal publicar  está no header -->
 					
 
-<!-- modal comentario -->
 
 
-  <a  data-toggle="modal" data-target="#modalComentario">Mostrar Comentários</a>
-
-  <!-- Modal -->
-  <div class="modal fade" id="modalComentario" role="dialog" >
-    <div class="modal-dialog" style="width:60%;">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h2 class="modal-title">Comentários</h2>
-        </div>
-        <div class="modal-body">
-          <table border="0" style="width: 100%;" >
-							
-							<tr>
-								<!-- Foto do usuário que postou o comentário -->
-								<td>Foto do usuário</td>
-
-								<!--Espaço -->
-								<td><br> <br> <br> <br> <br></td>
-
-								<!-- Nome do usuário que postou o comentário -->
-								<td><b>Diego</b></td>
-
-								<!-- Data que comentário foi postado -->
-
-								<td>23/03/3232</td>
-								
-	      
-								<!-- Opção de apagar o comentário -->
-								<td><button class="btn btn-danger">Apagar</button></td>
-
-							</tr>
-
-							<tr>
-								<!-- O comentário em si está aqui -->
-								<td colspan="6">Comentário fica aqui <br> <br> 
-								<!-- Colocando uma linha para separar cada comentário -->
-									<hr />
-								</td>
-							</tr>
-						</table>
-        
-        
-    
-        
-        
-        
-        </div>
-        <div class="modal-footer">
-<table border="0" style="width: 100%; ">
-						<tr>
-							<td><br> <br> <br></td>
-						</tr>
-						
-						<tr>
-							<td>
-								<!-- Campo de formulário pra enviar um novo comentário -->
-								<form action="comentar" id="formComent" method="post"">
-			
-								<input type="hidden" id="idUsuComent" name="idUsuComent" value="${usuarioLogado.id }">
-								<input type="hidden" id="idPubComent" name="idPubComent" value="${publicacao.id }">
-			
-									<textarea style="resize: none;" rows="6" cols="5"
-										class="form-control" minlength="1" form="formComent" name="conteudoComent"
-										placeholder="Escreva um comentário "></textarea>
-									
-									<br> <input class="btn btn-primary" type="submit"
-										 value="Enviar Comentário" style=" float: right; background-color: #555555;"> <br>
-									<br>
-									
-								</form>
-
-							</td>
-						</tr>
-					</table> <!-- Fim de Área de enviar comentáro-->
-
-
-
-        </div>
-      </div>
-      
-    </div>
-  </div>
   
 </body>
 </html>

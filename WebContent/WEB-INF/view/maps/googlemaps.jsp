@@ -201,13 +201,13 @@ function initMap() {
     var cleanControlDiv = document.createElement('div');
     var cleanControl = new CleanControl(cleanControlDiv, map);
     
-    cleanControl.index = 1;
+    cleanControl.index = 2;
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(cleanControlDiv);
     
     var selectDiv = document.createElement('div');
     var selectDivControl = new selectRM(selectDiv, map);
 	
-    selectDivControl.index = 1;
+    selectDivControl.index = 3;
     map.controls[google.maps.ControlPosition.TOP_CENTER].push(selectDiv);
     
 	google.maps.event.addListener(map, 'click', function(event) {
@@ -509,7 +509,9 @@ function CleanControl(controlDiv, map) {
     controlUI.style.borderRadius = '3px';
     controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
     controlUI.style.cursor = 'pointer';
-    controlUI.style.marginBottom = '22px';
+    controlUI.style.marginBottom = '40px';
+    controlUI.style.top = '50px';
+    controlUI.style.left = '600px';
     controlUI.style.textAlign = 'center';
     controlUI.title = 'Click to recenter the map';
     controlDiv.appendChild(controlUI);
@@ -545,7 +547,7 @@ function selectRM(controlDiv, map) {
     controlUI.style.borderRadius = '3px';
     controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
     controlUI.style.cursor = 'pointer';
-    controlUI.style.marginBottom = '22px';
+    controlUI.style.marginBottom = '100px';
     controlUI.style.textAlign = 'center';
     controlUI.title = 'Click to recenter the map';
     controlDiv.appendChild(controlUI);
@@ -555,8 +557,8 @@ function selectRM(controlDiv, map) {
     controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
     controlText.style.fontSize = '16px';
     controlText.style.lineHeight = '38px';
-    controlText.style.paddingLeft = '5px';
-    controlText.style.paddingRight = '5px';
+    controlText.style.paddingLeft = '0px';
+    controlText.style.paddingRight = '0px';
     controlText.innerHTML = '<select id="selectMunicipioOrRegiao"class="selectpicker" onchange="changeSelected()"><option value="r">Região</option><option value="m">Município</option></select>';
     controlUI.appendChild(controlText);
     }
