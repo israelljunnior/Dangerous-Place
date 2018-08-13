@@ -1,6 +1,8 @@
 package br.com.ifpe.dangerous.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -19,6 +21,10 @@ import br.com.ifpe.dangerous.model.Publicacao;
 import br.com.ifpe.dangerous.model.PublicacaoDao;
 import br.com.ifpe.dangerous.model.Usuario;
 import br.com.ifpe.dangerous.model.UsuarioDao;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 @Controller
 public class SistemaController {
@@ -185,5 +191,17 @@ public class SistemaController {
 		dao.salvar(comentario);
 		
 		return "usuario/PublicarSucesso";
+	}
+	
+	@RequestMapping("gerarPDF")
+	public String gerarRelatorio() throws JRException {
+	@SuppressWarnings("rawtypes")
+	Map parametro = new HashMap();
+	parametro.put("nome:", "YURI");
+	String relatorio = "";
+	JasperPrint jasperprint = jasperprint = JasperFillManager.fillReport(relatorio, parametro);
+	JasperViewer view = new JasperViewer(jasperprint,false);
+	view.setVisible(true);
+	return relatorio;
 	}
 }

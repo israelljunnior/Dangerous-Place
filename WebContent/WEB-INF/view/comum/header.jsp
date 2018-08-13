@@ -41,7 +41,7 @@ prefix="fmt" %>
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="/PP2-DangerousPlace/home">Home</a></li>
 				<li><a href="/PP2-DangerousPlace/forum">Fórum</a></li>
-				<li><a href="/PP2-DangerousPlace/gerandoRelatorio">Gerar Relatório</a></li>
+				<li><a href="/PP2-DangerousPlace/gerarPDF">Gerar Relatório</a></li>
 				<li><a href="/PP2-DangerousPlace/sobreNos">Sobre nós</a></li>
 				
 				<c:if test="${usuarioLogado.nivel_acesso == 'admSup'}">
