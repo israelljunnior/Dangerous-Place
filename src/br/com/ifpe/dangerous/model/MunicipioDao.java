@@ -23,15 +23,15 @@ public class MunicipioDao {
 		factory.close();
 	}
 	
-	public Municipio buscarPorEmail(String email) {
+	public Municipio buscarPorNome(String nome) {
 
 		Municipio obj = null;
 
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
 		Query query = null;
-		query = manager.createQuery("FROM Municipio WHERE email = :paramEmail");
-		query.setParameter("paramEmail", email);
+		query = manager.createQuery("FROM Municipio WHERE nomeMunicipio = :paramNome");
+		query.setParameter("paramNome", nome);
 		
 		try {
 			obj = (Municipio) query.getSingleResult();

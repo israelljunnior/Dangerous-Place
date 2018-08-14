@@ -1,5 +1,7 @@
 function gerarGrafico(dados) {
-	$.post("dadosMuncipios", {"data":dados}, function(result){
+	
+	$.post("/PP2-DangerousPlace/dadosMuncipios", {'data':dados}, function(result){
+		console.log(result);
 	});
 
 /*var color = Chart.helpers.color;

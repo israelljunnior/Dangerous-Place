@@ -6,17 +6,23 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.google.gson.Gson;
 
 import br.com.ifpe.dangerous.converters.PublicacaoConverter;
 import br.com.ifpe.dangerous.converters.UsuarioConverter;
 import br.com.ifpe.dangerous.model.Comentario;
 import br.com.ifpe.dangerous.model.ComentarioDao;
+import br.com.ifpe.dangerous.model.Municipio;
 import br.com.ifpe.dangerous.model.MunicipioCvliDao;
+import br.com.ifpe.dangerous.model.MunicipioDao;
 import br.com.ifpe.dangerous.model.Publicacao;
 import br.com.ifpe.dangerous.model.PublicacaoDao;
 import br.com.ifpe.dangerous.model.Usuario;
@@ -164,13 +170,20 @@ public class SistemaController {
 		return "sobreNos";
 	}
 	
-	@RequestMapping("/dadosMuncipios")
-	public @ResponseBody String pegarMunicipio(@RequestParam("data") String data, Model model) {
-		System.out.println(data);
-		MunicipioCvliDao dao = new MunicipioCvliDao();
-		model.addAttribute("dado", dao.buscarPorNome(data));
+	@RequestMapping(value = "dadosMuncipios", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String pegarMunicipio(@RequestParam String data) {
 		
-		return data.toString();
+		System.out.println("pegando dados municipio");
+		
+		MunicipioDao dao = new MunicipioDao();
+		Municipio municipio = dao.buscarPorNome(data);
+		
+		if(municipio != null) {
+		System.out.println(municipio.getNomeMunicipio());
+		}		else System.out.println("jooj");
+		
+		
+		return  new Gson().toJson(municipio);
 	}
 
 	@RequestMapping("comentar")
