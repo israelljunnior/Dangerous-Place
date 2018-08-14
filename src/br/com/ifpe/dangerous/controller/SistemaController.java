@@ -21,10 +21,11 @@ import br.com.ifpe.dangerous.converters.UsuarioConverter;
 import br.com.ifpe.dangerous.model.Comentario;
 import br.com.ifpe.dangerous.model.ComentarioDao;
 import br.com.ifpe.dangerous.model.Municipio;
-import br.com.ifpe.dangerous.model.MunicipioCvliDao;
 import br.com.ifpe.dangerous.model.MunicipioDao;
 import br.com.ifpe.dangerous.model.Publicacao;
 import br.com.ifpe.dangerous.model.PublicacaoDao;
+import br.com.ifpe.dangerous.model.Regiao;
+import br.com.ifpe.dangerous.model.RegiaoDao;
 import br.com.ifpe.dangerous.model.Usuario;
 import br.com.ifpe.dangerous.model.UsuarioDao;
 import net.sf.jasperreports.engine.JRException;
@@ -170,7 +171,7 @@ public class SistemaController {
 		return "sobreNos";
 	}
 	
-	@RequestMapping(value = "dadosMuncipios", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "dadosMuncipio", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String pegarMunicipio(@RequestParam String data) {
 		
 		System.out.println("pegando dados municipio");
@@ -185,7 +186,28 @@ public class SistemaController {
 		
 		return  new Gson().toJson(municipio);
 	}
-
+	
+	
+	@RequestMapping(value = "dadosRegiao", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String pegarRegiao(@RequestParam String data) {
+		
+		System.out.println("pegando dados Regiao");
+		
+		
+		RegiaoDao dao = new RegiaoDao();
+		Regiao regiao = dao.buscarPorNome(data);
+		
+		if(regiao != null) {
+			
+			System.out.println(regiao.getNomeRegiao());
+			List<Municipio> listaMunicipios = dao.buscarMunicipiosPorId(regiao.getId());
+			
+		} else System.out.println("jooj");
+		
+		
+		return  new Gson().toJson(regiao);
+	}
+	
 	@RequestMapping("comentar")
 	public String saveComent(Comentario comentario ,@RequestParam("conteudoComent") String conteudo,
 			@RequestParam("idUsuComent") String id,@RequestParam("idPubComent") String publicacao) {

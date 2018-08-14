@@ -1,6 +1,6 @@
-function gerarGrafico(dados) {
+function gerarGraficosMunicipio(dados) {
 	
-	$.post("/PP2-DangerousPlace/dadosMuncipios", {'data':dados}, function(result){
+	$.post("/PP2-DangerousPlace/dadosMuncipio", {'data':dados}, function(result){
 		console.log(result);
 	});
 
@@ -63,4 +63,15 @@ function gerarGrafico(dados) {
 
 		};*/
 		
+};
+
+function gerarGraficosRegiao(dados) {
+	
+	
+	$.post("/PP2-DangerousPlace/dadosRegiao", {'data':dados}, function(result){
+		alert(result);
+		console.log(result);
+	});
+	
+	
 };

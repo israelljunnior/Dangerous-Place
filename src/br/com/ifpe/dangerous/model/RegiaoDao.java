@@ -13,28 +13,41 @@ public class RegiaoDao {
 	
 	private static final String PERSISTENCE_UNIT = "danger";
 
-	public void salvar(Regiao Regiao) {
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
-		EntityManager manager = factory.createEntityManager();
-		manager.getTransaction().begin();
-		manager.persist(Regiao);
-		manager.getTransaction().commit();
-		manager.close();
-		factory.close();
-	}
-	
-	public Regiao buscarPorEmail(String email) {
+	public Regiao buscarPorNome(String nome) {
 
 		Regiao obj = null;
 
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
 		Query query = null;
-		query = manager.createQuery("FROM Regiao WHERE email = :paramEmail");
-		query.setParameter("paramEmail", email);
+		query = manager.createQuery("FROM Regiao WHERE nomeRegiao = :paramNomeRegiao");
+		query.setParameter("paramNomeRegiao", nome);
 		
 		try {
 			obj = (Regiao) query.getSingleResult();
+		}catch(NoResultException nre) {
+			return null;
+		}
+		
+		manager.close();
+		factory.close();
+		
+		return obj;
+	    
+	}
+	
+	public List<Municipio> buscarMunicipiosPorId(int id) {
+
+		List<Municipio> obj = null;
+
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+		EntityManager manager = factory.createEntityManager();
+		Query query = null;
+		query = manager.createQuery("FROM Municipio WHERE regiao.id = :paramRegiao");
+		query.setParameter("paramRegiao", id);
+		
+		try {
+			obj = (List<Municipio>) query.getResultList();
 		}catch(NoResultException nre) {
 			return null;
 		}
@@ -57,28 +70,7 @@ public class RegiaoDao {
 		return obj;
 		}
 	
-	public void alterar(Regiao Regiao) {
-		EntityManagerFactory factory =
-		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
-		EntityManager manager = factory.createEntityManager();
-		manager.getTransaction().begin();
-		manager.merge(Regiao);
-		manager.getTransaction().commit();
-		manager.close();
-		factory.close();
-		}
 	
 
-	public void remover(int id) {
-		EntityManagerFactory factory =
-		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
-		EntityManager manager = factory.createEntityManager();
-		Regiao Regiao = manager.find(Regiao.class, id);
-		manager.getTransaction().begin();
-		manager.remove(Regiao);
-		manager.getTransaction().commit();
-		manager.close();
-		factory.close();
-		}
 	
 }

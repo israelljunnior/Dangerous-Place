@@ -273,14 +273,14 @@ function initMap() {
                             }
 
                         });
-                        alert(municipio);
+                        
 					} else {
 
                         results[0].address_components.forEach(ac => {
                             if(ac.types[0] == filtroMun){
                                 municipio = ac.short_name;
                                 
-                            }
+                            } 
 
                         });
                         var mesorregiao;
@@ -291,17 +291,22 @@ function initMap() {
                                 if(regioes[i][j] == municipio){
                                     positionMesorregiao = i;
                                     break;
-                                }
+                                } 
                             }
                             if(typeof positionMesorregiao !== "undefined"){break;}
                         }
                         mesorregiao = arrayMesorregiaos[positionMesorregiao];
+                       alert(mesorregiao);
                         
 						
                     }
 						
-						
-						gerarGrafico(municipio);	
+						if(selected == "m") {
+							gerarGraficosMunicipio(municipio);
+						} else {
+							gerarGraficosRegiao(mesorregiao);
+						}
+							
 						
 						infoWindowMaker.setContent("<style type='text/css'> #h4{ margin-right: 685px;}.balao2{background:  #ffffff;border-radius: 15px; width: 500px;height: 150px;margin-top: 100px;  margin-bottom: 100px; margin-right: 150px;margin-left: 80px;text-align: center;position: relative;}.balao2:after{ content: '';width: 50px;height: 0px;position: absolute;border-left: 20px solid transparent;border-right: 20px solid transparent;border-top: 20px solid #ffffff;bottom: -20px;left: 30%;}</style><div class='balao2'><div class='container'> <div class='row'><h4 id='h4'>Selecione os tipos de dados que você deseja referente à "+municipio+":</h4><div class='col-sm-2' > <button type='button' id='Assassinatos' class='btn btn-danger' style='margin-top: 50px; color:#000000 '>Assassinatos</button></div> <div class='col-sm-1'><button type='button' id='Assaltos' class='btn btn-danger' style='margin-top: 50px;' >Assaltos</button></div> <div class='col-sm-2'><button type='button' id='Acidentes' class='btn btn-danger' style='margin-top: 50px;' >Acidentes</button></div> </div></div></div>");
 						infoWindowMaker.open(map, marker);
@@ -468,6 +473,7 @@ function LocalitionControl(controlDiv, map) {
                                     }
     
                                 });
+                                alert(municipio);
                                 var mesorregiao;
                                 var positionMesorregiao;
                                 var arrayMesorregiaos= ["Agreste Central","Agreste Meridional","Agreste Setentrional","Mata Norte","Mata Sul","Metropolitana","Sertão Central","Sertão De Itaparica","Sertão Do Araripe","Sertão Do Moxoto","Sertão Do Pajeu","Sertão Do São Francisco"]
@@ -476,7 +482,7 @@ function LocalitionControl(controlDiv, map) {
                                         if(regioes[i][j] == municipio){
                                             positionMesorregiao = i;
                                             break;
-                                        }
+                                        } alert(regioes[i][j]);
                                     }
                                     if(typeof ositionMesorregiao !== "undefined"){break;}
                                 }
