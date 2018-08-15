@@ -198,7 +198,7 @@ public class SistemaController {
 	@SuppressWarnings("rawtypes")
 	Map parametro = new HashMap();
 	parametro.put("nome:", "YURI");
-	String relatorio = "";
+	String relatorio = "/Desktop/Relatorio_sem_nome.jasper";
 	JasperPrint jasperprint = jasperprint = JasperFillManager.fillReport(relatorio, parametro);
 	JasperViewer view = new JasperViewer(jasperprint,false);
 	view.setVisible(true);
