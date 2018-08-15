@@ -63,5 +63,4 @@ import java.util.logging.Logger;
 	            Logger.getLogger(ConnectionFactory.class.getName()).log(Level.SEVERE, null, ex);
 	        }
 	    }
-
 	}
