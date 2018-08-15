@@ -1,5 +1,7 @@
-function gerarGrafico(dados) {
-	$.post("dadosMuncipios", {"data":dados}, function(result){
+function gerarGraficosMunicipio(dados) {
+	
+	$.post("/PP2-DangerousPlace/dadosMuncipio", {'data':dados}, function(result){
+		console.log(result);
 	});
 
 /*var color = Chart.helpers.color;
@@ -61,4 +63,15 @@ function gerarGrafico(dados) {
 
 		};*/
 		
+};
+
+function gerarGraficosRegiao(dados) {
+	
+	
+	$.post("/PP2-DangerousPlace/dadosRegiao", {'data':dados}, function(result){
+		alert(result);
+		console.log(result);
+	});
+	
+	
 };

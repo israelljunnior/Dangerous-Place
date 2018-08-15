@@ -7,6 +7,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+
 <title>Fórum</title>
 
 <style type="text/css">
@@ -96,6 +98,7 @@
 
 <c:forEach var="publicacao" items="${listaPublicacao}">
 
+		
 		<table id="tabel_publicacao" border="0">
 
 			<tr>
@@ -118,7 +121,8 @@
 				<td><b>Publicado em:</b> <fmt:formatDate value="${publicacao.data}" pattern="dd/MM/yyyy" /></td>
 		
 		
-							<td><button class="btn btn-danger" style="float:right;" >Excluir</button></td>       				
+							<td><button class="btn btn-danger" data-toggle="modal"
+						data-target="#modalExcluir" style="float:right;" >Excluir</button></td>       				
 	       			
 				
 		   
@@ -160,7 +164,7 @@
           <h2 class="modal-title">Comentários</h2>
         </div>
         <div class="modal-body">
-          <table border="0" style="width: 100%;" >
+          <table  border="0" style="width: 100%;" >
           
 							<c:forEach var="comentario" items="${listaComentario}">
 							<c:if test="${ comentario.publicacao.id == publicacao.id}">
@@ -197,7 +201,7 @@
 							
 							<tr>
 								<!-- O comentário em si está aqui -->
-								<td colspan="6"><p>${comentario.conteudo}</p><<br> <br> 
+								<td  colspan="6"><p>${comentario.conteudo}</p><<br> <br>
 								<!-- Colocando uma linha para separar cada comentário -->
 									<hr />
 								</td>
@@ -210,8 +214,9 @@
     
         
         
-        
+  
         </div>
+        
         <div class="modal-footer">
 <table border="0" style="width: 100%; ">
 						<tr>
@@ -307,6 +312,36 @@
 			</div>
 </table>
 
+
+
+<!-- modal excluir -->
+
+<!-- Modal -->
+  <div class="modal fade" id="modalExcluir" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          
+        </div>
+        <div class="modal-body">
+          <center>
+          <h4><p>Você tem certeza que deseja excluir?</p></h4>
+          <button type="button" class="btn btn-danger">Sim</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Não</button>
+        	</center>
+        </div>
+        <div class="modal-footer">
+         
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
   
 </body>
 </html>

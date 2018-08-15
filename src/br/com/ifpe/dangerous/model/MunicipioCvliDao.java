@@ -45,28 +45,6 @@ public class MunicipioCvliDao {
 		return obj;
 		}
 	
-	public void alterar(MunicipioCvli MunicipioCvli) {
-		EntityManagerFactory factory =
-		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
-		EntityManager manager = factory.createEntityManager();
-		manager.getTransaction().begin();
-		manager.merge(MunicipioCvli);
-		manager.getTransaction().commit();
-		manager.close();
-		factory.close();
-		}
 	
-
-	public void remover(int id) {
-		EntityManagerFactory factory =
-		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
-		EntityManager manager = factory.createEntityManager();
-		MunicipioCvli MunicipioCvli = manager.find(MunicipioCvli.class, id);
-		manager.getTransaction().begin();
-		manager.remove(MunicipioCvli);
-		manager.getTransaction().commit();
-		manager.close();
-		factory.close();
-		}
 
 }
