@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <div id="map"></div>
-<div id='container' style='width: 100%;'><canvas id='grafico'></canvas></div>
+<div id='containerGraficos' style='width: 100%;'><canvas id='grafico'></canvas></div>
 <script>
 
 var style = [
@@ -238,6 +238,7 @@ function initMap() {
 		})
 
 		marker.addListener('click', function() {
+			infoWindowMaker.setContent(document.getElementById("canvas"+infoWindowMaker.id));
 			infoWindowMaker.open(map, this);
 		});
 
@@ -307,10 +308,9 @@ function initMap() {
 						
 						if(selected == "m") {
 							
-							//infoWindowMaker.setContent("<div id='container' style='width: 75%;''><canvas id='canvas1'>"+"<script>"+"var div = document.getElementById('canvas1');<"+"/script>"+"</canvas></div>");
-							
-							gerarGraficosMunicipio();
-							infoWindowMaker.setContent(document.getElementById('grafico'));
+							var id = gerarGraficoMunicipio();
+							infoWindowMaker.id = id;
+							infoWindowMaker.setContent(document.getElementById("canvas"+infoWindowMaker.id));
 						} else {
 							gerarGraficosRegiao(mesorregiao);
 						}
@@ -854,7 +854,7 @@ function selectRM(controlDiv, map) {
 </script>
 <script>
 	
-function gerarGraficosMunicipio(dados) {
+function gerarGraficoMunicipio(dados) {
 	
 	$.post("/PP2-DangerousPlace/dadosMuncipio", {'data':dados}, function(result){
 		console.log(result);
@@ -864,7 +864,7 @@ var color = Chart.helpers.color;
 		var barChartData = {
 			labels: ['2015', '2016', '2017', '2018'],
 			datasets: [{
-				label: 'Dataset 1',
+				label: 'Assassinatos',
 				backgroundColor: color(window.chartColors.red).alpha(4.5).rgbString(),
 				borderColor: window.chartColors.red,
 				borderWidth: 1,
@@ -875,7 +875,7 @@ var color = Chart.helpers.color;
 					34
 				]
 			}, {
-				label: 'Dataset 2',
+				label: 'Assaltos',
 				backgroundColor: color(window.chartColors.black).alpha(4.5).rgbString(),
 				borderColor: window.chartColors.black,
 				borderWidth: 1,
@@ -886,7 +886,7 @@ var color = Chart.helpers.color;
 					25
 				]
 			},{
-				label: 'Dataset 3',
+				label: 'Acidentes',
 				backgroundColor: color(window.chartColors.green).alpha(4.5).rgbString(),
 				borderColor: window.chartColors.green,
 				borderWidth: 1,
@@ -898,8 +898,12 @@ var color = Chart.helpers.color;
 					]
 			}]
 		};
-		
-			var ctx = document.getElementById('grafico');
+		var canvas = document.createElement('canvas');
+		var div = document.getElementById('containerGraficos');
+		div.appendChild(canvas);
+		var id = Math.random();
+		canvas.setAttribute('id',"canvas"+id);
+		var ctx = document.getElementById('canvas'+id);
 			window.myBar = new Chart(ctx, {
 				type: 'bar',
 				data: barChartData,
@@ -914,7 +918,7 @@ var color = Chart.helpers.color;
 						fontSize: 17
 					}
 				}
-			});
+			}); return id;
 		
 };
 
