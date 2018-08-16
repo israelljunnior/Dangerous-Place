@@ -20,6 +20,9 @@ public class AutorizadorInterceptor extends HandlerInterceptorAdapter {
 		|| uri.contains("localization")
 		|| uri.contains("jquery.validate.min")
 		|| uri.endsWith("save")
+		|| uri.endsWith("check")
+		|| uri.endsWith("dadosMuncipio")
+		|| uri.endsWith("dadosRegiao")
 		|| uri.endsWith("home")
 		|| uri.endsWith("efetuarLogin")) {	
 	    return true;

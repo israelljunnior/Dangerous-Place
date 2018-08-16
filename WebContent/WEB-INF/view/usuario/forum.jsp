@@ -167,6 +167,7 @@
           <table  border="0" style="width: 100%;" >
           
 							<c:forEach var="comentario" items="${listaComentario}">
+							
 							<c:if test="${ comentario.publicacao.id == publicacao.id}">
 							<tr>
 								<!-- Foto do usuário que postou o comentário -->
@@ -191,7 +192,7 @@
 	       				<c:otherwise>
 	       				<c:if test="${comentario.usuario.nivel_acesso == 'adm' || 'admSup' }">
 	       				<!-- Opção de apagar o comentário -->
-								<td><button class="btn btn-danger">Apagar</button></td>
+								<td><button class="btn btn-danger" onclick="apagarComentario(${comentario.id})">Apagar</button></td>
 	       				</c:if>
 	       				
 	       				</c:otherwise>
@@ -345,3 +346,19 @@
   
 </body>
 </html>
+
+<script>
+
+function apagarComentario(id) {
+	
+	$.post("apagarComentario",{"id": id}, function(newList){
+		
+		
+		
+	});
+}
+		
+	
+	
+
+</script>

@@ -158,7 +158,21 @@ public class SistemaController {
 		
 		return "usuario/PublicarSucesso";
 	}
-
+	
+	@RequestMapping(value = "apagarComentario", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String apagarComentario(@RequestParam Integer id) {
+		
+		ComentarioDao dao = new ComentarioDao();
+		dao.remover(id);
+		
+		
+		
+		
+		
+		return new Gson().toJson(dao.listar());
+		
+	}
+	
 	@RequestMapping("/gerandoRelatorio")
 	public String novoRelatorio() {
 		System.out.println("Mostrando a página de geração de relatórios");
