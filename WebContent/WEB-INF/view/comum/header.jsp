@@ -3,6 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"
 prefix="fmt" %>
+<script src="http://www.chartjs.org/dist/2.7.2/Chart.bundle.js"></script>
+	<script src="http://www.chartjs.org/samples/latest/utils.js"></script>
 
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">

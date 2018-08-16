@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<script src="<%=request.getContextPath()%>/resources/scripts/gerarGrafico.js"></script>
 <div id="map"></div>
+<div id='container' style='width: 100%;'><canvas id='grafico'></canvas></div>
 <script>
 
 var style = [
@@ -301,14 +301,19 @@ function initMap() {
 						
                     }
 						
+						
+							
+						
+						
 						if(selected == "m") {
-							gerarGraficosMunicipio(municipio);
+							
+							//infoWindowMaker.setContent("<div id='container' style='width: 75%;''><canvas id='canvas1'>"+"<script>"+"var div = document.getElementById('canvas1');<"+"/script>"+"</canvas></div>");
+							
+							gerarGraficosMunicipio();
+							infoWindowMaker.setContent(document.getElementById('grafico'));
 						} else {
 							gerarGraficosRegiao(mesorregiao);
 						}
-							
-						
-						infoWindowMaker.setContent("<style type='text/css'> #h4{ margin-right: 685px;}.balao2{background:  #ffffff;border-radius: 15px; width: 500px;height: 150px;margin-top: 100px;  margin-bottom: 100px; margin-right: 150px;margin-left: 80px;text-align: center;position: relative;}.balao2:after{ content: '';width: 50px;height: 0px;position: absolute;border-left: 20px solid transparent;border-right: 20px solid transparent;border-top: 20px solid #ffffff;bottom: -20px;left: 30%;}</style><div class='balao2'><div class='container'> <div class='row'><h4 id='h4'>Selecione os tipos de dados que você deseja referente à "+municipio+":</h4><div class='col-sm-2' > <button type='button' id='Assassinatos' class='btn btn-danger' style='margin-top: 50px; color:#000000 '>Assassinatos</button></div> <div class='col-sm-1'><button type='button' id='Assaltos' class='btn btn-danger' style='margin-top: 50px;' >Assaltos</button></div> <div class='col-sm-2'><button type='button' id='Acidentes' class='btn btn-danger' style='margin-top: 50px;' >Acidentes</button></div> </div></div></div>");
 						infoWindowMaker.open(map, marker);
 					} else {
 						infoWindowMaker.setContent("Dados não disponíveis em: "+results[0].address_components[indexState].short_name
@@ -375,7 +380,7 @@ function initMap() {
 
                         }
     						
-    						infoWindowMaker.setContent("<style type='text/css'> #h4{ margin-right: 685px;}.balao2{background:  #ffffff;border-radius: 15px; width: 500px;height: 150px;margin-top: 100px;  margin-bottom: 100px; margin-right: 150px;margin-left: 80px;text-align: center;position: relative;}.balao2:after{ content: '';width: 50px;height: 0px;position: absolute;border-left: 20px solid transparent;border-right: 20px solid transparent;border-top: 20px solid #ffffff;bottom: -20px;left: 30%;}</style><div class='balao2'><div class='container'> <div class='row'><h4 id='h4'>Selecione os tipos de dados que você deseja referente à "+municipio+":</h4><div class='col-sm-2' > <button type='button' id='Assassinatos' class='btn btn-danger' style='margin-top: 50px; color:#000000 '>Assassinatos</button></div> <div class='col-sm-1'><button type='button' id='Assaltos' class='btn btn-danger' style='margin-top: 50px;' >Assaltos</button></div> <div class='col-sm-2'><button type='button' id='Acidentes' class='btn btn-danger' style='margin-top: 50px;' >Acidentes</button></div> </div></div></div>");
+    						infoWindowMaker.setContent("<style type='text/css'> #h4{ margin-right: 685px;}canvas {-moz-user-select: none;-webkit-user-select: none;-ms-user-select: none;}.balao2{background:  #ffffff;border-radius: 15px; width: 500px;height: 150px;margin-top: 100px;  margin-bottom: 100px; margin-right: 150px;margin-left: 80px;text-align: center;position: relative;}.balao2:after{ content: '';width: 50px;height: 0px;position: absolute;border-left: 20px solid transparent;border-right: 20px solid transparent;border-top: 20px solid #ffffff;bottom: -20px;left: 30%;} </style> <div class='balao2'>     <div class='container'>          <div class='row'>                         <table class='table' border='3'>                <thead>                <div class='col-sm-2' >                    <th><button type='button' id='Assassinatos' class='btn btn-danger' style='margin-top: 50px; color:#000000 '>Assassinatos</button></th>                </div>                                               <div class='col-sm-1'>                       <th><button type='button' id='Assaltos' class='btn btn-danger' style='margin-top: 50px;' >Assaltos</button></th>                </div>                                     <div class='col-sm-2'>                    <th><button type='button' id='Acidentes' class='btn btn-danger' style='margin-top: 50px;' >Acidentes</button></th>                </div>                </thead>                <tbody>                        <td colspan='3'>                                  <canvas id='canvas'>                                                             </canvas>                              </td>                       </tbody>            </table>                       </div>                </div> ");
 							infoWindowMaker.open(map, marker);
 						} else {
 							infoWindowMaker.setContent("Dados não disponíveis em: "+results[0].address_components[indexState].short_name
@@ -847,5 +852,82 @@ function selectRM(controlDiv, map) {
 
 
 </script>
-<%-- <script src="<%=request.getContextPath()%>/resources/scripts/mapsScript"></script>--%>
+<script>
+	
+function gerarGraficosMunicipio(dados) {
+	
+	$.post("/PP2-DangerousPlace/dadosMuncipio", {'data':dados}, function(result){
+		console.log(result);
+	});
+
+var color = Chart.helpers.color;
+		var barChartData = {
+			labels: ['2015', '2016', '2017', '2018'],
+			datasets: [{
+				label: 'Dataset 1',
+				backgroundColor: color(window.chartColors.red).alpha(4.5).rgbString(),
+				borderColor: window.chartColors.red,
+				borderWidth: 1,
+				data: [
+					30,
+					40,
+					50,
+					34
+				]
+			}, {
+				label: 'Dataset 2',
+				backgroundColor: color(window.chartColors.black).alpha(4.5).rgbString(),
+				borderColor: window.chartColors.black,
+				borderWidth: 1,
+				data: [
+					60,
+					23,
+					30,
+					25
+				]
+			},{
+				label: 'Dataset 3',
+				backgroundColor: color(window.chartColors.green).alpha(4.5).rgbString(),
+				borderColor: window.chartColors.green,
+				borderWidth: 1,
+				data: [
+						15,
+						50,
+						70,
+						67
+					]
+			}]
+		};
+		
+			var ctx = document.getElementById('grafico');
+			window.myBar = new Chart(ctx, {
+				type: 'bar',
+				data: barChartData,
+				options: {
+					responsive: true,
+					legend: {
+						position: 'top',
+					},
+					title: {
+						display: true,
+						text: 'Estatisticas de Pernambuco',
+						fontSize: 17
+					}
+				}
+			});
+		
+};
+
+function gerarGraficosRegiao(dados) {
+	
+	
+	$.post("/PP2-DangerousPlace/dadosRegiao", {'data':dados}, function(result){
+		alert(result);
+		console.log(result);
+	});
+	
+	
+};
+	
+</script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAU4tZgF7qKxiAMdKz8j0Pa3_TVyNdZgjM&callback=initMap"></script>   
