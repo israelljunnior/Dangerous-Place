@@ -29,7 +29,7 @@ create table comentario(
 	id_usuario int not null,
 	id_publicacao int not null,
 	FOREIGN KEY (id_usuario) references usuario (id_usuario),
-	FOREIGN KEY (id_publicacao) references publicaca (id_publicacao)
+	FOREIGN KEY (id_publicacao) references publicacao (id_publicacao)
 );
 
 
@@ -49,7 +49,7 @@ create table dados_regioes_assassi(
 	 qtd_latrocinio int not null,
 	 qtd_lesado_morte int not null, 
 	 qtd_armabranca int not null,
-	 qtd_armafogo in not null
+	 qtd_armafogo int not null
 );
 
 create table dados_regiao_assalt(
