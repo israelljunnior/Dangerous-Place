@@ -30,18 +30,18 @@ public class PublicacaoDao {
 		String Titulo = Publicacao != null ? Publicacao.getTitulo() : "";
 		String Tema = Publicacao != null ? Publicacao.getTema() : "";
 		if (!Titulo.equals("") && Tema.equals("")) {
-			query = manager.createQuery("FROM Publicacao WHERE Titulo LIKE :paramTitulo ORDER BY Tema");
+			query = manager.createQuery("FROM Publicacao WHERE Titulo LIKE :paramTitulo ORDER BY id_publicacao DESC");
 			query.setParameter("paramTitulo", "%" + Titulo + "%");
 		} else if (Titulo.equals("") && !Tema.equals("")) {
-			query = manager.createQuery("FROM Publicacao WHERE Tema LIKE :paramTema ORDER BY Tema");
+			query = manager.createQuery("FROM Publicacao WHERE Tema LIKE :paramTema ORDER BY id_publicacao DESC");
 			query.setParameter("paramTema", "%" + Tema + "%");
 		} else if (!Titulo.equals("") && !Tema.equals("")) {
 			query = manager.createQuery(
-					"FROM Publicacao WHERE Titulo LIKE :paramTitulo AND Tema LIKE :paramTema ORDER BY Tema");
+					"FROM Publicacao WHERE Titulo LIKE :paramTitulo AND Tema LIKE :paramTema ORDER BY id_publicacao DESC");
 			query.setParameter("paramTitulo", "%" + Titulo + "%");
 			query.setParameter("paramTema", "%" + Tema + "%");
 		} else {
-			query = manager.createQuery("FROM Publicacao ORDER BY Tema");
+			query = manager.createQuery("FROM Publicacao ORDER BY id_publicacao DESC");
 		}
 		List<Publicacao> lista = query.getResultList();
 		manager.close();
