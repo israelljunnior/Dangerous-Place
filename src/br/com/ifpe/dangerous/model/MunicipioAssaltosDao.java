@@ -6,22 +6,22 @@ import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-public class RegiaoAssassinatosDao {
+public class MunicipioAssaltosDao {
 	
 	private static final String PERSISTENCE_UNIT = "danger";
 
-	public RegiaoAssassinatos buscarPorNome(String nome) {
+	public MunicipioAssaltos buscarPorNome(String nome) {
 
-		RegiaoAssassinatos obj = null;
+		MunicipioAssaltos obj = null;
 
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
 		Query query = null;
-		query = manager.createQuery("FROM RegiaoAssassinatos WHERE regiao = :paramRegiao");
-		query.setParameter("paramRegiao", nome);
+		query = manager.createQuery("FROM MunicipioAssaltos WHERE municipio = :paramMunicipio");
+		query.setParameter("paramMunicipio", nome);
 		
 		try {
-			obj = (RegiaoAssassinatos) query.getSingleResult();
+			obj = (MunicipioAssaltos) query.getSingleResult();
 		}catch(NoResultException nre) {
 			return null;
 		}
