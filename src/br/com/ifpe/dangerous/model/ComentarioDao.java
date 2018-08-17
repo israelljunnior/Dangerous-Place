@@ -5,8 +5,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
-import javax.xml.crypto.Data;
 
 public class ComentarioDao {
 	
@@ -43,6 +41,8 @@ public class ComentarioDao {
 		return obj;
 		}
 	
+	
+	
 	public void alterar(Comentario Comentario) {
 		EntityManagerFactory factory =
 		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
@@ -65,6 +65,18 @@ public class ComentarioDao {
 		manager.getTransaction().commit();
 		manager.close();
 		factory.close();
+		}
+	
+	public void removerPorPub(int pubId) {
+		EntityManagerFactory factory =
+				Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+				EntityManager manager = factory.createEntityManager();
+				manager.getTransaction().begin();
+				manager.createQuery("delete FROM Comentario where publicacao.id LIKE :paramId ").setParameter("paramId", pubId).executeUpdate();
+				manager.getTransaction().commit();
+				manager.close();
+				factory.close();
+				
 		}
 
 

@@ -72,7 +72,7 @@ public class PublicacaoDao {
 		}
 	
 
-	public void remover(int id) {
+	public void removerPub(int id) {
 		EntityManagerFactory factory =
 		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();

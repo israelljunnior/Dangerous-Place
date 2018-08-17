@@ -127,12 +127,22 @@ public class SistemaController {
 		return "usuario/forum";
 	}
         //Deletar o comentário .
-        @RequestMapping("/produto/delete")
+        @RequestMapping("deletePub")
 	public String delete(@RequestParam("id") Integer id, Model model) {
-		UsuarioDao dao = new UsuarioDao();
-		dao.remover(id);
+		
+        ComentarioDao dao1 = new ComentarioDao();
+    	dao1.removerPorPub(id);
+        	
+        
+        PublicacaoDao dao = new PublicacaoDao();
+		dao.removerPub(id);
+		
+		
+		
 		model.addAttribute("mensagem", "Comentário Removido com Sucesso");
-		return "forward:list";
+		
+		
+		return "forward:forum";
 	}
         
 	@RequestMapping("logout")
