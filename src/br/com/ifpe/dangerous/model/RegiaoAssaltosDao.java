@@ -1,31 +1,27 @@
 package br.com.ifpe.dangerous.model;
 
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-public class MunicipioDao {
+public class RegiaoAssaltosDao {
 	
-
 	private static final String PERSISTENCE_UNIT = "danger";
 
-	
-	public Municipio buscarPorNome(String nome) {
+	public RegiaoAssaltos buscarPorNome(String nome) {
 
-		Municipio obj = null;
+		RegiaoAssaltos obj = null;
 
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
 		Query query = null;
-		query = manager.createQuery("FROM Municipio WHERE nomeMunicipio = :paramNome");
-		query.setParameter("paramNome", nome);
+		query = manager.createQuery("FROM RegiaoAssaltos WHERE regiao = :paramRegiao");
+		query.setParameter("paramRegiao", nome);
 		
 		try {
-			obj = (Municipio) query.getSingleResult();
+			obj = (RegiaoAssaltos) query.getSingleResult();
 		}catch(NoResultException nre) {
 			return null;
 		}
@@ -37,15 +33,8 @@ public class MunicipioDao {
 	    
 	}
 	
-	public Municipio buscarPorId(int id) {
-		Municipio obj = null;
-		EntityManagerFactory factory =
-		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
-		EntityManager manager = factory.createEntityManager();
-		obj = manager.find(Municipio.class, id);
-		manager.close();
-		factory.close();
-		return obj;
-		}
+
 	
+	
+
 }
