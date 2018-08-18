@@ -20,8 +20,18 @@ import br.com.ifpe.dangerous.converters.PublicacaoConverter;
 import br.com.ifpe.dangerous.converters.UsuarioConverter;
 import br.com.ifpe.dangerous.model.Comentario;
 import br.com.ifpe.dangerous.model.ComentarioDao;
+import br.com.ifpe.dangerous.model.DadosMunicipio;
+import br.com.ifpe.dangerous.model.DadosRegiao;
+import br.com.ifpe.dangerous.model.MunicipioAssaltos;
+import br.com.ifpe.dangerous.model.MunicipioAssaltosDao;
+import br.com.ifpe.dangerous.model.MunicipioAssassinatos;
+import br.com.ifpe.dangerous.model.MunicipioAssassinatosDao;
 import br.com.ifpe.dangerous.model.Publicacao;
 import br.com.ifpe.dangerous.model.PublicacaoDao;
+import br.com.ifpe.dangerous.model.RegiaoAssaltos;
+import br.com.ifpe.dangerous.model.RegiaoAssaltosDao;
+import br.com.ifpe.dangerous.model.RegiaoAssassinatos;
+import br.com.ifpe.dangerous.model.RegiaoAssassinatosDao;
 import br.com.ifpe.dangerous.model.Usuario;
 import br.com.ifpe.dangerous.model.UsuarioDao;
 import net.sf.jasperreports.engine.JRException;
@@ -191,37 +201,34 @@ public class SistemaController {
 		return "sobreNos";
 	}
 	
-	/*@RequestMapping(value = "dadosMuncipio", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody String pegarMunicipio(@RequestParam String data) {
+	@RequestMapping(value = "dadosMuncipio", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String pegarMunicipio(@RequestParam String municipio) {
 		
-		System.out.println("pegando dados municipio");
+		MunicipioAssassinatosDao assassinatosDao = new MunicipioAssassinatosDao();
+		MunicipioAssassinatos municipioAssassinatos = assassinatosDao.buscarPorNome(municipio);
+		
+		MunicipioAssaltosDao assaltosDao = new MunicipioAssaltosDao();
+		MunicipioAssaltos municipioAssaltos = assaltosDao.buscarPorNome(municipio);
+		DadosMunicipio data = new DadosMunicipio(municipioAssaltos, municipioAssassinatos);
 		
 		
-		if(municipio != null) {
-		System.out.println(municipio.getNomeMunicipio());
-		}		else System.out.println("jooj");
-		
-		
-		return  new Gson().toJson(municipio);
-	}*/
+		return  new Gson().toJson(data);
+	}
 	
 	
-	/*@RequestMapping(value = "dadosRegiao", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody String pegarRegiao(@RequestParam String data) {
+	@RequestMapping(value = "dadosRegiao", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String pegarRegiao(@RequestParam String regiao) {
 		
-		System.out.println("pegando dados Regiao");
+		RegiaoAssassinatosDao assassinatosDao = new RegiaoAssassinatosDao();
+		RegiaoAssassinatos regiaoAssassinatos = assassinatosDao.buscarPorNome(regiao);
 		
-		
-		
-		if(regiao != null) {
-			
-			System.out.println(regiao.getNomeRegiao());
-			
-		} else System.out.println("jooj");
+		RegiaoAssaltosDao assaltosDao = new RegiaoAssaltosDao();
+		RegiaoAssaltos regiaoAssaltos = assaltosDao.buscarPorNome(regiao);
+		DadosRegiao data = new DadosRegiao(regiaoAssaltos, regiaoAssassinatos);
 		
 		
-		return  new Gson().toJson(regiao);
-	}*/
+		return  new Gson().toJson(data);
+	}
 	
 	@RequestMapping("comentar")
 	public String saveComent(Comentario comentario ,@RequestParam("conteudoComent") String conteudo,
