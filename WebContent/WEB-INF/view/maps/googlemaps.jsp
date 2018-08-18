@@ -297,7 +297,7 @@ function initMap() {
                             if(typeof positionMesorregiao !== "undefined"){break;}
                         }
                         mesorregiao = arrayMesorregiaos[positionMesorregiao];
-                       alert(mesorregiao);
+                       
                         
 						
                     }
@@ -308,7 +308,7 @@ function initMap() {
 						
 						if(selected == "m") {
 							
-							var id = gerarGraficoMunicipio();
+							var id = gerarGraficoMunicipio(municipio);
 							infoWindowMaker.id = id;
 							infoWindowMaker.setContent(document.getElementById("canvas"+infoWindowMaker.id));
 						} else {
@@ -854,9 +854,9 @@ function selectRM(controlDiv, map) {
 </script>
 <script>
 	
-function gerarGraficoMunicipio(dados) {
-	
-	$.post("/PP2-DangerousPlace/dadosMuncipio", {'data':dados}, function(result){
+function gerarGraficoMunicipio(municipio) {
+	alert(municipio);
+	$.post("/PP2-DangerousPlace/dadosMuncipio", {'municipio':municipio}, function(result){
 		console.log(result);
 	});
 
@@ -922,7 +922,7 @@ var color = Chart.helpers.color;
 		
 };
 
-function gerarGraficosRegiao(dados) {
+function gerarGraficosRegiao(regiao) {
 	
 	
 	$.post("/PP2-DangerousPlace/dadosRegiao", {'data':dados}, function(result){

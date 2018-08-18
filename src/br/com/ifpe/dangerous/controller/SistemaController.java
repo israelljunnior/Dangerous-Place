@@ -204,11 +204,12 @@ public class SistemaController {
 	@RequestMapping(value = "dadosMuncipio", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String pegarMunicipio(@RequestParam String municipio) {
 		
+		System.out.println("to pegando os dados");
 		MunicipioAssassinatosDao assassinatosDao = new MunicipioAssassinatosDao();
-		MunicipioAssassinatos municipioAssassinatos = assassinatosDao.buscarPorNome(municipio);
+		List<MunicipioAssassinatos> municipioAssassinatos = assassinatosDao.buscarPorNome(municipio);
 		
 		MunicipioAssaltosDao assaltosDao = new MunicipioAssaltosDao();
-		MunicipioAssaltos municipioAssaltos = assaltosDao.buscarPorNome(municipio);
+		List<MunicipioAssaltos> municipioAssaltos = assaltosDao.buscarPorNome(municipio);
 		DadosMunicipio data = new DadosMunicipio(municipioAssaltos, municipioAssassinatos);
 		
 		
@@ -216,9 +217,9 @@ public class SistemaController {
 	}
 	
 	
-	@RequestMapping(value = "dadosRegiao", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	/*@RequestMapping(value = "dadosRegiao", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String pegarRegiao(@RequestParam String regiao) {
-		
+		System.out.println("to pegando os dados");
 		RegiaoAssassinatosDao assassinatosDao = new RegiaoAssassinatosDao();
 		RegiaoAssassinatos regiaoAssassinatos = assassinatosDao.buscarPorNome(regiao);
 		
@@ -228,7 +229,7 @@ public class SistemaController {
 		
 		
 		return  new Gson().toJson(data);
-	}
+	}*/
 	
 	@RequestMapping("comentar")
 	public String saveComent(Comentario comentario ,@RequestParam("conteudoComent") String conteudo,

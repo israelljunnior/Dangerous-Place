@@ -1,5 +1,7 @@
 package br.com.ifpe.dangerous.model;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
@@ -10,9 +12,9 @@ public class RegiaoAssaltosDao {
 	
 	private static final String PERSISTENCE_UNIT = "danger";
 
-	public RegiaoAssaltos buscarPorNome(String nome) {
+	public List<RegiaoAssaltos> buscarPorNome(String nome) {
 
-		RegiaoAssaltos obj = null;
+		List<RegiaoAssaltos> obj = null;
 
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
@@ -21,7 +23,7 @@ public class RegiaoAssaltosDao {
 		query.setParameter("paramRegiao", nome);
 		
 		try {
-			obj = (RegiaoAssaltos) query.getSingleResult();
+			obj = (List<RegiaoAssaltos>) query.getResultList();
 		}catch(NoResultException nre) {
 			return null;
 		}
