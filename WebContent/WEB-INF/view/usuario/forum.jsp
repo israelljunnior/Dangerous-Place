@@ -76,7 +76,7 @@
 				</tr>
 			</table>
 			<br><br>
-			<div class="row">
+			<div class="row" id="container">
 		
 			<c:forEach var="publicacao" items="${listaPublicacao}">						
 				
