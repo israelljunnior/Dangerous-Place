@@ -69,7 +69,7 @@ prefix="fmt" %>
 
 				<c:choose>
 					<c:when test="${not empty usuarioLogado.nome}">
-						<li><a type="submit" data-toggle="modal"
+						<li><a data-toggle="modal"
 							data-target="#modalAlterarDados">Bem Vindo,
 								${usuarioLogado.nome}</a></li>
 						<li><a href="<%=request.getContextPath()%>/logout">Sair</a></li>
