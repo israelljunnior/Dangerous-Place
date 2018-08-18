@@ -13,9 +13,9 @@ public class MunicipioAssassinatosDao {
 	
 	private static final String PERSISTENCE_UNIT = "danger";
 
-	public List<MunicipioAssassinatos> buscarPorNome(String nome) {
+	public MunicipioAssassinatos buscarPorNome(String nome) {
 
-		List<MunicipioAssassinatos> obj = null;
+		MunicipioAssassinatos obj = null;
 
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
@@ -24,7 +24,7 @@ public class MunicipioAssassinatosDao {
 		query.setParameter("paramMunicipio", nome);
 		
 		try {
-			obj = (List<MunicipioAssassinatos>) query.getResultList();
+			obj = (MunicipioAssassinatos) query.getSingleResult();
 		}catch(NoResultException nre) {
 			return null;
 		}

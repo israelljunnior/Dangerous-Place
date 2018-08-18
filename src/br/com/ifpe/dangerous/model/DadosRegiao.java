@@ -4,28 +4,28 @@ import java.util.List;
 
 public class DadosRegiao {
 	
-	private List<RegiaoAssaltos > rAssaltos;
-	private List<RegiaoAssassinatos> rAssassinatos;
+	private RegiaoAssaltos rAssaltos;
+	private RegiaoAssassinatos rAssassinatos;
 	
-	public DadosRegiao(List<RegiaoAssaltos> rAssaltos, List<RegiaoAssassinatos> rAssassinatos) {
+	public DadosRegiao(RegiaoAssaltos rAssaltos, RegiaoAssassinatos rAssassinatos) {
 		
 		this.rAssaltos = rAssaltos;
 		this.rAssassinatos = rAssassinatos;
 	}
 
-	public List<RegiaoAssaltos> getrAssaltos() {
+	public RegiaoAssaltos getrAssaltos() {
 		return rAssaltos;
 	}
 
-	public void setrAssaltos(List<RegiaoAssaltos> rAssaltos) {
+	public void setrAssaltos(RegiaoAssaltos rAssaltos) {
 		this.rAssaltos = rAssaltos;
 	}
 
-	public List<RegiaoAssassinatos> getrAssassinatos() {
+	public RegiaoAssassinatos getrAssassinatos() {
 		return rAssassinatos;
 	}
 
-	public void setrAssassinatos(List<RegiaoAssassinatos> rAssassinatos) {
+	public void setrAssassinatos(RegiaoAssassinatos rAssassinatos) {
 		this.rAssassinatos = rAssassinatos;
 	}
 
