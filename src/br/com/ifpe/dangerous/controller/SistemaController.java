@@ -206,10 +206,10 @@ public class SistemaController {
 		
 		System.out.println("to pegando os dados");
 		MunicipioAssassinatosDao assassinatosDao = new MunicipioAssassinatosDao();
-		List<MunicipioAssassinatos> municipioAssassinatos = assassinatosDao.buscarPorNome(municipio);
+		MunicipioAssassinatos municipioAssassinatos = assassinatosDao.buscarPorNome(municipio);
 		
 		MunicipioAssaltosDao assaltosDao = new MunicipioAssaltosDao();
-		List<MunicipioAssaltos> municipioAssaltos = assaltosDao.buscarPorNome(municipio);
+		MunicipioAssaltos municipioAssaltos = assaltosDao.buscarPorNome(municipio);
 		DadosMunicipio data = new DadosMunicipio(municipioAssaltos, municipioAssassinatos);
 		
 		
