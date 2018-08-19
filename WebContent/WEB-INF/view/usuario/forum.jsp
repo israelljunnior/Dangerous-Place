@@ -55,7 +55,7 @@
 	<button onClick="fonte('d');">-</button>
 
 	<center>
-		<h2 id="titulo_forum">Fórum</h2>
+		<h2 id="titulo_forum">Fórum</h2> 
 	</center>
 
 	<div class="row" style="font-family: 'Montserrat', sans-serif">
@@ -73,8 +73,7 @@
 					</td>
 				</tr>
 			</table>
-			<br>
-			<br>
+			<br> <br>
 			<div class="row" id="container">
 
 				<c:forEach var="publicacao" items="${listaPublicacao}">
@@ -82,14 +81,31 @@
 					<div class="col-sm-6">
 						<div class="w3-container">
 							<div class="w3-card-4 tam">
-								<header class="w3-container w3-black">
-								<br>
+								<header class="w3-container w3-black"> <br>
 								<div class="btn-group btn-group-xs" style="float: right;">
 
-									<button type="button" class="btn btn-primary"data-toggle="modal"
+									<c:choose>
+										<c:when test="${publicacao.usuario.id == usuarioLogado.id}">
+											<button type="button" class="btn btn-primary"
+										data-toggle="modal"
 										data-target="#modalPublicarEdit${publicacao.id}">Editar</button>
-									<button type="button" class="btn btn-danger" data-toggle="modal"
-										data-target="#modalExcluir">Excluir</button>
+									<button type="button" class="btn btn-danger"
+										data-toggle="modal" data-target="#modalExcluir">Excluir</button>
+											
+										</c:when>
+										<c:otherwise>
+											<c:if test="${usuarioLogado.nivel_acesso == 'admSup'|| 'adm' }">
+												
+												<button type="button" class="btn btn-danger"
+										data-toggle="modal" data-target="#modalExcluir">Excluir</button>
+																	
+											</c:if>
+
+										</c:otherwise>
+
+									</c:choose>
+
+
 								</div>
 								<td>Tema: ${publicacao.tema}</td>
 								<br>
@@ -107,13 +123,12 @@
 
 								<div class="w3-container">
 									<td><br>
-									<p id="conteudo_publicacao">${publicacao.conteudo}</p>
-										<br></td>
+										<p id="conteudo_publicacao">${publicacao.conteudo}</p> <br></td>
 								</div>
 								<tr></tr>
 								<footer class="w3-container">
 
-								
+
 								<td><button type="button" class="btn btn-primary"
 										data-toggle="modal"
 										data-target="#modalComentario${publicacao.id}"
@@ -123,66 +138,74 @@
 
 								</footer>
 							</div>
-							<br>
-							<br>
+							<br> <br>
 						</div>
 					</div>
 
-<!--  Modal Editar -->
-<div class="modal fade" id="modalPublicarEdit${publicacao.id}" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" media="all" data-backdrop="static">
-		<div class="modal-dialog modal-xs" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<center>
-						<h3>Editar Publicação</h3>
-					</center>
-				</div>
-				<div class="modal-body">
-					<form action="publicarEdit" id="formModalPublicarEdit"method="post">
-					
-					
-						<input type="hidden" id="idPublicarEdit" name="usuarioPubEdit" value="${publicacao.usuario.id }">
-						<div class="form-group">
-								<label for="inputTema">Tema da Publicação:</label> <select id="inputTemaEdit" name="TemaEdit">
-									<option  class="form-control" required="required" type="radio" value="Assaltos" name="Assaltos">Assaltos</option>
-									<br />
-									<option class="form-control" required="required" type="radio" value="Acidentes de Trânsito" name="Acidentes de Trânsito">Acidentes de Trânsito</option>
-									<br />
-									<option class = "form-control" required = "required" type = "radio" value = "Assassinatos" name = "Assassinatos">Assassinatos</option>
-									
-									</select>
+					<!--  Modal Editar -->
+					<div class="modal fade" id="modalPublicarEdit${publicacao.id}"
+						tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+						media="all" data-backdrop="static">
+						<div class="modal-dialog modal-xs" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									<center>
+										<h3>Editar Publicação</h3>
+									</center>
+								</div>
+								<div class="modal-body">
+									<form action="publicarEdit" id="formModalPublicarEdit"
+										method="post">
+
+
+										<input type="hidden" id="idPublicarEdit" name="usuarioPubEdit"
+											value="${publicacao.usuario.id }">
+										<div class="form-group">
+											<label for="inputTema">Tema da Publicação:</label> <select
+												id="inputTemaEdit" name="TemaEdit">
+												<option class="form-control" required="required"
+													type="radio" value="Assaltos" name="Assaltos">Assaltos</option>
+												<br />
+												<option class="form-control" required="required"
+													type="radio" value="Acidentes de Trânsito"
+													name="Acidentes de Trânsito">Acidentes de Trânsito</option>
+												<br />
+												<option class="form-control" required="required"
+													type="radio" value="Assassinatos" name="Assassinatos">Assassinatos</option>
+
+											</select>
+										</div>
+
+
+										<div class="form-group">
+
+											<label for="inputTitulo">Titulo:</label> <input type="text"
+												id="inputTituloEdit" class="form-control" name="tituloEdit"
+												style="width: 100%;" value="${publicacao.titulo }" />
+										</div>
+
+										<!-- ESSE AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII -->
+										<div class="form-group">
+											<textarea class="form-control" rows="5"
+												form="formModalPublicarEdit" name="textAreaPublicarEdit"
+												id="conteudoEdit" style="resize: none;">${publicacao.conteudo}</textarea>
+										</div>
+
+										<button type="submit" class="btn btn-primary"
+											style="background-color: #555555" data-toggle="tooltip">Enviar</button>
+
+
+
+									</form>
+								</div>
 							</div>
-						
-						
-						<div class="form-group">
-					
-							<label for="inputTitulo">Titulo:</label> <input type="text"
-								id="inputTituloEdit" class="form-control" name="tituloEdit"
-								style="width: 100%;" value="${publicacao.titulo }" />
 						</div>
-
-								<!-- ESSE AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII -->
-						<div class="form-group">
-							<textarea class="form-control" rows="5" form="formModalPublicarEdit" name="textAreaPublicarEdit" id="conteudoEdit"	
-							style="resize: none;">${publicacao.conteudo}</textarea>
-						</div>
-						
-						<button type="submit" class="btn btn-primary"
-							style="background-color: #555555" data-toggle="tooltip">Enviar</button>
-					
-
-
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-<!-- /miOdal EDIATAR -->
+					</div>
+					<!-- /miOdal EDIATAR -->
 
 					<!-- Modal excluir -->
 					<div class="modal fade" id="modalExcluir" role="dialog">
@@ -206,7 +229,7 @@
 							</div>
 						</div>
 					</div>
-					
+
 					<!-- Modal -->
 					<div class="modal fade" id="modalComentario${ publicacao.id}"
 						role="dialog">
@@ -242,7 +265,7 @@
 														</c:when>
 														<c:otherwise>
 															<c:if
-																test="${comentario.usuario.nivel_acesso == 'adm' || 'admSup' }">
+																test="${usuarioLogado.nivel_acesso == 'adm' || 'admSup' }">
 																<!-- Opção de apagar o comentário -->
 																<td><button class="btn btn-danger"
 																		onclick="apagarComentario(${comentario.id})">Apagar</button></td>
@@ -302,6 +325,11 @@
 
 						</div>
 					</div>
+				
+				
+
+				
+				
 				</c:forEach>
 			</div>
 		</div>

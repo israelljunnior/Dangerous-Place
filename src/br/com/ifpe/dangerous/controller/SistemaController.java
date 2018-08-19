@@ -211,7 +211,7 @@ public class SistemaController {
 	 */
 
 	@RequestMapping("comentar")
-	public String saveComent(Comentario comentario, @RequestParam("conteudoComent") String conteudo,
+	public String saveComent(Comentario comentario,@RequestParam("conteudoComent") String conteudo,
 			@RequestParam("idUsuComent") String id, @RequestParam("idPubComent") String publicacao) {
 
 		System.out.print("id user" + id);
@@ -227,6 +227,7 @@ public class SistemaController {
 		ComentarioDao dao = new ComentarioDao();
 		dao.salvar(comentario);
 
+		
 		return "usuario/PublicarSucesso";
 	}
 
