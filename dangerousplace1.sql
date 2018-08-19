@@ -7,6 +7,8 @@
 -- Versão do servidor: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
+use dangerousplace1;
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
