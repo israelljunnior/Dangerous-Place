@@ -8,6 +8,13 @@ prefix="fmt" %>
 
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<!-- google -->
+
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id"
+	content="370392271351-agk25s6n5142efjgpi1ec0ms0mdpln9k.apps.googleusercontent.com">
+
+<!-- /google -->
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -33,7 +40,8 @@ prefix="fmt" %>
 }
 </style>
 <body>
-<c:import url="comum/loginGoogle.jsp"></c:import>
+
+
 
 	<nav class="navbar-inverse names">
 		<div class="container-fluid">
@@ -222,7 +230,7 @@ prefix="fmt" %>
 
 
 	<!-- Modal cadastroADM -->
-	<%-- <div class="modal fade" id="modalCadastroADM" tabindex="-1"
+	 <div class="modal fade" id="modalCadastroADM" tabindex="-1"
 		role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
 		<div class="modal-dialog modal-xs" role="document">
 			<div class="modal-content">
@@ -236,32 +244,32 @@ prefix="fmt" %>
 					</center>
 				</div>
 				<div class="modal-body">
-					<form action="saveADM" method="post" id="formCadastro">
+					<form action="saveADM" method="post" id="formCadastroAdm">
 						<center>
 
 							<div class="form-group">
-								<label for="nome">Nome:</label> <input type="text" id="nome"
-									class="form-control" name="nome" style="width: 500px;"
+								<label for="nome">Nome:</label> <input type="text" id="nomeAdm"
+									class="form-control" name="nomeAdm" style="width: 500px;"
 									placeholder="Digite seu nome." />
 							</div>
 							<div class="form-group">
-								<label for="email">Email:</label> <input type="text" id="email"
-									class="form-control" name="email" style="width: 500px;"
+								<label for="email">Email:</label> <input type="text" id="emailAdm"
+									class="form-control" name="emailAdm" style="width: 500px;"
 									placeholder="Digite seu Email..." />
 							</div>
 							<div class="form-group">
 								<label for="senha">Senha:</label> <input type="password"
-									id="senha" class="form-control" name="senha"
+									id="senhaAdm" class="form-control" name="senhaAdm"
 									style="width: 500px;" placeholder="Digite sua senha..." />
 							</div>
 							<div class="form-group">
 								<label for="repetirSenha">Repita a senha:</label> <input
-									type="password" id="repetirSenha" class="form-control"
-									name="repetirSenha" style="width: 500px;"
+									type="password" id="repetirSenhaAdm" class="form-control"
+									name="repetirSenhaAdm" style="width: 500px;"
 									placeholder="Repita sua senha..." />
 							</div>
 							<div class="form-group">
-								<label for="inputSexo">Sexo:</label> <select name="selectSexo">
+								<label for="inputSexo">Sexo:</label> <select name="selectSexoAdm">
 									<option id="inputSexo" class="form-control" required="required"
 										type="radio" value="F" name="sexo">Feminino</option>
 									<br />
@@ -272,12 +280,12 @@ prefix="fmt" %>
 
 							<div class="form-group">
 								<label for="inputEndereco">CEP:</label> <input type="text"
-									id="inputDescricao" class="form-control" name="endereco"
+									id="inputEnderecoAdm" class="form-control" name="enderecoAdm"
 									style="width: 500px;" placeholder="Digite seu CEP" />
 							</div>
 							<div class="form-group">
 								<label for="inputNivel_acesso">Nivel de Acesso:</label> <select
-									name="selectNivel_acesso">
+									name="selectNivel_acessoAdm">
 									<option id="inputSexo" class="form-control" required="required"
 										type="radio" value="usuario" name="nivel_acesso">usuario</option>
 									<br />
@@ -296,7 +304,7 @@ prefix="fmt" %>
 				</div>
 			</div>
 		</div>
-	</div> --%>
+	</div> 
 
 
 
