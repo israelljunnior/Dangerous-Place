@@ -33,7 +33,7 @@ prefix="fmt" %>
 }
 </style>
 <body>
-
+<c:import url="comum/loginGoogle.jsp"></c:import>
 
 	<nav class="navbar-inverse names">
 		<div class="container-fluid">
@@ -133,19 +133,17 @@ prefix="fmt" %>
 									style="width: 500px;" placeholder="Digite sua senha." />
 							</div>
 
+							
 							<div class="btn-group btn-group-lg" style="text-align: center";>
-								<button type="reset" class="btn btn-danger"
-									style="background-color: #B22222; color: white"
-									data-toggle="tooltip">Cancelar</button>
+								<button type="submit" class="btn btn-danger"
+									 data-toggle="tooltip">Entrar</button>
 								</a>
-							</div>
-							<div class="btn-group btn-group-lg" style="text-align: center";>
-								<button type="submit" class="btn btn-primary"
-									style="background-color: #555555" data-toggle="tooltip">Entrar</button>
-								</a>
+														
 							</div>
 						</center>
-						</fieldset>
+						 
+						 <div class="g-signin2" data-onsuccess="onSignIn"></div>
+					
 					</form>
 				</div>
 			</div>
