@@ -13,18 +13,18 @@ public class MunicipioAssassinatosDao {
 	
 	private static final String PERSISTENCE_UNIT = "danger";
 
-	public MunicipioAssassinatos buscarPorNome(String nome) {
+	public List<MunicipioAssassinatos> buscarPorNome(String nome) {
 
-		MunicipioAssassinatos obj = null;
+		List<MunicipioAssassinatos> obj = null;
 
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
 		Query query = null;
-		query = manager.createQuery("FROM MunicipioAssassinatos WHERE municipio = :paramMunicipio");
+		query = manager.createQuery("FROM MunicipioAssassinatos WHERE municipio LIKE :paramMunicipio");
 		query.setParameter("paramMunicipio", nome);
 		
 		try {
-			obj = (MunicipioAssassinatos) query.getSingleResult();
+			obj = (List<MunicipioAssassinatos>) query.getResultList();
 		}catch(NoResultException nre) {
 			return null;
 		}

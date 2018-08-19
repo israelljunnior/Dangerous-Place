@@ -21,17 +21,12 @@ import br.com.ifpe.dangerous.converters.UsuarioConverter;
 import br.com.ifpe.dangerous.model.Comentario;
 import br.com.ifpe.dangerous.model.ComentarioDao;
 import br.com.ifpe.dangerous.model.DadosMunicipio;
-import br.com.ifpe.dangerous.model.DadosRegiao;
 import br.com.ifpe.dangerous.model.MunicipioAssaltos;
 import br.com.ifpe.dangerous.model.MunicipioAssaltosDao;
 import br.com.ifpe.dangerous.model.MunicipioAssassinatos;
 import br.com.ifpe.dangerous.model.MunicipioAssassinatosDao;
 import br.com.ifpe.dangerous.model.Publicacao;
 import br.com.ifpe.dangerous.model.PublicacaoDao;
-import br.com.ifpe.dangerous.model.RegiaoAssaltos;
-import br.com.ifpe.dangerous.model.RegiaoAssaltosDao;
-import br.com.ifpe.dangerous.model.RegiaoAssassinatos;
-import br.com.ifpe.dangerous.model.RegiaoAssassinatosDao;
 import br.com.ifpe.dangerous.model.Usuario;
 import br.com.ifpe.dangerous.model.UsuarioDao;
 import net.sf.jasperreports.engine.JRException;
@@ -201,19 +196,27 @@ public class SistemaController {
 		return "sobreNos";
 	}
 	
-	@RequestMapping(value = "dadosMuncipio", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "dadosMunicipio", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String pegarMunicipio(@RequestParam String municipio) {
 		
-		System.out.println("to pegando os dados");
 		MunicipioAssassinatosDao assassinatosDao = new MunicipioAssassinatosDao();
-		MunicipioAssassinatos municipioAssassinatos = assassinatosDao.buscarPorNome(municipio);
+		List<MunicipioAssassinatos> municipioAssassinatos = assassinatosDao.buscarPorNome(municipio);
 		
 		MunicipioAssaltosDao assaltosDao = new MunicipioAssaltosDao();
-		MunicipioAssaltos municipioAssaltos = assaltosDao.buscarPorNome(municipio);
+		List<MunicipioAssaltos> municipioAssaltos = assaltosDao.buscarPorNome(municipio);
+		if(municipioAssaltos != null) {
+		
+		System.out.println("jooj1");
+		} else {System.out.println("jooj2");}
+		
+		if(municipioAssassinatos != null) {
+			System.out.println("jooj4");
+		} else {System.out.println("jooj3");}
+		
 		DadosMunicipio data = new DadosMunicipio(municipioAssaltos, municipioAssassinatos);
 		
-		
 		return  new Gson().toJson(data);
+		
 	}
 	
 	

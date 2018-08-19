@@ -855,8 +855,7 @@ function selectRM(controlDiv, map) {
 <script>
 	
 function gerarGraficoMunicipio(municipio) {
-	alert(municipio);
-	$.post("/PP2-DangerousPlace/dadosMuncipio", {'municipio':municipio}, function(result){
+	$.post("/PP2-DangerousPlace/dadosMunicipio", {'municipio': municipio}, function(result){
 		console.log(result);
 	});
 

@@ -4,30 +4,31 @@ import java.util.List;
 
 public class DadosMunicipio {
 	
-	private MunicipioAssaltos mAssaltos;
-	private MunicipioAssassinatos mAssassinatos;
+	private List<MunicipioAssaltos> mAssaltos;
+	private List<MunicipioAssassinatos> mAssassinatos;
 	
-	public DadosMunicipio(MunicipioAssaltos mAssaltos, MunicipioAssassinatos mAssassinatos) {
+	public DadosMunicipio(List<MunicipioAssaltos> mAssaltos, List<MunicipioAssassinatos> mAssassinatos) {
 		
 		this.mAssaltos = mAssaltos;
 		this.mAssassinatos = mAssassinatos;
 		
 	}
 
-	public MunicipioAssaltos getmAssaltos() {
+	public List<MunicipioAssaltos> getmAssaltos() {
 		return mAssaltos;
 	}
 
-	public void setmAssaltos(MunicipioAssaltos mAssaltos) {
+	public void setmAssaltos(List<MunicipioAssaltos> mAssaltos) {
 		this.mAssaltos = mAssaltos;
 	}
 
-	public MunicipioAssassinatos getmAssassinatos() {
+	public List<MunicipioAssassinatos> getmAssassinatos() {
 		return mAssassinatos;
 	}
 
-	public void setmAssassinatos(MunicipioAssassinatos mAssassinatos) {
+	public void setmAssassinatos(List<MunicipioAssassinatos> mAssassinatos) {
 		this.mAssassinatos = mAssassinatos;
 	}
+
 	
 }
