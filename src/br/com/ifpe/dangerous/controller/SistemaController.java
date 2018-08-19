@@ -178,20 +178,12 @@ public class SistemaController {
 	}
 
 
-	@RequestMapping(value = "dadosMuncipio", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "dadosMunicipio", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String pegarMunicipio(@RequestParam String municipio) {
 		MunicipioAssassinatosDao assassinatosDao = new MunicipioAssassinatosDao();
 		List<MunicipioAssassinatos> municipioAssassinatos = assassinatosDao.buscarPorNome(municipio);
 		MunicipioAssaltosDao assaltosDao = new MunicipioAssaltosDao();
 		List<MunicipioAssaltos> municipioAssaltos = assaltosDao.buscarPorNome(municipio);
-		if(municipioAssaltos != null) {
-		
-		System.out.println("jooj1");
-		} else {System.out.println("jooj2");}
-		
-		if(municipioAssassinatos != null) {
-			System.out.println("jooj4");
-		} else {System.out.println("jooj3");}
 		
 		DadosMunicipio data = new DadosMunicipio(municipioAssaltos, municipioAssassinatos);
 		
