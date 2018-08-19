@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<meta http-equiv="refresh" content="2;url=/PP2-DangerousPlace/home" />
+<meta http-equiv="refresh" content="1;url=/PP2-DangerousPlace/home" />
 <title>Insert title here</title>
 </head>
 <body>

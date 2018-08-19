@@ -62,10 +62,15 @@ public class SistemaController {
 	}
 
 	@RequestMapping("saveADM")
-	public String saveADM(Usuario usuario, @RequestParam("selectSexo") String sexo,
-			@RequestParam("selectNivel_acesso") String nivel_acesso) {
+	public String saveADM(Usuario usuario,  @RequestParam("nomeAdm") String nome,@RequestParam("emailAdm") String email,
+			@RequestParam("senhaAdm") String senha,@RequestParam("selectSexoAdm") String sexo,@RequestParam("enderecoAdm") String endereco,
+			@RequestParam("selectNivel_acessoAdm") String nivel_acesso) {
 		UsuarioDao dao = new UsuarioDao();
+		usuario.setNome(nome);
+		usuario.setEmail(email);
+		usuario.setSenha(senha);
 		usuario.setSexo(sexo);
+		usuario.setEndereco(endereco);
 		usuario.setNivel_acesso(nivel_acesso);
 		dao.salvar(usuario);
 
@@ -177,17 +182,16 @@ public class SistemaController {
 		return "sobreNos";
 	}
 
-
 	@RequestMapping(value = "dadosMunicipio", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String pegarMunicipio(@RequestParam String municipio) {
 		MunicipioAssassinatosDao assassinatosDao = new MunicipioAssassinatosDao();
 		List<MunicipioAssassinatos> municipioAssassinatos = assassinatosDao.buscarPorNome(municipio);
 		MunicipioAssaltosDao assaltosDao = new MunicipioAssaltosDao();
 		List<MunicipioAssaltos> municipioAssaltos = assaltosDao.buscarPorNome(municipio);
-		
+
 		DadosMunicipio data = new DadosMunicipio(municipioAssaltos, municipioAssassinatos);
-		
-		return  new Gson().toJson(data);
+
+		return new Gson().toJson(data);
 	}
 
 	/*
@@ -238,7 +242,7 @@ public class SistemaController {
 		return relatorio;
 	}
 
-	
+	/*
 	@RequestMapping(value = "/google", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String googleLogin(@RequestParam("googleNome") String googleNome, @RequestParam("googleId") Integer googleId, HttpSession session) {
 		
@@ -250,6 +254,24 @@ public class SistemaController {
 		session.setAttribute("usuarioLogado", usuario);
 		
 		return "home";
+	} */
+
+	
+	
+	@RequestMapping("publicarEdit")
+	public String publicarEdit(Publicacao publicacao, @RequestParam("TemaEdit") String tema,@RequestParam("tituloEdit") String titulo,
+			 @RequestParam("textAreaPublicarEdit") String conteudo, @RequestParam("usuarioPubEdit") String id ) {
+		
+		PublicacaoDao dao = new PublicacaoDao();
+		UsuarioConverter convert = new UsuarioConverter();
+		publicacao.setUsuario(convert.convert(id));
+		publicacao.setTema(tema);
+		publicacao.setTitulo(titulo);
+		publicacao.setConteudo(conteudo);
+		dao.alterar(publicacao);
+
+		
+		return "usuario/PublicarSucesso";
 	}
 
 }
