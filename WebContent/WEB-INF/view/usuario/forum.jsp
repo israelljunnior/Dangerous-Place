@@ -2,55 +2,37 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
 
 <title>Fórum</title>
 
 <style type="text/css">
+
 #titulo_forum {
 	color: black;
 	font-size: 3.5em;
 	font-family: 'Montserrat', sans-serif;
 }
 
-#tabel_publicacao {
-	width: 100%;
-	border-style: solid;
-	border-color: red;
-}
-
-#assunto_publicacao {
-	margin-left: 5px;
-	font-size: 1.2em;
-}
-
-#div_space {
-	margin-bottom: 50px;
-}
-
-#nome_usuaro_publicacao {
-	font-size: 15px;
-	margin-left: 50px;
-}
-
-#titulo_publicacao {
-	font-size: 1.4em;
-}
-
 #conteudo_publicacao {
-	font-size: 1.2em;
-	text-indent: 2.5em;
-	margin-top: 30px;
+	font-size: 1.1em;
+	text-indent: 1em;
+	text-align: justify;
 }
 
 #mostrar_comentario {
 	background-color: rgba(0, 191, 255, 0.2);
 }
+
+.tam{	
+	height:20em;
+}
+
 </style>
 </head>
 
@@ -58,7 +40,8 @@
 
 <body>
 
-	<script type="text/javascript"> var tam = 15;
+	<script type="text/javascript"> 
+	var tam = 15;
  function fonte(e){
     var elemento = $("#container");
     var fonte = elemento.css('font-size');
@@ -69,6 +52,7 @@
     }
 }
 </script>
+
 	<button onClick="fonte('a');">+</button>
 	<button onClick="fonte('d');">-</button>
 
@@ -76,110 +60,67 @@
 		<h2 id="titulo_forum">Fórum</h2>
 	</center>
 
-	<div class="row"
-		style="margin-top: 20px; margin-bottom: 20px; font-family: 'Montserrat', sans-serif">
-
-		<div class="col-sm-2"></div>
-
-		<div id="container" class="col-sm-8"
-			style="box-shadow: 0 6px 10px 6px rgba(0, 0, 0, 0.6), 0 6px 14px 0 rgba(0, 0, 0, 0.6);">
-
-			<table border="0" style="margin-top: 20px;">
+	<div class="row" style="font-family: 'Montserrat', sans-serif">
+		<div class="col-sm-1"></div>
+		<div class="col-sm-10">
+			<table>
 				<tr>
 					<td colspan="5" style="width: 100%;"><input
 						class="form-control" id="myInput" type="text"
 						style="width: 300px;" placeholder="Search.." /></td>
-
-
 					<td>
 						<button type="button" class="btn btn-primary" data-toggle="modal"
 							data-target="#modalPublicar"
 							style="align: rigth; background-color: #555555; color: white">Publicar</button>
-
 					</td>
 				</tr>
 			</table>
-			<br>
-			<br>
+			<br><br>
+			<div class="row" id="container">
+		
+			<c:forEach var="publicacao" items="${listaPublicacao}">						
+				
+						<div class="col-sm-6">	
+							<div class="w3-container">
+							<div class="w3-card-4 tam" >			
+						<header class="w3-container w3-black"><br>	
+						<td>Tema: ${publicacao.tema}</td><br>
+						<td><a data-toggle="modal" data-target="#modal"> ${publicacao.usuario.nome}</a></td><br>
+						<td>Publicado em: <fmt:formatDate value="${publicacao.data}" pattern="dd/MM/yyyy" /></td><br>
+						<td>Título: ${publicacao.titulo}</td>
+						<br><br>
+						</header>
 
-			<c:forEach var="publicacao" items="${listaPublicacao}">
-
-
-				<table id="tabel_publicacao" border="0">
-
-					<tr>
-						<td id="assunto_publicacao" colspan="3"><b>Tema: </b>
-							${publicacao.tema}</td>
-					</tr>
-
-					<tr style="margin-left: 4px">
-
-						<!-- Foto do usuário que publicou
-				<td><a data-toggle="modal" data-target="#modal"><img
-				class='img-thumbnail' src="" alt='Foto de exibição' width='55px'
-				height='40px' />"</a></td> -->
-
-						<!-- Nome do usuário que publicou-->
-						<td id="nome_usuaro_publicacao"><a data-toggle="modal"
-							data-target="#modal"> ${publicacao.usuario.nome}</td>
-
-						<!-- Data da públicação-->
-						<td><b>Publicado em:</b> <fmt:formatDate
-								value="${publicacao.data}" pattern="dd/MM/yyyy" /></td>
-
-
-						<td><button class="btn btn-danger" data-toggle="modal"
+						<div class="w3-container">
+						<td><br><p id="conteudo_publicacao">${publicacao.conteudo}</p><br></td>					
+						</div>
+						<tr></tr>
+						<footer class="w3-container">
+							<td><button class="btn btn-danger" data-toggle="modal"
 								data-target="#modalExcluir" style="float: right;">Excluir</button></td>
-
-
-
-					</tr>
-
-					<tr>
-
-						<!-- Título da publicação -->
-						<td colspan="3" id="titulo_publicacao"><br> <b>Titulo:</b>
-							${publicacao.titulo}</td>
-					<tr>
-						<!-- O conteúdo em si do publicação -->
-						<td colspan="3" style="padding:15px;">
-							<p id="conteudo_publicacao">${publicacao.conteudo}</p>
-						</td>
-						<td><br> <br> <br> <br></td>
-					</tr>
-
-					<tr>
-						<td colspan="3"><br> <!-- Botão que  irá exibir todos comentários -->
-							<button type="button" class="btn btn-primary" data-toggle="modal"
-								data-target="#modalComentario${ publicacao.id}"
-								style="background-color: #555555; color: white">Comentários</button>
-
-							<!--  <label style="margin-left: 4px;">Quantidade de comentários: 0 </label> <br> -->
-							<br> <br> <br> <!-- modal excluir --> <!-- Modal -->
-							<div class="modal fade" id="modalExcluir" role="dialog">
-								<div class="modal-dialog">
-
-									<!-- Modal content-->
-									<div class="modal-content">
-										<div class="modal-header">
-											<button type="button" class="close" data-dismiss="modal">&times;</button>
-
-										</div>
-										<div class="modal-body">
-											<center>
-												<h4>
-													<p>Você tem certeza que deseja excluir?</p>
-												</h4>
-												<a method="post"href="deletePub?id=${publicacao.id}"><button
-														type="button" class="btn btn-danger">Sim</button></a>
-												<button type="button" class="btn btn-danger"
-													data-dismiss="modal">Não</button>
-											</center>
-										</div>
-										<div class="modal-footer"></div>
-									</div>
-
-								</div>
+								<td><button type="button" class="btn btn-primary" data-toggle="modal"
+								data-target="#modalComentario${publicacao.id}"
+								style="background-color: #555555; color: white">Comentários</button></td>
+								<br><br>
+						</footer>
+						</div><br><br></div></div>
+					
+								
+				<!-- Modal excluir -->
+				<div class="modal fade" id="modalExcluir" role="dialog">
+					<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+						<div class="modal-body">
+						<center><h4><p>Você tem certeza que deseja excluir?</p></h4>
+							<a method="post" href="deletePub?id=${publicacao.id}"><button type="button" class="btn btn-danger">Sim</button></a>
+								<button type="button" class="btn btn-danger"
+									data-dismiss="modal">Não</button>
+						</center>
+						</div>
+							<div class="modal-footer"></div></div></div>
 							</div> <!-- Modal -->
 							<div class="modal fade" id="modalComentario${ publicacao.id}"
 								role="dialog">
@@ -198,13 +139,7 @@
 
 													<c:if test="${ comentario.publicacao.id == publicacao.id}">
 														<tr>
-															<!-- Foto do usuário que postou o comentário -->
-															<td>Foto do usuário</td>
-
-															<!--Espaço -->
 															<td><br> <br> <br></td>
-
-															<!-- Nome do usuário que postou o comentário -->
 															<td><b>${comentario.usuario.nome }</b></td>
 
 															<!-- Data que comentário foi postado -->
@@ -241,11 +176,6 @@
 												</c:forEach>
 											</table>
 
-
-
-
-
-
 										</div>
 
 										<div class="modal-footer">
@@ -280,15 +210,12 @@
 													</td>
 												</tr>
 											</table>
-											<!-- Fim de Área de enviar comentáro-->
-
-
-
+											
 										</div>
 									</div>
 
 								</div>
-							</div> </c:forEach> <!-- *************************************************************************************** -->
+							</div> </c:forEach></div></div></div> </div>
 
 							<!-- Modal para perfil no fórum -->
 							<div class="modal fade" id="modal" tabindex="-1" role="dialog"
@@ -306,13 +233,7 @@
 										</div>
 										<div class="modal-body">
 											<ul type="none">
-												<li><center>Foto</center></li>
 												<br>
-												<br>
-												<li><label>Número de postagem que o usuário já
-														fez: </label><br> 0</li>
-												<br>
-
 												<li><label>Nome:&nbsp;&nbsp;</label> Diego</li>
 												<br>
 
@@ -333,8 +254,9 @@
 									</div>
 								</div>
 							</div>
-				</table>
-		</div>
+							<div class="col-sm-1"></div>		
+				
+				</div>
 </body>
 </html>
 
@@ -344,12 +266,8 @@ function apagarComentario(id) {
 	
 	$.post("apagarComentario",{"id": id}, function(newList){
 		
-		
-		
+	
 	});
-}
-		
-	
-	
+}	
 
 </script>
