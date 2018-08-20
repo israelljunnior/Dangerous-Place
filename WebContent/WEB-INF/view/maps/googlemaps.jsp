@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <div id="map"></div>
-<div id='containerGraficos' style='width: 100%;'><canvas id='grafico'></canvas></div>
+<div id='containerGraficos' style='width: 100%;'></div>
 <script>
 
 var style = [
@@ -308,13 +308,147 @@ function initMap() {
 						
 						if(selected == "m") {
 							
-							var id = gerarGraficoMunicipio(municipio);
-							infoWindowMaker.id = id;
-							infoWindowMaker.setContent(document.getElementById("canvas"+infoWindowMaker.id));
+							
+							$.post("/PP2-DangerousPlace/dadosMunicipio", {'municipio': municipio}, function(result){
+					    		console.log(result);
+					    	
+					    		var color = Chart.helpers.color;
+					    		var barChartData = {
+					    			labels: ['2014','2015', '2016', '2017', '2018'],
+					    			datasets: [{
+					    				label: 'Assassinatos',
+					    				backgroundColor: color(window.chartColors.red).alpha(4.5).rgbString(),
+					    				borderColor: window.chartColors.red,
+					    				borderWidth: 1,
+					    				data: [
+					    					result.mAssassinatos[0].totalAssassinatos,
+					    					result.mAssassinatos[1].totalAssassinatos,
+					    	            0,
+					    	            0,
+					    	            0
+					    	            ]
+					    			}, {
+					    				label: 'Assaltos',
+					    				backgroundColor: color(window.chartColors.black).alpha(4.5).rgbString(),
+					    				borderColor: window.chartColors.black,
+					    				borderWidth: 1,
+					    				data: [  
+					    	                
+					    					result.mAssaltos[0].totalAssaltos,
+					    					result.mAssaltos[1].totalAssaltos,
+					    					result.mAssaltos[2].totalAssaltos,
+					    	                0,
+					    	                0
+					    	            ]
+					    			},{
+					    				label: 'Acidentes',
+					    				backgroundColor: color(window.chartColors.green).alpha(4.5).rgbString(),
+					    				borderColor: window.chartColors.green,
+					    				borderWidth: 1,
+					    				data: []
+					    			}]
+					    		};
+					    		
+					    		var canvas = document.createElement('canvas');
+					    		var div = document.getElementById('containerGraficos');
+					    		div.appendChild(canvas);
+					            var id = document.getElementsByTagName("canvas");
+					    		canvas.setAttribute("id", id.length);
+					    		var ctx = document.getElementById(id.length);
+					    		
+					    		
+					    			window.myBar = new Chart(ctx, {
+					    				type: 'bar',
+					    				data: barChartData,
+					    				options: {
+					    					responsive: true,
+					    					legend: {
+					    						position: 'top',
+					    					},
+					    					title: {
+					    						display: true,
+					    						text: 'Estatisticas de '+result.mAssaltos[0].municipio,
+					    						fontSize: 17
+					    					}
+					    				}
+					    			}); infoWindowMaker.setContent(document.getElementById(id.length));
+					    				infoWindowMaker.open(map, marker);
+
+					    	});
+					    	
+							
+							
 						} else {
-							gerarGraficosRegiao(mesorregiao);
+							
+							$.post("/PP2-DangerousPlace/dadosRegiao", {'regiao': messoregiao}, function(result){
+					    		console.log(result);
+					    	
+					    		var color = Chart.helpers.color;
+					    		var barChartData = {
+					    			labels: ['2014','2015', '2016', '2017', '2018'],
+					    			datasets: [{
+					    				label: 'Assassinatos',
+					    				backgroundColor: color(window.chartColors.red).alpha(4.5).rgbString(),
+					    				borderColor: window.chartColors.red,
+					    				borderWidth: 1,
+					    				data: [
+					    					result.mAssassinatos[0].totalAssassinatos,
+					    					result.mAssassinatos[1].totalAssassinatos,
+					    	            0,
+					    	            0,
+					    	            0
+					    	            ]
+					    			}, {
+					    				label: 'Assaltos',
+					    				backgroundColor: color(window.chartColors.black).alpha(4.5).rgbString(),
+					    				borderColor: window.chartColors.black,
+					    				borderWidth: 1,
+					    				data: [  
+					    	                
+					    					result.mAssaltos[0].totalAssaltos,
+					    					result.mAssaltos[1].totalAssaltos,
+					    					result.mAssaltos[2].totalAssaltos,
+					    	                0,
+					    	                0
+					    	            ]
+					    			},{
+					    				label: 'Acidentes',
+					    				backgroundColor: color(window.chartColors.green).alpha(4.5).rgbString(),
+					    				borderColor: window.chartColors.green,
+					    				borderWidth: 1,
+					    				data: []
+					    			}]
+					    		};
+					    		
+					    		var canvas = document.createElement('canvas');
+					    		var div = document.getElementById('containerGraficos');
+					    		div.appendChild(canvas);
+					            var id = document.getElementsByTagName("canvas");
+					    		canvas.setAttribute("id", id.length);
+					    		var ctx = document.getElementById(id.length);
+					    		
+					    		
+					    			window.myBar = new Chart(ctx, {
+					    				type: 'bar',
+					    				data: barChartData,
+					    				options: {
+					    					responsive: true,
+					    					legend: {
+					    						position: 'top',
+					    					},
+					    					title: {
+					    						display: true,
+					    						text: 'Estatisticas de '+result.mAssaltos[0].municipio,
+					    						fontSize: 17
+					    					}
+					    				}
+					    			}); infoWindowMaker.setContent(document.getElementById(id.length));
+					    				infoWindowMaker.open(map, marker);
+
+					    	});
+							
 						}
-						infoWindowMaker.open(map, marker);
+						
 					} else {
 						infoWindowMaker.setContent("Dados não disponíveis em: "+results[0].address_components[indexState].short_name
 								+"<br />"+results[0].formatted_address);
@@ -618,6 +752,28 @@ function selectRM(controlDiv, map) {
 
 
     
+	
+    function gerarGraficoMunicipio(municipio) {
+    	 
+    	
+    	
+    	
+    };
+
+    function gerarGraficosRegiao(regiao) {
+    	
+    	
+    	$.post("/PP2-DangerousPlace/dadosRegiao", {'data':dados}, function(result){
+    		console.log(result);
+    	});
+    	
+    	
+    };
+    	
+    
+    
+    
+    
 
 
 
@@ -851,86 +1007,5 @@ function selectRM(controlDiv, map) {
     
 
 
-</script>
-<script>
-	
-function gerarGraficoMunicipio(municipio) {
-	$.post("/PP2-DangerousPlace/dadosMunicipio", {'municipio': municipio}, function(result){
-		console.log(result);
-	});
-
-var color = Chart.helpers.color;
-		var barChartData = {
-			labels: ['2015', '2016', '2017', '2018'],
-			datasets: [{
-				label: 'Assassinatos',
-				backgroundColor: color(window.chartColors.red).alpha(4.5).rgbString(),
-				borderColor: window.chartColors.red,
-				borderWidth: 1,
-				data: [
-					30,
-					40,
-					50,
-					34
-				]
-			}, {
-				label: 'Assaltos',
-				backgroundColor: color(window.chartColors.black).alpha(4.5).rgbString(),
-				borderColor: window.chartColors.black,
-				borderWidth: 1,
-				data: [
-					60,
-					23,
-					30,
-					25
-				]
-			},{
-				label: 'Acidentes',
-				backgroundColor: color(window.chartColors.green).alpha(4.5).rgbString(),
-				borderColor: window.chartColors.green,
-				borderWidth: 1,
-				data: [
-						15,
-						50,
-						70,
-						67
-					]
-			}]
-		};
-		var canvas = document.createElement('canvas');
-		var div = document.getElementById('containerGraficos');
-		div.appendChild(canvas);
-		var id = Math.random();
-		canvas.setAttribute('id',"canvas"+id);
-		var ctx = document.getElementById('canvas'+id);
-			window.myBar = new Chart(ctx, {
-				type: 'bar',
-				data: barChartData,
-				options: {
-					responsive: true,
-					legend: {
-						position: 'top',
-					},
-					title: {
-						display: true,
-						text: 'Estatisticas de Pernambuco',
-						fontSize: 17
-					}
-				}
-			}); return id;
-		
-};
-
-function gerarGraficosRegiao(regiao) {
-	
-	
-	$.post("/PP2-DangerousPlace/dadosRegiao", {'data':dados}, function(result){
-		alert(result);
-		console.log(result);
-	});
-	
-	
-};
-	
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAU4tZgF7qKxiAMdKz8j0Pa3_TVyNdZgjM&callback=initMap"></script>   

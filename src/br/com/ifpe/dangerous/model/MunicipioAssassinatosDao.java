@@ -20,7 +20,7 @@ public class MunicipioAssassinatosDao {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
 		Query query = null;
-		query = manager.createQuery("FROM MunicipioAssassinatos WHERE municipio LIKE :paramMunicipio");
+		query = manager.createQuery("FROM MunicipioAssassinatos WHERE municipio LIKE :paramMunicipio order by ano");
 		query.setParameter("paramMunicipio", nome);
 		
 		try {

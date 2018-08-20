@@ -19,7 +19,7 @@ public class RegiaoAssassinatosDao {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
 		Query query = null;
-		query = manager.createQuery("FROM RegiaoAssassinatos WHERE regiao = :paramRegiao");
+		query = manager.createQuery("FROM RegiaoAssassinatos WHERE regiao like :paramRegiao order by ano");
 		query.setParameter("paramRegiao", nome);
 		
 		try {
