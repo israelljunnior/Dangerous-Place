@@ -15,6 +15,9 @@ prefix="fmt" %>
 	content="370392271351-agk25s6n5142efjgpi1ec0ms0mdpln9k.apps.googleusercontent.com">
 
 <!-- /google -->
+<!-- jspdf  -->
+<script src="<%=request.getContextPath()%>/resources/jspdf.js"></script>
+<!-- /jspdf -->
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

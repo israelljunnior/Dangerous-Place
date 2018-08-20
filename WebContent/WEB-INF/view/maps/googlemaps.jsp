@@ -173,7 +173,7 @@ var style = [
 var map;
 var geocoder;
 var infoWindows = [];
-var markers = [];
+var makers = [];
 var buttons = [];
 var selected = "m";
 var municipio;
@@ -217,27 +217,26 @@ function initMap() {
 		
 		
 		
-		var marker;
+		var maker;
 		infoWindowMaker = new google.maps.InfoWindow();
 		
-		marker = new google.maps.Marker({
+		maker = new google.maps.Marker({
 			map : map,
 			draggable : true,
 			position : (event.latLng)
 		})
 
-		marker.addListener('click', function() {
-			infoWindowMaker.setContent(document.getElementById("canvas"+infoWindowMaker.id));
+		maker.addListener('click', function() {
 			infoWindowMaker.open(map, this);
 		});
 
-		marker.addListener('dblclick', function() {
-			marker.setMap(null)
-			marker = null
+		maker.addListener('dblclick', function() {
+			maker.setMap(null)
+			maker = null
 		});
 
 		geocoder.geocode({
-			'latLng' : marker.getPosition()
+			'latLng' : maker.getPosition()
 		}, function(results, status) {
 			if (status == google.maps.GeocoderStatus.OK){
 				if (results[0]) {
@@ -303,7 +302,7 @@ function initMap() {
 					    	
 					    		var color = Chart.helpers.color;
 					    		var barChartData = {
-					    			labels: ['2014','2015', '2016', '2017', '2018'],
+					    			labels: ['2014','2015', '2016'],
 					    			datasets: [{
 					    				label: 'Assassinatos',
 					    				backgroundColor: color(window.chartColors.red).alpha(4.5).rgbString(),
@@ -340,12 +339,19 @@ function initMap() {
 					    		
 					    		var canvas = document.createElement('canvas');
 					    		var div = document.getElementById('containerGraficos');
-					    		div.appendChild(canvas);
+					    		var divWithin = document.createElement("div");
+					    		div.appendChild(divWithin);
+					    		divWithin.appendChild(canvas);
 					            var id = document.getElementsByTagName("canvas");
+					            divWithin.setAttribute("id", id.length.toString()+"div");
 					    		canvas.setAttribute("id", id.length);
 					    		var ctx = document.getElementById(id.length);
-					    		
-					    		
+					    		var button = document.createElement("BUTTON");
+					    		var buttonText = document.createTextNode("gerar Relarótio");
+					    		button.setAttribute("class", "btn btn-danger pull-right");
+					    		button.setAttribute("onclick", gerarRelatorio());
+					    		button.appendChild(buttonText);
+					    		divWithin.appendChild(button);
 					    			window.myBar = new Chart(ctx, {
 					    				type: 'bar',
 					    				data: barChartData,
@@ -360,8 +366,13 @@ function initMap() {
 					    						fontSize: 17
 					    					}
 					    				}
-					    			}); infoWindowMaker.setContent(document.getElementById(id.length));
-					    				infoWindowMaker.open(map, marker);
+					    			
+					    			});
+					    			
+					    				
+					    				
+					    				infoWindowMaker.setContent(divWithin);
+					    				infoWindowMaker.open(map, maker);
 
 					    	});
 					    	
@@ -441,13 +452,13 @@ function initMap() {
 					} else {
 						infoWindowMaker.setContent("Dados não disponíveis em: "+results[0].address_components[indexState].short_name
 								+"<br />"+results[0].formatted_address);
-						infoWindowMaker.open(map, marker);
+						infoWindowMaker.open(map, maker);
 					}
 				}
 			}	
 		})
 
-		marker.addListener('dragend', function() {
+		maker.addListener('dragend', function() {
 
 			geocoder.geocode({
 				'latLng' : marker.getPosition()
@@ -552,7 +563,8 @@ if(selected == "m") {
 					            var id = document.getElementsByTagName("canvas");
 					    		canvas.setAttribute("id", id.length);
 					    		var ctx = document.getElementById(id.length);
-					    		
+					    		var button = document.createElement("button");
+					    		button.innerHTML = "gerar Relatório";
 					    		
 					    			window.myBar = new Chart(ctx, {
 					    				type: 'bar',
@@ -568,7 +580,8 @@ if(selected == "m") {
 					    						fontSize: 17
 					    					}
 					    				}
-					    			}); infoWindowMaker.setContent(document.getElementById(id.length));
+					    			}); ctx.appendChild(button);
+					    				infoWindowMaker.setContent(document.getElementById(id.length));
 					    				infoWindowMaker.open(map, marker);
 
 					    	});
@@ -652,8 +665,8 @@ if(selected == "m") {
 						}
 					}
 				}
-			});
-		}); markers.push(marker); infoWindows.push(infoWindowMaker);
+			}); 
+		}); makers.push(maker); infoWindows.push(infoWindowMaker); infoWindowMaker.id = infoWindows.length;
 
 	});
 
@@ -991,6 +1004,12 @@ function selectRM(controlDiv, map) {
     function changeSelected() {
     	var select = document.getElementById("selectMunicipioOrRegiao");
     	selected = select.options[select.selectedIndex].value;
+    }
+    
+    function gerarRelatorioMunicipio() {}
+    
+    function gerarRelatorioRegiao() {
+    	
     }
 
     var regioes = [
