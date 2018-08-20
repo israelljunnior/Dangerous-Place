@@ -19,9 +19,11 @@
 }
 
 #conteudo_publicacao {
-	font-size: 1.1em;
-	text-indent: 1em;
+	font-size: 1em;
+	text-indent: 0.4em;
 	text-align: justify;
+	word-wrap: break-word;
+	
 }
 
 #mostrar_comentario {
@@ -29,7 +31,7 @@
 }
 
 .tam {
-	height: 20em;
+	height: 25em;
 }
 </style>
 </head>
@@ -120,13 +122,13 @@
 								<br>
 								<br>
 								</header>
-
-								<div class="w3-container">
+								
+								<div class="w3-container" style="height:12em;">
 									<td><br>
 										<p id="conteudo_publicacao">${publicacao.conteudo}</p> <br></td>
 								</div>
 								<tr></tr>
-								<footer class="w3-container">
+								<div class="w3-container" style="height: 5em;">
 
 
 								<td><button type="button" class="btn btn-primary"
@@ -136,7 +138,7 @@
 								<br>
 								<br>
 
-								</footer>
+								</div>
 							</div>
 							<br> <br>
 						</div>
