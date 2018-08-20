@@ -5,15 +5,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<meta http-equiv="refresh" content="2;url=/PP2-DangerousPlace/forum" />
+<meta http-equiv="refresh" content="1;url=/PP2-DangerousPlace/forum" />
 <title>Insert title here</title>
 </head>
 <body>
 	<c:import url="../comum/header.jsp"></c:import>
+	
+	<br><br><br><br><br><br><br> <!-- aí  manja dos css  -->
 	<center>
 		<img style="width: 200px" src="http://techimac.com.br/site/wp-content/uploads/2015/11/icone_ok1.png"><br>
-		<h1>Publicação Efetuada com sucesso!!</h1>
+		<h1>Sucesso!!</h1>
 	</center>
+	
 
 </body>
 </html>

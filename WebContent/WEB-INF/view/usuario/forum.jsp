@@ -12,7 +12,6 @@
 <title>Fórum</title>
 
 <style type="text/css">
-
 #titulo_forum {
 	color: black;
 	font-size: 3.5em;
@@ -20,19 +19,20 @@
 }
 
 #conteudo_publicacao {
-	font-size: 1.1em;
-	text-indent: 1em;
+	font-size: 1em;
+	text-indent: 0.4em;
 	text-align: justify;
+	word-wrap: break-word;
+	
 }
 
 #mostrar_comentario {
 	background-color: rgba(0, 191, 255, 0.2);
 }
 
-.tam{	
-	height:20em;
+.tam {
+	height: 25em;
 }
-
 </style>
 </head>
 
@@ -57,7 +57,7 @@
 	<button onClick="fonte('d');">-</button>
 
 	<center>
-		<h2 id="titulo_forum">Fórum</h2>
+		<h2 id="titulo_forum">Fórum</h2> 
 	</center>
 
 	<div class="row" style="font-family: 'Montserrat', sans-serif">
@@ -75,193 +75,313 @@
 					</td>
 				</tr>
 			</table>
-			<br><br>
+			<br> <br>
 			<div class="row" id="container">
-		
-			<c:forEach var="publicacao" items="${listaPublicacao}">						
-				
-						<div class="col-sm-6">	
-							<div class="w3-container">
-							<div class="w3-card-4 tam" >			
-						<header class="w3-container w3-black"><br>	
-						<td>Tema: ${publicacao.tema}</td><br>
-						<td><a data-toggle="modal" data-target="#modal"> ${publicacao.usuario.nome}</a></td><br>
-						<td>Publicado em: <fmt:formatDate value="${publicacao.data}" pattern="dd/MM/yyyy" /></td><br>
-						<td>Título: ${publicacao.titulo}</td>
-						<br><br>
-						</header>
 
+				<c:forEach var="publicacao" items="${listaPublicacao}">
+
+					<div class="col-sm-6">
 						<div class="w3-container">
-						<td><br><p id="conteudo_publicacao">${publicacao.conteudo}</p><br></td>					
-						</div>
-						<tr></tr>
-						<footer class="w3-container">
-							<td><button class="btn btn-danger" data-toggle="modal"
-								data-target="#modalExcluir" style="float: right;">Excluir</button></td>
-								<td><button type="button" class="btn btn-primary" data-toggle="modal"
-								data-target="#modalComentario${publicacao.id}"
-								style="background-color: #555555; color: white">Comentários</button></td>
-								<br><br>
-						</footer>
-						</div><br><br></div></div>
-					
-								
-				<!-- Modal excluir -->
-				<div class="modal fade" id="modalExcluir" role="dialog">
-					<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal">&times;</button>
-						</div>
-						<div class="modal-body">
-						<center><h4><p>Você tem certeza que deseja excluir?</p></h4>
-							<a method="post" href="deletePub?id=${publicacao.id}"><button type="button" class="btn btn-danger">Sim</button></a>
-								<button type="button" class="btn btn-danger"
-									data-dismiss="modal">Não</button>
-						</center>
-						</div>
-							<div class="modal-footer"></div></div></div>
-							</div> <!-- Modal -->
-							<div class="modal fade" id="modalComentario${ publicacao.id}"
-								role="dialog">
-								<div class="modal-dialog" style="width: 60%;">
+							<div class="w3-card-4 tam">
+								<header class="w3-container w3-black"> <br>
+								<div class="btn-group btn-group-xs" style="float: right;">
 
-									<!-- Modal content-->
-									<div class="modal-content">
-										<div class="modal-header">
-											<button type="button" class="close" data-dismiss="modal">&times;</button>
-											<h2 class="modal-title">Comentários</h2>
-										</div>
-										<div class="modal-body">
-											<table border="0" style="width: 100%;">
-
-												<c:forEach var="comentario" items="${listaComentario}">
-
-													<c:if test="${ comentario.publicacao.id == publicacao.id}">
-														<tr>
-															<td><br> <br> <br></td>
-															<td><b>${comentario.usuario.nome }</b></td>
-
-															<!-- Data que comentário foi postado -->
-
-															<td><fmt:formatDate value="${comentario.data}"
-																	pattern="dd/MM/yyyy" /></td>
-
-															<c:choose>
-																<c:when
-																	test="${comentario.usuario.id == usuarioLogado.id}">
-																	<!-- Opção de apagar o comentário -->
-																	<td><button class="btn btn-danger">Apagar</button></td>
-
-																</c:when>
-																<c:otherwise>
-																	<c:if
-																		test="${comentario.usuario.nivel_acesso == 'adm' || 'admSup' }">
-																		<!-- Opção de apagar o comentário -->
-																		<td><button class="btn btn-danger"
-																				onclick="apagarComentario(${comentario.id})">Apagar</button></td>
-																	</c:if>
-
-																</c:otherwise>
-
-															</c:choose>
-														</tr>
-
-														<tr>
-															<!-- O comentário em si está aqui -->
-															<td colspan="6"><p>${comentario.conteudo}</p> <!-- Colocando uma linha para separar cada comentário -->
-																<hr /></td>
-														</tr>
-													</c:if>
-												</c:forEach>
-											</table>
-
-										</div>
-
-										<div class="modal-footer">
-											<table border="0" style="width: 100%;">
-												<tr>
-													<td><br> <br> <br></td>
-												</tr>
-
-												<tr>
-													<td>
-														<!-- Campo de formulário pra enviar um novo comentário -->
-														<form action="comentar" id="formComent${publicacao.id}"
-															method="post"">
-
-															<input type="hidden" id="idUsuComent${publicacao.id } "
-																name="idUsuComent" value="${usuarioLogado.id}" /> <input
-																type="hidden" id="idPubComent${publicacao.id }"
-																name="idPubComent" value="${publicacao.id}" />
-
-															<textarea style="resize: none;" rows="6" cols="5"
-																class="form-control" minlength="1"
-																form="formComent${publicacao.id}" name="conteudoComent"
-																placeholder="Escreva um comentário "></textarea>
-
-															<br> <input class="btn btn-primary" type="submit"
-																value="Enviar Comentário"
-																style="float: right; background-color: #555555;">
-															<br> <br>
-
-														</form>
-
-													</td>
-												</tr>
-											</table>
+									<c:choose>
+										<c:when test="${publicacao.usuario.id == usuarioLogado.id}">
+											<button type="button" class="btn btn-primary"
+										data-toggle="modal"
+										data-target="#modalPublicarEdit${publicacao.id}">Editar</button>
+									<button type="button" class="btn btn-danger"
+										data-toggle="modal" data-target="#modalExcluir">Excluir</button>
 											
-										</div>
-									</div>
+										</c:when>
+										<c:otherwise>
+											<c:if test="${usuarioLogado.nivel_acesso == 'admSup'|| 'adm' }">
+												
+												<button type="button" class="btn btn-danger"
+										data-toggle="modal" data-target="#modalExcluir">Excluir</button>
+																	
+											</c:if>
+
+										</c:otherwise>
+
+									</c:choose>
+
 
 								</div>
-							</div> </c:forEach></div></div></div> </div>
+								<td>Tema: ${publicacao.tema}</td>
+								<br>
+								<td><a data-toggle="modal" data-target="#modal">
+										${publicacao.usuario.nome}</a></td>
+								<br>
+								<td>Publicado em: <fmt:formatDate
+										value="${publicacao.data}" pattern="dd/MM/yyyy" /></td>
+								<br>
+								<td>Título: ${publicacao.titulo}</td>
 
-							<!-- Modal para perfil no fórum -->
-							<div class="modal fade" id="modal" tabindex="-1" role="dialog"
-								aria-labelledby="exampleModalLabel" aria-hidden="true">
-								<div class="modal-dialog" role="document">
-									<div class="modal-content">
-										<div class="modal-header">
-											<center>
-												<h3 class="modal-title">Perfil</h3>
-											</center>
-											<button type="button" class="close" data-dismiss="modal"
-												aria-label="Close">
-												<span aria-hidden="true">&times;</span>
-											</button>
-										</div>
-										<div class="modal-body">
-											<ul type="none">
-												<br>
-												<li><label>Nome:&nbsp;&nbsp;</label> Diego</li>
-												<br>
+								<br>
+								<br>
+								</header>
+								
+								<div class="w3-container" style="height:12em;">
+									<td><br>
+										<p id="conteudo_publicacao">${publicacao.conteudo}</p> <br></td>
+								</div>
+								<tr></tr>
+								<div class="w3-container" style="height: 5em;">
 
-												<li><label>Sexo:&nbsp;&nbsp;</label> Masculino</li>
-												<br>
 
-												<li><label>Data de nascimento:&nbsp;&nbsp;</label>
-													23/32/1333</li>
+								<td><button type="button" class="btn btn-primary"
+										data-toggle="modal"
+										data-target="#modalComentario${publicacao.id}"
+										style="background-color: #555555; color: white">Comentários</button></td>
+								<br>
+								<br>
 
-												<br>
-												<li><label>Descrição do usuário:&nbsp;&nbsp;</label>
-													Minha descrição</li>
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-secondary"
-												data-dismiss="modal">Fechar</button>
-										</div>
-									</div>
 								</div>
 							</div>
-							<div class="col-sm-1"></div>		
+							<br> <br>
+						</div>
+					</div>
+
+					<!--  Modal Editar -->
+					<div class="modal fade" id="modalPublicarEdit${publicacao.id}"
+						tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+						media="all" data-backdrop="static">
+						<div class="modal-dialog modal-xs" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									<center>
+										<h3>Editar Publicação</h3>
+									</center>
+								</div>
+								<div class="modal-body">
+									<form action="publicarEdit" id="formModalPublicarEdit"
+										method="post">
+
+
+										<input type="hidden" id="idPublicarEdit" name="usuarioPubEdit"
+											value="${publicacao.usuario.id }">
+										<div class="form-group">
+											<label for="inputTema">Tema da Publicação:</label> <select
+												id="inputTemaEdit" name="TemaEdit">
+												<option class="form-control" required="required"
+													type="radio" value="Assaltos" name="Assaltos">Assaltos</option>
+												<br />
+												<option class="form-control" required="required"
+													type="radio" value="Acidentes de Trânsito"
+													name="Acidentes de Trânsito">Acidentes de Trânsito</option>
+												<br />
+												<option class="form-control" required="required"
+													type="radio" value="Assassinatos" name="Assassinatos">Assassinatos</option>
+
+											</select>
+										</div>
+
+
+										<div class="form-group">
+
+											<label for="inputTitulo">Titulo:</label> <input type="text"
+												id="inputTituloEdit" class="form-control" name="tituloEdit"
+												style="width: 100%;" value="${publicacao.titulo }" />
+										</div>
+
+										<!-- ESSE AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII -->
+										<div class="form-group">
+											<textarea class="form-control" rows="5"
+												form="formModalPublicarEdit" name="textAreaPublicarEdit"
+												id="conteudoEdit" style="resize: none;">${publicacao.conteudo}</textarea>
+										</div>
+
+										<button type="submit" class="btn btn-primary"
+											style="background-color: #555555" data-toggle="tooltip">Enviar</button>
+
+
+
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /miOdal EDIATAR -->
+
+					<!-- Modal excluir -->
+					<div class="modal fade" id="modalExcluir" role="dialog">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+								</div>
+								<div class="modal-body">
+									<center>
+										<h4>
+											<p>Você tem certeza que deseja excluir?</p>
+										</h4>
+										<a method="post" href="deletePub?id=${publicacao.id}"><button
+												type="button" class="btn btn-danger">Sim</button></a>
+										<button type="button" class="btn btn-danger"
+											data-dismiss="modal">Não</button>
+									</center>
+								</div>
+								<div class="modal-footer"></div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Modal -->
+					<div class="modal fade" id="modalComentario${ publicacao.id}"
+						role="dialog">
+						<div class="modal-dialog" style="width: 60%;">
+
+							<!-- Modal content-->
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h2 class="modal-title">Comentários</h2>
+								</div>
+								<div class="modal-body">
+									<table border="0" style="width: 100%;">
+
+										<c:forEach var="comentario" items="${listaComentario}">
+
+											<c:if test="${ comentario.publicacao.id == publicacao.id}">
+												<tr>
+													<td><br> <br> <br></td>
+													<td><b>${comentario.usuario.nome }</b></td>
+
+													<!-- Data que comentário foi postado -->
+
+													<td><fmt:formatDate value="${comentario.data}"
+															pattern="dd/MM/yyyy" /></td>
+
+													<c:choose>
+														<c:when
+															test="${comentario.usuario.id == usuarioLogado.id}">
+															<!-- Opção de apagar o comentário -->
+															<td><button class="btn btn-danger">Apagar</button></td>
+
+														</c:when>
+														<c:otherwise>
+															<c:if
+																test="${usuarioLogado.nivel_acesso == 'adm' || 'admSup' }">
+																<!-- Opção de apagar o comentário -->
+																<td><button class="btn btn-danger"
+																		onclick="apagarComentario(${comentario.id})">Apagar</button></td>
+															</c:if>
+
+														</c:otherwise>
+
+													</c:choose>
+												</tr>
+
+												<tr>
+													<!-- O comentário em si está aqui -->
+													<td colspan="6"><p>${comentario.conteudo}</p> <!-- Colocando uma linha para separar cada comentário -->
+														<hr /></td>
+												</tr>
+											</c:if>
+										</c:forEach>
+									</table>
+
+								</div>
+
+								<div class="modal-footer">
+									<table border="0" style="width: 100%;">
+										<tr>
+											<td><br> <br> <br></td>
+										</tr>
+
+										<tr>
+											<td>
+												<!-- Campo de formulário pra enviar um novo comentário -->
+												<form action="comentar" id="formComent${publicacao.id}"
+													method="post"">
+
+													<input type="hidden" id="idUsuComent${publicacao.id } "
+														name="idUsuComent" value="${usuarioLogado.id}" /> <input
+														type="hidden" id="idPubComent${publicacao.id }"
+														name="idPubComent" value="${publicacao.id}" />
+
+													<textarea style="resize: none;" rows="6" cols="5"
+														class="form-control" minlength="1"
+														form="formComent${publicacao.id}" name="conteudoComent"
+														placeholder="Escreva um comentário "></textarea>
+
+													<br> <input class="btn btn-primary" type="submit"
+														value="Enviar Comentário"
+														style="float: right; background-color: #555555;">
+													<br> <br>
+
+												</form>
+
+											</td>
+										</tr>
+									</table>
+
+								</div>
+							</div>
+
+						</div>
+					</div>
 				
+				
+
+				
+				
+				</c:forEach>
+			</div>
+		</div>
+	</div>
+	</div>
+
+	<!-- Modal para perfil no fórum -->
+	<div class="modal fade" id="modal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<center>
+						<h3 class="modal-title">Perfil</h3>
+					</center>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
 				</div>
+				<div class="modal-body">
+					<ul type="none">
+						<br>
+						<li><label>Nome:&nbsp;&nbsp;</label> Diego</li>
+						<br>
+
+						<li><label>Sexo:&nbsp;&nbsp;</label> Masculino</li>
+						<br>
+
+						<li><label>Data de nascimento:&nbsp;&nbsp;</label> 23/32/1333</li>
+
+						<br>
+						<li><label>Descrição do usuário:&nbsp;&nbsp;</label> Minha
+							descrição</li>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Fechar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-1"></div>
+
+	</div>
 </body>
 </html>
 
 <script>
-
+/*
 function apagarComentario(id) {
 	
 	$.post("apagarComentario",{"id": id}, function(newList){
@@ -269,5 +389,5 @@ function apagarComentario(id) {
 	
 	});
 }	
-
+*/
 </script>
