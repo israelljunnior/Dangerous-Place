@@ -12,18 +12,18 @@ public class RegiaoAssaltosDao {
 	
 	private static final String PERSISTENCE_UNIT = "danger";
 
-	public RegiaoAssaltos buscarPorNome(String nome) {
+	public List<RegiaoAssaltos> buscarPorNome(String nome) {
 
-		RegiaoAssaltos obj = null;
+		List<RegiaoAssaltos> obj = null;
 
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
 		Query query = null;
-		query = manager.createQuery("FROM RegiaoAssaltos WHERE regiao = :paramRegiao order by ano");
+		query = manager.createQuery("FROM RegiaoAssaltos WHERE regiao like :paramRegiao order by ano");
 		query.setParameter("paramRegiao", nome);
 		
 		try {
-			obj = (RegiaoAssaltos) query.getResultList();
+			obj = (List<RegiaoAssaltos>) query.getResultList();
 		}catch(NoResultException nre) {
 			return null;
 		}

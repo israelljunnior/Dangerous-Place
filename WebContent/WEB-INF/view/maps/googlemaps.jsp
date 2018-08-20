@@ -380,7 +380,7 @@ function initMap() {
 							
 						} else {
 							
-							$.post("/PP2-DangerousPlace/dadosRegiao", {'regiao': messoregiao}, function(result){
+							$.post("/PP2-DangerousPlace/dadosRegiao", {'regiao': mesorregiao}, function(result){
 					    		console.log(result);
 					    	
 					    		var color = Chart.helpers.color;
@@ -392,8 +392,8 @@ function initMap() {
 					    				borderColor: window.chartColors.red,
 					    				borderWidth: 1,
 					    				data: [
-					    					result.mAssassinatos[0].totalAssassinatos,
-					    					result.mAssassinatos[1].totalAssassinatos,
+					    					result.rAssassinatos[0].totalAssassinatos,
+					    					result.rAssassinatos[1].totalAssassinatos,
 					    	            0,
 					    	            0,
 					    	            0
@@ -405,9 +405,9 @@ function initMap() {
 					    				borderWidth: 1,
 					    				data: [  
 					    	                
-					    					result.mAssaltos[0].totalAssaltos,
-					    					result.mAssaltos[1].totalAssaltos,
-					    					result.mAssaltos[2].totalAssaltos,
+					    					result.rAssaltos[0].totalAssaltos,
+					    					result.rAssaltos[1].totalAssaltos,
+					    					result.rAssaltos[2].totalAssaltos,
 					    	                0,
 					    	                0
 					    	            ]
@@ -438,7 +438,7 @@ function initMap() {
 					    					},
 					    					title: {
 					    						display: true,
-					    						text: 'Estatisticas de '+result.mAssaltos[0].municipio,
+					    						text: 'Estatisticas de '+result.rAssaltos[0].regiao,
 					    						fontSize: 17
 					    					}
 					    				}
