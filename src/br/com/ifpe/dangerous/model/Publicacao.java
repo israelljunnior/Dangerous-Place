@@ -23,8 +23,9 @@ public class Publicacao {
 	private int id;
 	@Column
 	private String titulo;
-	@Column
-	private String tema;
+	@ManyToOne
+	@JoinColumn(name = "tema")
+	private Tema tema;
 	@Column
 	private String conteudo;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
@@ -47,10 +48,10 @@ public class Publicacao {
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-	public String getTema() {
+	public Tema getTema() {
 		return tema;
 	}
-	public void setTema(String tema) {
+	public void setTema(Tema tema) {
 		this.tema = tema;
 	}
 	public String getConteudo() {

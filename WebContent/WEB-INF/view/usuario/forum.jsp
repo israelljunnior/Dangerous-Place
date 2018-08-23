@@ -70,11 +70,11 @@
 <table id="tablefilter" border="0" align="center" ">
 				<tr>
 					<!-- filtro -->
-					<form action="filtro">
+					<form action="filtro" method="post">
 
 						<td><input type="text" id="filtro" class="form-control"
-							name="filtro" style="width: 500px; height: 40px;" maxlength="100" placeholder="Pesquisar..." /></td>
-
+							name="tema" style="width: 500px; height: 40px;" maxlength="100" placeholder="Pesquisar..." /></td>
+ 
 						<td><button style="height: 40px;" type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></button></td>
 
 					</form>

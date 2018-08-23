@@ -28,7 +28,7 @@ public class PublicacaoDao {
 		EntityManager manager = factory.createEntityManager();
 		Query query = null;
 		String Titulo = Publicacao != null ? Publicacao.getTitulo() : "";
-		String Tema = Publicacao != null ? Publicacao.getTema() : "";
+		String Tema = Publicacao != null ? Publicacao.getTema() .getTema(): "";
 		if (!Titulo.equals("") && Tema.equals("")) {
 			query = manager.createQuery("FROM Publicacao WHERE Titulo LIKE :paramTitulo ORDER BY id_publicacao DESC");
 			query.setParameter("paramTitulo", "%" + Titulo + "%");
@@ -39,6 +39,23 @@ public class PublicacaoDao {
 			query = manager.createQuery(
 					"FROM Publicacao WHERE Titulo LIKE :paramTitulo AND Tema LIKE :paramTema ORDER BY id_publicacao DESC");
 			query.setParameter("paramTitulo", "%" + Titulo + "%");
+			query.setParameter("paramTema", "%" + Tema + "%");
+		} else {
+			query = manager.createQuery("FROM Publicacao ORDER BY id_publicacao DESC");
+		}
+		List<Publicacao> lista = query.getResultList();
+		manager.close();
+		factory.close();
+		return lista;
+	}
+	
+	public List<Publicacao> filtrar(Publicacao Publicacao) {
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+		EntityManager manager = factory.createEntityManager();
+		Query query = null;
+		String Tema = Publicacao != null ? Publicacao.getTema().getTema() : "";
+		if (!Tema.equals("")) {
+			query = manager.createQuery("FROM Publicacao WHERE Tema LIKE :paramTema ORDER BY id_publicacao DESC");
 			query.setParameter("paramTema", "%" + Tema + "%");
 		} else {
 			query = manager.createQuery("FROM Publicacao ORDER BY id_publicacao DESC");
