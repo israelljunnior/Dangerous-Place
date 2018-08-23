@@ -432,12 +432,12 @@ prefix="fmt" %>
 						<input type="hidden" id="idPublicar" name="usuario" value="${usuarioLogado.id }">
 						<div class="form-group">
 								<label for="inputTema">Tema da Publicação:</label> <select id="inputTema" name="Tema">
-									<option  class="form-control" required="required" type="radio" value="Assaltos" name="Assaltos">Assaltos</option>
-									<br />
-									<option class="form-control" required="required" type="radio" value="Acidentes de Trânsito" name="Acidentes de Trânsito">Acidentes de Trânsito</option>
-									<br />
-									<option class = "form-control" required = "required" type = "radio" value = "Assassinatos" name = "Assassinatos">Assassinatos</option>
-									
+								<option>Selecionar</option>
+								<c:forEach items="${listaTema}" var="tema">
+
+									<option  class="form-control" required="required" value="${tema.id}">${tema.tema}</option>
+								
+								</c:forEach>
 									</select>
 							</div>
 						
@@ -457,8 +457,6 @@ prefix="fmt" %>
 						</div>
 						<button type="submit" class="btn btn-primary"
 							style="background-color: #555555" data-toggle="tooltip">Enviar</button>
-					
-
 
 					</form>
 				</div>

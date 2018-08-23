@@ -1,8 +1,6 @@
 package br.com.ifpe.dangerous.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -17,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 
 import br.com.ifpe.dangerous.converters.PublicacaoConverter;
+import br.com.ifpe.dangerous.converters.TemaConverter;
 import br.com.ifpe.dangerous.converters.UsuarioConverter;
 import br.com.ifpe.dangerous.model.Comentario;
 import br.com.ifpe.dangerous.model.ComentarioDao;
@@ -32,12 +31,10 @@ import br.com.ifpe.dangerous.model.RegiaoAssaltos;
 import br.com.ifpe.dangerous.model.RegiaoAssaltosDao;
 import br.com.ifpe.dangerous.model.RegiaoAssassinatos;
 import br.com.ifpe.dangerous.model.RegiaoAssassinatosDao;
+import br.com.ifpe.dangerous.model.Tema;
+import br.com.ifpe.dangerous.model.TemaDao;
 import br.com.ifpe.dangerous.model.Usuario;
 import br.com.ifpe.dangerous.model.UsuarioDao;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.view.JasperViewer;
 
 @Controller
 public class SistemaController {
@@ -124,8 +121,12 @@ public class SistemaController {
 
 		ComentarioDao daoComen = new ComentarioDao();
 		List<Comentario> listaComentario = daoComen.listar();
+		
+		TemaDao daoTema= new TemaDao();
+		List<Tema> listaTema =  daoTema.listar();
 
 		model.addAttribute("listaPublicacao", listaPublicacao);
+		model.addAttribute("listaTema", listaTema);
 		model.addAttribute("listaComentario", listaComentario);
 
 		return "usuario/forum";
@@ -156,7 +157,8 @@ public class SistemaController {
 	public String savePublic(Publicacao publicacao, @RequestParam("Tema") String tema,
 			@RequestParam("textAreaPublicar") String conteudo, @RequestParam("usuario") String id) {
 		PublicacaoDao dao = new PublicacaoDao();
-		publicacao.setTema(tema);
+		TemaConverter tc =  new TemaConverter();
+		publicacao.setTema(tc.convert(tema));
 		UsuarioConverter convert = new UsuarioConverter();
 		publicacao.setUsuario(convert.convert(id));
 		publicacao.setConteudo(conteudo);
@@ -254,7 +256,8 @@ public class SistemaController {
 		PublicacaoDao dao = new PublicacaoDao();
 		UsuarioConverter convert = new UsuarioConverter();
 		publicacao.setUsuario(convert.convert(id));
-		publicacao.setTema(tema);
+		TemaConverter tc =  new TemaConverter();
+		publicacao.setTema(tc.convert(tema));
 		publicacao.setTitulo(titulo);
 		publicacao.setConteudo(conteudo);
 		dao.alterar(publicacao);
@@ -264,8 +267,10 @@ public class SistemaController {
 
 	@RequestMapping("filtro")
 	public String filtrar(Publicacao publicacao, Model model) {
+		System.out.println(publicacao.getTema());
+		
 		PublicacaoDao dao = new PublicacaoDao();
-		List<Publicacao> listaPublicacao = dao.listar(publicacao);
+		List<Publicacao> listaPublicacao = dao.filtrar(publicacao);
 		model.addAttribute("listaPublicacao", listaPublicacao);
 		return "usuario/forum";
 	}
