@@ -1021,7 +1021,7 @@ function selectRM(controlDiv, map) {
             {title :  "R_Bancos\n" , dataKey :  "roubo_instituição_financeira" },
             {title :  "R_moto" , dataKey :  "roubo_moto" },
             {title :  "Extorsão" , dataKey :  "roubo_extorsão" }
-            
+             
         ]
 
         var rowsAssaltos = [
