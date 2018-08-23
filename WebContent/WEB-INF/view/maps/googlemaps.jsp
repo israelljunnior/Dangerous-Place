@@ -339,8 +339,8 @@ function initMap() {
 					    		var button = document.createElement("BUTTON");
 					    		var buttonText = document.createTextNode("gerar Relarótio");
 					    		button.setAttribute("class", "btn btn-danger pull-right");
-					    		
 					    		button.appendChild(buttonText);
+					    		button.setAttribute("onclick", gerarRelatorio(result));
 					    		divWithin.appendChild(button);
 					    			window.myBar = new Chart(ctx, {
 					    				type: 'bar',
@@ -363,8 +363,6 @@ function initMap() {
 					    				
 					    				infoWindowMaker.setContent(divWithin);
 					    				infoWindowMaker.open(map, maker);
-					    				var source = "<div id='testePDFJS'>	   		<tr>  			<th>Origem:"+result.mAssaltos[0].municipio+"</th>  		</tr>  <tr>	<th>ano</th>    <th>Total de assassinatos: </th>    <th>Quantidade de mulheres: </th>    <th>Quantidade de homens: </th>    <th>Homicídios: </th>    <th>Quantidade de latrocínios:</th>    <th>Quantidade de lesado ou morte:</th>    <th>Quantidade por arma bmAnca:</th>    <th>Quantiade por arma de fogo:</th>    <th>Assassinado(a) com idade até 12 anos:</th>    <th>Assassinado(a) com idade entre 13 e 17 anos:</th>    <th>Assassinado(a) com idade entre 18 e 30 anos:</th>    <th>Assassinado(a) com idade entre 31 e 65 anos:</th>    <th>Assassinado(a) com idade acima de 65 anos:</th>  </tr>  <tr>	<th>"+result.mAssassinatos[0].ano+"</th>  	<th>"+result.mAssassinatos[0].totalAssassinatos+"</th>  	<th>"+result.mAssassinatos[0].quatidadeMulher+"</th>  	<th>"+result.mAssassinatos[0].quantidadeHomem+"</th>  	<th>"+result.mAssassinatos[0].quantidadeHomicidio+"</th>  	<th>"+result.mAssassinatos[0].quantidadeLatrocinio+"</th>  	<th>"+result.mAssassinatos[0].quantidadeLesadoMorte+"</th>  	<th>"+result.mAssassinatos[0].quantidadeArmabmAnca+"</th>  	<th>"+result.mAssassinatos[0].quantidadeArmafogo+"</th>  	<th>"+result.mAssassinatos[0].idadeAte12+"</th>  	<th>"+result.mAssassinatos[0].idade13a17+"</th>  	<th>"+result.mAssassinatos[0].idade18a30+"</th>  	<th>"+result.mAssassinatos[0].idade31a65+"</th>  	<th>"+result.mAssassinatos[0].idadeAcima65+"</th>  </tr>  <tr>  	<th>"+result.mAssassinatos[0].ano+"</th>  	<th>"+result.mAssassinatos[0].totalAssassinatos+"</th>  	<th>"+result.mAssassinatos[0].quatidadeMulher+"</th>  	<th>"+result.mAssassinatos[0].quantidadeHomem+"</th>  	<th>"+result.mAssassinatos[0].quantidadeHomicidio+"</th>  	<th>"+result.mAssassinatos[0].quantidadeLatrocinio+"</th>  	<th>"+result.mAssassinatos[0].quantidadeLesadoMorte+"</th>  	<th>"+result.mAssassinatos[0].quantidadeArmabmAnca+"</th>  	<th>"+result.mAssassinatos[0].quantidadeArmafogo+"</th>  	<th>"+result.mAssassinatos[0].idadeAte12+"</th>  	<th>"+result.mAssassinatos[0].idade13a17+"</th>  	<th>"+result.mAssassinatos[0].idade18a30+"</th>  	<th>"+result.mAssassinatos[0].idade31a65+"</th>  	<th>"+result.mAssassinatos[0].idadeAcima65+"</th>  </tr>  <tr>	<th>"+result.mAssassinatos[0].ano+"</th>	<th>"+result.mAssassinatos[0].totalAssassinatos+"</th>	<th>"+result.mAssassinatos[0].quatidadeMulher+"</th>	<th>"+result.mAssassinatos[0].quantidadeHomem+"</th>	<th>"+result.mAssassinatos[0].quantidadeHomicidio+"</th>	<th>"+result.mAssassinatos[0].quantidadeLatrocinio+"</th>	<th>"+result.mAssassinatos[0].quantidadeLesadoMorte+"</th>	<th>"+result.mAssassinatos[0].quantidadeArmabmAnca+"</th>	<th>"+result.mAssassinatos[0].quantidadeArmafogo+"</th>	<th>"+result.mAssassinatos[0].idadeAte12+"</th>	<th>"+result.mAssassinatos[0].idade13a17+"</th>	<th>"+result.mAssassinatos[0].idade18a30+"</th>	<th>"+result.mAssassinatos[0].idade31a65+"</th>	<th>"+result.mAssassinatos[0].idadeAcima65+"</th>  </tr>		<tr>		  <th>Origem: "+result.mAssaltos[0].municipio+"</th>		  <th>Data do ocorrente: 2015</th><br>		</tr>	      	<tr>	  <th>Ano</th>	  <th>Total de assaltos: </th>	  <th>Roubo tmAnsuente: </th>	  <th>Roubo de veículo: </th>	  <th>Roubo por extorsão: </th>	  <th>Roubo a instituição financeimA:</th>	  <th>Roubo a carga:</th>	  <th>Roubo a motocicletas:</th>	  <th>Roubo a ônibus:</th>	  <th>Roubo a residências:</th>	  <th>Roubo a estabelecimentos:</th>	</tr>    	<tr>  	  <th>"+result.mAssaltos[0].ano+"</th>	  <th>"+result.mAssaltos[0].totalAssaltos+"</th>	  <th>"+result.mAssaltos[0].rouboTmAnseunte+"</th>	  <th>"+result.mAssaltos[0].rouboVeiculo+"</th>	  <th>"+result.mAssaltos[0].rouboExtorsao+"</th>	  <th>"+result.mAssaltos[0].rouboInstFinanc+"</th>	  <th>"+result.mAssaltos[0].rouboCarga+"</th>	  <th>"+result.mAssaltos[0].rouboMotoneta+"</th>	  <th>"+result.mAssaltos[0].rouboOnibus+"</th>	  <th>"+result.mAssaltos[0].rouboResidencias+"</th>	  <th>"+result.mAssaltos[0].rouboEstabelecimento+"</th>  	</tr>  	<tr>  		<th>"+result.mAssaltos[1].totalAssaltos+"</th>		<th>"+result.mAssaltos[1].rouboTmAnseunte+"</th>		<th>"+result.mAssaltos[1].rouboVeiculo+"</th>		<th>"+result.mAssaltos[1].rouboExtorsao+"</th>		<th>"+result.mAssaltos[1].rouboInstFinanc+"</th>		<th>"+result.mAssaltos[1].rouboCarga+"</th>		<th>"+result.mAssaltos[1].rouboMotoneta+"</th>		<th>"+result.mAssaltos[1].rouboOnibus+"</th>		<th>"+result.mAssaltos[1].rouboResidencias+"</th>		<th>"+result.mAssaltos[1].rouboEstabelecimento+"</th>  	</tr>  	<tr>  		<th>"+result.mAssaltos[2].totalAssaltos+"</th>		<th>"+result.mAssaltos[2].rouboTmAnseunte+"</th>		<th>"+result.mAssaltos[2].rouboVeiculo+"</th>		<th>"+result.mAssaltos[2].rouboExtorsao+"</th>		<th>"+result.mAssaltos[2].rouboInstFinanc+"</th>		<th>"+result.mAssaltos[2].rouboCarga+"</th>		<th>"+result.mAssaltos[2].rouboMotoneta+"</th>		<th>"+result.mAssaltos[2].rouboOnibus+"</th>		<th>"+result.mAssaltos[2].rouboResidencias+"</th>		<th>"+result.mAssaltos[2].rouboEstabelecimento+"</th>  	</tr>  </table></di>";
-							    		button.setAttribute("onclick", function (source){gerarRelatorio(source)});
 
 
                                         
@@ -427,9 +425,9 @@ function initMap() {
 					    		var ctx = document.getElementById(id.length);
 					    		var button = document.createElement("BUTTON");
 					    		var buttonText = document.createTextNode("gerar Relarótio");
+					    		button.append
 					    		button.setAttribute("class", "btn btn-danger pull-right");
-								var source = '<html><style>table {    font-family: arial, sans-serif;    border-collapse: collapse;    width: 100%;}td, th {    border: 1px solid #dddddd;    text-align: left;    padding: 8px;}tr:nth-child(even) {    background-color: #dddddd;}</style></head><body> <div id="testePDFJS"><table>	 <table>  		<tr>  			<th>Origem:"+result.rAssaltos[0].municipio+"</th>  		</tr>  <tr>	<th>ano</th>    <th>Total de assassinatos: </th>    <th>Quantidade de mulheres: </th>    <th>Quantidade de homens: </th>    <th>Homicídios: </th>    <th>Quantidade de latrocínios:</th>    <th>Quantidade de lesado ou morte:</th>    <th>Quantidade por arma branca:</th>    <th>Quantiade por arma de fogo:</th>    <th>Assassinado(a) com idade até 12 anos:</th>    <th>Assassinado(a) com idade entre 13 e 17 anos:</th>    <th>Assassinado(a) com idade entre 18 e 30 anos:</th>    <th>Assassinado(a) com idade entre 31 e 65 anos:</th>    <th>Assassinado(a) com idade acima de 65 anos:</th>  </tr>  <tr>	<th>"+result.rAssassinatos[0].ano+"</th>  	<th>"+result.rAssassinatos[0].totalAssassinatos+"</th>  	<th>"+result.rAssassinatos[0].quatidadeMulher+"</th>  	<th>"+result.rAssassinatos[0].quantidadeHomem+"</th>  	<th>"+result.rAssassinatos[0].quantidadeHomicidio+"</th>  	<th>"+result.rAssassinatos[0].quantidadeLatrocinio+"</th>  	<th>"+result.rAssassinatos[0].quantidadeLesadoMorte+"</th>  	<th>"+result.rAssassinatos[0].quantidadeArmabranca+"</th>  	<th>"+result.rAssassinatos[0].quantidadeArmafogo+"</th>  	<th>"+result.rAssassinatos[0].idadeAte12+"</th>  	<th>"+result.rAssassinatos[0].idade13a17+"</th>  	<th>"+result.rAssassinatos[0].idade18a30+"</th>  	<th>"+result.rAssassinatos[0].idade31a65+"</th>  	<th>"+result.rAssassinatos[0].idadeAcima65+"</th>  </tr>  <tr>  	<th>"+result.rAssassinatos[0].ano+"</th>  	<th>"+result.rAssassinatos[0].totalAssassinatos+"</th>  	<th>"+result.rAssassinatos[0].quatidadeMulher+"</th>  	<th>"+result.rAssassinatos[0].quantidadeHomem+"</th>  	<th>"+result.rAssassinatos[0].quantidadeHomicidio+"</th>  	<th>"+result.rAssassinatos[0].quantidadeLatrocinio+"</th>  	<th>"+result.rAssassinatos[0].quantidadeLesadoMorte+"</th>  	<th>"+result.rAssassinatos[0].quantidadeArmabranca+"</th>  	<th>"+result.rAssassinatos[0].quantidadeArmafogo+"</th>  	<th>"+result.rAssassinatos[0].idadeAte12+"</th>  	<th>"+result.rAssassinatos[0].idade13a17+"</th>  	<th>"+result.rAssassinatos[0].idade18a30+"</th>  	<th>"+result.rAssassinatos[0].idade31a65+"</th>  	<th>"+result.rAssassinatos[0].idadeAcima65+"</th>  </tr>  <tr>	<th>"+result.rAssassinatos[0].ano+"</th>	<th>"+result.rAssassinatos[0].totalAssassinatos+"</th>	<th>"+result.rAssassinatos[0].quatidadeMulher+"</th>	<th>"+result.rAssassinatos[0].quantidadeHomem+"</th>	<th>"+result.rAssassinatos[0].quantidadeHomicidio+"</th>	<th>"+result.rAssassinatos[0].quantidadeLatrocinio+"</th>	<th>"+result.rAssassinatos[0].quantidadeLesadoMorte+"</th>	<th>"+result.rAssassinatos[0].quantidadeArmabranca+"</th>	<th>"+result.rAssassinatos[0].quantidadeArmafogo+"</th>	<th>"+result.rAssassinatos[0].idadeAte12+"</th>	<th>"+result.rAssassinatos[0].idade13a17+"</th>	<th>"+result.rAssassinatos[0].idade18a30+"</th>	<th>"+result.rAssassinatos[0].idade31a65+"</th>	<th>"+result.rAssassinatos[0].idadeAcima65+"</th>  </tr></table>	<table>	<tr>		  <th>Origem: "+result.rAssaltos[0].municipio+"</th>		  <th>Data do ocorrente: 2015</th><br>		</tr>	      	<tr>	  <th>Ano</th>	  <th>Total de assaltos: </th>	  <th>Roubo transuente: </th>	  <th>Roubo de veículo: </th>	  <th>Roubo por extorsão: </th>	  <th>Roubo a instituição financeira:</th>	  <th>Roubo a carga:</th>	  <th>Roubo a motocicletas:</th>	  <th>Roubo a ônibus:</th>	  <th>Roubo a residências:</th>	  <th>Roubo a estabelecimentos:</th>	</tr>    	<tr>  	  <th>"+result.rAssaltos[0].ano+"</th>	  <th>"+result.rAssaltos[0].totalAssaltos+"</th>	  <th>"+result.rAssaltos[0].rouboTranseunte+"</th>	  <th>"+result.rAssaltos[0].rouboVeiculo+"</th>	  <th>"+result.rAssaltos[0].rouboExtorsao+"</th>	  <th>"+result.rAssaltos[0].rouboInstFinanc+"</th>	  <th>"+result.rAssaltos[0].rouboCarga+"</th>	  <th>"+result.rAssaltos[0].rouboMotoneta+"</th>	  <th>"+result.rAssaltos[0].rouboOnibus+"</th>	  <th>"+result.rAssaltos[0].rouboResidencias+"</th>	  <th>"+result.rAssaltos[0].rouboEstabelecimento+"</th>  	</tr>  	<tr>  		<th>"+result.rAssaltos[1].totalAssaltos+"</th>		<th>"+result.rAssaltos[1].rouboTranseunte+"</th>		<th>"+result.rAssaltos[1].rouboVeiculo+"</th>		<th>"+result.rAssaltos[1].rouboExtorsao+"</th>		<th>"+result.rAssaltos[1].rouboInstFinanc+"</th>		<th>"+result.rAssaltos[1].rouboCarga+"</th>		<th>"+result.rAssaltos[1].rouboMotoneta+"</th>		<th>"+result.rAssaltos[1].rouboOnibus+"</th>		<th>"+result.rAssaltos[1].rouboResidencias+"</th>		<th>"+result.rAssaltos[1].rouboEstabelecimento+"</th>  	</tr>  	<tr>  		<th>"+result.rAssaltos[2].totalAssaltos+"</th>		<th>"+result.rAssaltos[2].rouboTranseunte+"</th>		<th>"+result.rAssaltos[2].rouboVeiculo+"</th>		<th>"+result.rAssaltos[2].rouboExtorsao+"</th>		<th>"+result.rAssaltos[2].rouboInstFinanc+"</th>		<th>"+result.rAssaltos[2].rouboCarga+"</th>		<th>"+result.rAssaltos[2].rouboMotoneta+"</th>		<th>"+result.rAssaltos[2].rouboOnibus+"</th>		<th>"+result.rAssaltos[2].rouboResidencias+"</th>		<th>"+result.rAssaltos[2].rouboEstabelecimento+"</th>  	</tr>  </table></table></div></body></html>';
-					    		button.setAttribute("onclick", gerarRelatorio(source));
+					    		button.setAttribute("onclick", gerarRelatorio);
 					    		
 					    			window.myBar = new Chart(ctx, {
 					    				type: 'bar',
@@ -1015,33 +1013,63 @@ function selectRM(controlDiv, map) {
     	selected = select.options[select.selectedIndex].value;
     }
     
-    function gerarRelatorio(source) {
-var pdf = new jsPDF('p', 'pt', 'letter');
+    function gerarRelatorio(result) {
+    	var columnsAssaltos = [
+            {title :  "Ano" , dataKey :  "ano" },
+            {title :  "R_Carga" , dataKey :  "roubo_carga" },
+            {title :  "R_Lojas" , dataKey :  "roubo_estabelecimento" },
+            {title :  "R_Bancos" , dataKey :  "roubo_instituição_financeira" },
+            {title :  "R_moto" , dataKey :  "roubo_moto" },
+            {title :  "Extorsão" , dataKey :  "roubo_extorsão" }
+            
+        ]
 
-specialElementHandlers = {
-	'#bypassme': function(element, renderer){
-		return true ;
-	}
-}
-margins = {
-    top: 50,
-    left: 60,
-    width: 545
-  };
-pdf.fromHTML(
-  	source // HTML string or DOM elem ref.
-  	, margins.left // x coord
-  	, margins.top // y coord
-  	, {
-  		'width': margins.width // max width of content on PDF
-  		, 'elementHandlers': specialElementHandlers
-  	},
-  	function (dispose) {
-  	  // dispose: object with X, Y of the last line add to the PDF
-  	  //          this allow the insertion of new lines after html
-        pdf.save('Relatorio De Municipios.pdf');
-      }
-  )		
+        var rowsAssaltos = [
+
+            {"ano" :result.mAssaltos[0].ano , "roubo_carga" : result.mAssaltos[0].rouboCarga  ,  "roubo_estabelecimento" : result.mAssaltos[0].rouboEstabelecimento ,"roubo_instituição_financeira" : result.mAssaltos[0].rouboInstFinanc , "roubo_moto" : result.mAssaltos[0].rouboMotoneta, "roubo_extorsão" : result.mAssaltos[0].rouboExtorsao },
+            {"ano" :result.mAssaltos[1].ano ,"roubo_carga" : result.mAssaltos[1].rouboCarga  ,  "roubo_estabelecimento" : result.mAssaltos[1].rouboEstabelecimento ,"roubo_instituição_financeira" : result.mAssaltos[1].rouboInstFinanc , "roubo_moto" : result.mAssaltos[1].rouboMotoneta, "roubo_extorsão" : result.mAssaltos[1].rouboExtorsao },
+            {"ano" :result.mAssaltos[2].ano , "roubo_carga" : result.mAssaltos[2].rouboCarga  ,  "roubo_estabelecimento" : result.mAssaltos[2].rouboEstabelecimento ,"roubo_instituição_financeira" : result.mAssaltos[2].rouboInstFinanc , "roubo_moto" : result.mAssaltos[2].rouboMotoneta, "roubo_extorsão" : result.mAssaltos[2].rouboExtorsao }
+
+        ]
+
+    	var columnsAssassinatos = [
+            {title :  "Ano" , dataKey :  "ano" },
+            {title :  "R_Carga" , dataKey :  "roubo_carga" },
+            {title :  "R_Lojas" , dataKey :  "roubo_estabelecimento" },
+            {title :  "R_Bancos" , dataKey :  "roubo_instituição_financeira" },
+            {title :  "R_moto" , dataKey :  "roubo_moto" },
+            {title :  "Extorsão" , dataKey :  "roubo_extorsão" }
+            
+        ]
+
+        var rowsAssassinatos = [
+
+            {"ano" :result.mAssaltos[0].ano , "roubo_carga" : result.mAssaltos[0].rouboCarga  ,  "roubo_estabelecimento" : result.mAssaltos[0].rouboEstabelecimento ,"roubo_instituição_financeira" : result.mAssaltos[0].rouboInstFinanc , "roubo_moto" : result.mAssaltos[0].rouboMotoneta, "roubo_extorsão" : result.mAssaltos[0].rouboExtorsao },
+            {"ano" :result.mAssaltos[1].ano ,"roubo_carga" : result.mAssaltos[1].rouboCarga  ,  "roubo_estabelecimento" : result.mAssaltos[1].rouboEstabelecimento ,"roubo_instituição_financeira" : result.mAssaltos[1].rouboInstFinanc , "roubo_moto" : result.mAssaltos[1].rouboMotoneta, "roubo_extorsão" : result.mAssaltos[1].rouboExtorsao },
+            {"ano" :result.mAssaltos[2].ano , "roubo_carga" : result.mAssaltos[2].rouboCarga  ,  "roubo_estabelecimento" : result.mAssaltos[2].rouboEstabelecimento ,"roubo_instituição_financeira" : result.mAssaltos[2].rouboInstFinanc , "roubo_moto" : result.mAssaltos[2].rouboMotoneta, "roubo_extorsão" : result.mAssaltos[2].rouboExtorsao }
+
+        ]
+
+        // Only pt supported (not mm or in)
+        var doc = new jsPDF('p', 'pt');
+    	var startingPage = doc.internal.getCurrentPageInfo().pageNumber;
+        doc.autoTable(columnsAssassinatos, rowsAssassinatos,{
+            styles: {fillColor: [100, 255, 255]},
+            margin: {top: 60},
+            avoidPageSplit: true,
+            addPageContent: function(data) {
+            	doc.text("Dangerous Place \n Município: "+result.mAssaltos[0].municipio, 40, 30);
+            }
+        });
+        doc.setPage(startingPage);
+        doc.autoTable(columnsAssassinatos, rowsAssassinatos,{
+            styles: {fillColor: [100, 255, 255]},
+            margin: {top: 210},
+            addPageContent: function(data) {
+            	doc.text("\n\n\n\n\n\nAssasinatos", 20, 20);
+            }        
+        });
+        doc.save('table.pdf');   
 }
 
     var regioes = [

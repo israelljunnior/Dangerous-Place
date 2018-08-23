@@ -16,7 +16,9 @@ prefix="fmt" %>
 
 <!-- /google -->
 <!-- jspdf  -->
-<script src="<%=request.getContextPath()%>/resources/jspdf.js"></script>
+<script src="<%=request.getContextPath()%>/resources/jspdf.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/jspdf.debug.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.3.4/jspdf.plugin.autotable.js"></script>
 <!-- /jspdf -->
 
 <script
