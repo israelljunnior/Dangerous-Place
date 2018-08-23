@@ -13,7 +13,7 @@
 
 <style type="text/css">
 #titulo_forum {
-	color: black;
+	color: white;
 	font-size: 3.5em;
 	font-family: 'Montserrat', sans-serif;
 }
@@ -23,7 +23,6 @@
 	text-indent: 0.4em;
 	text-align: justify;
 	word-wrap: break-word;
-	
 }
 
 #mostrar_comentario {
@@ -33,6 +32,12 @@
 .tam {
 	height: 25em;
 }
+
+
+
+
+}
+
 </style>
 </head>
 
@@ -56,26 +61,42 @@
 	<button onClick="fonte('a');">+</button>
 	<button onClick="fonte('d');">-</button>
 
+<div  class="container" style=" width:82%; background-color:black;">
 	<center>
-		<h2 id="titulo_forum">Fórum</h2> 
+		<h2 id="titulo_forum">Fórum</h2>
 	</center>
+</div>
+<br>
+<table id="tablefilter" border="0" align="center" ">
+				<tr>
+					<!-- filtro -->
+					<form action="filtro">
+
+						<td><input type="text" id="filtro" class="form-control"
+							name="filtro" style="width: 500px; height: 40px;" maxlength="100" placeholder="Pesquisar..." /></td>
+
+						<td><button style="height: 40px;" type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></button></td>
+
+					</form>
+					<!-- /filtro -->
+<td>&nbsp;</td>
+					<td align="rigth">
+						<button type="button" class="btn btn-primary" data-toggle="modal"
+							data-target="#modalPublicar"
+							style="height: 40px;; width:100%; background-color: #555555; color: white">Publicar</button>
+					</td>
+				</tr>
+				
+				
+				
+			</table>
+			<br> <br>
+
 
 	<div class="row" style="font-family: 'Montserrat', sans-serif">
 		<div class="col-sm-1"></div>
 		<div class="col-sm-10">
-			<table>
-				<tr>
-					<td colspan="5" style="width: 100%;"><input
-						class="form-control" id="myInput" type="text"
-						style="width: 300px;" placeholder="Search.." /></td>
-					<td>
-						<button type="button" class="btn btn-primary" data-toggle="modal"
-							data-target="#modalPublicar"
-							style="align: rigth; background-color: #555555; color: white">Publicar</button>
-					</td>
-				</tr>
-			</table>
-			<br> <br>
+			
 			<div class="row" id="container">
 
 				<c:forEach var="publicacao" items="${listaPublicacao}">
@@ -89,18 +110,19 @@
 									<c:choose>
 										<c:when test="${publicacao.usuario.id == usuarioLogado.id}">
 											<button type="button" class="btn btn-primary"
-										data-toggle="modal"
-										data-target="#modalPublicarEdit${publicacao.id}">Editar</button>
-									<button type="button" class="btn btn-danger"
-										data-toggle="modal" data-target="#modalExcluir">Excluir</button>
-											
+												data-toggle="modal"
+												data-target="#modalPublicarEdit${publicacao.id}">Editar</button>
+											<button type="button" class="btn btn-danger"
+												data-toggle="modal" data-target="#modalExcluir">Excluir</button>
+
 										</c:when>
 										<c:otherwise>
-											<c:if test="${usuarioLogado.nivel_acesso == 'admSup'|| 'adm' }">
-												
+											<c:if
+												test="${usuarioLogado.nivel_acesso == 'admSup'|| 'adm' }">
+
 												<button type="button" class="btn btn-danger"
-										data-toggle="modal" data-target="#modalExcluir">Excluir</button>
-																	
+													data-toggle="modal" data-target="#modalExcluir">Excluir</button>
+
 											</c:if>
 
 										</c:otherwise>
@@ -122,8 +144,8 @@
 								<br>
 								<br>
 								</header>
-								
-								<div class="w3-container" style="height:12em;">
+
+								<div class="w3-container" style="height: 12em;">
 									<td><br>
 										<p id="conteudo_publicacao">${publicacao.conteudo}</p> <br></td>
 								</div>
@@ -131,12 +153,11 @@
 								<div class="w3-container" style="height: 5em;">
 
 
-								<td><button type="button" class="btn btn-primary"
-										data-toggle="modal"
-										data-target="#modalComentario${publicacao.id}"
-										style="background-color: #555555; color: white">Comentários</button></td>
-								<br>
-								<br>
+									<td><button type="button" class="btn btn-primary"
+											data-toggle="modal"
+											data-target="#modalComentario${publicacao.id}"
+											style="background-color: #555555; color: white">Ver Comentários</button></td>
+									<br> <br>
 
 								</div>
 							</div>
@@ -327,11 +348,11 @@
 
 						</div>
 					</div>
-				
-				
 
-				
-				
+
+
+
+
 				</c:forEach>
 			</div>
 		</div>

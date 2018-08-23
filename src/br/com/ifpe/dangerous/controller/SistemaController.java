@@ -213,7 +213,7 @@ public class SistemaController {
 	}
 
 	@RequestMapping("comentar")
-	public String saveComent(Comentario comentario,@RequestParam("conteudoComent") String conteudo,
+	public String saveComent(Comentario comentario, @RequestParam("conteudoComent") String conteudo,
 			@RequestParam("idUsuComent") String id, @RequestParam("idPubComent") String publicacao) {
 
 		System.out.print("id user" + id);
@@ -229,29 +229,28 @@ public class SistemaController {
 		ComentarioDao dao = new ComentarioDao();
 		dao.salvar(comentario);
 
-		
 		return "usuario/PublicarSucesso";
 	}
-	
+
 	@RequestMapping(value = "/google", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody String googleLogin(@RequestParam("googleNome") String googleNome, @RequestParam("googleId") Integer googleId, HttpSession session) {
-		
+	public @ResponseBody String googleLogin(@RequestParam("googleNome") String googleNome,
+			@RequestParam("googleId") Integer googleId, HttpSession session) {
+
 		System.out.println(googleNome);
 		Usuario usuario = new Usuario();
 		usuario.setId(googleId);
 		usuario.setNome(googleNome);
-		
+
 		session.setAttribute("usuarioLogado", usuario);
-		
+
 		return "home";
 	}
 
-	
-	
 	@RequestMapping("publicarEdit")
-	public String publicarEdit(Publicacao publicacao, @RequestParam("TemaEdit") String tema,@RequestParam("tituloEdit") String titulo,
-			 @RequestParam("textAreaPublicarEdit") String conteudo, @RequestParam("usuarioPubEdit") String id ) {
-		
+	public String publicarEdit(Publicacao publicacao, @RequestParam("TemaEdit") String tema,
+			@RequestParam("tituloEdit") String titulo, @RequestParam("textAreaPublicarEdit") String conteudo,
+			@RequestParam("usuarioPubEdit") String id) {
+
 		PublicacaoDao dao = new PublicacaoDao();
 		UsuarioConverter convert = new UsuarioConverter();
 		publicacao.setUsuario(convert.convert(id));
@@ -261,6 +260,14 @@ public class SistemaController {
 		dao.alterar(publicacao);
 
 		return "usuario/PublicarSucesso";
+	}
+
+	@RequestMapping("filtro")
+	public String filtrar(Publicacao publicacao, Model model) {
+		PublicacaoDao dao = new PublicacaoDao();
+		List<Publicacao> listaPublicacao = dao.listar(publicacao);
+		model.addAttribute("listaPublicacao", listaPublicacao);
+		return "usuario/forum";
 	}
 
 }
