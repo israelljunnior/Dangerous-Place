@@ -107,3 +107,24 @@ create table dados_municipio_assalt(
 	roubo_residencias int not null
 );
 
+create table comentario_municipio(
+    id_comentario_municipio int AUTO_INCREMENT PRIMARY KEY,
+    conteudo varchar(300) not null,
+    data_hora timestamp not null,
+    id_usuario int not null,
+    id_municipio int not null,
+    FOREIGN KEY (id_usuario) references usuario (id_usuario),
+    FOREIGN KEY (id_municipio) references dados_municipio_assalt (id_dados_mun_assalt)
+    );
+    
+create table comentario_regiao(
+    id_comentario_regiao int AUTO_INCREMENT PRIMARY KEY, 
+    conteudo varchar(300) not null,
+    data_hora timestamp not null,
+    id_usuario int not null,
+    id_regiao int not null,
+    FOREIGN KEY (id_usuario) references usuario (id_usuario),
+    FOREIGN KEY (id_regiao) references dados_regiao_assalt (id_dados_regiao_assalt)
+    );
+    
+    
