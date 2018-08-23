@@ -444,7 +444,7 @@ function initMap() {
 					    					}
 					    				}
 					    			}); infoWindowMaker.setContent(document.getElementById(id.length));
-					    				infoWindowMaker.open(map, marker);
+					    				infoWindowMaker.open(map, maker);
                                         
 					    
                                        
@@ -466,7 +466,7 @@ function initMap() {
 		maker.addListener('dragend', function() {
 
 			geocoder.geocode({
-				'latLng' : marker.getPosition()
+				'latLng' : maker.getPosition()
 			}, function(results, status) {
 				if (status == google.maps.GeocoderStatus.OK) {
 					if (results[0]) {
@@ -974,7 +974,7 @@ function CleanControl(controlDiv, map) {
     // Setup the click event listeners: simply set the map to Chicago.
     controlUI.addEventListener('click', function() {
     	
-    	markers.forEach(m => {
+    	makers.forEach(m => {
     		m.setMap(null)
     	});
     	
@@ -1018,7 +1018,7 @@ function selectRM(controlDiv, map) {
             {title :  "Ano" , dataKey :  "ano" },
             {title :  "R_Carga" , dataKey :  "roubo_carga" },
             {title :  "R_Lojas" , dataKey :  "roubo_estabelecimento" },
-            {title :  "R_Bancos" , dataKey :  "roubo_instituição_financeira" },
+            {title :  "R_Bancos\n" , dataKey :  "roubo_instituição_financeira" },
             {title :  "R_moto" , dataKey :  "roubo_moto" },
             {title :  "Extorsão" , dataKey :  "roubo_extorsão" }
             
@@ -1030,30 +1030,32 @@ function selectRM(controlDiv, map) {
             {"ano" :result.mAssaltos[1].ano ,"roubo_carga" : result.mAssaltos[1].rouboCarga  ,  "roubo_estabelecimento" : result.mAssaltos[1].rouboEstabelecimento ,"roubo_instituição_financeira" : result.mAssaltos[1].rouboInstFinanc , "roubo_moto" : result.mAssaltos[1].rouboMotoneta, "roubo_extorsão" : result.mAssaltos[1].rouboExtorsao },
             {"ano" :result.mAssaltos[2].ano , "roubo_carga" : result.mAssaltos[2].rouboCarga  ,  "roubo_estabelecimento" : result.mAssaltos[2].rouboEstabelecimento ,"roubo_instituição_financeira" : result.mAssaltos[2].rouboInstFinanc , "roubo_moto" : result.mAssaltos[2].rouboMotoneta, "roubo_extorsão" : result.mAssaltos[2].rouboExtorsao }
 
-        ]
+        ];
 
     	var columnsAssassinatos = [
             {title :  "Ano" , dataKey :  "ano" },
-            {title :  "R_Carga" , dataKey :  "roubo_carga" },
-            {title :  "R_Lojas" , dataKey :  "roubo_estabelecimento" },
-            {title :  "R_Bancos" , dataKey :  "roubo_instituição_financeira" },
-            {title :  "R_moto" , dataKey :  "roubo_moto" },
-            {title :  "Extorsão" , dataKey :  "roubo_extorsão" }
+            {title :  "Qtd_Homicidio" , dataKey :  "qtd_homicidio" },
+            {title :  "Qtd_Latrocinio" , dataKey :  "qtd_latrocinio" },
+            {title :  "Qtd_Arma branca" , dataKey :  "qtd_arma_branca" },
+            {title :  "Qtd_Arma de fogo"  , dataKey :  "qtd_arma_fogo" },
+            {title :  "Total assassinatos"  , dataKey :  "total_assassi" }
+            
+            
             
         ]
 
         var rowsAssassinatos = [
 
-            {"ano" :result.mAssaltos[0].ano , "roubo_carga" : result.mAssaltos[0].rouboCarga  ,  "roubo_estabelecimento" : result.mAssaltos[0].rouboEstabelecimento ,"roubo_instituição_financeira" : result.mAssaltos[0].rouboInstFinanc , "roubo_moto" : result.mAssaltos[0].rouboMotoneta, "roubo_extorsão" : result.mAssaltos[0].rouboExtorsao },
-            {"ano" :result.mAssaltos[1].ano ,"roubo_carga" : result.mAssaltos[1].rouboCarga  ,  "roubo_estabelecimento" : result.mAssaltos[1].rouboEstabelecimento ,"roubo_instituição_financeira" : result.mAssaltos[1].rouboInstFinanc , "roubo_moto" : result.mAssaltos[1].rouboMotoneta, "roubo_extorsão" : result.mAssaltos[1].rouboExtorsao },
-            {"ano" :result.mAssaltos[2].ano , "roubo_carga" : result.mAssaltos[2].rouboCarga  ,  "roubo_estabelecimento" : result.mAssaltos[2].rouboEstabelecimento ,"roubo_instituição_financeira" : result.mAssaltos[2].rouboInstFinanc , "roubo_moto" : result.mAssaltos[2].rouboMotoneta, "roubo_extorsão" : result.mAssaltos[2].rouboExtorsao }
+            {"ano" :result.mAssassinatos[0].ano , "qtd_homicidio" : result.mAssassinatos[0].quantidadeHomicidio  ,  "qtd_latrocinio" : result.mAssassinatos[0].quantidadeLatrocinio ,"qtd_arma_branca" : result.mAssassinatos[0].quantidadeArmabranca , "qtd_arma_fogo" : result.mAssassinatos[0].quantidadeArmafogo, "total_assassi" : result.mAssassinatos[0].totalAssassinatos },
+            {"ano" :result.mAssassinatos[1].ano ,"qtd_homicidio" : result.mAssassinatos[1].quantidadeHomicidio  ,  "qtd_latrocinio" : result.mAssassinatos[1].quantidadeLatrocinio ,"qtd_arma_branca" : result.mAssassinatos[1].quantidadeArmabranca, "qtd_arma_fogo" : result.mAssassinatos[1].quantidadeArmafogo, "total_assassi" : result.mAssassinatos[1].totalAssassinatos },
+            {"ano" :result.mAssassinatos[2].ano , "qtd_homicidio" : result.mAssassinatos[2].quantidadeHomicidio  ,  "qtd_latrocinio" : result.mAssassinatos[2].quantidadeLatrocinio ,"qtd_arma_branca" : result.mAssassinatos[2].quantidadeArmabranca, "qtd_arma_fogo" : result.mAssassinatos[2].quantidadeArmafogo, "total_assassi" : result.mAssassinatos[2].totalAssassinatos }
 
-        ]
+        ];
 
         // Only pt supported (not mm or in)
         var doc = new jsPDF('p', 'pt');
     	var startingPage = doc.internal.getCurrentPageInfo().pageNumber;
-        doc.autoTable(columnsAssassinatos, rowsAssassinatos,{
+        doc.autoTable(columnsAssaltos, rowsAssaltos,{
             styles: {fillColor: [100, 255, 255]},
             margin: {top: 60},
             avoidPageSplit: true,
@@ -1061,9 +1063,8 @@ function selectRM(controlDiv, map) {
             	doc.text("Dangerous Place \n Município: "+result.mAssaltos[0].municipio, 40, 30);
             }
         });
-        doc.setPage(startingPage);
         doc.autoTable(columnsAssassinatos, rowsAssassinatos,{
-            styles: {fillColor: [100, 255, 255]},
+            styles: {fillColor: [100, 255, 255], overflow: 'linebreak'},
             margin: {top: 210},
             addPageContent: function(data) {
             	doc.text("\n\n\n\n\n\nAssasinatos", 20, 20);
