@@ -218,6 +218,7 @@ create table dados_municipio_assalt(
 create table dados_municipio_viol_sex(
 
 
+
 	id_dados_municipio_viol_sex int AUTO_INCREMENT PRIMARY KEY,
 
 
