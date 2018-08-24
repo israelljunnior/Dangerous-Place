@@ -48,7 +48,7 @@
 	<script type="text/javascript"> 
 	var tam = 15;
  function fonte(e){
-    var elemento = $("#container");
+    var elemento = $("#todoBody");
     var fonte = elemento.css('font-size');
     if (e == 'a') {
         elemento.css("fontSize", parseInt(fonte) + 1);
@@ -58,16 +58,25 @@
 }
 </script>
 
-	<button onClick="fonte('a');">+</button>
-	<button onClick="fonte('d');">-</button>
 
-<div  class="container" style=" width:82%; background-color:black;">
-	<center>
-		<h2 id="titulo_forum">Fórum</h2>
-	</center>
+
+<div id="espacamento" style="padding:10px; align:center">
+	<div class="col-sm-1">
+		<button type="button" class="btn" title="Aumentar zoom" onClick="fonte('a');">A +</button>
+		
+		<button type="button" class="btn" title="Diminuir zoom" onClick="fonte('d');">a -</button>
+	</div>	
+
+<div class="col-sm-10" id="todoBody">	
+
+<div  class="container" style="width:82%; background-color:black;">
+		<center>
+			<h2 id="titulo_forum">Fórum</h2>
+		</center>
+	
 </div>
 <br>
-<table id="tablefilter" border="0" align="center" ">
+<table id="tablefilter" border="0" align="center">
 				<tr>
 					<!-- filtro -->
 					<form action="filtro" method="post">
@@ -164,6 +173,8 @@
 							<br> <br>
 						</div>
 					</div>
+
+					<div class="col-sm-1"></div>
 
 					<!--  Modal Editar -->
 					<div class="modal fade" id="modalPublicarEdit${publicacao.id}"
@@ -294,7 +305,7 @@
 																		onclick="apagarComentario(${comentario.id})">Apagar</button></td>
 															</c:if>
 
-														</c:otherwise>
+													</div>	</c:otherwise>
 
 													</c:choose>
 												</tr>
@@ -358,6 +369,7 @@
 		</div>
 	</div>
 	</div>
+	</div>
 
 	<!-- Modal para perfil no fórum -->
 	<div class="modal fade" id="modal" tabindex="-1" role="dialog"
@@ -375,7 +387,7 @@
 				</div>
 				<div class="modal-body">
 					<ul type="none">
-						<br>
+						<br/>
 						<li><label>Nome:&nbsp;&nbsp;</label> Diego</li>
 						<br>
 
@@ -395,9 +407,9 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-sm-1"></div>
 
 	</div>
+</div>
 </body>
 </html>
 
