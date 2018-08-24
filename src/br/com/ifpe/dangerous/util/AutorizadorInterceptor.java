@@ -24,7 +24,9 @@ public class AutorizadorInterceptor extends HandlerInterceptorAdapter {
 		|| uri.endsWith("dadosMunicipio")
 		|| uri.endsWith("dadosRegiao")
 		|| uri.endsWith("home")
-		|| uri.endsWith("efetuarLogin")) {	
+		|| uri.endsWith("efetuarLogin")
+		|| uri.endsWith("jpg")
+		|| uri.endsWith("png")) {	
 	    return true;
 	}
 

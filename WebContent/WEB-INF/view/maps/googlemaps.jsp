@@ -173,7 +173,7 @@ var style = [
 var map;
 var geocoder;
 var infoWindows = [];
-var makers = [];
+var markers = [];
 var buttons = [];
 var selected = "m";
 var municipio;
@@ -217,26 +217,34 @@ function initMap() {
 		
 		
 		
-		var maker;
-		infoWindowMaker = new google.maps.InfoWindow();
+		var marker;
+		infoWindowmarker = new google.maps.InfoWindow();
 		
-		maker = new google.maps.Marker({
+		var icon = {
+			    url: "<%=request.getContextPath()%>/resources/assets/marker.png",
+			    scaledSize: new google.maps.Size(50, 50), // scaled size
+			    origin: new google.maps.Point(0,0), // origin
+			    anchor: new google.maps.Point(0, 0) // anchor
+			};
+		
+		marker = new google.maps.Marker({
 			map : map,
 			draggable : true,
-			position : (event.latLng)
-		})
-
-		maker.addListener('click', function() {
-			infoWindowMaker.open(map, this);
+			position : (event.latLng),
+			icon: icon
 		});
 
-		maker.addListener('dblclick', function() {
-			maker.setMap(null)
-			maker = null
+		marker.addListener('click', function() {
+			infoWindowmarker.open(map, this);
+		});
+
+		marker.addListener('dblclick', function() {
+			marker.setMap(null)
+			marker = null
 		});
 
 		geocoder.geocode({
-			'latLng' : maker.getPosition()
+			'latLng' : marker.getPosition()
 		}, function(results, status) {
 			if (status == google.maps.GeocoderStatus.OK){
 				if (results[0]) {
@@ -340,7 +348,7 @@ function initMap() {
 					    		var buttonText = document.createTextNode("gerar Relarótio");
 					    		button.setAttribute("class", "btn btn-danger pull-right");
 					    		button.appendChild(buttonText);
-					    		button.setAttribute("onclick", gerarRelatorio(result));
+					    		//button.setAttribute("onclick", gerarRelatorio(result));
 					    		divWithin.appendChild(button);
 					    			window.myBar = new Chart(ctx, {
 					    				type: 'bar',
@@ -361,8 +369,8 @@ function initMap() {
 					    			
 					    				
 					    				
-					    				infoWindowMaker.setContent(divWithin);
-					    				infoWindowMaker.open(map, maker);
+					    				infoWindowmarker.setContent(divWithin);
+					    				infoWindowmarker.open(map, marker);
 
 
                                         
@@ -443,8 +451,8 @@ function initMap() {
 					    						fontSize: 17
 					    					}
 					    				}
-					    			}); infoWindowMaker.setContent(document.getElementById(id.length));
-					    				infoWindowMaker.open(map, maker);
+					    			}); infoWindowmarker.setContent(document.getElementById(id.length));
+					    				infoWindowmarker.open(map, marker);
                                         
 					    
                                        
@@ -455,18 +463,18 @@ function initMap() {
 						}
 						
 					} else {
-						infoWindowMaker.setContent("Dados não disponíveis em: "+results[0].address_components[indexState].short_name
+						infoWindowmarker.setContent("Dados não disponíveis em: "+results[0].address_components[indexState].short_name
 								+"<br />"+results[0].formatted_address);
-						infoWindowMaker.open(map, maker);
+						infoWindowmarker.open(map, marker);
 					}
 				}
 			}	
 		})
 
-		maker.addListener('dragend', function() {
+		marker.addListener('dragend', function() {
 
 			geocoder.geocode({
-				'latLng' : maker.getPosition()
+				'latLng' : marker.getPosition()
 			}, function(results, status) {
 				if (status == google.maps.GeocoderStatus.OK) {
 					if (results[0]) {
@@ -586,8 +594,8 @@ if(selected == "m") {
 					    					}
 					    				}
 					    			}); ctx.appendChild(button);
-					    				infoWindowMaker.setContent(document.getElementById(id.length));
-					    				infoWindowMaker.open(map, marker);
+					    				infoWindowmarker.setContent(document.getElementById(id.length));
+					    				infoWindowmarker.open(map, marker);
 
 					    	});
 					    	
@@ -657,21 +665,21 @@ if(selected == "m") {
 					    						fontSize: 17
 					    					}
 					    				}
-					    			}); infoWindowMaker.setContent(document.getElementById(id.length));
-					    				infoWindowMaker.open(map, marker);
+					    			}); infoWindowmarker.setContent(document.getElementById(id.length));
+					    				infoWindowmarker.open(map, marker);
 
 					    	});
 							
 						}
 						} else {
-							infoWindowMaker.setContent("Dados não disponíveis em: "+results[0].address_components[indexState].short_name
+							infoWindowmarker.setContent("Dados não disponíveis em: "+results[0].address_components[indexState].short_name
 									+"<br />"+results[0].formatted_address);
-							infoWindowMaker.open(map, marker);
+							infoWindowmarker.open(map, marker);
 						}
 					}
 				}
 			}); 
-		}); makers.push(maker); infoWindows.push(infoWindowMaker); infoWindowMaker.id = infoWindows.length;
+		}); markers.push(marker); infoWindows.push(infoWindowmarker); infoWindowmarker.id = infoWindows.length;
 
 	});
 
@@ -722,7 +730,21 @@ function LocalitionControl(controlDiv, map) {
 					lat : position.coords.latitude,
 					lng : position.coords.longitude
 				};
-                
+				
+
+				var icon = {
+					    url: "<%=request.getContextPath()%>/resources/assets/marker.png",
+					    scaledSize: new google.maps.Size(50, 50), // scaled size
+					    origin: new google.maps.Point(0,0), // origin
+					    anchor: new google.maps.Point(0, 0) // anchor
+					};
+				
+				marker = new google.maps.Marker({
+					map : map,
+					draggable : true,
+					position : (event.latLng),
+					icon: icon
+				});
                 geocoder.geocode({"latLng":pos}, function(results, status){
                     if(status == google.maps.GeocoderStatus.OK){
                     	if (results[0]) {
@@ -928,7 +950,7 @@ function LocalitionControl(controlDiv, map) {
 
                 });
 				infoWindowLocalizacao.setPosition(pos);
-				infoWindowLocalizacao.open(map);
+				infoWindowLocalizacao.open(map, marker);
 				map.setCenter(pos);
 			}, function() {
 				handleLocationError(true, infoWindowLocalizacao, map
@@ -974,7 +996,7 @@ function CleanControl(controlDiv, map) {
     // Setup the click event listeners: simply set the map to Chicago.
     controlUI.addEventListener('click', function() {
     	
-    	makers.forEach(m => {
+    	markers.forEach(m => {
     		m.setMap(null)
     	});
     	
