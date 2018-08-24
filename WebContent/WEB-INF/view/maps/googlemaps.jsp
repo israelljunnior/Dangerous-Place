@@ -1146,6 +1146,7 @@ function CleanControl(controlDiv, map) {
     controlUI.addEventListener('click', function() {
     	
     	markers.forEach(m => {
+    		m.setMap(null);
     		m = null
     	});
     	
