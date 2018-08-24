@@ -26,7 +26,9 @@ SET time_zone = "+00:00";
 
 --
 -- Estrutura da tabela `comentario`
---
+create database dangerousplace1;
+use dangerousplace1;
+
 
 CREATE TABLE `comentario` (
   `id_comentario` int(11) NOT NULL,
