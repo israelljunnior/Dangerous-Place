@@ -203,7 +203,7 @@ function initMap() {
     
     var selectDiv = document.createElement('div');
     var selectDivControl = new selectRM(selectDiv, map);
-	
+
     selectDivControl.index = 4;
     map.controls[google.maps.ControlPosition.TOP_CENTER].push(selectDiv);
 
@@ -215,36 +215,33 @@ function initMap() {
 
 	google.maps.event.addListener(map, 'click', function(event) {
 		
-		
-		
-		var marker;
-		infoWindowmarker = new google.maps.InfoWindow();
-		
 		var icon = {
 			    url: "<%=request.getContextPath()%>/resources/assets/marker.png",
 			    scaledSize: new google.maps.Size(50, 50), // scaled size
 			    origin: new google.maps.Point(0,0), // origin
 			    anchor: new google.maps.Point(0, 0) // anchor
 			};
-		
-		marker = new google.maps.Marker({
+		positionMarker = markers.length;
+		markers.push(marker = new google.maps.Marker({
 			map : map,
 			draggable : true,
 			position : (event.latLng),
 			icon: icon
+		}));
+
+        markers[positionMarker]['infoWindow'] = new google.maps.InfoWindow({ maxWidth: 600 });
+
+		markers[positionMarker].addListener('click', function() {
+			this['infoWindow'].open(map, this);
 		});
 
-		marker.addListener('click', function() {
-			infoWindowmarker.open(map, this);
-		});
-
-		marker.addListener('dblclick', function() {
-			marker.setMap(null)
-			marker = null
+		markers[positionMarker].addListener('dblclick', function() {
+			this.setMap(null);
+			markers[positionMarker] = null
 		});
 
 		geocoder.geocode({
-			'latLng' : marker.getPosition()
+			'latLng' : markers[positionMarker].getPosition()
 		}, function(results, status) {
 			if (status == google.maps.GeocoderStatus.OK){
 				if (results[0]) {
@@ -334,7 +331,7 @@ function initMap() {
 					    	            ]
 					    			}]
 					    		};
-					    		
+					    		// InfoWindow's Controls 
 					    		var canvas = document.createElement('canvas');
 					    		var div = document.getElementById('containerGraficos');
 					    		var divWithin = document.createElement("div");
@@ -344,12 +341,27 @@ function initMap() {
 					            divWithin.setAttribute("id", id.length.toString()+"div");
 					    		canvas.setAttribute("id", id.length);
 					    		var ctx = document.getElementById(id.length);
-					    		var button = document.createElement("BUTTON");
-					    		var buttonText = document.createTextNode("gerar Relarótio");
-					    		button.setAttribute("class", "btn btn-danger pull-right");
-					    		button.appendChild(buttonText);
-					    		button.setAttribute("onclick", gerarRelatorioMunicipio(result));
-					    		divWithin.appendChild(button);
+					    		
+					    		var buttonGerar = document.createElement("BUTTON");
+					    		var buttonTextGerar = document.createTextNode("gerar Relarótio");
+
+					    		buttonGerar.setAttribute("class", "btn btn-danger pull-right");
+					    		buttonGerar.appendChild(buttonTextGerar);
+                                buttonGerar.click = function (result) { gerarRelatorioMunicipio(result) } ;
+
+					    		var buttonComen = document.createElement("BUTTON");
+					    		var buttonTextComen = document.createTextNode("Comentários");
+					    		
+					    		buttonComen.setAttribute("class", "btn btn-danger pull-right");
+					    		buttonComen.appendChild(buttonTextComen);
+                                
+
+                                divWithin.appendChild(buttonComen);
+					    		divWithin.appendChild(buttonGerar);
+                               
+
+					    		
+
 					    			window.myBar = new Chart(ctx, {
 					    				type: 'bar',
 					    				data: barChartData,
@@ -369,8 +381,8 @@ function initMap() {
 					    			
 					    				
 					    				
-					    				infoWindowmarker.setContent(divWithin);
-					    				infoWindowmarker.open(map, marker);
+                                    markers[positionMarker]['infoWindow'].setContent(divWithin);
+                                    markers[positionMarker]['infoWindow'].open(map, markers[positionMarker]);
 
 
                                         
@@ -431,12 +443,27 @@ function initMap() {
 					            divWithin.setAttribute("id", id.length.toString()+"div");
 					    		canvas.setAttribute("id", id.length);
 					    		var ctx = document.getElementById(id.length);
-					    		var button = document.createElement("BUTTON");
-					    		var buttonText = document.createTextNode("gerar Relarótio");
-					    		button.append
-					    		button.setAttribute("class", "btn btn-danger pull-right");
-					    		button.setAttribute("onclick", gerarRelatorioRegiao(result));
 					    		
+					    		var buttonGerar = document.createElement("BUTTON");
+					    		var buttonTextGerar = document.createTextNode("gerar Relarótio");
+
+					    		buttonGerar.setAttribute("class", "btn btn-danger pull-right");
+					    		buttonGerar.appendChild(buttonTextGerar);
+                                buttonGerar.click = function (result) { gerarRelatorioMunicipio(result) } ;
+
+					    		var buttonComen = document.createElement("BUTTON");
+					    		var buttonTextComen = document.createTextNode("Comentários");
+					    		
+					    		buttonComen.setAttribute("class", "btn btn-danger pull-right");
+					    		buttonComen.appendChild(buttonTextComen);
+                                
+
+                                divWithin.appendChild(buttonComen);
+					    		divWithin.appendChild(buttonGerar);
+                               
+
+					    		
+
 					    			window.myBar = new Chart(ctx, {
 					    				type: 'bar',
 					    				data: barChartData,
@@ -447,12 +474,17 @@ function initMap() {
 					    					},
 					    					title: {
 					    						display: true,
-					    						text: 'Estatisticas de '+result.rAssaltos[0].regiao,
+					    						text: 'Estatisticas de '+result.mAssaltos[0].municipio,
 					    						fontSize: 17
 					    					}
 					    				}
-					    			}); infoWindowmarker.setContent(document.getElementById(id.length));
-					    				infoWindowmarker.open(map, marker);
+					    			
+					    			});
+					    			
+					    				
+					    				
+                                    markers[positionMarker]['infoWindow'].setContent(divWithin);
+                                    markers[positionMarker]['infoWindow'].open(map, markers[positionMarker]);
                                         
 					    
                                        
@@ -463,18 +495,18 @@ function initMap() {
 						}
 						
 					} else {
-						infoWindowmarker.setContent("Dados não disponíveis em: "+results[0].address_components[indexState].short_name
+						markers[positionMarker]['infoWindow'].setContent("Dados não disponíveis em: "+results[0].address_components[indexState].short_name
 								+"<br />"+results[0].formatted_address);
-						infoWindowmarker.open(map, marker);
+						markers[positionMarker]['infoWindow'].open(map, markers[positionMarker]);
 					}
 				}
 			}	
 		})
 
-		marker.addListener('dragend', function() {
+		markers[positionMarker].addListener('dragend', function() {
 
 			geocoder.geocode({
-				'latLng' : marker.getPosition()
+				'latLng' : markers[positionMarker].getPosition()
 			}, function(results, status) {
 				if (status == google.maps.GeocoderStatus.OK) {
 					if (results[0]) {
@@ -571,13 +603,34 @@ if(selected == "m") {
 					    		
 					    		var canvas = document.createElement('canvas');
 					    		var div = document.getElementById('containerGraficos');
-					    		div.appendChild(canvas);
+					    		var divWithin = document.createElement("div");
+					    		div.appendChild(divWithin);
+					    		divWithin.appendChild(canvas);
 					            var id = document.getElementsByTagName("canvas");
+					            divWithin.setAttribute("id", id.length.toString()+"div");
 					    		canvas.setAttribute("id", id.length);
 					    		var ctx = document.getElementById(id.length);
-					    		var button = document.createElement("button");
-					    		button.innerHTML = "gerar Relatório";
 					    		
+					    		var buttonGerar = document.createElement("BUTTON");
+					    		var buttonTextGerar = document.createTextNode("gerar Relarótio");
+
+					    		buttonGerar.setAttribute("class", "btn btn-danger pull-right");
+					    		buttonGerar.appendChild(buttonTextGerar);
+                                buttonGerar.click = function (result) { gerarRelatorioMunicipio(result) } ;
+
+					    		var buttonComen = document.createElement("BUTTON");
+					    		var buttonTextComen = document.createTextNode("Comentários");
+					    		
+					    		buttonComen.setAttribute("class", "btn btn-danger pull-right");
+					    		buttonComen.appendChild(buttonTextComen);
+                                
+
+                                divWithin.appendChild(buttonComen);
+					    		divWithin.appendChild(buttonGerar);
+                               
+
+					    		
+
 					    			window.myBar = new Chart(ctx, {
 					    				type: 'bar',
 					    				data: barChartData,
@@ -592,9 +645,13 @@ if(selected == "m") {
 					    						fontSize: 17
 					    					}
 					    				}
-					    			}); ctx.appendChild(button);
-					    				infoWindowmarker.setContent(document.getElementById(id.length));
-					    				infoWindowmarker.open(map, marker);
+					    			
+					    			});
+					    			
+					    				
+					    				
+                                    markers[positionMarker]['infoWindow'].setContent(divWithin);
+                                    markers[positionMarker]['infoWindow'].open(map, markers[positionMarker]);
 
 					    	});
 					    	
@@ -644,12 +701,34 @@ if(selected == "m") {
 					    		
 					    		var canvas = document.createElement('canvas');
 					    		var div = document.getElementById('containerGraficos');
-					    		div.appendChild(canvas);
+					    		var divWithin = document.createElement("div");
+					    		div.appendChild(divWithin);
+					    		divWithin.appendChild(canvas);
 					            var id = document.getElementsByTagName("canvas");
+					            divWithin.setAttribute("id", id.length.toString()+"div");
 					    		canvas.setAttribute("id", id.length);
 					    		var ctx = document.getElementById(id.length);
 					    		
+					    		var buttonGerar = document.createElement("BUTTON");
+					    		var buttonTextGerar = document.createTextNode("gerar Relarótio");
+
+					    		buttonGerar.setAttribute("class", "btn btn-danger pull-right");
+					    		buttonGerar.appendChild(buttonTextGerar);
+                                buttonGerar.click = function (result) { gerarRelatorioMunicipio(result) } ;
+
+					    		var buttonComen = document.createElement("BUTTON");
+					    		var buttonTextComen = document.createTextNode("Comentários");
 					    		
+					    		buttonComen.setAttribute("class", "btn btn-danger pull-right");
+					    		buttonComen.appendChild(buttonTextComen);
+                                
+
+                                divWithin.appendChild(buttonComen);
+					    		divWithin.appendChild(buttonGerar);
+                               
+
+					    		
+
 					    			window.myBar = new Chart(ctx, {
 					    				type: 'bar',
 					    				data: barChartData,
@@ -660,25 +739,30 @@ if(selected == "m") {
 					    					},
 					    					title: {
 					    						display: true,
-					    						text: 'Estatisticas de '+result.rAssaltos[0].regiao,
+					    						text: 'Estatisticas de '+result.mAssaltos[0].municipio,
 					    						fontSize: 17
 					    					}
 					    				}
-					    			}); infoWindowmarker.setContent(document.getElementById(id.length));
-					    				infoWindowmarker.open(map, marker);
+					    			
+					    			});
+					    			
+					    				
+					    				
+                                    markers[positionMarker]['infoWindow'].setContent(divWithin);
+                                    markers[positionMarker]['infoWindow'].open(map, markers[positionMarker]);
 
 					    	});
 							
 						}
 						} else {
-							infoWindowmarker.setContent("Dados não disponíveis em: "+results[0].address_components[indexState].short_name
+							markers[positionMarker]['infoWindow'].setContent("Dados não disponíveis em: "+results[0].address_components[indexState].short_name
 									+"<br />"+results[0].formatted_address);
-							infoWindowmarker.open(map, marker);
+                                    markers[positionMarker]['infoWindow'].open(map, markers[positionMarker]);
 						}
 					}
 				}
 			}); 
-		}); markers.push(marker); infoWindows.push(infoWindowmarker); infoWindowmarker.id = infoWindows.length;
+		});
 
 	});
 
@@ -732,19 +816,30 @@ function LocalitionControl(controlDiv, map) {
 				
 
 				var icon = {
-					    url: "<%=request.getContextPath()%>/resources/assets/marker.png",
-					    scaledSize: new google.maps.Size(50, 50), // scaled size
-					    origin: new google.maps.Point(0,0), // origin
-					    anchor: new google.maps.Point(0, 0) // anchor
-					};
-				
-				marker = new google.maps.Marker({
-					map : map,
-					draggable : true,
-					position : (event.latLng),
-					icon: icon
-				});
-                geocoder.geocode({"latLng":pos}, function(results, status){
+			    url: "<%=request.getContextPath()%>/resources/assets/marker.png",
+			    scaledSize: new google.maps.Size(50, 50), // scaled size
+			    origin: new google.maps.Point(0,0), // origin
+			    anchor: new google.maps.Point(0, 0) // anchor
+			};
+		positionMarker = markers.length;
+		markers.push(marker = new google.maps.Marker({
+			map : map,
+			draggable : true,
+			position : pos,
+			icon: icon
+		}));
+
+        markers[positionMarker]['infoWindow'] = new google.maps.InfoWindow({ maxWidth: 600 });
+
+		markers[positionMarker].addListener('click', function() {
+			this['infoWindow'].open(map, this);
+		});
+
+		markers[positionMarker].addListener('dblclick', function() {
+			this.setMap(null);
+			markers[positionMarker] = null
+		});
+                geocoder.geocode({"latLng": pos}, function(results, status){
                     if(status == google.maps.GeocoderStatus.OK){
                     	if (results[0]) {
     						var isAvailable = false;
@@ -840,29 +935,56 @@ function LocalitionControl(controlDiv, map) {
     					    		};
     					    		
     					    		var canvas = document.createElement('canvas');
-    					    		var div = document.getElementById('containerGraficos');
-    					    		div.appendChild(canvas);
-    					            var id = document.getElementsByTagName("canvas");
-    					    		canvas.setAttribute("id", id.length);
-    					    		var ctx = document.getElementById(id.length);
-    					    		
-    					    		
-    					    			window.myBar = new Chart(ctx, {
-    					    				type: 'bar',
-    					    				data: barChartData,
-    					    				options: {
-    					    					responsive: true,
-    					    					legend: {
-    					    						position: 'top',
-    					    					},
-    					    					title: {
-    					    						display: true,
-    					    						text: 'Estatisticas de '+result.mAssaltos[0].municipio,
-    					    						fontSize: 17
-    					    					}
-    					    				}
-    					    			}); infoWindowLocalizacao.setContent(document.getElementById(id.length));
-    					    			infoWindowLocalizacao.open(map, marker);
+					    		var div = document.getElementById('containerGraficos');
+					    		var divWithin = document.createElement("div");
+					    		div.appendChild(divWithin);
+					    		divWithin.appendChild(canvas);
+					            var id = document.getElementsByTagName("canvas");
+					            divWithin.setAttribute("id", id.length.toString()+"div");
+					    		canvas.setAttribute("id", id.length);
+					    		var ctx = document.getElementById(id.length);
+					    		
+					    		var buttonGerar = document.createElement("BUTTON");
+					    		var buttonTextGerar = document.createTextNode("gerar Relarótio");
+
+					    		buttonGerar.setAttribute("class", "btn btn-danger pull-right");
+					    		buttonGerar.appendChild(buttonTextGerar);
+                                buttonGerar.click = function (result) { gerarRelatorioMunicipio(result) } ;
+
+					    		var buttonComen = document.createElement("BUTTON");
+					    		var buttonTextComen = document.createTextNode("Comentários");
+					    		
+					    		buttonComen.setAttribute("class", "btn btn-danger pull-right");
+					    		buttonComen.appendChild(buttonTextComen);
+                                
+
+                                divWithin.appendChild(buttonComen);
+					    		divWithin.appendChild(buttonGerar);
+                               
+
+					    		
+
+					    			window.myBar = new Chart(ctx, {
+					    				type: 'bar',
+					    				data: barChartData,
+					    				options: {
+					    					responsive: true,
+					    					legend: {
+					    						position: 'top',
+					    					},
+					    					title: {
+					    						display: true,
+					    						text: 'Estatisticas de '+result.mAssaltos[0].municipio,
+					    						fontSize: 17
+					    					}
+					    				}
+					    			
+					    			});
+					    			
+					    				
+					    				
+                                    markers[positionMarker]['infoWindow'].setContent(divWithin);
+                                    markers[positionMarker]['infoWindow'].open(map, markers[positionMarker]);
 
 
     					    	});
@@ -912,52 +1034,79 @@ function LocalitionControl(controlDiv, map) {
     					    		};
     					    		
     					    		var canvas = document.createElement('canvas');
-    					    		var div = document.getElementById('containerGraficos');
-    					    		div.appendChild(canvas);
-    					            var id = document.getElementsByTagName("canvas");
-    					    		canvas.setAttribute("id", id.length);
-    					    		var ctx = document.getElementById(id.length);
-    					    		
-    					    		
-    					    			window.myBar = new Chart(ctx, {
-    					    				type: 'bar',
-    					    				data: barChartData,
-    					    				options: {
-    					    					responsive: true,
-    					    					legend: {
-    					    						position: 'top',
-    					    					},
-    					    					title: {
-    					    						display: true,
-    					    						text: 'Estatisticas de '+result.rAssaltos[0].regiao,
-    					    						fontSize: 17
-    					    					}
-    					    				}
-    					    			}); infoWindowLocalizacao.setContent(document.getElementById(id.length));
-    					    			infoWindowLocalizacao.open(map, marker);
+					    		var div = document.getElementById('containerGraficos');
+					    		var divWithin = document.createElement("div");
+					    		div.appendChild(divWithin);
+					    		divWithin.appendChild(canvas);
+					            var id = document.getElementsByTagName("canvas");
+					            divWithin.setAttribute("id", id.length.toString()+"div");
+					    		canvas.setAttribute("id", id.length);
+					    		var ctx = document.getElementById(id.length);
+					    		
+					    		var buttonGerar = document.createElement("BUTTON");
+					    		var buttonTextGerar = document.createTextNode("gerar Relarótio");
+
+					    		buttonGerar.setAttribute("class", "btn btn-danger pull-right");
+					    		buttonGerar.appendChild(buttonTextGerar);
+                                buttonGerar.click = function (result) { gerarRelatorioMunicipio(result) } ;
+
+					    		var buttonComen = document.createElement("BUTTON");
+					    		var buttonTextComen = document.createTextNode("Comentários");
+					    		
+					    		buttonComen.setAttribute("class", "btn btn-danger pull-right");
+					    		buttonComen.appendChild(buttonTextComen);
+                                
+
+                                divWithin.appendChild(buttonComen);
+					    		divWithin.appendChild(buttonGerar);
+                               
+
+					    		
+
+					    			window.myBar = new Chart(ctx, {
+					    				type: 'bar',
+					    				data: barChartData,
+					    				options: {
+					    					responsive: true,
+					    					legend: {
+					    						position: 'top',
+					    					},
+					    					title: {
+					    						display: true,
+					    						text: 'Estatisticas de '+result.mAssaltos[0].municipio,
+					    						fontSize: 17
+					    					}
+					    				}
+					    			
+					    			});
+					    			
+					    				
+					    				
+                                    markers[positionMarker]['infoWindow'].setContent(divWithin);
+                                    markers[positionMarker]['infoWindow'].open(map, markers[positionMarker]);
 
     					    	});
     							
     						}
     						} else {
-    							infoWindowLocalizacao.setContent("Dados não disponíveis em: "+results[0].address_components[indexState].short_name
+    							markers[positionMarker]['infoWindow'].setContent("Dados não disponíveis em: "+results[0].address_components[indexState].short_name
     									+"<br />"+results[0].formatted_address);
-    							infoWindowLocalizacao.open(map);
+                                        markers[positionMarker]['infoWindow'].open(map, markers[positionMarker]);
     						}
     					}
                     }
 
                 });
-				infoWindowLocalizacao.setPosition(pos);
-				infoWindowLocalizacao.open(map, marker);
+				
+				
 				map.setCenter(pos);
 			}, function() {
-				handleLocationError(true, infoWindowLocalizacao, map
+				handleLocationError(true, markers[positionMarker], map
 						.getCenter());
 			});
 		} else {
 			// Browser doesn't support Geolocation
-			handleLocationError(false, infoWindowLocalizacao, map.getCenter());
+			handleLocationError(false, markers[positionMarker], map.getCenter());
 		}
 
     });
@@ -996,7 +1145,7 @@ function CleanControl(controlDiv, map) {
     controlUI.addEventListener('click', function() {
     	
     	markers.forEach(m => {
-    		m.setMap(null)
+    		m = null
     	});
     	
     });
