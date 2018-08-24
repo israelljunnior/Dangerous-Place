@@ -1,130 +1,302 @@
-﻿﻿create database dangerousplace1;
+﻿create database dangerousplace1;
+
 use dangerousplace1;
 
+
+
 create table usuario(
+
 	id_usuario int AUTO_INCREMENT PRIMARY KEY,
+
 	nome varchar(50) not null,
+
 	email varchar(130) not null unique,
+
 	senha varchar(130) not null,
+
 	sexo char(1) not null,
+
 	endereco varchar(70) not null,
+
 	nivel_acesso varchar(7) not null
 
+
+
 );
+
+
 
 create table publicacao(
+
 	id_publicacao int AUTO_INCREMENT PRIMARY KEY,
+
 	titulo varchar(300) not null,
+
 	tema varchar(50) not null,
+
 	conteudo varchar(4000) not null,
+
 	data_hora timestamp not null,
+
 	id_usuario int not null,
+
 	FOREIGN KEY (id_usuario) references usuario (id_usuario)
+
 );
 
+
+
 create table comentario(
+
 	id_comentario int AUTO_INCREMENT PRIMARY KEY,
+
 	conteudo varchar(300) not null,
+
 	data_hora timestamp not null,
+
 	id_usuario int not null,
+
 	id_publicacao int not null,
+
 	FOREIGN KEY (id_usuario) references usuario (id_usuario),
+
 	FOREIGN KEY (id_publicacao) references publicacao (id_publicacao)
+
 );
+
+
+
 
 
 create table dados_regioes_assassi(
+
 	 id_dados_regiao_assassi int AUTO_INCREMENT PRIMARY KEY,
+
 	 ano int not null,
+
 	 regiao varchar(35) not null,	
+
 	 total_assassi int not null,
+
 	 idade_ate12 int not null,
+
 	 idade_13a17 int not null,
+
 	 idade_18a30 int not null,
+
 	 idade_31a65 int not null,
+
 	 idade_acima65 int not null,
+
 	 qtd_homem int not null,
+
 	 qtd_mulher int not null,
+
 	 qtd_homicidio int not null,
+
 	 qtd_latrocinio int not null,
+
 	 qtd_lesado_morte int not null, 
+
 	 qtd_armabranca int not null,
+
 	 qtd_armafogo int not null
+
 );
 
+
+
 create table dados_regiao_assalt(
+
 	 id_dados_regiao_assalt int AUTO_INCREMENT PRIMARY KEY,
+
 	 ano int not null,
+
 	 regiao varchar(35) not null,	
+
 	 total_assalt int not null,
+
 	 roubo_transeunte int not null,
+
 	 roubo_veiculo int not null,
+
 	 roubo_estabelecimento int not null,
+
 	 roubo_extorsao int not null,
+
 	 roubo_inst_financ int not null,
+
 	 roubo_carga int not null,
+
 	 roubo_motoneta int not null,
+
 	 roubo_onibus int not null,
+
 	 roubo_residencias int not null
+
 );
+
+
+
 
 
 create table dados_municipio_assassi(
+
 	id_dados_mun_assassi int AUTO_INCREMENT PRIMARY KEY,
+
  	ano int not null,
+
 	regiao varchar(35) not null,
+
 	municipio varchar (35) not null,
+
 	total_assassi int not null,
+
 	idade_ate12 int not null,
+
 	idade_13a17 int not null,
+
  	idade_18a30 int not null,
+
  	idade_31a65 int not null,
+
  	idade_acima65 int not null,
+
  	qtd_homem int not null,
+
  	qtd_mulher int not null,
+
  	qtd_homicidio int not null,
+
  	qtd_latrocinio int not null,
+
  	qtd_lesado_morte int not null, 
+
  	qtd_armabranca int not null,
+
  	qtd_armafogo int not null
+
 );
+
+
+
 
 
 create table dados_municipio_assalt(
+
 	id_dados_mun_assalt int AUTO_INCREMENT PRIMARY KEY,
+
 	ano int not null,
+
 	regiao varchar(35) not null,
+
 	municipio varchar (35) not null,
+
 	total_assalt int not null,
+
 	roubo_transeunte int not null,
+
 	roubo_veiculo int not null,
+
 	roubo_estabelecimento int not null,
+
 	roubo_extorsao int not null,
+
 	roubo_inst_financ int not null,
+
 	roubo_carga int not null,
+
 	roubo_motoneta int not null,
+
 	roubo_onibus int not null,
+
 	roubo_residencias int not null
+
 );
 
+
+create table dados_municipio_viol_sex(
+
+
+	id_dados_municipio_viol_sex int AUTO_INCREMENT PRIMARY KEY,
+
+
+	ano int not null,
+
+
+
+	regiao varchar(35) not null,
+
+
+
+	municipio varchar (35) not null,
+
+
+	total_viol_sex int not null
+
+
+);
+
+
+
+
+
+create table dados_regiao_viol_sex(
+
+
+	id_dados_regiao_viol_sex int AUTO_INCREMENT PRIMARY KEY,
+
+
+	ano int not null,
+
+
+	regiao varchar(35) not null,
+
+
+
+	total_viol_sex int not null
+
+
+);
+
+
+
+
 create table comentario_municipio(
+
     id_comentario_municipio int AUTO_INCREMENT PRIMARY KEY,
+
     conteudo varchar(300) not null,
+
     data_hora timestamp not null,
+
     id_usuario int not null,
+
     id_municipio int not null,
+
     FOREIGN KEY (id_usuario) references usuario (id_usuario),
+
     FOREIGN KEY (id_municipio) references dados_municipio_assalt (id_dados_mun_assalt)
+
     );
+
     
+
 create table comentario_regiao(
+
     id_comentario_regiao int AUTO_INCREMENT PRIMARY KEY, 
+
     conteudo varchar(300) not null,
+
     data_hora timestamp not null,
+
     id_usuario int not null,
+
     id_regiao int not null,
+
     FOREIGN KEY (id_usuario) references usuario (id_usuario),
+
     FOREIGN KEY (id_regiao) references dados_regiao_assalt (id_dados_regiao_assalt)
+
     );
-    
-    
+
