@@ -344,11 +344,11 @@ function initMap() {
 					    		var ctx = document.getElementById(id.length);
 					    		
 					    		var buttonGerar = document.createElement("BUTTON");
-					    		var buttonTextGerar = document.createTextNode("gerar Relarótio");
+					    		var buttonTextGerar = document.createTextNode("Gerar Relatório");
 
 					    		buttonGerar.setAttribute("class", "btn btn-danger pull-right");
 					    		buttonGerar.appendChild(buttonTextGerar);
-                                buttonGerar.setAttribute("onclick", gerarRelatorioMunicipio(result));
+                                //buttonGerar.setAttribute("onclick", "gerarRelatorioMunicipio("+testString+");");
 
 					    		var buttonComen = document.createElement("BUTTON");
 					    		var buttonTextComen = document.createTextNode("Comentários");
@@ -817,11 +817,11 @@ function LocalitionControl(controlDiv, map) {
 				
 
 				var icon = {
-			    url: "<%=request.getContextPath()%>/resources/assets/marker.png",
-			    scaledSize: new google.maps.Size(50, 50), // scaled size
-			    origin: new google.maps.Point(0,0), // origin
-			    anchor: new google.maps.Point(0, 0) // anchor
-			};
+					    url: "<%=request.getContextPath()%>/resources/assets/marker.png",
+					    scaledSize: new google.maps.Size(70, 90), // scaled size
+					    origin: new google.maps.Point(0,0), // origin
+					    anchor: new google.maps.Point(50, 50) // anchor
+					};
 		positionMarker = markers.length;
 		markers.push(marker = new google.maps.Marker({
 			map : map,
@@ -1186,6 +1186,7 @@ function selectRM(controlDiv, map) {
     }
     
     function gerarRelatorioMunicipio(result) {
+    	
     	var columnsAssaltos = [
             {title :  "Ano" , dataKey :  "ano" },
             {title :  "R_Carga" , dataKey :  "roubo_carga" },
@@ -1206,6 +1207,7 @@ function selectRM(controlDiv, map) {
         ];
 
     	var columnsAssassinatos = [
+    		
             {title :  "Ano" , dataKey :  "ano" },
             {title :  "Qtd_Homicidio" , dataKey :  "qtd_homicidio" },
             {title :  "Qtd_Latrocinio" , dataKey :  "qtd_latrocinio" },
