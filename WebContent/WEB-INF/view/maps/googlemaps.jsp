@@ -348,7 +348,7 @@ function initMap() {
 					    		var buttonText = document.createTextNode("gerar Relarótio");
 					    		button.setAttribute("class", "btn btn-danger pull-right");
 					    		button.appendChild(buttonText);
-					    		//button.setAttribute("onclick", gerarRelatorio(result));
+					    		button.setAttribute("onclick", gerarRelatorioMunicipio(result));
 					    		divWithin.appendChild(button);
 					    			window.myBar = new Chart(ctx, {
 					    				type: 'bar',
@@ -435,7 +435,7 @@ function initMap() {
 					    		var buttonText = document.createTextNode("gerar Relarótio");
 					    		button.append
 					    		button.setAttribute("class", "btn btn-danger pull-right");
-					    		button.setAttribute("onclick", gerarRelatorio);
+					    		button.setAttribute("onclick", gerarRelatorioRegiao(result));
 					    		
 					    			window.myBar = new Chart(ctx, {
 					    				type: 'bar',
@@ -500,7 +500,6 @@ function initMap() {
                                 }
 
                             });
-                            alert(municipio);
 						} else {
 
                             results[0].address_components.forEach(ac => {
@@ -1035,7 +1034,7 @@ function selectRM(controlDiv, map) {
     	selected = select.options[select.selectedIndex].value;
     }
     
-    function gerarRelatorio(result) {
+    function gerarRelatorioMunicipio(result) {
     	var columnsAssaltos = [
             {title :  "Ano" , dataKey :  "ano" },
             {title :  "R_Carga" , dataKey :  "roubo_carga" },
@@ -1051,7 +1050,7 @@ function selectRM(controlDiv, map) {
 
             {"ano" :result.mAssaltos[0].ano , "roubo_carga" : result.mAssaltos[0].rouboCarga  ,  "roubo_estabelecimento" : result.mAssaltos[0].rouboEstabelecimento ,"roubo_instituição_financeira" : result.mAssaltos[0].rouboInstFinanc , "roubo_moto" : result.mAssaltos[0].rouboMotoneta, "roubo_extorsão" : result.mAssaltos[0].rouboExtorsao },
             {"ano" :result.mAssaltos[1].ano ,"roubo_carga" : result.mAssaltos[1].rouboCarga  ,  "roubo_estabelecimento" : result.mAssaltos[1].rouboEstabelecimento ,"roubo_instituição_financeira" : result.mAssaltos[1].rouboInstFinanc , "roubo_moto" : result.mAssaltos[1].rouboMotoneta, "roubo_extorsão" : result.mAssaltos[1].rouboExtorsao },
-            {"ano" :result.mAssaltos[2].ano , "roubo_carga" : result.mAssaltos[2].rouboCarga  ,  "roubo_estabelecimento" : result.mAssaltos[2].rouboEstabelecimento ,"roubo_instituição_financeira" : result.mAssaltos[2].rouboInstFinanc , "roubo_moto" : result.mAssaltos[2].rouboMotoneta, "roubo_extorsão" : result.mAssaltos[2].rouboExtorsao }
+            //{"ano" :result.mAssaltos[2].ano , "roubo_carga" : result.mAssaltos[2].rouboCarga  ,  "roubo_estabelecimento" : result.mAssaltos[2].rouboEstabelecimento ,"roubo_instituição_financeira" : result.mAssaltos[2].rouboInstFinanc , "roubo_moto" : result.mAssaltos[2].rouboMotoneta, "roubo_extorsão" : result.mAssaltos[2].rouboExtorsao }
 
         ];
 
@@ -1071,7 +1070,7 @@ function selectRM(controlDiv, map) {
 
             {"ano" :result.mAssassinatos[0].ano , "qtd_homicidio" : result.mAssassinatos[0].quantidadeHomicidio  ,  "qtd_latrocinio" : result.mAssassinatos[0].quantidadeLatrocinio ,"qtd_arma_branca" : result.mAssassinatos[0].quantidadeArmabranca , "qtd_arma_fogo" : result.mAssassinatos[0].quantidadeArmafogo, "total_assassi" : result.mAssassinatos[0].totalAssassinatos },
             {"ano" :result.mAssassinatos[1].ano ,"qtd_homicidio" : result.mAssassinatos[1].quantidadeHomicidio  ,  "qtd_latrocinio" : result.mAssassinatos[1].quantidadeLatrocinio ,"qtd_arma_branca" : result.mAssassinatos[1].quantidadeArmabranca, "qtd_arma_fogo" : result.mAssassinatos[1].quantidadeArmafogo, "total_assassi" : result.mAssassinatos[1].totalAssassinatos },
-            {"ano" :result.mAssassinatos[2].ano , "qtd_homicidio" : result.mAssassinatos[2].quantidadeHomicidio  ,  "qtd_latrocinio" : result.mAssassinatos[2].quantidadeLatrocinio ,"qtd_arma_branca" : result.mAssassinatos[2].quantidadeArmabranca, "qtd_arma_fogo" : result.mAssassinatos[2].quantidadeArmafogo, "total_assassi" : result.mAssassinatos[2].totalAssassinatos }
+            //{"ano" :result.mAssassinatos[2].ano , "qtd_homicidio" : result.mAssassinatos[2].quantidadeHomicidio  ,  "qtd_latrocinio" : result.mAssassinatos[2].quantidadeLatrocinio ,"qtd_arma_branca" : result.mAssassinatos[2].quantidadeArmabranca, "qtd_arma_fogo" : result.mAssassinatos[2].quantidadeArmafogo, "total_assassi" : result.mAssassinatos[2].totalAssassinatos }
 
         ];
 
@@ -1084,6 +1083,67 @@ function selectRM(controlDiv, map) {
             avoidPageSplit: true,
             addPageContent: function(data) {
             	doc.text("Dangerous Place \n Município: "+result.mAssaltos[0].municipio, 40, 30);
+            }
+        });
+        doc.autoTable(columnsAssassinatos, rowsAssassinatos,{
+            styles: {fillColor: [100, 255, 255], overflow: 'linebreak'},
+            margin: {top: 210},
+            addPageContent: function(data) {
+            	doc.text("\n\n\n\n\n\nAssasinatos", 20, 20);
+            }        
+        });
+        doc.save('table.pdf');   
+}
+
+function gerarRelatorioRegiao(result) {
+    	var columnsAssaltos = [
+            {title :  "Ano" , dataKey :  "ano" },
+            {title :  "R_Carga" , dataKey :  "roubo_carga" },
+            {title :  "R_Lojas" , dataKey :  "roubo_estabelecimento" },
+            {title :  "R_Bancos\n" , dataKey :  "roubo_instituição_financeira" },
+            {title :  "R_moto" , dataKey :  "roubo_moto" },
+            {title :  "Extorsão" , dataKey :  "roubo_extorsão" }
+             
+        ]
+
+    	
+        var rowsAssaltos = [
+
+            {"ano" :result.rAssaltos[0].ano , "roubo_carga" : result.rAssaltos[0].rouboCarga  ,  "roubo_estabelecimento" : result.rAssaltos[0].rouboEstabelecimento ,"roubo_instituição_financeira" : result.rAssaltos[0].rouboInstFinanc , "roubo_moto" : result.rAssaltos[0].rouboMotoneta, "roubo_extorsão" : result.rAssaltos[0].rouboExtorsao },
+            {"ano" :result.rAssaltos[1].ano ,"roubo_carga" : result.rAssaltos[1].rouboCarga  ,  "roubo_estabelecimento" : result.rAssaltos[1].rouboEstabelecimento ,"roubo_instituição_financeira" : result.rAssaltos[1].rouboInstFinanc , "roubo_moto" : result.rAssaltos[1].rouboMotoneta, "roubo_extorsão" : result.rAssaltos[1].rouboExtorsao },
+            //{"ano" :result.rAssaltos[2].ano , "roubo_carga" : result.rAssaltos[2].rouboCarga  ,  "roubo_estabelecimento" : result.rAssaltos[2].rouboEstabelecimento ,"roubo_instituição_financeira" : result.rAssaltos[2].rouboInstFinanc , "roubo_moto" : result.rAssaltos[2].rouboMotoneta, "roubo_extorsão" : result.rAssaltos[2].rouboExtorsao }
+
+        ];
+
+    	var columnsAssassinatos = [
+            {title :  "Ano" , dataKey :  "ano" },
+            {title :  "Qtd_Homicidio" , dataKey :  "qtd_homicidio" },
+            {title :  "Qtd_Latrocinio" , dataKey :  "qtd_latrocinio" },
+            {title :  "Qtd_Arma branca" , dataKey :  "qtd_arma_branca" },
+            {title :  "Qtd_Arma de fogo"  , dataKey :  "qtd_arma_fogo" },
+            {title :  "Total assassinatos"  , dataKey :  "total_assassi" }
+            
+            
+            
+        ]
+
+        var rowsAssassinatos = [
+
+            {"ano" :result.rAssassinatos[0].ano , "qtd_homicidio" : result.rAssassinatos[0].quantidadeHomicidio  ,  "qtd_latrocinio" : result.rAssassinatos[0].quantidadeLatrocinio ,"qtd_arma_branca" : result.rAssassinatos[0].quantidadeArmabranca , "qtd_arma_fogo" : result.rAssassinatos[0].quantidadeArmafogo, "totalrassassi" : result.rAssassinatos[0].totarAssassinatos },
+            {"ano" :result.rAssassinatos[1].ano ,"qtd_homicidio" : result.rAssassinatos[1].quantidadeHomicidio  ,  "qtd_latrocinio" : result.rAssassinatos[1].quantidadeLatrocinio ,"qtd_arma_branca" : result.rAssassinatos[1].quantidadeArmabranca, "qtd_arma_fogo" : result.rAssassinatos[1].quantidadeArmafogo, "totalrassassi" : result.rAssassinatos[1].totarAssassinatos },
+            //{"ano" :result.rAssassinatos[2].ano , "qtd_homicidio" : result.rAssassinatos[2].quantidadeHomicidio  ,  "qtd_latrocinio" : result.rAssassinatos[2].quantidadeLatrocinio ,"qtd_arma_branca" : result.rAssassinatos[2].quantidadeArmabranca, "qtd_arma_fogo" : result.rAssassinatos[2].quantidadeArmafogo, "totalrassassi" : result.rAssassinatos[2].totarAssassinatos }
+
+        ];
+
+        // Only pt supported (not mm or in)
+        var doc = new jsPDF('p', 'pt');
+    	var startingPage = doc.internal.getCurrentPageInfo().pageNumber;
+        doc.autoTable(columnsAssaltos, rowsAssaltos,{
+            styles: {fillColor: [100, 255, 255]},
+            margin: {top: 60},
+            avoidPageSplit: true,
+            addPageContent: function(data) {
+            	doc.text("Município: "+result.rAssaltos[0].regiao, 40, 30);
             }
         });
         doc.autoTable(columnsAssassinatos, rowsAssassinatos,{
