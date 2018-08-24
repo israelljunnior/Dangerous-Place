@@ -86,7 +86,7 @@ public class SistemaController {
 		if (usuarioLogado != null) {
 			session.setAttribute("usuarioLogado", usuarioLogado);
 			return "home";
-			
+			 
 		}
 		model.addAttribute("msgNaoEncontrado", "Não foi encontrado um usuário com o login e senha informados.");
 		return "home";
