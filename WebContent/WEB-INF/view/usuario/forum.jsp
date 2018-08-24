@@ -61,35 +61,38 @@
 
 
 <div id="espacamento" style="padding:10px; align:center">
-	<div class="col-sm-1">
+	<div class="col-sm-2">
 		<button type="button" class="btn" title="Aumentar zoom" onClick="fonte('a');">A +</button>
 		
 		<button type="button" class="btn" title="Diminuir zoom" onClick="fonte('d');">a -</button>
 	</div>	
 
-<div class="col-sm-10" id="todoBody">	
+<div class="col-sm-8" id="todoBody">	
 
-<div  class="container" style="width:82%; background-color:black;">
+<div  class="container" style="width:100%; background-color:black;">
 		<center>
 			<h2 id="titulo_forum">Fórum</h2>
 		</center>
 	
 </div>
 <br>
-<table id="tablefilter" border="0" align="center">
+<table id="tablefilter" border="0" align="left">
 				<tr>
 					<!-- filtro -->
 					<form action="filtro" method="post">
 
 						<td><input type="text" id="filtro" class="form-control"
-							name="tema" style="width: 500px; height: 40px;" maxlength="100" placeholder="Pesquisar..." /></td>
+							name="tema" style="width: 300px; height: 30px;" maxlength="100" placeholder="Pesquisar..." /></td>
  
-						<td><button style="height: 40px;" type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></button></td>
+						<td>&nbsp;&nbsp;<button style="height: 30px;" type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></button></td>
 
 					</form>
 					<!-- /filtro -->
 <td>&nbsp;</td>
+
 					<td align="rigth">
+					
+					
 						<button type="button" class="btn btn-primary" data-toggle="modal"
 							data-target="#modalPublicar"
 							style="height: 40px;; width:100%; background-color: #555555; color: white">Publicar</button>
@@ -103,7 +106,7 @@
 
 
 	<div class="row" style="font-family: 'Montserrat', sans-serif">
-		<div class="col-sm-1"></div>
+		<div class="col-sm-2"></div>
 		<div class="col-sm-10">
 			
 			<div class="row" id="container">
