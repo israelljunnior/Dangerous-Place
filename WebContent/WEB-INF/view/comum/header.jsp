@@ -103,7 +103,15 @@ prefix="fmt" %>
 		</div>
 	</nav>
 
-	<c:if test="${msg != null }">
+	<c:if test="${msgNaoEncontrado != null }">
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('#modalLogin').modal('show');
+			});
+		</script>
+	</c:if>
+	
+	<c:if test="${msgPrecisaLogin != null }">
 		<script type="text/javascript">
 			$(document).ready(function() {
 				$('#modalLogin').modal('show');
@@ -124,8 +132,12 @@ prefix="fmt" %>
 					</button>
 					<center>
 						<h3>Login</h3>
-						<c:if test="${msg ne null}">
-							<div class="alert alert-danger" style="width: 80%;">${msg}
+						<c:if test="${msgNaoEncontrado ne null}">
+							<div class="alert alert-danger" style="width: 80%;">${msgNaoEncontrado}
+							</div>
+						</c:if>
+						<c:if test="${msgPrecisaLogin ne null}">
+							<div class="alert alert-danger" style="width: 80%;">${msgPrecisaLogin}
 							</div>
 						</c:if>
 					</center>

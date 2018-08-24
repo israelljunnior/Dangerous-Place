@@ -3,6 +3,7 @@ package br.com.ifpe.dangerous.util;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.ui.Model;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 public class AutorizadorInterceptor extends HandlerInterceptorAdapter {
@@ -26,7 +27,8 @@ public class AutorizadorInterceptor extends HandlerInterceptorAdapter {
 		|| uri.endsWith("home")
 		|| uri.endsWith("efetuarLogin")
 		|| uri.endsWith("jpg")
-		|| uri.endsWith("png")) {	
+		|| uri.endsWith("png")
+		|| uri.endsWith("acesso")) {	
 	    return true;
 	}
 
@@ -34,7 +36,7 @@ public class AutorizadorInterceptor extends HandlerInterceptorAdapter {
 	    return true;
 	}
 
-	response.sendRedirect("home");
+	response.sendRedirect("acesso");
 	return false; 
     }
 	

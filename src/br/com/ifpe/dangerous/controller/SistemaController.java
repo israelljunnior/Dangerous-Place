@@ -59,7 +59,7 @@ public class SistemaController {
 		UsuarioDao dao = new UsuarioDao();
 		usuario.setSexo(sexo);
 		dao.salvar(usuario);
-
+		
 		return "usuario/cadastroSucesso";
 	}
 
@@ -87,7 +87,14 @@ public class SistemaController {
 			session.setAttribute("usuarioLogado", usuarioLogado);
 			return "home";
 		}
-		model.addAttribute("msg", "Não foi encontrado um usuário com o login e senha informados.");
+		model.addAttribute("msgNaoEncontrado", "Não foi encontrado um usuário com o login e senha informados.");
+		return "home";
+	}
+	
+	@RequestMapping("acesso")
+	public String tentarAcessar(Usuario usuario, HttpSession session, Model model) {
+
+		model.addAttribute("msgPrecisaLogin", "Faça Login para Acessar o Recurso");
 		return "home";
 	}
 
@@ -175,12 +182,6 @@ public class SistemaController {
 
 		return new Gson().toJson(dao.listar());
 
-	}
-
-	@RequestMapping("/gerandoRelatorio")
-	public String novoRelatorio() {
-		System.out.println("Mostrando a página de geração de relatórios");
-		return "usuario/gerarRelatorio";
 	}
 
 	@RequestMapping("sobreNos")

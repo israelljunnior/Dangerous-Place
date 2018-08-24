@@ -217,10 +217,11 @@ function initMap() {
 		
 		var icon = {
 			    url: "<%=request.getContextPath()%>/resources/assets/marker.png",
-			    scaledSize: new google.maps.Size(50, 50), // scaled size
+			    scaledSize: new google.maps.Size(70, 90), // scaled size
 			    origin: new google.maps.Point(0,0), // origin
-			    anchor: new google.maps.Point(0, 0) // anchor
+			    anchor: new google.maps.Point(50, 50) // anchor
 			};
+		
 		positionMarker = markers.length;
 		markers.push(marker = new google.maps.Marker({
 			map : map,
@@ -347,7 +348,7 @@ function initMap() {
 
 					    		buttonGerar.setAttribute("class", "btn btn-danger pull-right");
 					    		buttonGerar.appendChild(buttonTextGerar);
-                                buttonGerar.click = function (result) { gerarRelatorioMunicipio(result) } ;
+                                buttonGerar.setAttribute("onclick", gerarRelatorioMunicipio(result));
 
 					    		var buttonComen = document.createElement("BUTTON");
 					    		var buttonTextComen = document.createTextNode("Comentários");
