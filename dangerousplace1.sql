@@ -1875,7 +1875,7 @@ INSERT INTO `dados_regiao_assalt` (`id_dados_regiao_assalt`, `ano`, `regiao`, `t
 (36, 2016, 'Sertão do Pajeú', 526, 222, 89, 62, 10, 6, 9, 0, 1, 35);
 
 -- --------------------------------------------------------
-
+ 
 --
 -- Estrutura da tabela `dados_regiao_viol_sex`
 --
