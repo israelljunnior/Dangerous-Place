@@ -219,7 +219,7 @@ function initMap() {
 			    url: "<%=request.getContextPath()%>/resources/assets/marker.png",
 			    scaledSize: new google.maps.Size(70, 90), // scaled size
 			    origin: new google.maps.Point(0,0), // origin
-			    anchor: new google.maps.Point(50, 50) // anchor
+			    anchor: new google.maps.Point(35, 80) // anchor
 			};
 		
 		positionMarker = markers.length;
@@ -426,12 +426,6 @@ function initMap() {
 					    	                0,
 					    	                0
 					    	            ]
-					    			},{
-					    				label: 'Acidentes',
-					    				backgroundColor: color(window.chartColors.green).alpha(4.5).rgbString(),
-					    				borderColor: window.chartColors.green,
-					    				borderWidth: 1,
-					    				data: []
 					    			}]
 					    		};
 					    		
@@ -450,7 +444,7 @@ function initMap() {
 
 					    		buttonGerar.setAttribute("class", "btn btn-danger pull-right");
 					    		buttonGerar.appendChild(buttonTextGerar);
-                                buttonGerar.setAttribute("onclick", "gerarRelatorioRegiao('"+result.mAssaltos[0].regiao+"')");
+                                buttonGerar.setAttribute("onclick", "gerarRelatorioRegiao('"+result.rAssaltos[0].regiao+"')");
 
 					    		var buttonComen = document.createElement("BUTTON");
 					    		var buttonTextComen = document.createTextNode("Comentários");
@@ -475,21 +469,15 @@ function initMap() {
 					    					},
 					    					title: {
 					    						display: true,
-					    						text: 'Estatisticas de '+result.mAssaltos[0].municipio,
+					    						text: 'Estatisticas de '+result.rAssaltos[0].regiao,
 					    						fontSize: 17
 					    					}
 					    				}
 					    			
 					    			});
-					    			
-					    				
 					    				
                                     markers[positionMarker]['infoWindow'].setContent(divWithin);
                                     markers[positionMarker]['infoWindow'].open(map, markers[positionMarker]);
-                                        
-					    
-                                       
-					    				
 
 					    	});
 							
@@ -555,7 +543,6 @@ function initMap() {
                                 if(typeof ositionMesorregiao !== "undefined"){break;}
                             }
                             mesorregiao = arrayMesorregiaos[positionMesorregiao];
-                            alert(mesorregiao);
 
                         }
     						
@@ -661,6 +648,7 @@ if(selected == "m") {
 						} else {
 							
 							$.post("/PP2-DangerousPlace/dadosRegiao", {'regiao': mesorregiao}, function(result){
+
 					    		console.log(result);
 					    	
 					    		var color = Chart.helpers.color;
@@ -715,7 +703,7 @@ if(selected == "m") {
 
 					    		buttonGerar.setAttribute("class", "btn btn-danger pull-right");
 					    		buttonGerar.appendChild(buttonTextGerar);
-                                buttonGerar.setAttribute("onclick", "gerarRelatorioMunicipio('"+result.mAssaltos[0].municipio+"')");
+                                buttonGerar.setAttribute("onclick", "gerarRelatorioMunicipio('"+result.mAssaltos[0].regiao+"')");
 
 					    		var buttonComen = document.createElement("BUTTON");
 					    		var buttonTextComen = document.createTextNode("Comentários");
@@ -820,7 +808,7 @@ function LocalitionControl(controlDiv, map) {
 					    url: "<%=request.getContextPath()%>/resources/assets/marker.png",
 					    scaledSize: new google.maps.Size(70, 90), // scaled size
 					    origin: new google.maps.Point(0,0), // origin
-					    anchor: new google.maps.Point(50, 50) // anchor
+					    anchor: new google.maps.Point(35, 80) // anchor
 					};
 		positionMarker = markers.length;
 		markers.push(marker = new google.maps.Marker({
@@ -883,13 +871,12 @@ function LocalitionControl(controlDiv, map) {
                                         if(regioes[i][j] == municipio){
                                             positionMesorregiao = i;
                                             break;
-                                        } alert(regioes[i][j]);
+                                        } 
                                     }
                                     if(typeof ositionMesorregiao !== "undefined"){break;}
                                 }
                                 mesorregiao = arrayMesorregiaos[positionMesorregiao];
                                 
-                                alert(mesorregiao);
                             }
     						
     						if(selected == "m") {
@@ -1049,7 +1036,7 @@ function LocalitionControl(controlDiv, map) {
 
 					    		buttonGerar.setAttribute("class", "btn btn-danger pull-right");
 					    		buttonGerar.appendChild(buttonTextGerar);
-                                buttonGerar.setAttribute("onclick", "gerarRelatorioRegiao('"+result.mAssaltos[0].regiao+"')");
+                                buttonGerar.setAttribute("onclick", "gerarRelatorioRegiao('"+result.rAssaltos[0].regiao+"')");
 
 					    		var buttonComen = document.createElement("BUTTON");
 					    		var buttonTextComen = document.createTextNode("Comentários");
@@ -1186,7 +1173,7 @@ function selectRM(controlDiv, map) {
     }
     
     function gerarRelatorioMunicipio(municipio) {
-        alert(municipio)
+
         $.post("/PP2-DangerousPlace/dadosMunicipio", {'municipio': municipio}, function(result){
         	
     	var columnsAssaltos = [
@@ -1250,7 +1237,7 @@ function selectRM(controlDiv, map) {
     });
 }
 
-function gerarRelatorioRegiao(regiao) {
+function gerarRelatorioRegiao(mesorregiao) {
 
     $.post("/PP2-DangerousPlace/dadosRegiao", {'regiao': mesorregiao}, function(result){
     	var columnsAssaltos = [
@@ -1307,7 +1294,6 @@ function gerarRelatorioRegiao(regiao) {
             styles: {fillColor: [100, 255, 255], overflow: 'linebreak'},
             margin: {top: 210},
             addPageContent: function(data) {
-            	doc.text("\n\n\n\n\n\nAssasinatos", 20, 20);
             }        
         });
         doc.save('table.pdf');   
