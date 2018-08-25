@@ -348,7 +348,7 @@ function initMap() {
 
 					    		buttonGerar.setAttribute("class", "btn btn-danger pull-right");
 					    		buttonGerar.appendChild(buttonTextGerar);
-                                //buttonGerar.setAttribute("onclick", "gerarRelatorioMunicipio("+testString+");");
+                                buttonGerar.setAttribute("onclick", "gerarRelatorioMunicipio('"+result.mAssaltos[0].municipio+"')");
 
 					    		var buttonComen = document.createElement("BUTTON");
 					    		var buttonTextComen = document.createTextNode("Comentários");
@@ -400,7 +400,7 @@ function initMap() {
 					    	
 					    		var color = Chart.helpers.color;
 					    		var barChartData = {
-					    			labels: ['2014','2015', '2016', '2017', '2018'],
+					    			labels: ['2014','2015', '2016'],
 					    			datasets: [{
 					    				label: 'Assassinatos',
 					    				backgroundColor: color(window.chartColors.red).alpha(4.5).rgbString(),
@@ -435,7 +435,7 @@ function initMap() {
 					    			}]
 					    		};
 					    		
-					    		var canvas = document.createElement('canvas');
+                                var canvas = document.createElement('canvas');
 					    		var div = document.getElementById('containerGraficos');
 					    		var divWithin = document.createElement("div");
 					    		div.appendChild(divWithin);
@@ -446,11 +446,11 @@ function initMap() {
 					    		var ctx = document.getElementById(id.length);
 					    		
 					    		var buttonGerar = document.createElement("BUTTON");
-					    		var buttonTextGerar = document.createTextNode("gerar Relarótio");
+					    		var buttonTextGerar = document.createTextNode("Gerar Relatório");
 
 					    		buttonGerar.setAttribute("class", "btn btn-danger pull-right");
 					    		buttonGerar.appendChild(buttonTextGerar);
-                                buttonGerar.click = function (result) { gerarRelatorioMunicipio(result) } ;
+                                buttonGerar.setAttribute("onclick", "gerarRelatorioRegiao('"+result.mAssaltos[0].regiao+"')");
 
 					    		var buttonComen = document.createElement("BUTTON");
 					    		var buttonTextComen = document.createTextNode("Comentários");
@@ -617,7 +617,7 @@ if(selected == "m") {
 
 					    		buttonGerar.setAttribute("class", "btn btn-danger pull-right");
 					    		buttonGerar.appendChild(buttonTextGerar);
-                                buttonGerar.click = function (result) { gerarRelatorioMunicipio(result) } ;
+                                buttonGerar.setAttribute("onclick", "gerarRelatorioMunicipio('"+result.mAssaltos[0].municipio+"')");
 
 					    		var buttonComen = document.createElement("BUTTON");
 					    		var buttonTextComen = document.createTextNode("Comentários");
@@ -715,7 +715,7 @@ if(selected == "m") {
 
 					    		buttonGerar.setAttribute("class", "btn btn-danger pull-right");
 					    		buttonGerar.appendChild(buttonTextGerar);
-                                buttonGerar.click = function (result) { gerarRelatorioMunicipio(result) } ;
+                                buttonGerar.setAttribute("onclick", "gerarRelatorioMunicipio('"+result.mAssaltos[0].municipio+"')");
 
 					    		var buttonComen = document.createElement("BUTTON");
 					    		var buttonTextComen = document.createTextNode("Comentários");
@@ -900,7 +900,7 @@ function LocalitionControl(controlDiv, map) {
     					    	
     					    		var color = Chart.helpers.color;
     					    		var barChartData = {
-    					    			labels: ['2014','2015', '2016', '2017', '2018'],
+    					    			labels: ['2014','2015', '2016'],
     					    			datasets: [{
     					    				label: 'Assassinatos',
     					    				backgroundColor: color(window.chartColors.red).alpha(4.5).rgbString(),
@@ -950,7 +950,7 @@ function LocalitionControl(controlDiv, map) {
 
 					    		buttonGerar.setAttribute("class", "btn btn-danger pull-right");
 					    		buttonGerar.appendChild(buttonTextGerar);
-                                buttonGerar.click = function (result) { gerarRelatorioMunicipio(result) } ;
+                                buttonGerar.setAttribute("onclick", "gerarRelatorioMunicipio('"+result.mAssaltos[0].municipio+"')");
 
 					    		var buttonComen = document.createElement("BUTTON");
 					    		var buttonTextComen = document.createTextNode("Comentários");
@@ -999,7 +999,7 @@ function LocalitionControl(controlDiv, map) {
     					    	
     					    		var color = Chart.helpers.color;
     					    		var barChartData = {
-    					    			labels: ['2014','2015', '2016', '2017', '2018'],
+    					    			labels: ['2014','2015', '2016'],
     					    			datasets: [{
     					    				label: 'Assassinatos',
     					    				backgroundColor: color(window.chartColors.red).alpha(4.5).rgbString(),
@@ -1049,7 +1049,7 @@ function LocalitionControl(controlDiv, map) {
 
 					    		buttonGerar.setAttribute("class", "btn btn-danger pull-right");
 					    		buttonGerar.appendChild(buttonTextGerar);
-                                buttonGerar.click = function (result) { gerarRelatorioMunicipio(result) } ;
+                                buttonGerar.setAttribute("onclick", "gerarRelatorioRegiao('"+result.mAssaltos[0].regiao+"')");
 
 					    		var buttonComen = document.createElement("BUTTON");
 					    		var buttonTextComen = document.createTextNode("Comentários");
@@ -1185,8 +1185,10 @@ function selectRM(controlDiv, map) {
     	selected = select.options[select.selectedIndex].value;
     }
     
-    function gerarRelatorioMunicipio(result) {
-    	
+    function gerarRelatorioMunicipio(municipio) {
+        alert(municipio)
+        $.post("/PP2-DangerousPlace/dadosMunicipio", {'municipio': municipio}, function(result){
+        	
     	var columnsAssaltos = [
             {title :  "Ano" , dataKey :  "ano" },
             {title :  "R_Carga" , dataKey :  "roubo_carga" },
@@ -1242,13 +1244,15 @@ function selectRM(controlDiv, map) {
             styles: {fillColor: [100, 255, 255], overflow: 'linebreak'},
             margin: {top: 210},
             addPageContent: function(data) {
-            	doc.text("\n\n\n\n\n\nAssasinatos", 20, 20);
             }        
         });
         doc.save('table.pdf');   
+    });
 }
 
-function gerarRelatorioRegiao(result) {
+function gerarRelatorioRegiao(regiao) {
+
+    $.post("/PP2-DangerousPlace/dadosRegiao", {'regiao': mesorregiao}, function(result){
     	var columnsAssaltos = [
             {title :  "Ano" , dataKey :  "ano" },
             {title :  "R_Carga" , dataKey :  "roubo_carga" },
@@ -1307,6 +1311,7 @@ function gerarRelatorioRegiao(result) {
             }        
         });
         doc.save('table.pdf');   
+    });
 }
 
     var regioes = [
