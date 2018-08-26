@@ -250,25 +250,25 @@ public class SistemaController {
 		return "home";
 	}
 
-	@RequestMapping("publicarEdit")
 	public String publicarEdit(@RequestParam("TemaEdit") String tema,
-			@RequestParam("tituloEdit") String titulo, @RequestParam("textAreaPublicarEdit") String conteudo,
-			@RequestParam("idPublicacaoEdit") String id ) {
+            @RequestParam("tituloEdit") String titulo, @RequestParam("textAreaPublicarEdit") String conteudo,
+            @RequestParam("idPublicacaoEdit") String id ) {
 
-		PublicacaoDao dao = new PublicacaoDao();
-		UsuarioConverter convert = new UsuarioConverter();
-		PublicacaoConverter convert1 = new PublicacaoConverter();
-		
-		Publicacao publicacao = convert1.convert(id);
-		
-		TemaConverter tc =  new TemaConverter();
-		publicacao.setTema(tc.convert(tema));
-		publicacao.setTitulo(titulo);
-		publicacao.setConteudo(conteudo);
-		dao.alterar(publicacao);
+        PublicacaoDao dao = new PublicacaoDao();
+        PublicacaoConverter convert1 = new PublicacaoConverter();
+        Publicacao publicacao = convert1.convert(id);
+        TemaConverter tc =  new TemaConverter();
+        publicacao.setTema(tc.convert(tema));
+        publicacao.setTitulo(titulo);
+        publicacao.setConteudo(conteudo);
+        System.out.println(publicacao.getConteudo());
+		System.out.println(publicacao.getTitulo());
+		System.out.println(publicacao.getTema());
+		System.out.println(publicacao.getId());
+        dao.alterar(publicacao);
 
-		return "usuario/PublicarSucesso";
-	}
+        return "usuario/PublicarSucesso";
+    }
 
 	@RequestMapping("filtro")
 	public String filtrar(Publicacao publicacao, Model model) {
