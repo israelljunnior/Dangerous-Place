@@ -117,6 +117,8 @@
 								<div class="w3-container">
 									<div class="w3-card-4 tam">
 										<header class="w3-container w3-black"> <br>
+										
+										
 										<div class="btn-group btn-group-xs" style="float: right;">
 
 											<c:choose>
@@ -143,6 +145,8 @@
 
 
 										</div>
+										
+										
 										<td>Tema: ${publicacao.tema.tema}</td>
 										<br>
 										<td><a data-toggle="modal" data-target="#modal">
@@ -265,7 +269,7 @@
 								</div>
 							</div>
 
-							<!-- Modal -->
+							<!-- Modal comentario -->
 							<div class="modal fade" id="modalComentario${ publicacao.id}"
 								role="dialog">
 								<div class="modal-dialog" style="width: 60%;">
@@ -290,26 +294,32 @@
 
 															<td><fmt:formatDate value="${comentario.data}"
 																	pattern="dd/MM/yyyy" /></td>
-
+<td>
+<div class="btn-group btn-group-xs" style="float: right;">
 															<c:choose>
 																<c:when
 																	test="${comentario.usuario.id == usuarioLogado.id}">
 																	<!-- Opção de apagar o comentário -->
-																	<td><button class="btn btn-danger">Apagar</button></td>
+																	<button type="button" class="btn btn-primary"
+														data-toggle="modal"
+														data-target="">Editar</button>
+																	<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalExcluirComent">Excluir</button>
 
 																</c:when>
 																<c:otherwise>
 																	<c:if
 																		test="${usuarioLogado.nivel_acesso == 'adm' || 'admSup' }">
 																		<!-- Opção de apagar o comentário -->
-																		<td><button class="btn btn-danger"
-																				onclick="apagarComentario(${comentario.id})">Apagar</button></td>
+																		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalExcluirComent"
+																				onclick="apagarComentario(${comentario.id})">Excluir</button>
 																	</c:if>
 
 																	</div>
 																</c:otherwise>
 
 															</c:choose>
+														</div>
+														</td>
 														</tr>
 
 														<tr>
@@ -363,6 +373,28 @@
 							</div>
 
 
+<!-- Modal excluir comementario -->
+							<div class="modal fade" id="modalExcluirComent" role="dialog">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal">&times;</button>
+										</div>
+										<div class="modal-body">
+											<center>
+												<h4>
+													<p>Você tem certeza que deseja excluir?</p>
+												</h4>
+												<a method="post" href="deleteComent?id=${comentario.id}"><button
+														type="button" class="btn btn-danger">Sim</button></a>
+												<button type="button" class="btn btn-danger"
+													data-dismiss="modal">Não</button>
+											</center>
+										</div>
+										<div class="modal-footer"></div>
+									</div>
+								</div>
+							</div>
 
 
 

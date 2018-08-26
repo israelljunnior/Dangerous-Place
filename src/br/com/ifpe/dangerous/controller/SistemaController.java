@@ -155,6 +155,18 @@ public class SistemaController {
 		return "forward:forum";
 	}
 
+	@RequestMapping("deleteComent")
+	public String deleteComent(@RequestParam("id") Integer id, Model model) {
+
+		ComentarioDao dao1 = new ComentarioDao();
+		dao1.remover(id);
+
+		model.addAttribute("mensagem", "Comentário Removido com Sucesso");
+
+		return "forward:forum";
+	}
+
+	
 	@RequestMapping("logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
@@ -249,7 +261,7 @@ public class SistemaController {
 
 		return "home";
 	}
-
+	@RequestMapping("publicarEdit")
 	public String publicarEdit(@RequestParam("TemaEdit") String tema,
             @RequestParam("tituloEdit") String titulo, @RequestParam("textAreaPublicarEdit") String conteudo,
             @RequestParam("idPublicacaoEdit") String id ) {

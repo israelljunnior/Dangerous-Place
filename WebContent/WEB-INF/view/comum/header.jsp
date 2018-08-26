@@ -123,7 +123,7 @@ prefix="fmt" %>
 	<!-- Modal Login -->
 	<div class="modal fade" id="modalLogin" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" media="all" data-backdrop="static">
-		<div class="modal-dialog modal-xs" role="document">
+		<div class="modal-dialog modal-sm" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
@@ -131,7 +131,7 @@ prefix="fmt" %>
 						<span aria-hidden="true">&times;</span>
 					</button>
 					<center>
-						<h3>Login</h3>
+						<h3><b>Login</b></h3>
 						<c:if test="${msgNaoEncontrado ne null}">
 							<div class="alert alert-danger" style="width: 80%;">${msgNaoEncontrado}
 							</div>
@@ -144,37 +144,43 @@ prefix="fmt" %>
 				</div>
 				<div class="modal-body">
 					<form action="efetuarLogin" method="post">
-
 						<center>
-
-							<div class="form-group">
-								<label for="email">Email:</label> <input type="text"
-									id="emailLogin" class="form-control" name="email"
-									style="width: 500px;" placeholder="Digite seu Email." />
-							</div>
-							<div class="form-group">
-								<label for="senha">Senha:</label> <input type="password"
-									id="senhaLogin" class="form-control" name="senha"
-									style="width: 500px;" placeholder="Digite sua senha." />
-							</div>
-
 							
-							<div class="btn-group btn-group-lg" style="text-align: center";>
+							<div class="input-group">
+								<span class="input-group-addon"><i
+									class="glyphicon glyphicon-user"></i></span> <input id="emailLogin"
+									type="text" class="form-control"  name="email"
+									placeholder="Email">
+							</div>
+<br>
+							
+							<div class="input-group">
+								<span class="input-group-addon"><i
+									class="glyphicon glyphicon-lock"></i></span> <input id="senhaLogin"
+									type="password" class="form-control" name="senha"
+									placeholder="Senha">
+							</div> <br><br>
+
+
+
+
+
+
+							<div class="btn-group btn-group" style="text-align: center";>
 								<button type="submit" class="btn btn-danger"
-									 data-toggle="tooltip">Entrar</button>
+									data-toggle="tooltip">Entrar</button>
 								</a>
-														
+
 							</div>
 						</center>
-						 
-						 <div class="g-signin2" data-onsuccess="onSignIn"></div>
-					
+<br>
+						<div class="g-signin2" data-onsuccess="onSignIn"></div>
+
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
-
 
 	<!-- Modal cadastro -->
 	<div class="modal fade" id="modalCadastro" tabindex="-1" role="dialog"
