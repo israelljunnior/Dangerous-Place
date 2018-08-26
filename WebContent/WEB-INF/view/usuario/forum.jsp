@@ -72,7 +72,7 @@
 			<table id="tablefilter" border="0" align="left">
 				<tr>
 					<!-- filtro -->
-					<form action="filtro" method="post">
+					<form action="filtro" method="post"> 
 
 						<td><input type="text" id="filtro" class="form-control"
 							name="tema" style="width: 300px; height: 30px;" maxlength="100"
