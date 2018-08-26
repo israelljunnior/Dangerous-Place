@@ -24,7 +24,13 @@ create table usuario(
 
 );
 
+create table tema_publicacao(
 
+	id int AUTO_INCREMENT PRIMARY KEY,
+
+	tema varchar(50) not null
+
+);
 
 create table publicacao(
 
@@ -32,7 +38,7 @@ create table publicacao(
 
 	titulo varchar(300) not null,
 
-	tema varchar(50) not null,
+	tema int not null,
 
 	conteudo varchar(4000) not null,
 
@@ -40,6 +46,8 @@ create table publicacao(
 
 	id_usuario int not null,
 
+
+	FOREIGN KEY (tema) references tema_publicacao (id),
 	FOREIGN KEY (id_usuario) references usuario (id_usuario)
 
 );
