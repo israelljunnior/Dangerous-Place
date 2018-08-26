@@ -251,13 +251,16 @@ public class SistemaController {
 	}
 
 	@RequestMapping("publicarEdit")
-	public String publicarEdit(Publicacao publicacao, @RequestParam("TemaEdit") String tema,
+	public String publicarEdit(@RequestParam("TemaEdit") String tema,
 			@RequestParam("tituloEdit") String titulo, @RequestParam("textAreaPublicarEdit") String conteudo,
-			@RequestParam("usuarioPubEdit") String id) {
+			@RequestParam("idPublicacaoEdit") String id ) {
 
 		PublicacaoDao dao = new PublicacaoDao();
 		UsuarioConverter convert = new UsuarioConverter();
-		publicacao.setUsuario(convert.convert(id));
+		PublicacaoConverter convert1 = new PublicacaoConverter();
+		
+		Publicacao publicacao = convert1.convert(id);
+		
 		TemaConverter tc =  new TemaConverter();
 		publicacao.setTema(tc.convert(tema));
 		publicacao.setTitulo(titulo);

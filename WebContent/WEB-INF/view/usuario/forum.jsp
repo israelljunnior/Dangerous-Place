@@ -28,16 +28,7 @@
 #mostrar_comentario {
 	background-color: rgba(0, 191, 255, 0.2);
 }
-
-.tam {
-	height: 25em;
 }
-
-
-
-
-}
-
 </style>
 </head>
 
@@ -60,318 +51,328 @@
 
 
 
-<div id="espacamento" style="padding:10px; align:center">
-	<div class="col-sm-2">
-		<button type="button" class="btn" title="Aumentar zoom" onClick="fonte('a');">A +</button>
-		
-		<button type="button" class="btn" title="Diminuir zoom" onClick="fonte('d');">a -</button>
-	</div>	
+	<div id="espacamento" style="padding: 10px; align: center">
+		<div class="col-sm-2">
+			<button type="button" class="btn" title="Aumentar zoom"
+				onClick="fonte('a');">A +</button>
 
-<div class="col-sm-8" id="todoBody">	
+			<button type="button" class="btn" title="Diminuir zoom"
+				onClick="fonte('d');">a -</button>
+		</div>
 
-<div  class="container" style="width:100%; background-color:black;">
-		<center>
-			<h2 id="titulo_forum">Fórum</h2>
-		</center>
-	
-</div>
-<br>
-<table id="tablefilter" border="0" align="left">
+		<div class="col-sm-8" id="todoBody">
+
+			<div class="container" style="width: 100%; background-color: black;">
+				<center>
+					<h2 id="titulo_forum">Fórum</h2>
+				</center>
+
+			</div>
+			<br>
+			<table id="tablefilter" border="0" align="left">
 				<tr>
 					<!-- filtro -->
 					<form action="filtro" method="post">
 
 						<td><input type="text" id="filtro" class="form-control"
-							name="tema" style="width: 300px; height: 30px;" maxlength="100" placeholder="Pesquisar..." /></td>
- 
-						<td>&nbsp;&nbsp;<button style="height: 30px;" type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></button></td>
+							name="tema" style="width: 300px; height: 30px;" maxlength="100"
+							placeholder="Pesquisar..." /></td>
+
+						<td>&nbsp;&nbsp;
+							<button style="height: 30px;" type="submit"
+								class="btn btn-primary">
+								<i class="glyphicon glyphicon-search"></i>
+							</button>
+						</td>
 
 					</form>
 					<!-- /filtro -->
-<td>&nbsp;</td>
+					<td>&nbsp;</td>
 
 					<td align="rigth">
-					
-					
+
+
 						<button type="button" class="btn btn-primary" data-toggle="modal"
 							data-target="#modalPublicar"
-							style="height: 40px;; width:100%; background-color: #555555; color: white">Publicar</button>
+							style="height: 40px;; width: 100%; background-color: #555555; color: white">Publicar</button>
 					</td>
 				</tr>
-				
-				
-				
+
+
+
 			</table>
 			<br> <br>
 
 
-	<div class="row" style="font-family: 'Montserrat', sans-serif">
-		<div class="col-sm-2"></div>
-		<div class="col-sm-10">
-			
-			<div class="row" id="container">
 
-				<c:forEach var="publicacao" items="${listaPublicacao}">
+			<div class="row" style="font-family: 'Montserrat', sans-serif">
 
-					<div class="col-sm-6">
-						<div class="w3-container">
-							<div class="w3-card-4 tam">
-								<header class="w3-container w3-black"> <br>
-								<div class="btn-group btn-group-xs" style="float: right;">
+				<div class="col-sm-13">
 
-									<c:choose>
-										<c:when test="${publicacao.usuario.id == usuarioLogado.id}">
-											<button type="button" class="btn btn-primary"
-												data-toggle="modal"
-												data-target="#modalPublicarEdit${publicacao.id}">Editar</button>
-											<button type="button" class="btn btn-danger"
-												data-toggle="modal" data-target="#modalExcluir">Excluir</button>
+					<div class="row" id="container">
 
-										</c:when>
-										<c:otherwise>
-											<c:if
-												test="${usuarioLogado.nivel_acesso == 'admSup'|| 'adm' }">
+						<c:forEach var="publicacao" items="${listaPublicacao}">
 
-												<button type="button" class="btn btn-danger"
-													data-toggle="modal" data-target="#modalExcluir">Excluir</button>
+							<div class="col-sm-6">
+								<div class="w3-container">
+									<div class="w3-card-4 tam">
+										<header class="w3-container w3-black"> <br>
+										<div class="btn-group btn-group-xs" style="float: right;">
 
-											</c:if>
+											<c:choose>
+												<c:when test="${publicacao.usuario.id == usuarioLogado.id}">
+													<button type="button" class="btn btn-primary"
+														data-toggle="modal"
+														data-target="#modalPublicarEdit${publicacao.id}">Editar</button>
+													<button type="button" class="btn btn-danger"
+														data-toggle="modal" data-target="#modalExcluir">Excluir</button>
 
-										</c:otherwise>
+												</c:when>
+												<c:otherwise>
+													<c:if
+														test="${usuarioLogado.nivel_acesso == 'admSup'|| 'adm' }">
 
-									</c:choose>
+														<button type="button" class="btn btn-danger"
+															data-toggle="modal" data-target="#modalExcluir">Excluir</button>
 
+													</c:if>
 
-								</div>
-								<td>Tema: ${publicacao.tema}</td>
-								<br>
-								<td><a data-toggle="modal" data-target="#modal">
-										${publicacao.usuario.nome}</a></td>
-								<br>
-								<td>Publicado em: <fmt:formatDate
-										value="${publicacao.data}" pattern="dd/MM/yyyy" /></td>
-								<br>
-								<td>Título: ${publicacao.titulo}</td>
+												</c:otherwise>
 
-								<br>
-								<br>
-								</header>
-
-								<div class="w3-container" style="height: 12em;">
-									<td><br>
-										<p id="conteudo_publicacao">${publicacao.conteudo}</p> <br></td>
-								</div>
-								<tr></tr>
-								<div class="w3-container" style="height: 5em;">
+											</c:choose>
 
 
-									<td><button type="button" class="btn btn-primary"
-											data-toggle="modal"
-											data-target="#modalComentario${publicacao.id}"
-											style="background-color: #555555; color: white">Ver Comentários</button></td>
+										</div>
+										<td>Tema: ${publicacao.tema.tema}</td>
+										<br>
+										<td><a data-toggle="modal" data-target="#modal">
+												${publicacao.usuario.nome}</a></td>
+										<br>
+										<td>Publicado em: <fmt:formatDate
+												value="${publicacao.data}" pattern="dd/MM/yyyy" /></td>
+										<br>
+										<td>Título: ${publicacao.titulo}</td>
+
+										<br>
+										<br>
+										</header>
+
+										<div class="w3-container" style="height: 12em;">
+											<td><br>
+												<p id="conteudo_publicacao">${publicacao.conteudo}</p> <br></td>
+										</div>
+										<tr></tr>
+										<div class="w3-container" style="height: 5em;">
+
+
+											<td><button type="button" class="btn btn-primary"
+													data-toggle="modal"
+													data-target="#modalComentario${publicacao.id}"
+													style="background-color: #555555; color: white">Ver
+													Comentários</button></td> <br> <br>
+
+										</div>
+									</div>
 									<br> <br>
-
 								</div>
 							</div>
-							<br> <br>
-						</div>
-					</div>
-
-					<div class="col-sm-1"></div>
-
-					<!--  Modal Editar -->
-					<div class="modal fade" id="modalPublicarEdit${publicacao.id}"
-						tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-						media="all" data-backdrop="static">
-						<div class="modal-dialog modal-xs" role="document">
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal"
-										aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									</button>
-									<center>
-										<h3>Editar Publicação</h3>
-									</center>
-								</div>
-								<div class="modal-body">
-									<form action="publicarEdit" id="formModalPublicarEdit"
-										method="post">
 
 
-										<input type="hidden" id="idPublicarEdit" name="usuarioPubEdit"
-											value="${publicacao.usuario.id }">
-										<div class="form-group">
-											<label for="inputTema">Tema da Publicação:</label> <select
-												id="inputTemaEdit" name="TemaEdit">
-												<option class="form-control" required="required"
-													type="radio" value="Assaltos" name="Assaltos">Assaltos</option>
-												<br />
-												<option class="form-control" required="required"
-													type="radio" value="Acidentes de Trânsito"
-													name="Acidentes de Trânsito">Acidentes de Trânsito</option>
-												<br />
-												<option class="form-control" required="required"
-													type="radio" value="Assassinatos" name="Assassinatos">Assassinatos</option>
 
-											</select>
+							<!--  Modal Editar -->
+							<div class="modal fade" id="modalPublicarEdit${publicacao.id}"
+								tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+								media="all" data-backdrop="static">
+								<div class="modal-dialog modal-xs" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal"
+												aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+											<center>
+												<h3>Editar Publicação</h3>
+											</center>
 										</div>
+										<div class="modal-body">
+											<form action="publicarEdit?idPublicacaoEdit=idPublicacaoEdit${publicacao.id}&idPublicarEdit=idPublicarEdit${publicacao.id}
+											&inputTemaEdit=inputTemaEdit${publicacao.id}&inputTituloEdit=inputTituloEdit${publicacao.id}&conteudoEdit=conteudoEdit${publicacao.id}" id="formModalPublicarEdit${publicacao.id}"
+												method="post">
+
+													<input type="hidden" id="idPublicacaoEdit${publicacao.id}"
+													name="idPublicacaoEdit${publicacao.id}" value="${publicacao.id }">
+												<input type="hidden" id="idPublicarEdit${publicacao.id}"
+													name="usuarioPubEdit${publicacao.id}" value="${publicacao.usuario.id }">
+												<div class="form-group">
+													<label for="inputTema">Tema da Publicação:</label> <select
+														id="inputTemaEdit${publicacao.id}" name="TemaEdit">
+														<option>Selecionar</option>
+														<c:forEach items="${listaTema}" var="tema">
+
+															<option class="form-control" required="required"
+																value="${tema.id}">${tema.tema}</option>
+
+														</c:forEach>
+													</select>
+												</div>
 
 
-										<div class="form-group">
+												<div class="form-group">
 
-											<label for="inputTitulo">Titulo:</label> <input type="text"
-												id="inputTituloEdit" class="form-control" name="tituloEdit"
-												style="width: 100%;" value="${publicacao.titulo }" />
+													<label for="inputTitulo">Titulo:</label> <input type="text"
+														id="inputTituloEdit${publicacao.id}" class="form-control"
+														name="tituloEdit${publicacao.id}" style="width: 100%;"
+														value="${publicacao.titulo }" />
+												</div>
+
+												<!-- ESSE AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII -->
+												<div class="form-group">
+													<textarea class="form-control" rows="5"
+														form="formModalPublicarEdit" name="textAreaPublicarEdit${publicacao.id}"
+														id="conteudoEdit${publicacao.id}" style="resize: none;">${publicacao.conteudo}</textarea>
+												</div>
+
+												<button type="submit" class="btn btn-primary"
+													style="background-color: #555555" data-toggle="tooltip">Enviar</button>
+
+
+
+											</form>
 										</div>
-
-										<!-- ESSE AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII -->
-										<div class="form-group">
-											<textarea class="form-control" rows="5"
-												form="formModalPublicarEdit" name="textAreaPublicarEdit"
-												id="conteudoEdit" style="resize: none;">${publicacao.conteudo}</textarea>
-										</div>
-
-										<button type="submit" class="btn btn-primary"
-											style="background-color: #555555" data-toggle="tooltip">Enviar</button>
-
-
-
-									</form>
+									</div>
 								</div>
 							</div>
-						</div>
-					</div>
-					<!-- /miOdal EDIATAR -->
+							<!-- /miOdal EDIATAR -->
 
-					<!-- Modal excluir -->
-					<div class="modal fade" id="modalExcluir" role="dialog">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<!-- Modal excluir -->
+							<div class="modal fade" id="modalExcluir" role="dialog">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal">&times;</button>
+										</div>
+										<div class="modal-body">
+											<center>
+												<h4>
+													<p>Você tem certeza que deseja excluir?</p>
+												</h4>
+												<a method="post" href="deletePub?id=${publicacao.id}"><button
+														type="button" class="btn btn-danger">Sim</button></a>
+												<button type="button" class="btn btn-danger"
+													data-dismiss="modal">Não</button>
+											</center>
+										</div>
+										<div class="modal-footer"></div>
+									</div>
 								</div>
-								<div class="modal-body">
-									<center>
-										<h4>
-											<p>Você tem certeza que deseja excluir?</p>
-										</h4>
-										<a method="post" href="deletePub?id=${publicacao.id}"><button
-												type="button" class="btn btn-danger">Sim</button></a>
-										<button type="button" class="btn btn-danger"
-											data-dismiss="modal">Não</button>
-									</center>
-								</div>
-								<div class="modal-footer"></div>
 							</div>
-						</div>
-					</div>
 
-					<!-- Modal -->
-					<div class="modal fade" id="modalComentario${ publicacao.id}"
-						role="dialog">
-						<div class="modal-dialog" style="width: 60%;">
+							<!-- Modal -->
+							<div class="modal fade" id="modalComentario${ publicacao.id}"
+								role="dialog">
+								<div class="modal-dialog" style="width: 60%;">
 
-							<!-- Modal content-->
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal">&times;</button>
-									<h2 class="modal-title">Comentários</h2>
-								</div>
-								<div class="modal-body">
-									<table border="0" style="width: 100%;">
+									<!-- Modal content-->
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal">&times;</button>
+											<h2 class="modal-title">Comentários</h2>
+										</div>
+										<div class="modal-body">
+											<table border="0" style="width: 100%;">
 
-										<c:forEach var="comentario" items="${listaComentario}">
+												<c:forEach var="comentario" items="${listaComentario}">
 
-											<c:if test="${ comentario.publicacao.id == publicacao.id}">
+													<c:if test="${ comentario.publicacao.id == publicacao.id}">
+														<tr>
+															<td><br> <br> <br></td>
+															<td><b>${comentario.usuario.nome }</b></td>
+
+															<!-- Data que comentário foi postado -->
+
+															<td><fmt:formatDate value="${comentario.data}"
+																	pattern="dd/MM/yyyy" /></td>
+
+															<c:choose>
+																<c:when
+																	test="${comentario.usuario.id == usuarioLogado.id}">
+																	<!-- Opção de apagar o comentário -->
+																	<td><button class="btn btn-danger">Apagar</button></td>
+
+																</c:when>
+																<c:otherwise>
+																	<c:if
+																		test="${usuarioLogado.nivel_acesso == 'adm' || 'admSup' }">
+																		<!-- Opção de apagar o comentário -->
+																		<td><button class="btn btn-danger"
+																				onclick="apagarComentario(${comentario.id})">Apagar</button></td>
+																	</c:if>
+
+																	</div>
+																</c:otherwise>
+
+															</c:choose>
+														</tr>
+
+														<tr>
+															<!-- O comentário em si está aqui -->
+															<td colspan="6"><p>${comentario.conteudo}</p> <!-- Colocando uma linha para separar cada comentário -->
+																<hr /></td>
+														</tr>
+													</c:if>
+												</c:forEach>
+											</table>
+
+										</div>
+
+										<div class="modal-footer">
+											<table border="0" style="width: 100%;">
 												<tr>
 													<td><br> <br> <br></td>
-													<td><b>${comentario.usuario.nome }</b></td>
-
-													<!-- Data que comentário foi postado -->
-
-													<td><fmt:formatDate value="${comentario.data}"
-															pattern="dd/MM/yyyy" /></td>
-
-													<c:choose>
-														<c:when
-															test="${comentario.usuario.id == usuarioLogado.id}">
-															<!-- Opção de apagar o comentário -->
-															<td><button class="btn btn-danger">Apagar</button></td>
-
-														</c:when>
-														<c:otherwise>
-															<c:if
-																test="${usuarioLogado.nivel_acesso == 'adm' || 'admSup' }">
-																<!-- Opção de apagar o comentário -->
-																<td><button class="btn btn-danger"
-																		onclick="apagarComentario(${comentario.id})">Apagar</button></td>
-															</c:if>
-
-													</div>	</c:otherwise>
-
-													</c:choose>
 												</tr>
 
 												<tr>
-													<!-- O comentário em si está aqui -->
-													<td colspan="6"><p>${comentario.conteudo}</p> <!-- Colocando uma linha para separar cada comentário -->
-														<hr /></td>
+													<td>
+														<!-- Campo de formulário pra enviar um novo comentário -->
+														<form action="comentar" id="formComent${publicacao.id}"
+															method="post"">
+
+															<input type="hidden" id="idUsuComent${publicacao.id } "
+																name="idUsuComent" value="${usuarioLogado.id}" /> <input
+																type="hidden" id="idPubComent${publicacao.id }"
+																name="idPubComent" value="${publicacao.id}" />
+
+															<textarea style="resize: none;" rows="6" cols="5"
+																class="form-control" minlength="1"
+																form="formComent${publicacao.id}" name="conteudoComent"
+																placeholder="Escreva um comentário "></textarea>
+
+															<br> <input class="btn btn-primary" type="submit"
+																value="Enviar Comentário"
+																style="float: right; background-color: #555555;">
+															<br> <br>
+
+														</form>
+
+													</td>
 												</tr>
-											</c:if>
-										</c:forEach>
-									</table>
+											</table>
 
-								</div>
-
-								<div class="modal-footer">
-									<table border="0" style="width: 100%;">
-										<tr>
-											<td><br> <br> <br></td>
-										</tr>
-
-										<tr>
-											<td>
-												<!-- Campo de formulário pra enviar um novo comentário -->
-												<form action="comentar" id="formComent${publicacao.id}"
-													method="post"">
-
-													<input type="hidden" id="idUsuComent${publicacao.id } "
-														name="idUsuComent" value="${usuarioLogado.id}" /> <input
-														type="hidden" id="idPubComent${publicacao.id }"
-														name="idPubComent" value="${publicacao.id}" />
-
-													<textarea style="resize: none;" rows="6" cols="5"
-														class="form-control" minlength="1"
-														form="formComent${publicacao.id}" name="conteudoComent"
-														placeholder="Escreva um comentário "></textarea>
-
-													<br> <input class="btn btn-primary" type="submit"
-														value="Enviar Comentário"
-														style="float: right; background-color: #555555;">
-													<br> <br>
-
-												</form>
-
-											</td>
-										</tr>
-									</table>
+										</div>
+									</div>
 
 								</div>
 							</div>
 
-						</div>
+
+
+
+
+						</c:forEach>
 					</div>
-
-
-
-
-
-				</c:forEach>
+				</div>
 			</div>
 		</div>
-	</div>
-	</div>
 	</div>
 
 	<!-- Modal para perfil no fórum -->
@@ -390,7 +391,7 @@
 				</div>
 				<div class="modal-body">
 					<ul type="none">
-						<br/>
+						<br />
 						<li><label>Nome:&nbsp;&nbsp;</label> Diego</li>
 						<br>
 
@@ -412,7 +413,7 @@
 	</div>
 
 	</div>
-</div>
+	</div>
 </body>
 </html>
 
