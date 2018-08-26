@@ -195,14 +195,12 @@
 											</center>
 										</div>
 										<div class="modal-body">
-											<form action="publicarEdit?idPublicacaoEdit=idPublicacaoEdit${publicacao.id}&idPublicarEdit=idPublicarEdit${publicacao.id}
-											&inputTemaEdit=inputTemaEdit${publicacao.id}&inputTituloEdit=inputTituloEdit${publicacao.id}&conteudoEdit=conteudoEdit${publicacao.id}" id="formModalPublicarEdit${publicacao.id}"
-												method="post">
+											<form action="publicarEdit" id="formModalPublicarEdit${publicacao.id}" method="post">
 
 													<input type="hidden" id="idPublicacaoEdit${publicacao.id}"
-													name="idPublicacaoEdit${publicacao.id}" value="${publicacao.id }">
+													name="idPublicacaoEdit" value="${publicacao.id }">
 												<input type="hidden" id="idPublicarEdit${publicacao.id}"
-													name="usuarioPubEdit${publicacao.id}" value="${publicacao.usuario.id }">
+													name="usuarioPubEdit" value="${publicacao.usuario.id }">
 												<div class="form-group">
 													<label for="inputTema">Tema da Publicação:</label> <select
 														id="inputTemaEdit${publicacao.id}" name="TemaEdit">
@@ -221,14 +219,14 @@
 
 													<label for="inputTitulo">Titulo:</label> <input type="text"
 														id="inputTituloEdit${publicacao.id}" class="form-control"
-														name="tituloEdit${publicacao.id}" style="width: 100%;"
+														name="tituloEdit" style="width: 100%;"
 														value="${publicacao.titulo }" />
 												</div>
 
 												<!-- ESSE AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII -->
 												<div class="form-group">
 													<textarea class="form-control" rows="5"
-														form="formModalPublicarEdit" name="textAreaPublicarEdit${publicacao.id}"
+														form="formModalPublicarEdit${publicacao.id}" name="textAreaPublicarEdit"
 														id="conteudoEdit${publicacao.id}" style="resize: none;">${publicacao.conteudo}</textarea>
 												</div>
 
