@@ -1178,10 +1178,10 @@ function selectRM(controlDiv, map) {
         	
     	var columnsAssaltos = [
             {title :  "Ano" , dataKey :  "ano" },
-            {title :  "R_Carga" , dataKey :  "roubo_carga" },
-            {title :  "R_Lojas" , dataKey :  "roubo_estabelecimento" },
-            {title :  "R_Bancos\n" , dataKey :  "roubo_instituição_financeira" },
-            {title :  "R_moto" , dataKey :  "roubo_moto" },
+            {title :  "Roubo a carga" , dataKey :  "roubo_carga" },
+            {title :  "Roubo a lojas" , dataKey :  "roubo_estabelecimento" },
+            {title :  "Roubo a bancos" , dataKey :  "roubo_instituição_financeira" },
+            {title :  "Roubo a moto" , dataKey :  "roubo_moto" },
             {title :  "Extorsão" , dataKey :  "roubo_extorsão" }
              
         ]
@@ -1191,17 +1191,35 @@ function selectRM(controlDiv, map) {
 
             {"ano" :result.mAssaltos[0].ano , "roubo_carga" : result.mAssaltos[0].rouboCarga  ,  "roubo_estabelecimento" : result.mAssaltos[0].rouboEstabelecimento ,"roubo_instituição_financeira" : result.mAssaltos[0].rouboInstFinanc , "roubo_moto" : result.mAssaltos[0].rouboMotoneta, "roubo_extorsão" : result.mAssaltos[0].rouboExtorsao },
             {"ano" :result.mAssaltos[1].ano ,"roubo_carga" : result.mAssaltos[1].rouboCarga  ,  "roubo_estabelecimento" : result.mAssaltos[1].rouboEstabelecimento ,"roubo_instituição_financeira" : result.mAssaltos[1].rouboInstFinanc , "roubo_moto" : result.mAssaltos[1].rouboMotoneta, "roubo_extorsão" : result.mAssaltos[1].rouboExtorsao },
-            //{"ano" :result.mAssaltos[2].ano , "roubo_carga" : result.mAssaltos[2].rouboCarga  ,  "roubo_estabelecimento" : result.mAssaltos[2].rouboEstabelecimento ,"roubo_instituição_financeira" : result.mAssaltos[2].rouboInstFinanc , "roubo_moto" : result.mAssaltos[2].rouboMotoneta, "roubo_extorsão" : result.mAssaltos[2].rouboExtorsao }
+            {"ano" :result.mAssaltos[2].ano , "roubo_carga" : result.mAssaltos[2].rouboCarga  ,  "roubo_estabelecimento" : result.mAssaltos[2].rouboEstabelecimento ,"roubo_instituição_financeira" : result.mAssaltos[2].rouboInstFinanc , "roubo_moto" : result.mAssaltos[2].rouboMotoneta, "roubo_extorsão" : result.mAssaltos[2].rouboExtorsao }
 
         ];
+        
+        
+        var columnsAssaltos2 = [
+    		  {title :  "Ano" , dataKey :  "ano" },
+              {title :  "Roubo a turista" , dataKey :  "roubo_transeunte" },
+              {title :  "Roubo a Ônibus" , dataKey :  "roubo_onibus" },
+              {title :  "Roubo a Casa" , dataKey :  "roubo_residencias" },
+              {title :  "Total de Assaltos" , dataKey :  "total_assalt" }
+    	]
+
+    	 var rowsAssaltos2 = [
+
+             {"ano" :result.mAssaltos[0].ano , "roubo_transeunte" : result.mAssaltos[0].rouboTranseunte  ,  "roubo_onibus" : result.mAssaltos[0].rouboOnibus ,"roubo_residencias" : result.mAssaltos[0].rouboResidencias , "total_assalt" : result.mAssaltos[0].totalAssaltos},
+             {"ano" :result.mAssaltos[1].ano , "roubo_transeunte" : result.mAssaltos[1].rouboTranseunte  ,  "roubo_onibus" : result.mAssaltos[1].rouboOnibus ,"roubo_residencias" : result.mAssaltos[1].rouboResidencias , "total_assalt" : result.mAssaltos[1].totalAssaltos},
+             {"ano" :result.mAssaltos[2].ano , "roubo_transeunte" : result.mAssaltos[2].rouboTranseunte  ,  "roubo_onibus" : result.mAssaltos[2].rouboOnibus ,"roubo_residencias" : result.mAssaltos[2].rouboResidencias , "total_assalt" : result.mAssaltos[2].totalAssaltos}
+
+
+         ];
 
     	var columnsAssassinatos = [
     		
             {title :  "Ano" , dataKey :  "ano" },
-            {title :  "Qtd_Homicidio" , dataKey :  "qtd_homicidio" },
-            {title :  "Qtd_Latrocinio" , dataKey :  "qtd_latrocinio" },
-            {title :  "Qtd_Arma branca" , dataKey :  "qtd_arma_branca" },
-            {title :  "Qtd_Arma de fogo"  , dataKey :  "qtd_arma_fogo" },
+            {title :  "Homicidios" , dataKey :  "qtd_homicidio" },
+            {title :  "Latrocinios" , dataKey :  "qtd_latrocinio" },
+            {title :  "Arma branca" , dataKey :  "qtd_arma_branca" },
+            {title :  "Arma de fogo"  , dataKey :  "qtd_arma_fogo" },
             {title :  "Total assassinatos"  , dataKey :  "total_assassi" }
             
             
@@ -1212,27 +1230,39 @@ function selectRM(controlDiv, map) {
 
             {"ano" :result.mAssassinatos[0].ano , "qtd_homicidio" : result.mAssassinatos[0].quantidadeHomicidio  ,  "qtd_latrocinio" : result.mAssassinatos[0].quantidadeLatrocinio ,"qtd_arma_branca" : result.mAssassinatos[0].quantidadeArmabranca , "qtd_arma_fogo" : result.mAssassinatos[0].quantidadeArmafogo, "total_assassi" : result.mAssassinatos[0].totalAssassinatos },
             {"ano" :result.mAssassinatos[1].ano ,"qtd_homicidio" : result.mAssassinatos[1].quantidadeHomicidio  ,  "qtd_latrocinio" : result.mAssassinatos[1].quantidadeLatrocinio ,"qtd_arma_branca" : result.mAssassinatos[1].quantidadeArmabranca, "qtd_arma_fogo" : result.mAssassinatos[1].quantidadeArmafogo, "total_assassi" : result.mAssassinatos[1].totalAssassinatos },
-            //{"ano" :result.mAssassinatos[2].ano , "qtd_homicidio" : result.mAssassinatos[2].quantidadeHomicidio  ,  "qtd_latrocinio" : result.mAssassinatos[2].quantidadeLatrocinio ,"qtd_arma_branca" : result.mAssassinatos[2].quantidadeArmabranca, "qtd_arma_fogo" : result.mAssassinatos[2].quantidadeArmafogo, "total_assassi" : result.mAssassinatos[2].totalAssassinatos }
+            {"ano" :result.mAssassinatos[2].ano , "qtd_homicidio" : result.mAssassinatos[2].quantidadeHomicidio  ,  "qtd_latrocinio" : result.mAssassinatos[2].quantidadeLatrocinio ,"qtd_arma_branca" : result.mAssassinatos[2].quantidadeArmabranca, "qtd_arma_fogo" : result.mAssassinatos[2].quantidadeArmafogo, "total_assassi" : result.mAssassinatos[2].totalAssassinatos }
 
         ];
 
         // Only pt supported (not mm or in)
-        var doc = new jsPDF('p', 'pt');
+        var doc = new jsPDF('l', 'pt');
     	var startingPage = doc.internal.getCurrentPageInfo().pageNumber;
         doc.autoTable(columnsAssaltos, rowsAssaltos,{
-            styles: {fillColor: [100, 255, 255]},
+            styles: {fillColor: [255, 0, 0]},
             margin: {top: 60},
             avoidPageSplit: true,
             addPageContent: function(data) {
             	doc.text("Dangerous Place \n Município: "+result.mAssaltos[0].municipio, 40, 30);
             }
         });
+        
+        doc.autoTable(columnsAssaltos2, rowsAssaltos2,{
+            styles: {fillColor: [255, 0, 0], overflow: 'linebreak'},
+            margin: {top: 360},
+            addPageContent: function(data) {
+            }        
+        });
+        
+      
         doc.autoTable(columnsAssassinatos, rowsAssassinatos,{
-            styles: {fillColor: [100, 255, 255], overflow: 'linebreak'},
+            styles: {fillColor: [255, 0, 0], overflow: 'linebreak'},
             margin: {top: 210},
             addPageContent: function(data) {
             }        
         });
+        
+        
+        
         doc.save('table.pdf');   
     });
 }
@@ -1258,6 +1288,24 @@ function gerarRelatorioRegiao(mesorregiao) {
             //{"ano" :result.rAssaltos[2].ano , "roubo_carga" : result.rAssaltos[2].rouboCarga  ,  "roubo_estabelecimento" : result.rAssaltos[2].rouboEstabelecimento ,"roubo_instituição_financeira" : result.rAssaltos[2].rouboInstFinanc , "roubo_moto" : result.rAssaltos[2].rouboMotoneta, "roubo_extorsão" : result.rAssaltos[2].rouboExtorsao }
 
         ];
+        
+        
+        var columnsAssaltos2 = [
+    		  {title :  "Ano" , dataKey :  "ano" },
+              {title :  "Roubo a turista" , dataKey :  "roubo_transeunte" },
+              {title :  "Roubo a Ônibus" , dataKey :  "roubo_onibus" },
+              {title :  "Roubo a Casa" , dataKey :  "roubo_residencias" },
+              {title :  "Total de Assaltos" , dataKey :  "total_assalt" }
+    	]
+
+    	 var rowsAssaltos2 = [
+
+             {"ano" :result.rAssaltos[0].ano , "roubo_transeunte" : result.rAssaltos[0].rouboTranseunte  ,  "roubo_onibus" : result.rAssaltos[0].rouboOnibus ,"roubo_residencias" : result.rAssaltos[0].rouboResidencias , "total_assalt" : result.rAssaltos[0].totalAssaltos},
+             {"ano" :result.rAssaltos[1].ano , "roubo_transeunte" : result.rAssaltos[1].rouboTranseunte  ,  "roubo_onibus" : result.rAssaltos[1].rouboOnibus ,"roubo_residencias" : result.rAssaltos[1].rouboResidencias , "total_assalt" : result.rAssaltos[1].totalAssaltos},
+             {"ano" :result.rAssaltos[2].ano , "roubo_transeunte" : result.rAssaltos[2].rouboTranseunte  ,  "roubo_onibus" : result.rAssaltos[2].rouboOnibus ,"roubo_residencias" : result.rAssaltos[2].rouboResidencias , "total_assalt" : result.rAssaltos[2].totalAssaltos}
+
+
+         ];
 
     	var columnsAssassinatos = [
             {title :  "Ano" , dataKey :  "ano" },
@@ -1283,7 +1331,7 @@ function gerarRelatorioRegiao(mesorregiao) {
         var doc = new jsPDF('p', 'pt');
     	var startingPage = doc.internal.getCurrentPageInfo().pageNumber;
         doc.autoTable(columnsAssaltos, rowsAssaltos,{
-            styles: {fillColor: [100, 255, 255]},
+            styles: {fillColor: [255, 0, 0]},
             margin: {top: 60},
             avoidPageSplit: true,
             addPageContent: function(data) {
@@ -1291,7 +1339,14 @@ function gerarRelatorioRegiao(mesorregiao) {
             }
         });
         doc.autoTable(columnsAssassinatos, rowsAssassinatos,{
-            styles: {fillColor: [100, 255, 255], overflow: 'linebreak'},
+            styles: {fillColor: [255, 0, 255], overflow: 'linebreak'},
+            margin: {top: 210},
+            addPageContent: function(data) {
+            }        
+        });
+     
+         doc.autoTable(columnsAssassinatos, rowsAssassinatos,{
+            styles: {fillColor: [255, 0, 0], overflow: 'linebreak'},
             margin: {top: 210},
             addPageContent: function(data) {
             }        
@@ -1531,4 +1586,5 @@ function gerarRelatorioRegiao(mesorregiao) {
 
 
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAU4tZgF7qKxiAMdKz8j0Pa3_TVyNdZgjM&callback=initMap"></script>   
+<script
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAU4tZgF7qKxiAMdKz8j0Pa3_TVyNdZgjM&callback=initMap"></script>
