@@ -1142,6 +1142,214 @@ function CleanControl(controlDiv, map) {
     
   }
   
+/*<select  id="selectMunicipioOrRegiao" class="selectpicker" >
+
+
+<option value="A">Caruaru</option>
+<option value="A">Ibirajuba</option>
+<option value="A">Alagoinha</option>
+<option value="A">Sairé</option>
+<option value="A">Riacho das Almas</option>
+<option value="A">Jataúba</option>
+<option value="A"> Sanharó</option>
+<option value="A">Tacaimbó</option>
+<option value="A">Camocim de São Félix</option>
+<option value="A">Agrestina</option>
+<option value="A">Panelas</option>
+<option value="A">Cachoeirinha</option>
+<option value="A">Bezerros</option>
+<option value="A">Belo Jardim</option>
+<option value="A"> Gravatá</option>
+<option value="A">Poção</option>
+<option value="A"> Barra de Guabiraba</option>
+<option value="A"> Lagoa dos Gatos</option>
+<option value="A">Altinho</option>
+<option value="A"> São Caitano</option>
+<option value="A">Pesqueira</option>
+<option value="A">Bonito</option>
+<option value="A">Brejo da Madre de Deus</option>
+<option value="A">São Joaquim do Monte</option>
+<option value="A">São Bento do Una</option>
+<option value="A">Cupira</option>
+  <option value="A">Garanhuns</option>
+  <option value="A">Calçado</option>
+  <option value="A">Saloá</option>
+  <option value="A">Correntes</option>
+  <option value="A">Iati</option>
+  <option value="A">Jurema</option>
+  <option value="A">Bom Conselho</option>
+  <option value="A">Jupi</option>
+  <option value="A">Itaíba</option>
+ 	<option value="A"> Pedra</option>
+  <option value="A">Caetés</option>
+  <option value="A">Águas Belas</option>
+  <option value="A">Buíque</option>
+  <option value="A">Lajedo</option>
+  <option value="A">Garanhuns</option>
+  <option value="A">Lagoa do Ouro</option>
+  <option value="A">Palmeirina</option>
+  <option value="A">Terezinha</option>
+  <option value="A">Angelim</option>
+  <option value="A">Jucati</option>
+  <option value="A">Paranatama</option>
+  <option value="A">Brejão</option>
+  <option value="A">Canhotinh</option>
+
+ 
+ <option value="A">Capoeira</option>
+ <option value="A">Tupanating</option>
+ <option value="A">São Joã</option>
+ <option value="A">Venturos</option>
+ <option value="A">Cumar</option>
+ <option value="A">Salgadinh</option>
+ <option value="A">Frei Miguelinh</option>
+ <option value="A">Feira Nov</option>
+ <option value="A">Machado</option>
+ <option value="A">João Alfred</option>
+ <option value="A">Vertente</option>
+ <option value="A">Limoeir</option>
+ <option value="A">Surubi</option>
+ <option value="A">Taquaritinga do Nort</option>
+ <option value="A">Bom Jardi</option>
+ <option value="A">Santa Cruz do Capibarib</option>
+ <option value="A">Toritam</option>
+ <option value="A">Vertente do Léri</option>
+ <option value="A">Orob</option>
+ <option value="A">Passir</option>
+ <option value="A">Casinha</option>
+ <option value="A">Santa Maria do Cambuc</option>
+ <option value="A">São Vicente Ferre</option>
+ <option value="A">Camutang</option>
+ <option value="A">Ferreiro</option>
+ <option value="A">Itaquiting</option>
+ <option value="A">Buenos Aire</option>
+ <option value="A">Chã de Alegri</option>
+ <option value="A">Macaparan</option>
+ <option value="A">Condad</option>
+ <option value="A">Glória do Goit</option>
+ <option value="A">Nazaré da Mat</option>
+ <option value="A">Lagoa de Itaeng</option>
+ <option value="A">Lagoa do Carr</option>
+ <option value="A">Timbaúb</option>
+ <option value="A">Paudalh</option>
+ <option value="A">Tracunhaé</option>
+ <option value="A">Alianç</option>
+ <option value="A">Vicênci</option>
+ <option value="A">Itamb</option>
+ <option value="A">Goian</option>
+ <option value="A">Carpin</option>
+ <option value="A">Vitória de Santo Antã</option>
+ <option value="A">Belém de Mari</option>
+ <option value="A">Joaquim Nabuc</option>
+ <option value="A">Quipap</option>
+ <option value="A">Cortê</option>
+ <option value="A">Jaqueir</option>
+ <option value="A">Maraia</option>
+ <option value="A">Água Pret</option>
+ <option value="A">Chã Grand</option>
+ <option value="A">São Benedito do Su</option>
+ <option value="A">Barreiro</option>
+ <option value="A">Palmare</option>
+ <option value="A">São José da Coroa Grand</option>
+ <option value="A">Sirinhaé</option>
+ <option value="A">Escad</option>
+ <option value="A">Primaver</option>
+ <option value="A">Xexé</option>
+ <option value="A">Tamandar</option>
+ <option value="A">Pombo</option>
+ <option value="A">Rio Formos</option>
+ <option value="A">Amaraj</option>
+ <option value="A">Catend</option>
+ <option value="A">Gameleir</option>
+ <option value="A">Ribeirã</option>
+ <option value="A">Cabo de Santo Agostinh</option>
+ <option value="A">Camaragib</option>
+ <option value="A">Igarass</option>
+ <option value="A">Jaboatão dos Guararape</option>
+ <option value="A">Olind</option>
+ <option value="A">Paulist</option>
+ <option value="A">Recif</option>
+ <option value="A">São Lourenço da Mat</option>
+ <option value="A">Fernando de Noronh</option>
+ <option value="A">Itapissum</option>
+ <option value="A">Ilha de Itamarac</option>
+ <option value="A">Moren</option>
+ <option value="A">Abreu e Lim</option>
+ <option value="A">Ipojuc</option>
+ <option value="A">Araçoiab</option>
+ <option value="A">Mirandib</option>
+ <option value="A">Cedr</option>
+ <option value="A">Salgueir</option>
+ <option value="A">Serrit</option>
+ <option value="A">Terra Nov</option>
+ <option value="A">Verdejant</option>
+ <option value="A">Parnamiri</option>
+ <option value="A">São José do Belmont</option>
+ <option value="A">Itacurub</option>
+ <option value="A">Jatob</option>
+ <option value="A">Carnaubeira da Penh</option>
+ <option value="A">Belém do São Francisc</option>
+ <option value="A">Tacarat</option>
+ <option value="A">Petrolândi</option>
+ <option value="A">Florest</option>
+ <option value="A">Granit</option>
+ <option value="A">Moreilândi</option>
+ <option value="A">Santa Cru</option>
+ <option value="A">Santa Filomen</option>
+ <option value="A">Bodoc</option>
+ <option value="A">Ipub</option>
+ <option value="A">Ex</option>
+ <option value="A">Ouricur</option>
+ <option value="A">Trindad</option>
+ <option value="A">Araripina</option>
+  <option value="A">Betânia</option>
+  <option value="A">Manari</option>
+  <option value="A">Custódia</option>
+  <option value="A">Ibimirim</option>
+  <option value="A">Inajá</option>
+  <option value="A">Sertânia</option>
+  <option value="A">Arcoverde</option>
+  <option value="A">Brejinho</option>
+  <option value="A">Carnaíba</option>
+  <option value="A">Flores</option>
+  <option value="A">Santa Cruz da Baixa Verde</option>
+  <option value="A">Itapetim</option>
+  <option value="A">Ingazeira</option>
+  <option value="A">Calumbi</option>
+  <option value="A">Quixaba</option>
+  <option value="A">Solidão</option>
+  <option value="A">Iguaraci</option>
+  <option value="A">Triunfo</option>
+  <option value="A">Tuparetama</option>
+  <option value="A">Santa Terezinha</option>
+  <option value="A">Tabira</option>
+  <option value="A">São José do Egito</option>
+  <option value="A">Afogados da Ingazeira</option>
+  <option value="A">Serra Talhada</option>
+  <option value="A">Petrolina</option>
+  <option value="A">Afrânio</option>
+  <option value="A">Dormentes</option>
+  <option value="A">Orocó</option>
+  <option value="A">Cabrobó</option>
+  <option value="A">Lagoa Grande</option>
+  <option value="A">Santa Maria da Boa Vista</option>
+
+  
+   <option value="B">Agreste Central</option>
+   <option value="B">Agreste Meridional</option>
+   <option value="B">Agreste Setentrional</option>
+   <option value="B">Mata Norte</option>
+   <option value="B">Mata Sul</option>
+   <option value="B">Metropolitana</option>
+   <option value="B">Sertão Central</option>
+   <option value="B">Sertão De Itaparica</option>
+   <option value="B">Sertão Do Araripe</option>
+   <option value="B">Sertão Do Moxoto</option>
+   <option value="B">Sertão Do Pajeu</option>
+   <option value="B">Sertão Do São Francisco</option>
+<select>*/
+
+  
 function selectRM(controlDiv, map) {
 
     // Set CSS for the control border.
@@ -1178,10 +1386,10 @@ function selectRM(controlDiv, map) {
         	
     	var columnsAssaltos = [
             {title :  "Ano" , dataKey :  "ano" },
-            {title :  "R_Carga" , dataKey :  "roubo_carga" },
-            {title :  "R_Lojas" , dataKey :  "roubo_estabelecimento" },
-            {title :  "R_Bancos\n" , dataKey :  "roubo_instituição_financeira" },
-            {title :  "R_moto" , dataKey :  "roubo_moto" },
+            {title :  "Roubo a carga" , dataKey :  "roubo_carga" },
+            {title :  "Roubo a lojas" , dataKey :  "roubo_estabelecimento" },
+            {title :  "Roubo a bancos" , dataKey :  "roubo_instituição_financeira" },
+            {title :  "Roubo a moto" , dataKey :  "roubo_moto" },
             {title :  "Extorsão" , dataKey :  "roubo_extorsão" }
              
         ]
@@ -1191,17 +1399,35 @@ function selectRM(controlDiv, map) {
 
             {"ano" :result.mAssaltos[0].ano , "roubo_carga" : result.mAssaltos[0].rouboCarga  ,  "roubo_estabelecimento" : result.mAssaltos[0].rouboEstabelecimento ,"roubo_instituição_financeira" : result.mAssaltos[0].rouboInstFinanc , "roubo_moto" : result.mAssaltos[0].rouboMotoneta, "roubo_extorsão" : result.mAssaltos[0].rouboExtorsao },
             {"ano" :result.mAssaltos[1].ano ,"roubo_carga" : result.mAssaltos[1].rouboCarga  ,  "roubo_estabelecimento" : result.mAssaltos[1].rouboEstabelecimento ,"roubo_instituição_financeira" : result.mAssaltos[1].rouboInstFinanc , "roubo_moto" : result.mAssaltos[1].rouboMotoneta, "roubo_extorsão" : result.mAssaltos[1].rouboExtorsao },
-            //{"ano" :result.mAssaltos[2].ano , "roubo_carga" : result.mAssaltos[2].rouboCarga  ,  "roubo_estabelecimento" : result.mAssaltos[2].rouboEstabelecimento ,"roubo_instituição_financeira" : result.mAssaltos[2].rouboInstFinanc , "roubo_moto" : result.mAssaltos[2].rouboMotoneta, "roubo_extorsão" : result.mAssaltos[2].rouboExtorsao }
+            {"ano" :result.mAssaltos[2].ano , "roubo_carga" : result.mAssaltos[2].rouboCarga  ,  "roubo_estabelecimento" : result.mAssaltos[2].rouboEstabelecimento ,"roubo_instituição_financeira" : result.mAssaltos[2].rouboInstFinanc , "roubo_moto" : result.mAssaltos[2].rouboMotoneta, "roubo_extorsão" : result.mAssaltos[2].rouboExtorsao }
 
         ];
+        
+        
+        var columnsAssaltos2 = [
+    		  {title :  "Ano" , dataKey :  "ano" },
+              {title :  "Roubo a turista" , dataKey :  "roubo_transeunte" },
+              {title :  "Roubo a Ônibus" , dataKey :  "roubo_onibus" },
+              {title :  "Roubo a Casa" , dataKey :  "roubo_residencias" },
+              {title :  "Total de Assaltos" , dataKey :  "total_assalt" }
+    	]
+
+    	 var rowsAssaltos2 = [
+
+             {"ano" :result.mAssaltos[0].ano , "roubo_transeunte" : result.mAssaltos[0].rouboTranseunte  ,  "roubo_onibus" : result.mAssaltos[0].rouboOnibus ,"roubo_residencias" : result.mAssaltos[0].rouboResidencias , "total_assalt" : result.mAssaltos[0].totalAssaltos},
+             {"ano" :result.mAssaltos[1].ano , "roubo_transeunte" : result.mAssaltos[1].rouboTranseunte  ,  "roubo_onibus" : result.mAssaltos[1].rouboOnibus ,"roubo_residencias" : result.mAssaltos[1].rouboResidencias , "total_assalt" : result.mAssaltos[1].totalAssaltos},
+             {"ano" :result.mAssaltos[2].ano , "roubo_transeunte" : result.mAssaltos[2].rouboTranseunte  ,  "roubo_onibus" : result.mAssaltos[2].rouboOnibus ,"roubo_residencias" : result.mAssaltos[2].rouboResidencias , "total_assalt" : result.mAssaltos[2].totalAssaltos}
+
+
+         ];
 
     	var columnsAssassinatos = [
     		
             {title :  "Ano" , dataKey :  "ano" },
-            {title :  "Qtd_Homicidio" , dataKey :  "qtd_homicidio" },
-            {title :  "Qtd_Latrocinio" , dataKey :  "qtd_latrocinio" },
-            {title :  "Qtd_Arma branca" , dataKey :  "qtd_arma_branca" },
-            {title :  "Qtd_Arma de fogo"  , dataKey :  "qtd_arma_fogo" },
+            {title :  "Homicidios" , dataKey :  "qtd_homicidio" },
+            {title :  "Latrocinios" , dataKey :  "qtd_latrocinio" },
+            {title :  "Arma branca" , dataKey :  "qtd_arma_branca" },
+            {title :  "Arma de fogo"  , dataKey :  "qtd_arma_fogo" },
             {title :  "Total assassinatos"  , dataKey :  "total_assassi" }
             
             
@@ -1212,27 +1438,39 @@ function selectRM(controlDiv, map) {
 
             {"ano" :result.mAssassinatos[0].ano , "qtd_homicidio" : result.mAssassinatos[0].quantidadeHomicidio  ,  "qtd_latrocinio" : result.mAssassinatos[0].quantidadeLatrocinio ,"qtd_arma_branca" : result.mAssassinatos[0].quantidadeArmabranca , "qtd_arma_fogo" : result.mAssassinatos[0].quantidadeArmafogo, "total_assassi" : result.mAssassinatos[0].totalAssassinatos },
             {"ano" :result.mAssassinatos[1].ano ,"qtd_homicidio" : result.mAssassinatos[1].quantidadeHomicidio  ,  "qtd_latrocinio" : result.mAssassinatos[1].quantidadeLatrocinio ,"qtd_arma_branca" : result.mAssassinatos[1].quantidadeArmabranca, "qtd_arma_fogo" : result.mAssassinatos[1].quantidadeArmafogo, "total_assassi" : result.mAssassinatos[1].totalAssassinatos },
-            //{"ano" :result.mAssassinatos[2].ano , "qtd_homicidio" : result.mAssassinatos[2].quantidadeHomicidio  ,  "qtd_latrocinio" : result.mAssassinatos[2].quantidadeLatrocinio ,"qtd_arma_branca" : result.mAssassinatos[2].quantidadeArmabranca, "qtd_arma_fogo" : result.mAssassinatos[2].quantidadeArmafogo, "total_assassi" : result.mAssassinatos[2].totalAssassinatos }
+            {"ano" :result.mAssassinatos[2].ano , "qtd_homicidio" : result.mAssassinatos[2].quantidadeHomicidio  ,  "qtd_latrocinio" : result.mAssassinatos[2].quantidadeLatrocinio ,"qtd_arma_branca" : result.mAssassinatos[2].quantidadeArmabranca, "qtd_arma_fogo" : result.mAssassinatos[2].quantidadeArmafogo, "total_assassi" : result.mAssassinatos[2].totalAssassinatos }
 
         ];
 
         // Only pt supported (not mm or in)
-        var doc = new jsPDF('p', 'pt');
+        var doc = new jsPDF('l', 'pt');
     	var startingPage = doc.internal.getCurrentPageInfo().pageNumber;
         doc.autoTable(columnsAssaltos, rowsAssaltos,{
-            styles: {fillColor: [100, 255, 255]},
+            styles: {fillColor: [255, 0, 0]},
             margin: {top: 60},
             avoidPageSplit: true,
             addPageContent: function(data) {
             	doc.text("Dangerous Place \n Município: "+result.mAssaltos[0].municipio, 40, 30);
             }
         });
+        
+        doc.autoTable(columnsAssaltos2, rowsAssaltos2,{
+            styles: {fillColor: [255, 0, 0], overflow: 'linebreak'},
+            margin: {top: 360},
+            addPageContent: function(data) {
+            }        
+        });
+        
+      
         doc.autoTable(columnsAssassinatos, rowsAssassinatos,{
-            styles: {fillColor: [100, 255, 255], overflow: 'linebreak'},
+            styles: {fillColor: [255, 0, 0], overflow: 'linebreak'},
             margin: {top: 210},
             addPageContent: function(data) {
             }        
         });
+        
+        
+        
         doc.save('table.pdf');   
     });
 }
@@ -1258,6 +1496,24 @@ function gerarRelatorioRegiao(mesorregiao) {
             //{"ano" :result.rAssaltos[2].ano , "roubo_carga" : result.rAssaltos[2].rouboCarga  ,  "roubo_estabelecimento" : result.rAssaltos[2].rouboEstabelecimento ,"roubo_instituição_financeira" : result.rAssaltos[2].rouboInstFinanc , "roubo_moto" : result.rAssaltos[2].rouboMotoneta, "roubo_extorsão" : result.rAssaltos[2].rouboExtorsao }
 
         ];
+        
+        
+        var columnsAssaltos2 = [
+    		  {title :  "Ano" , dataKey :  "ano" },
+              {title :  "Roubo a turista" , dataKey :  "roubo_transeunte" },
+              {title :  "Roubo a Ônibus" , dataKey :  "roubo_onibus" },
+              {title :  "Roubo a Casa" , dataKey :  "roubo_residencias" },
+              {title :  "Total de Assaltos" , dataKey :  "total_assalt" }
+    	]
+
+    	 var rowsAssaltos2 = [
+
+             {"ano" :result.rAssaltos[0].ano , "roubo_transeunte" : result.rAssaltos[0].rouboTranseunte  ,  "roubo_onibus" : result.rAssaltos[0].rouboOnibus ,"roubo_residencias" : result.rAssaltos[0].rouboResidencias , "total_assalt" : result.rAssaltos[0].totalAssaltos},
+             {"ano" :result.rAssaltos[1].ano , "roubo_transeunte" : result.rAssaltos[1].rouboTranseunte  ,  "roubo_onibus" : result.rAssaltos[1].rouboOnibus ,"roubo_residencias" : result.rAssaltos[1].rouboResidencias , "total_assalt" : result.rAssaltos[1].totalAssaltos},
+             {"ano" :result.rAssaltos[2].ano , "roubo_transeunte" : result.rAssaltos[2].rouboTranseunte  ,  "roubo_onibus" : result.rAssaltos[2].rouboOnibus ,"roubo_residencias" : result.rAssaltos[2].rouboResidencias , "total_assalt" : result.rAssaltos[2].totalAssaltos}
+
+
+         ];
 
     	var columnsAssassinatos = [
             {title :  "Ano" , dataKey :  "ano" },
@@ -1283,7 +1539,7 @@ function gerarRelatorioRegiao(mesorregiao) {
         var doc = new jsPDF('p', 'pt');
     	var startingPage = doc.internal.getCurrentPageInfo().pageNumber;
         doc.autoTable(columnsAssaltos, rowsAssaltos,{
-            styles: {fillColor: [100, 255, 255]},
+            styles: {fillColor: [255, 0, 0]},
             margin: {top: 60},
             avoidPageSplit: true,
             addPageContent: function(data) {
@@ -1291,7 +1547,14 @@ function gerarRelatorioRegiao(mesorregiao) {
             }
         });
         doc.autoTable(columnsAssassinatos, rowsAssassinatos,{
-            styles: {fillColor: [100, 255, 255], overflow: 'linebreak'},
+            styles: {fillColor: [255, 0, 255], overflow: 'linebreak'},
+            margin: {top: 210},
+            addPageContent: function(data) {
+            }        
+        });
+     
+         doc.autoTable(columnsAssassinatos, rowsAssassinatos,{
+            styles: {fillColor: [255, 0, 0], overflow: 'linebreak'},
             margin: {top: 210},
             addPageContent: function(data) {
             }        
@@ -1531,4 +1794,5 @@ function gerarRelatorioRegiao(mesorregiao) {
 
 
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAU4tZgF7qKxiAMdKz8j0Pa3_TVyNdZgjM&callback=initMap"></script>   
+<script
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAU4tZgF7qKxiAMdKz8j0Pa3_TVyNdZgjM&callback=initMap"></script>
