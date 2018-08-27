@@ -184,7 +184,7 @@ function initMap() {
 			lng : -37.80602193
         },
         mapTypeControl: false,
-		zoom: 8,
+		zoom: 9,
 		styles:style
     });
     
