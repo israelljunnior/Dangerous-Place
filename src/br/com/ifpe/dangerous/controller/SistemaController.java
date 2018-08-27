@@ -156,7 +156,7 @@ public class SistemaController {
 	}
 
 	@RequestMapping("deleteComent")
-	public String deleteComent(@RequestParam("id") Integer id, Model model) {
+	public String deleteComent(@RequestParam Integer id, Model model) {
 
 		ComentarioDao dao1 = new ComentarioDao();
 		dao1.remover(id);
@@ -282,6 +282,30 @@ public class SistemaController {
         return "usuario/PublicarSucesso";
     }
 
+	@RequestMapping("comentarEdit")
+	public String comentarEdit(@RequestParam("id") int id,@RequestParam("idPubComentEdit") String id_publicacao,@RequestParam("idUsuComentEdit") String id_usuario,
+			@RequestParam("conteudoComentEdit") String conteudo, Model model) {
+		
+		System.out.println(id);
+		System.out.println(conteudo);
+		
+		
+		Comentario comentario = new Comentario();
+		ComentarioDao dao = new ComentarioDao();
+		UsuarioConverter uc =  new UsuarioConverter();
+		PublicacaoConverter pc = new PublicacaoConverter();
+		
+		comentario.setPublicacao(pc.convert(id_publicacao));
+		comentario.setUsuario(uc.convert(id_usuario));
+		comentario.setId(id);
+		comentario.setConteudo(conteudo);
+		dao.alterar(comentario);
+		
+		model.addAttribute("msgComentEdit", "Comentário Editado com Sucesso");
+		
+		return "forward:forum";
+	}
+	
 	@RequestMapping("filtro")
 	public String filtrar(Publicacao publicacao, Model model) {
 		System.out.println(publicacao.getTema());

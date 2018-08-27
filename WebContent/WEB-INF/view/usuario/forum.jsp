@@ -300,18 +300,16 @@
 																<c:when
 																	test="${comentario.usuario.id == usuarioLogado.id}">
 																	<!-- Opção de apagar o comentário -->
-																	<button type="button" class="btn btn-primary"
-														data-toggle="modal"
-														data-target="">Editar</button>
-																	<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalExcluirComent">Excluir</button>
+																	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditComent${publicacao.id}${comentario.id}">Editar</button>
+																	<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalExcluirComent${publicacao.id}${comentario.id}">Excluir</button>
 
 																</c:when>
 																<c:otherwise>
 																	<c:if
 																		test="${usuarioLogado.nivel_acesso == 'adm' || 'admSup' }">
 																		<!-- Opção de apagar o comentário -->
-																		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalExcluirComent"
-																				onclick="apagarComentario(${comentario.id})">Excluir</button>
+																		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalExcluirComent${comentario.id}"
+																onclick="apagarComentario(${comentario.id})">Excluir</button>
 																	</c:if>
 
 																	</div>
@@ -328,6 +326,74 @@
 																<hr /></td>
 														</tr>
 													</c:if>
+												
+												
+												<!-- Modal excluir comementario -->
+							
+							<div class="modal fade" id="modalExcluirComent${publicacao.id}${comentario.id}" role="dialog">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal">&times;</button>
+										</div>
+										<div class="modal-body">
+											<center>
+												<h4>
+													<p>Você tem certeza que deseja excluir?</p>
+												</h4><p>${comentario.id}</p>
+												<a method="post" href="deleteComent?id=${comentario.id}"><button
+														type="button" class="btn btn-danger">Sim</button></a>
+												<button type="button" class="btn btn-danger"
+													data-dismiss="modal">Não</button>
+											</center>
+										</div>
+										<div class="modal-footer"></div>
+									</div>
+								</div>
+							</div>
+									<!-- Modal Editar comentario -->			
+												
+												<div class="modal fade" id="modalEditComent${publicacao.id}${comentario.id}" role="dialog">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h4>Editar Comentario</h4>
+											<button type="button" class="close" data-dismiss="modal">&times;</button>
+										</div>
+										<div class="modal-body">
+											<form action="comentarEdit" id="formComentEdit${publicacao.id}${comentario.id}"
+															method="post"">
+
+															<input type="hidden" id="idComent${publicacao.id}${comentario.id}" name="id" value="${comentario.id}" >
+															<input type="hidden" id="idUsuComentEdit${publicacao.id}${comentario.id} "
+																name="idUsuComentEdit" value="${usuarioLogado.id}" /> <input
+																type="hidden" id="idPubComentEdit${publicacao.id}"
+																name="idPubComentEdit" value="${publicacao.id}" />
+
+															<textarea style="resize: none;" rows="6" cols="5"
+																class="form-control" minlength="1"
+																form="formComentEdit${publicacao.id}${comentario.id}" name="conteudoComentEdit"
+																placeholder="Escreva um comentário ">${comentario.conteudo}</textarea>
+
+															<br> <input class="btn btn-primary" type="submit"
+																value="Enviar Comentário"
+																style="float: right; background-color: #555555;">
+															<br> <br>
+
+														</form>
+											
+											
+											
+											
+										</div>
+										<div class="modal-footer"></div>
+									</div>
+								</div>
+							</div>
+												
+												
+												
+												
 												</c:forEach>
 											</table>
 
@@ -373,32 +439,10 @@
 							</div>
 
 
-<!-- Modal excluir comementario -->
-							<div class="modal fade" id="modalExcluirComent" role="dialog">
-								<div class="modal-dialog">
-									<div class="modal-content">
-										<div class="modal-header">
-											<button type="button" class="close" data-dismiss="modal">&times;</button>
-										</div>
-										<div class="modal-body">
-											<center>
-												<h4>
-													<p>Você tem certeza que deseja excluir?</p>
-												</h4>
-												<a method="post" href="deleteComent?id=${comentario.id}"><button
-														type="button" class="btn btn-danger">Sim</button></a>
-												<button type="button" class="btn btn-danger"
-													data-dismiss="modal">Não</button>
-											</center>
-										</div>
-										<div class="modal-footer"></div>
-									</div>
-								</div>
-							</div>
 
 
-
-						</c:forEach>
+							</c:forEach>
+					
 					</div>
 				</div>
 			</div>
