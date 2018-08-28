@@ -1420,17 +1420,33 @@ function selectRM(controlDiv, map) {
 
 
          ];
+    	
+    	var columnsAssassinatos2 = [
+    		{title :  "Ano" , dataKey :  "ano" },
+            {title :  "Mulheres" , dataKey :  "mulheres" },
+            {title :  "Homens" , dataKey :  "homens" },
+            {title :  "Crianças entre 12" , dataKey :  "idade_Ate12" },
+            {title :  "Crianças entre 13 a 17 "  , dataKey :  "idade_13a17" },
+            {title :  "Adultos entre 18 a 30"  , dataKey :  "idade_18a30" }
+    	]
+    	
+    	
+    	var rowsAssassinatos2 = [
 
-    	var columnsAssassinatos = [
+            {"ano" :result.mAssassinatos[0].ano , "mulheres" : result.mAssassinatos[0].quantidadeMulher  ,  "homens" : result.mAssassinatos[0].quantidadeHomem ,"idade_Ate12" : result.mAssassinatos[0].idadeAte12 , "idade_13a17" : result.mAssassinatos[0].idade13a17, "idade_18a30" : result.mAssassinatos[0].idade18a30 },
+            {"ano" :result.mAssassinatos[1].ano ,"mulheres" : result.mAssassinatos[1].quantidadeMulher  ,  "homens" : result.mAssassinatos[1].quantidadeHomem ,"idade_Ate12" : result.mAssassinatos[1].idadeAte12, "idade_13a17" : result.mAssassinatos[1].idade13a17, "idade_18a30" : result.mAssassinatos[1].idade18a30 },
+            {"ano" :result.mAssassinatos[2].ano , "mulheres" : result.mAssassinatos[2].quantidadeMulher  ,  "homens" : result.mAssassinatos[2].quantidadeHomem ,"idade_Ate12" : result.mAssassinatos[2].idadeAte12, "idade_13a17" : result.mAssassinatos[2].idade13a17, "idade_18a30" : result.mAssassinatos[2].idade18a30 }
+
+        ];
+    	
+		var columnsAssassinatos = [
     		
             {title :  "Ano" , dataKey :  "ano" },
             {title :  "Homicidios" , dataKey :  "qtd_homicidio" },
             {title :  "Latrocinios" , dataKey :  "qtd_latrocinio" },
             {title :  "Arma branca" , dataKey :  "qtd_arma_branca" },
             {title :  "Arma de fogo"  , dataKey :  "qtd_arma_fogo" },
-            {title :  "Total assassinatos"  , dataKey :  "total_assassi" }
-            
-            
+            {title :  "Total assassinatos"  , dataKey :  "total_assassi" }  
             
         ]
 
@@ -1442,6 +1458,7 @@ function selectRM(controlDiv, map) {
 
         ];
 
+		
         // Only pt supported (not mm or in)
         var doc = new jsPDF('l', 'pt');
     	var startingPage = doc.internal.getCurrentPageInfo().pageNumber;
@@ -1456,15 +1473,23 @@ function selectRM(controlDiv, map) {
         
         doc.autoTable(columnsAssaltos2, rowsAssaltos2,{
             styles: {fillColor: [255, 0, 0], overflow: 'linebreak'},
-            margin: {top: 360},
+            margin: {top: 180},
             addPageContent: function(data) {
             }        
         });
         
-      
+     
+        doc.autoTable(columnsAssassinatos2, rowsAssassinatos2,{
+            styles: {fillColor: [255, 0, 0], overflow: 'linebreak'},
+            margin: {top: 320},
+            addPageContent: function(data) {
+            }        
+        });
+        
+        
         doc.autoTable(columnsAssassinatos, rowsAssassinatos,{
             styles: {fillColor: [255, 0, 0], overflow: 'linebreak'},
-            margin: {top: 210},
+            margin: {top: 450},
             addPageContent: function(data) {
             }        
         });
