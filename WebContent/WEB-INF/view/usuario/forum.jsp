@@ -334,7 +334,7 @@
 								<div class="modal-dialog">
 									<div class="modal-content">
 										<div class="modal-header">
-											<button type="button" class="close" data-dismiss="modal">&times;</button>
+											
 										</div>
 										<div class="modal-body">
 											<center>
@@ -357,8 +357,8 @@
 								<div class="modal-dialog">
 									<div class="modal-content">
 										<div class="modal-header">
-											<h4>Editar Comentario</h4>
-											<button type="button" class="close" data-dismiss="modal">&times;</button>
+											<h4>Editar Comentário</h4>
+											
 										</div>
 										<div class="modal-body">
 											<form action="comentarEdit" id="formComentEdit${publicacao.id}${comentario.id}"
