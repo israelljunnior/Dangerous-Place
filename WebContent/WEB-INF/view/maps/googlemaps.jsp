@@ -317,7 +317,7 @@ function initMap() {
 					    				data: [
 					    					result.mAssassinatos[0].totalAssassinatos,
 					    					result.mAssassinatos[1].totalAssassinatos,
-					    					0
+					    					result.mAssassinatos[2].totalAssassinatos
 					    					]
 					    			}, {
 					    				label: 'Assaltos',
@@ -331,7 +331,7 @@ function initMap() {
 					    					result.mAssaltos[2].totalAssaltos,
 					    	            ]
 					    			},{
-					    				label: 'Estupro',
+					    				label: 'Violência Sexual',
 					    				backgroundColor: color(window.chartColors.purple).alpha(4.5).rgbString(),
 					    				borderColor: window.chartColors.purple,
 					    				borderWidth: 1,
@@ -422,9 +422,7 @@ function initMap() {
 					    				data: [
 					    					result.rAssassinatos[0].totalAssassinatos,
 					    					result.rAssassinatos[1].totalAssassinatos,
-					    	            0,
-					    	            0,
-					    	            0
+					    					result.rAssassinatos[2].totalAssassinatos
 					    	            ]
 					    			}, {
 					    				label: 'Assaltos',
@@ -436,8 +434,6 @@ function initMap() {
 					    					result.rAssaltos[0].totalAssaltos,
 					    					result.rAssaltos[1].totalAssaltos,
 					    					result.rAssaltos[2].totalAssaltos,
-					    	                0,
-					    	                0
 					    	            ]
 					    			},{
 					    				label: 'Violência Sexual',
@@ -589,9 +585,7 @@ if(selected == "m") {
 					    				data: [
 					    					result.mAssassinatos[0].totalAssassinatos,
 					    					result.mAssassinatos[1].totalAssassinatos,
-					    	            0,
-					    	            0,
-					    	            0
+					    					result.mAssassinatos[2].totalAssassinatos
 					    	            ]
 					    			}, {
 					    				label: 'Assaltos',
@@ -603,15 +597,20 @@ if(selected == "m") {
 					    					result.mAssaltos[0].totalAssaltos,
 					    					result.mAssaltos[1].totalAssaltos,
 					    					result.mAssaltos[2].totalAssaltos,
-					    	                0,
-					    	                0
 					    	            ]
 					    			},{
-					    				label: 'Acidentes',
-					    				backgroundColor: color(window.chartColors.green).alpha(4.5).rgbString(),
-					    				borderColor: window.chartColors.green,
+					    				label: 'Violência Sexual',
+					    				backgroundColor: color(window.chartColors.purple).alpha(4.5).rgbString(),
+					    				borderColor: window.chartColors.purple,
 					    				borderWidth: 1,
-					    				data: []
+					    				data: [
+					    					
+					    					result.rViolSex[0].totalSex,
+					    					result.rViolSex[1].totalSex,
+					    					result.rViolSex[2].totalSex,
+					    					
+					    					
+					    				]
 					    			}]
 					    		};
 					    		
@@ -688,9 +687,7 @@ if(selected == "m") {
 					    				data: [
 					    					result.rAssassinatos[0].totalAssassinatos,
 					    					result.rAssassinatos[1].totalAssassinatos,
-					    	            0,
-					    	            0,
-					    	            0
+					    					result.rAssassinatos[2].totalAssassinatos
 					    	            ]
 					    			}, {
 					    				label: 'Assaltos',
@@ -706,11 +703,18 @@ if(selected == "m") {
 					    	                0
 					    	            ]
 					    			},{
-					    				label: 'Acidentes',
-					    				backgroundColor: color(window.chartColors.green).alpha(4.5).rgbString(),
-					    				borderColor: window.chartColors.green,
+					    				label: 'Violência Sexual',
+					    				backgroundColor: color(window.chartColors.purple).alpha(4.5).rgbString(),
+					    				borderColor: window.chartColors.purple,
 					    				borderWidth: 1,
-					    				data: []
+					    				data: [
+					    					
+					    					result.rViolSex[0].totalSex,
+					    					result.rViolSex[1].totalSex,
+					    					result.rViolSex[2].totalSex,
+					    					
+					    					
+					    				]
 					    			}]
 					    		};
 					    		
@@ -922,9 +926,7 @@ function LocalitionControl(controlDiv, map) {
     					    				data: [
     					    					result.mAssassinatos[0].totalAssassinatos,
     					    					result.mAssassinatos[1].totalAssassinatos,
-    					    	            
-    					    	            
-    					    	            0
+    					    					result.mAssassinatos[2].totalAssassinatos
     					    	            ]
     					    			}, {
     					    				label: 'Assaltos',
@@ -1028,9 +1030,7 @@ function LocalitionControl(controlDiv, map) {
     					    				data: [
     					    					result.rAssassinatos[0].totalAssassinatos,
     					    					result.rAssassinatos[1].totalAssassinatos,
-    					    	            
-    					    	            
-    					    	            0
+    					    					result.rAssassinatos[2].totalAssassinatos
     					    	            ]
     					    			}, {
     					    				label: 'Assaltos',
@@ -1042,8 +1042,6 @@ function LocalitionControl(controlDiv, map) {
     					    					result.rAssaltos[0].totalAssaltos,
     					    					result.rAssaltos[1].totalAssaltos,
     					    					result.rAssaltos[2].totalAssaltos,
-    					    	               
-    					    	                0
     					    	            ]
     					    			},{
     					    				label: 'Violência Sexual',
@@ -1054,9 +1052,6 @@ function LocalitionControl(controlDiv, map) {
     					    					result.rViolSex[0].totalSex,
     					    					result.rViolSex[1].totalSex,
     					    					result.rViolSex[2].totalSex,
-    					    	                
-    					    	                0
-    					    	            
     					    				]
     					    			}]
     					    		};

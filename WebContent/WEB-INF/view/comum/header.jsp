@@ -175,7 +175,7 @@ prefix="fmt" %>
 							</div>
 						</center>
 <br>
-						<div class="g-signin2" data-onsuccess="onSignIn"></div>
+					<!--  	<div class="g-signin2" data-onsuccess="onSignIn"></div> -->
 
 					</form>
 				</div>
