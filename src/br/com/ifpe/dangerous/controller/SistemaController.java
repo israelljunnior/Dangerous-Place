@@ -320,8 +320,8 @@ public class SistemaController {
 	
 	@RequestMapping("filtro")
 	public String filtrar(Publicacao publicacao, Model model) {
-		System.out.println(publicacao.getTema());
-		
+		System.out.println(publicacao.getTitulo());
+	
 		PublicacaoDao dao = new PublicacaoDao();
 		List<Publicacao> listaPublicacao = dao.filtrar(publicacao);
 		model.addAttribute("listaPublicacao", listaPublicacao);
