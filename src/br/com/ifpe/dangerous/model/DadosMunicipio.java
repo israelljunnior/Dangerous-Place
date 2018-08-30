@@ -6,11 +6,13 @@ public class DadosMunicipio {
 	
 	private List<MunicipioAssaltos> mAssaltos;
 	private List<MunicipioAssassinatos> mAssassinatos;
+	private List <MunicipioViolenciaSexual> mViolSex;
 	
-	public DadosMunicipio(List<MunicipioAssaltos> mAssaltos, List<MunicipioAssassinatos> mAssassinatos) {
+	public DadosMunicipio(List<MunicipioAssaltos> mAssaltos, List<MunicipioAssassinatos> mAssassinatos, List<MunicipioViolenciaSexual> mViolSex) {
 		
 		this.mAssaltos = mAssaltos;
 		this.mAssassinatos = mAssassinatos;
+		this.mViolSex = mViolSex;
 		
 	}
 
@@ -30,5 +32,14 @@ public class DadosMunicipio {
 		this.mAssassinatos = mAssassinatos;
 	}
 
+	public List<MunicipioViolenciaSexual> getmViolSex() {
+		return mViolSex;
+	}
+
+	public void setmViolSex(List<MunicipioViolenciaSexual> mViolSex) {
+		this.mViolSex = mViolSex;
+	}
+
+	
 	
 }
