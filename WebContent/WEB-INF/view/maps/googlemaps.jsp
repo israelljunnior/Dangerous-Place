@@ -330,7 +330,20 @@ function initMap() {
 					    					result.mAssaltos[1].totalAssaltos,
 					    					result.mAssaltos[2].totalAssaltos,
 					    	            ]
-					    			}]
+					    			},{
+					    				label: 'Estupro',
+					    				backgroundColor: color(window.chartColors.purple).alpha(4.5).rgbString(),
+					    				borderColor: window.chartColors.purple,
+					    				borderWidth: 1,
+					    				data: [  
+					    	                
+					    					result.mViolSex[0].TotalSex,
+					    					result.mViolSex[1].TotalSex,
+					    					result.mViolSex[2].TotalSex,
+					    	            ]
+					    			}
+					    			
+					    			]
 					    		};
 					    		// InfoWindow's Controls 
 					    		var canvas = document.createElement('canvas');
@@ -426,6 +439,19 @@ function initMap() {
 					    	                0,
 					    	                0
 					    	            ]
+					    			},{
+					    				label: 'Violência Sexual',
+					    				backgroundColor: color(window.chartColors.purple).alpha(4.5).rgbString(),
+					    				borderColor: window.chartColors.purple,
+					    				borderWidth: 1,
+					    				data: [
+					    					
+					    					result.rViolSex[0].totalSex,
+					    					result.rViolSex[1].totalSex,
+					    					result.rViolSex[2].totalSex,
+					    					
+					    					
+					    				]
 					    			}]
 					    		};
 					    		
@@ -653,7 +679,7 @@ if(selected == "m") {
 					    	
 					    		var color = Chart.helpers.color;
 					    		var barChartData = {
-					    			labels: ['2014','2015', '2016', '2017', '2018'],
+					    			labels: ['2014','2015', '2016'],
 					    			datasets: [{
 					    				label: 'Assassinatos',
 					    				backgroundColor: color(window.chartColors.red).alpha(4.5).rgbString(),
@@ -728,7 +754,7 @@ if(selected == "m") {
 					    					},
 					    					title: {
 					    						display: true,
-					    						text: 'Estatisticas de '+result.mAssaltos[0].municipio,
+					    						text: 'Estatisticas de '+result.mAssaltos[0].regiao,
 					    						fontSize: 17
 					    					}
 					    				}
@@ -896,8 +922,8 @@ function LocalitionControl(controlDiv, map) {
     					    				data: [
     					    					result.mAssassinatos[0].totalAssassinatos,
     					    					result.mAssassinatos[1].totalAssassinatos,
-    					    	            0,
-    					    	            0,
+    					    	            
+    					    	            
     					    	            0
     					    	            ]
     					    			}, {
@@ -910,15 +936,22 @@ function LocalitionControl(controlDiv, map) {
     					    					result.mAssaltos[0].totalAssaltos,
     					    					result.mAssaltos[1].totalAssaltos,
     					    					result.mAssaltos[2].totalAssaltos,
-    					    	                0,
-    					    	                0
+    					    	                
+    					    	                
     					    	            ]
     					    			},{
-    					    				label: 'Acidentes',
-    					    				backgroundColor: color(window.chartColors.green).alpha(4.5).rgbString(),
-    					    				borderColor: window.chartColors.green,
+    					    				label: 'Violência Sexual',
+    					    				backgroundColor: color(window.chartColors.purple).alpha(4.5).rgbString(),
+    					    				borderColor: window.chartColors.purple,
     					    				borderWidth: 1,
-    					    				data: []
+    					    				data: [
+    					    					
+    					    					result.mViolSex[0].TotalSex,
+    					    					result.mViolSex[1].TotalSex,
+    					    					result.mViolSex[2].TotalSex,
+    					    					
+    					    					
+    					    				]
     					    			}]
     					    		};
     					    		
@@ -995,8 +1028,8 @@ function LocalitionControl(controlDiv, map) {
     					    				data: [
     					    					result.rAssassinatos[0].totalAssassinatos,
     					    					result.rAssassinatos[1].totalAssassinatos,
-    					    	            0,
-    					    	            0,
+    					    	            
+    					    	            
     					    	            0
     					    	            ]
     					    			}, {
@@ -1009,15 +1042,22 @@ function LocalitionControl(controlDiv, map) {
     					    					result.rAssaltos[0].totalAssaltos,
     					    					result.rAssaltos[1].totalAssaltos,
     					    					result.rAssaltos[2].totalAssaltos,
-    					    	                0,
+    					    	               
     					    	                0
     					    	            ]
     					    			},{
-    					    				label: 'Acidentes',
-    					    				backgroundColor: color(window.chartColors.green).alpha(4.5).rgbString(),
-    					    				borderColor: window.chartColors.green,
+    					    				label: 'Violência Sexual',
+    					    				backgroundColor: color(window.chartColors.purple).alpha(4.5).rgbString(),
+    					    				borderColor: window.chartColors.purple,
     					    				borderWidth: 1,
-    					    				data: []
+    					    				data: [
+    					    					result.rViolSex[0].totalSex,
+    					    					result.rViolSex[1].totalSex,
+    					    					result.rViolSex[2].totalSex,
+    					    	                
+    					    	                0
+    					    	            
+    					    				]
     					    			}]
     					    		};
     					    		
@@ -1061,7 +1101,7 @@ function LocalitionControl(controlDiv, map) {
 					    					},
 					    					title: {
 					    						display: true,
-					    						text: 'Estatisticas de '+result.mAssaltos[0].municipio,
+					    						text: 'Estatisticas de '+result.rAssaltos[0].regiao,
 					    						fontSize: 17
 					    					}
 					    				}
