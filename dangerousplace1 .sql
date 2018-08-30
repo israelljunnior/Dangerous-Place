@@ -1,15 +1,13 @@
-﻿-- phpMyAdmin SQL Dump
--- version 4.8.2
--- https://www.phpmyadmin.net/
+-- phpMyAdmin SQL Dump
+-- version 4.5.4.1deb2ubuntu2
+-- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: 24-Ago-2018 às 16:16
--- Versão do servidor: 10.1.34-MariaDB
--- PHP Version: 7.2.7
+-- Host: localhost
+-- Tempo de geração: 30/08/2018 às 16:18
+-- Versão do servidor: 5.7.23-0ubuntu0.16.04.1
+-- Versão do PHP: 7.0.30-0ubuntu0.16.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -19,16 +17,14 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `dangerousplace1`
+-- Banco de dados: `dangerousplace1`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `comentario`
-create database dangerousplace1;
-use dangerousplace1;
-
+-- Estrutura para tabela `comentario`
+--
 
 CREATE TABLE `comentario` (
   `id_comentario` int(11) NOT NULL,
@@ -41,7 +37,7 @@ CREATE TABLE `comentario` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `comentario_municipio`
+-- Estrutura para tabela `comentario_municipio`
 --
 
 CREATE TABLE `comentario_municipio` (
@@ -55,7 +51,7 @@ CREATE TABLE `comentario_municipio` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `comentario_regiao`
+-- Estrutura para tabela `comentario_regiao`
 --
 
 CREATE TABLE `comentario_regiao` (
@@ -69,7 +65,7 @@ CREATE TABLE `comentario_regiao` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `dados_municipio_assalt`
+-- Estrutura para tabela `dados_municipio_assalt`
 --
 
 CREATE TABLE `dados_municipio_assalt` (
@@ -90,7 +86,7 @@ CREATE TABLE `dados_municipio_assalt` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `dados_municipio_assalt`
+-- Fazendo dump de dados para tabela `dados_municipio_assalt`
 --
 
 INSERT INTO `dados_municipio_assalt` (`id_dados_mun_assalt`, `ano`, `regiao`, `municipio`, `total_assalt`, `roubo_transeunte`, `roubo_veiculo`, `roubo_estabelecimento`, `roubo_extorsao`, `roubo_inst_financ`, `roubo_carga`, `roubo_motoneta`, `roubo_onibus`, `roubo_residencias`) VALUES
@@ -653,7 +649,7 @@ INSERT INTO `dados_municipio_assalt` (`id_dados_mun_assalt`, `ano`, `regiao`, `m
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `dados_municipio_assassi`
+-- Estrutura para tabela `dados_municipio_assassi`
 --
 
 CREATE TABLE `dados_municipio_assassi` (
@@ -677,7 +673,7 @@ CREATE TABLE `dados_municipio_assassi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `dados_municipio_assassi`
+-- Fazendo dump de dados para tabela `dados_municipio_assassi`
 --
 
 INSERT INTO `dados_municipio_assassi` (`id_dados_mun_assassi`, `ano`, `regiao`, `municipio`, `total_assassi`, `idade_ate12`, `idade_13a17`, `idade_18a30`, `idade_31a65`, `idade_acima65`, `qtd_homem`, `qtd_mulher`, `qtd_homicidio`, `qtd_latrocinio`, `qtd_lesado_morte`, `qtd_armabranca`, `qtd_armafogo`) VALUES
@@ -1240,7 +1236,7 @@ INSERT INTO `dados_municipio_assassi` (`id_dados_mun_assassi`, `ano`, `regiao`, 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `dados_municipio_viol_sex`
+-- Estrutura para tabela `dados_municipio_viol_sex`
 --
 
 CREATE TABLE `dados_municipio_viol_sex` (
@@ -1252,7 +1248,7 @@ CREATE TABLE `dados_municipio_viol_sex` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `dados_municipio_viol_sex`
+-- Fazendo dump de dados para tabela `dados_municipio_viol_sex`
 --
 
 INSERT INTO `dados_municipio_viol_sex` (`id_dados_municipio_viol_sex`, `ano`, `regiao`, `municipio`, `total_viol_sex`) VALUES
@@ -1815,7 +1811,7 @@ INSERT INTO `dados_municipio_viol_sex` (`id_dados_municipio_viol_sex`, `ano`, `r
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `dados_regiao_assalt`
+-- Estrutura para tabela `dados_regiao_assalt`
 --
 
 CREATE TABLE `dados_regiao_assalt` (
@@ -1835,7 +1831,7 @@ CREATE TABLE `dados_regiao_assalt` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `dados_regiao_assalt`
+-- Fazendo dump de dados para tabela `dados_regiao_assalt`
 --
 
 INSERT INTO `dados_regiao_assalt` (`id_dados_regiao_assalt`, `ano`, `regiao`, `total_assalt`, `roubo_transeunte`, `roubo_veiculo`, `roubo_estabelecimento`, `roubo_extorsao`, `roubo_inst_financ`, `roubo_carga`, `roubo_motoneta`, `roubo_onibus`, `roubo_residencias`) VALUES
@@ -1877,9 +1873,9 @@ INSERT INTO `dados_regiao_assalt` (`id_dados_regiao_assalt`, `ano`, `regiao`, `t
 (36, 2016, 'Sertão do Pajeú', 526, 222, 89, 62, 10, 6, 9, 0, 1, 35);
 
 -- --------------------------------------------------------
- 
+
 --
--- Estrutura da tabela `dados_regiao_viol_sex`
+-- Estrutura para tabela `dados_regiao_viol_sex`
 --
 
 CREATE TABLE `dados_regiao_viol_sex` (
@@ -1890,7 +1886,7 @@ CREATE TABLE `dados_regiao_viol_sex` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `dados_regiao_viol_sex`
+-- Fazendo dump de dados para tabela `dados_regiao_viol_sex`
 --
 
 INSERT INTO `dados_regiao_viol_sex` (`id_dados_regiao_viol_sex`, `ano`, `regiao`, `total_viol_sex`) VALUES
@@ -1934,7 +1930,7 @@ INSERT INTO `dados_regiao_viol_sex` (`id_dados_regiao_viol_sex`, `ano`, `regiao`
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `dados_regioes_assassi`
+-- Estrutura para tabela `dados_regioes_assassi`
 --
 
 CREATE TABLE `dados_regioes_assassi` (
@@ -1957,7 +1953,7 @@ CREATE TABLE `dados_regioes_assassi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `dados_regioes_assassi`
+-- Fazendo dump de dados para tabela `dados_regioes_assassi`
 --
 
 INSERT INTO `dados_regioes_assassi` (`id_dados_regiao_assassi`, `ano`, `regiao`, `total_assassi`, `idade_ate12`, `idade_13a17`, `idade_18a30`, `idade_31a65`, `idade_acima65`, `qtd_homem`, `qtd_mulher`, `qtd_homicidio`, `qtd_latrocinio`, `qtd_lesado_morte`, `qtd_armabranca`, `qtd_armafogo`) VALUES
@@ -2001,7 +1997,7 @@ INSERT INTO `dados_regioes_assassi` (`id_dados_regiao_assassi`, `ano`, `regiao`,
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `publicacao`
+-- Estrutura para tabela `publicacao`
 --
 
 CREATE TABLE `publicacao` (
@@ -2016,7 +2012,27 @@ CREATE TABLE `publicacao` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `usuario`
+-- Estrutura para tabela `tema_publicacao`
+--
+
+CREATE TABLE `tema_publicacao` (
+  `id` int(11) NOT NULL,
+  `tema` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Fazendo dump de dados para tabela `tema_publicacao`
+--
+
+INSERT INTO `tema_publicacao` (`id`, `tema`) VALUES
+(1, 'Assaltos'),
+(2, 'Assatsinatos'),
+(3, 'Violência Sexual');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `usuario`
 --
 
 CREATE TABLE `usuario` (
@@ -2030,11 +2046,11 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Indexes for dumped tables
+-- Índices de tabelas apagadas
 --
 
 --
--- Indexes for table `comentario`
+-- Índices de tabela `comentario`
 --
 ALTER TABLE `comentario`
   ADD PRIMARY KEY (`id_comentario`),
@@ -2042,7 +2058,7 @@ ALTER TABLE `comentario`
   ADD KEY `id_publicacao` (`id_publicacao`);
 
 --
--- Indexes for table `comentario_municipio`
+-- Índices de tabela `comentario_municipio`
 --
 ALTER TABLE `comentario_municipio`
   ADD PRIMARY KEY (`id_comentario_municipio`),
@@ -2050,7 +2066,7 @@ ALTER TABLE `comentario_municipio`
   ADD KEY `id_municipio` (`id_municipio`);
 
 --
--- Indexes for table `comentario_regiao`
+-- Índices de tabela `comentario_regiao`
 --
 ALTER TABLE `comentario_regiao`
   ADD PRIMARY KEY (`id_comentario_regiao`),
@@ -2058,156 +2074,162 @@ ALTER TABLE `comentario_regiao`
   ADD KEY `id_regiao` (`id_regiao`);
 
 --
--- Indexes for table `dados_municipio_assalt`
+-- Índices de tabela `dados_municipio_assalt`
 --
 ALTER TABLE `dados_municipio_assalt`
   ADD PRIMARY KEY (`id_dados_mun_assalt`);
 
 --
--- Indexes for table `dados_municipio_assassi`
+-- Índices de tabela `dados_municipio_assassi`
 --
 ALTER TABLE `dados_municipio_assassi`
   ADD PRIMARY KEY (`id_dados_mun_assassi`);
 
 --
--- Indexes for table `dados_municipio_viol_sex`
+-- Índices de tabela `dados_municipio_viol_sex`
 --
 ALTER TABLE `dados_municipio_viol_sex`
   ADD PRIMARY KEY (`id_dados_municipio_viol_sex`);
 
 --
--- Indexes for table `dados_regiao_assalt`
+-- Índices de tabela `dados_regiao_assalt`
 --
 ALTER TABLE `dados_regiao_assalt`
   ADD PRIMARY KEY (`id_dados_regiao_assalt`);
 
 --
--- Indexes for table `dados_regiao_viol_sex`
+-- Índices de tabela `dados_regiao_viol_sex`
 --
 ALTER TABLE `dados_regiao_viol_sex`
   ADD PRIMARY KEY (`id_dados_regiao_viol_sex`);
 
 --
--- Indexes for table `dados_regioes_assassi`
+-- Índices de tabela `dados_regioes_assassi`
 --
 ALTER TABLE `dados_regioes_assassi`
   ADD PRIMARY KEY (`id_dados_regiao_assassi`);
 
 --
--- Indexes for table `publicacao`
+-- Índices de tabela `publicacao`
 --
 ALTER TABLE `publicacao`
   ADD PRIMARY KEY (`id_publicacao`),
   ADD KEY `id_usuario` (`id_usuario`);
 
 --
--- Indexes for table `usuario`
+-- Índices de tabela `tema_publicacao`
+--
+ALTER TABLE `tema_publicacao`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices de tabela `usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id_usuario`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de tabelas apagadas
 --
 
 --
--- AUTO_INCREMENT for table `comentario`
+-- AUTO_INCREMENT de tabela `comentario`
 --
 ALTER TABLE `comentario`
   MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT;
-
 --
--- AUTO_INCREMENT for table `comentario_municipio`
+-- AUTO_INCREMENT de tabela `comentario_municipio`
 --
 ALTER TABLE `comentario_municipio`
   MODIFY `id_comentario_municipio` int(11) NOT NULL AUTO_INCREMENT;
-
 --
--- AUTO_INCREMENT for table `comentario_regiao`
+-- AUTO_INCREMENT de tabela `comentario_regiao`
 --
 ALTER TABLE `comentario_regiao`
   MODIFY `id_comentario_regiao` int(11) NOT NULL AUTO_INCREMENT;
-
 --
--- AUTO_INCREMENT for table `dados_municipio_assalt`
+-- AUTO_INCREMENT de tabela `dados_municipio_assalt`
 --
 ALTER TABLE `dados_municipio_assalt`
   MODIFY `id_dados_mun_assalt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=556;
-
 --
--- AUTO_INCREMENT for table `dados_municipio_assassi`
+-- AUTO_INCREMENT de tabela `dados_municipio_assassi`
 --
 ALTER TABLE `dados_municipio_assassi`
   MODIFY `id_dados_mun_assassi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=556;
-
 --
--- AUTO_INCREMENT for table `dados_municipio_viol_sex`
+-- AUTO_INCREMENT de tabela `dados_municipio_viol_sex`
 --
 ALTER TABLE `dados_municipio_viol_sex`
   MODIFY `id_dados_municipio_viol_sex` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=556;
-
 --
--- AUTO_INCREMENT for table `dados_regiao_assalt`
+-- AUTO_INCREMENT de tabela `dados_regiao_assalt`
 --
 ALTER TABLE `dados_regiao_assalt`
   MODIFY `id_dados_regiao_assalt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
-
 --
--- AUTO_INCREMENT for table `dados_regiao_viol_sex`
+-- AUTO_INCREMENT de tabela `dados_regiao_viol_sex`
 --
 ALTER TABLE `dados_regiao_viol_sex`
   MODIFY `id_dados_regiao_viol_sex` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
-
 --
--- AUTO_INCREMENT for table `dados_regioes_assassi`
+-- AUTO_INCREMENT de tabela `dados_regioes_assassi`
 --
 ALTER TABLE `dados_regioes_assassi`
   MODIFY `id_dados_regiao_assassi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
-
 --
--- AUTO_INCREMENT for table `publicacao`
+-- AUTO_INCREMENT de tabela `publicacao`
 --
 ALTER TABLE `publicacao`
   MODIFY `id_publicacao` int(11) NOT NULL AUTO_INCREMENT;
-
 --
--- AUTO_INCREMENT for table `usuario`
+-- AUTO_INCREMENT de tabela `tema_publicacao`
+--
+ALTER TABLE `tema_publicacao`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
   MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- Restrições para dumps de tabelas
+--
 
 --
--- Constraints for dumped tables
---
-
---
--- Limitadores para a tabela `comentario`
+-- Restrições para tabelas `comentario`
 --
 ALTER TABLE `comentario`
+  ADD CONSTRAINT `FK1c6uci7257qn6yx1hrmab1x2` FOREIGN KEY (`id_publicacao`) REFERENCES `publicacao` (`id_publicacao`),
+  ADD CONSTRAINT `FK9619kv3mim3a4yl0m5mdhhbh1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`),
   ADD CONSTRAINT `comentario_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`),
   ADD CONSTRAINT `comentario_ibfk_2` FOREIGN KEY (`id_publicacao`) REFERENCES `publicacao` (`id_publicacao`);
 
 --
--- Limitadores para a tabela `comentario_municipio`
+-- Restrições para tabelas `comentario_municipio`
 --
 ALTER TABLE `comentario_municipio`
+  ADD CONSTRAINT `FK8hb3halgfdai17nsvydg4cl7x` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`),
+  ADD CONSTRAINT `FKi8cm0ndkjhon7l09cfpsnuoih` FOREIGN KEY (`id_municipio`) REFERENCES `dados_municipio_assalt` (`id_dados_mun_assalt`),
   ADD CONSTRAINT `comentario_municipio_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`),
   ADD CONSTRAINT `comentario_municipio_ibfk_2` FOREIGN KEY (`id_municipio`) REFERENCES `dados_municipio_assalt` (`id_dados_mun_assalt`);
 
 --
--- Limitadores para a tabela `comentario_regiao`
+-- Restrições para tabelas `comentario_regiao`
 --
 ALTER TABLE `comentario_regiao`
+  ADD CONSTRAINT `FKacau6fthjc0h2y59w4pbinw7i` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`),
+  ADD CONSTRAINT `FKndnyekfmopfyd3jcrnj82c54r` FOREIGN KEY (`id_regiao`) REFERENCES `dados_regiao_assalt` (`id_dados_regiao_assalt`),
   ADD CONSTRAINT `comentario_regiao_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`),
   ADD CONSTRAINT `comentario_regiao_ibfk_2` FOREIGN KEY (`id_regiao`) REFERENCES `dados_regiao_assalt` (`id_dados_regiao_assalt`);
 
 --
--- Limitadores para a tabela `publicacao`
+-- Restrições para tabelas `publicacao`
 --
 ALTER TABLE `publicacao`
+  ADD CONSTRAINT `FKfmx5o13ybwqeiee1finmwdi48` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`),
   ADD CONSTRAINT `publicacao_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
