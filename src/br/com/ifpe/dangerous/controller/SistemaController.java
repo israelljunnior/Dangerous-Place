@@ -25,12 +25,16 @@ import br.com.ifpe.dangerous.model.MunicipioAssaltos;
 import br.com.ifpe.dangerous.model.MunicipioAssaltosDao;
 import br.com.ifpe.dangerous.model.MunicipioAssassinatos;
 import br.com.ifpe.dangerous.model.MunicipioAssassinatosDao;
+import br.com.ifpe.dangerous.model.MunicipioViolenciaSexual;
+import br.com.ifpe.dangerous.model.MunicipioViolenciaSexualDao;
 import br.com.ifpe.dangerous.model.Publicacao;
 import br.com.ifpe.dangerous.model.PublicacaoDao;
 import br.com.ifpe.dangerous.model.RegiaoAssaltos;
 import br.com.ifpe.dangerous.model.RegiaoAssaltosDao;
 import br.com.ifpe.dangerous.model.RegiaoAssassinatos;
 import br.com.ifpe.dangerous.model.RegiaoAssassinatosDao;
+import br.com.ifpe.dangerous.model.RegiaoViolenciaSexual;
+import br.com.ifpe.dangerous.model.RegiaoViolenciaSexualDao;
 import br.com.ifpe.dangerous.model.Tema;
 import br.com.ifpe.dangerous.model.TemaDao;
 import br.com.ifpe.dangerous.model.Usuario;
@@ -207,10 +211,14 @@ public class SistemaController {
 	public @ResponseBody String pegarMunicipio(@RequestParam String municipio) {
 		MunicipioAssassinatosDao assassinatosDao = new MunicipioAssassinatosDao();
 		List<MunicipioAssassinatos> municipioAssassinatos = assassinatosDao.buscarPorNome(municipio);
+		
+		MunicipioViolenciaSexualDao violenciaSexual = new MunicipioViolenciaSexualDao();
+		List<MunicipioViolenciaSexual> municipioViolenciaSexual = violenciaSexual.buscarPorNome(municipio);
+		
 		MunicipioAssaltosDao assaltosDao = new MunicipioAssaltosDao();
 		List<MunicipioAssaltos> municipioAssaltos = assaltosDao.buscarPorNome(municipio);
 
-		DadosMunicipio data = new DadosMunicipio(municipioAssaltos, municipioAssassinatos);
+		DadosMunicipio data = new DadosMunicipio(municipioAssaltos, municipioAssassinatos,municipioViolenciaSexual);
 
 		return new Gson().toJson(data);
 	}
@@ -221,9 +229,13 @@ public class SistemaController {
 		RegiaoAssassinatosDao assassinatosDao = new RegiaoAssassinatosDao();
 		List<RegiaoAssassinatos> regiaoAssassinatos = assassinatosDao.buscarPorNome(regiao);
 
+		
+		RegiaoViolenciaSexualDao violenciaSexual = new RegiaoViolenciaSexualDao();
+		List<RegiaoViolenciaSexual> regiaoViolenciaSexual = violenciaSexual.buscarPorNome(regiao);
+		
 		RegiaoAssaltosDao assaltosDao = new RegiaoAssaltosDao();
 		List<RegiaoAssaltos> regiaoAssaltos = assaltosDao.buscarPorNome(regiao);
-		DadosRegiao data = new DadosRegiao(regiaoAssaltos, regiaoAssassinatos);
+		DadosRegiao data = new DadosRegiao(regiaoAssaltos, regiaoAssassinatos,regiaoViolenciaSexual);
 
 		return new Gson().toJson(data);
 	}
