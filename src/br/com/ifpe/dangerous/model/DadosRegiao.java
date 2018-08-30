@@ -6,12 +6,22 @@ public class DadosRegiao {
 	
 	private List<RegiaoAssaltos> rAssaltos;
 	private List<RegiaoAssassinatos> rAssassinatos;
+	private List<RegiaoViolenciaSexual> rViolSex;
 	
-	public DadosRegiao(List<RegiaoAssaltos> rAssaltos, List<RegiaoAssassinatos> rAssassinatos) {
+	public DadosRegiao(List<RegiaoAssaltos> rAssaltos, List<RegiaoAssassinatos> rAssassinatos, List<RegiaoViolenciaSexual> rViolSex) {
 		
 		this.rAssaltos = rAssaltos;
 		this.rAssassinatos = rAssassinatos;
+		this.rViolSex = rViolSex;
 		
+	}
+
+	public List<RegiaoViolenciaSexual> getrViolSex() {
+		return rViolSex;
+	}
+
+	public void setrViolSex(List<RegiaoViolenciaSexual> rViolSex) {
+		this.rViolSex = rViolSex;
 	}
 
 	public List<RegiaoAssaltos> getrAssaltos() {
