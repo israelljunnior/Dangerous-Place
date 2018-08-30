@@ -204,23 +204,23 @@ prefix="fmt" %>
 
 							<div class="form-group">
 								<label for="nome">Nome:</label> <input type="text" id="nome"
-									class="form-control" name="nome" style="width: 500px;"
+									class="form-control" name="nome" style="width: 85%;"
 									placeholder="Digite seu nome." />
 							</div>
 							<div class="form-group">
 								<label for="email">Email:</label> <input type="text" id="email"
-									class="form-control" name="email" style="width: 500px;"
+									class="form-control" name="email" style="width: 85%;"
 									placeholder="Digite seu Email..." />
 							</div>
 							<div class="form-group">
 								<label for="senha">Senha:</label> <input type="password"
 									id="senha" class="form-control" name="senha"
-									style="width: 500px;" placeholder="Digite sua senha..." />
+									style="width: 85%;" placeholder="Digite sua senha..." />
 							</div>
 							<div class="form-group">
 								<label for="repetirSenha">Repita a senha:</label> <input
 									type="password" id="repetirSenha" class="form-control"
-									name="repetirSenha" style="width: 500px;"
+									name="repetirSenha" style="width: 85%;"
 									placeholder="Repita sua senha..." />
 							</div>
 							<div class="form-group">
@@ -236,7 +236,7 @@ prefix="fmt" %>
 							<div class="form-group">
 								<label for="inputEndereco">CEP:</label> <input type="text"
 									id="inputDescricao" class="form-control" name="endereco"
-									style="width: 500px;" placeholder="Digite seu CEP" />
+									style="width: 85%;" placeholder="Digite seu CEP" />
 							</div>
 							<input type="hidden" name="nivel_acesso" value="usuario">
 
