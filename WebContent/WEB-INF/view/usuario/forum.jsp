@@ -72,18 +72,19 @@
 			<table id="tablefilter" border="0" align="left">
 				<tr>
 					<!-- filtro -->
-					<form action="filtro" method="post"> 
+					<form action="filtro" method="post">
 
-						<td><input type="text" id="filtro" class="form-control"
-							name="tema" style="width: 300px; height: 30px;" maxlength="100"
-							placeholder="Pesquisar..." /></td>
 
-						<td>&nbsp;&nbsp;
-							<button style="height: 30px;" type="submit"
-								class="btn btn-primary">
-								<i class="glyphicon glyphicon-search"></i>
-							</button>
-						</td>
+					<td><input type="text" id="filtro" class="form-control"
+						name="titulo" style="width: 300px; height: 30px;" maxlength="100"
+						placeholder="Pesquisar..." /></td>
+
+					<td>&nbsp;&nbsp;
+						<button style="height: 30px;" type="submit"
+							class="btn btn-primary">
+							<i class="glyphicon glyphicon-search"></i>
+						</button>
+					</td>
 
 					</form>
 					<!-- /filtro -->
@@ -117,8 +118,8 @@
 								<div class="w3-container">
 									<div class="w3-card-4 tam">
 										<header class="w3-container w3-black"> <br>
-										
-										
+
+
 										<div class="btn-group btn-group-xs" style="float: right;">
 
 											<c:choose>
@@ -145,8 +146,8 @@
 
 
 										</div>
-										
-										
+
+
 										<td>Tema: ${publicacao.tema.tema}</td>
 										<br>
 										<td><a data-toggle="modal" data-target="#modal">
@@ -199,9 +200,10 @@
 											</center>
 										</div>
 										<div class="modal-body">
-											<form action="publicarEdit" id="formModalPublicarEdit${publicacao.id}" method="post">
+											<form action="publicarEdit"
+												id="formModalPublicarEdit${publicacao.id}" method="post">
 
-													<input type="hidden" id="idPublicacaoEdit${publicacao.id}"
+												<input type="hidden" id="idPublicacaoEdit${publicacao.id}"
 													name="idPublicacaoEdit" value="${publicacao.id }">
 												<input type="hidden" id="idPublicarEdit${publicacao.id}"
 													name="usuarioPubEdit" value="${publicacao.usuario.id }">
@@ -210,10 +212,9 @@
 														id="inputTemaEdit${publicacao.id}" name="TemaEdit">
 														<option>Selecionar</option>
 														<c:forEach items="${listaTema}" var="tema">
-
 															<option class="form-control" required="required"
+															 <c:if test="${tema.id eq publicacao.tema.id}">selected="selected"</c:if>
 																value="${tema.id}">${tema.tema}</option>
-
 														</c:forEach>
 													</select>
 												</div>
@@ -230,7 +231,8 @@
 												<!-- ESSE AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII -->
 												<div class="form-group">
 													<textarea class="form-control" rows="5"
-														form="formModalPublicarEdit${publicacao.id}" name="textAreaPublicarEdit"
+														form="formModalPublicarEdit${publicacao.id}"
+														name="textAreaPublicarEdit"
 														id="conteudoEdit${publicacao.id}" style="resize: none;">${publicacao.conteudo}</textarea>
 												</div>
 
@@ -294,30 +296,33 @@
 
 															<td><fmt:formatDate value="${comentario.data}"
 																	pattern="dd/MM/yyyy" /></td>
-<td>
-<div class="btn-group btn-group-xs" style="float: right;">
-															<c:choose>
-																<c:when
-																	test="${comentario.usuario.id == usuarioLogado.id}">
-																	<!-- Opção de apagar o comentário -->
-																	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditComent${publicacao.id}${comentario.id}">Editar</button>
-																	<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalExcluirComent${publicacao.id}${comentario.id}">Excluir</button>
+															<td>
+																<div class="btn-group btn-group-xs"
+																	style="float: right;">
+																	<c:choose>
+																		<c:when
+																			test="${comentario.usuario.id == usuarioLogado.id}">
+																			<!-- Opção de apagar o comentário -->
+																			<button type="button" class="btn btn-primary"
+																				data-toggle="modal"
+																				data-target="#modalEditComent${publicacao.id}${comentario.id}">Editar</button>
+																			<button type="button" class="btn btn-danger"
+																				data-toggle="modal"
+																				data-target="#modalExcluirComent${publicacao.id}${comentario.id}">Excluir</button>
 
-																</c:when>
-																<c:otherwise>
-																	<c:if
-																		test="${usuarioLogado.nivel_acesso == 'adm' || 'admSup' }">
-																		<!-- Opção de apagar o comentário -->
-																		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalExcluirComent${comentario.id}"
-																onclick="apagarComentario(${comentario.id})">Excluir</button>
-																	</c:if>
-
-																	</div>
-																</c:otherwise>
-
-															</c:choose>
-														</div>
-														</td>
+																		</c:when>
+																		<c:otherwise>
+																			<c:if
+																				test="${usuarioLogado.nivel_acesso == 'adm' || 'admSup' }">
+																				<!-- Opção de apagar o comentário -->
+																				<button type="button" class="btn btn-danger"
+																					data-toggle="modal"
+																					data-target="#modalExcluirComent${comentario.id}"
+																					onclick="apagarComentario(${comentario.id})">Excluir</button>
+																			</c:if>
+																</div> </c:otherwise> </c:choose>
+																</div>
+															</td>
 														</tr>
 
 														<tr>
@@ -326,74 +331,84 @@
 																<hr /></td>
 														</tr>
 													</c:if>
-												
-												
-												<!-- Modal excluir comementario -->
-							
-							<div class="modal fade" id="modalExcluirComent${publicacao.id}${comentario.id}" role="dialog">
-								<div class="modal-dialog">
-									<div class="modal-content">
-										<div class="modal-header">
-											
-										</div>
-										<div class="modal-body">
-											<center>
-												<h4>
-													<p>Você tem certeza que deseja excluir?</p>
-												</h4><p>${comentario.id}</p>
-												<a method="post" href="deleteComent?id=${comentario.id}"><button
-														type="button" class="btn btn-danger">Sim</button></a>
-												<button type="button" class="btn btn-danger"
-													data-dismiss="modal">Não</button>
-											</center>
-										</div>
-										<div class="modal-footer"></div>
-									</div>
-								</div>
-							</div>
-									<!-- Modal Editar comentario -->			
-												
-												<div class="modal fade" id="modalEditComent${publicacao.id}${comentario.id}" role="dialog">
-								<div class="modal-dialog">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h4>Editar Comentário</h4>
-											
-										</div>
-										<div class="modal-body">
-											<form action="comentarEdit" id="formComentEdit${publicacao.id}${comentario.id}"
-															method="post"">
 
-															<input type="hidden" id="idComent${publicacao.id}${comentario.id}" name="id" value="${comentario.id}" >
-															<input type="hidden" id="idUsuComentEdit${publicacao.id}${comentario.id} "
-																name="idUsuComentEdit" value="${usuarioLogado.id}" /> <input
-																type="hidden" id="idPubComentEdit${publicacao.id}"
-																name="idPubComentEdit" value="${publicacao.id}" />
 
-															<textarea style="resize: none;" rows="6" cols="5"
-																class="form-control" minlength="1"
-																form="formComentEdit${publicacao.id}${comentario.id}" name="conteudoComentEdit"
-																placeholder="Escreva um comentário ">${comentario.conteudo}</textarea>
+													<!-- Modal excluir comementario -->
 
-															<br> <input class="btn btn-primary" type="submit"
-																value="Enviar Comentário"
-																style="float: right; background-color: #555555;">
-															<br> <br>
+													<div class="modal fade"
+														id="modalExcluirComent${publicacao.id}${comentario.id}"
+														role="dialog">
+														<div class="modal-dialog">
+															<div class="modal-content">
+																<div class="modal-header"></div>
+																<div class="modal-body">
+																	<center>
+																		<h4>
+																			<p>Você tem certeza que deseja excluir?</p>
+																		</h4>
+																		<p>${comentario.id}</p>
+																		<a method="post"
+																			href="deleteComent?id=${comentario.id}"><button
+																				type="button" class="btn btn-danger">Sim</button></a>
+																		<button type="button" class="btn btn-danger"
+																			data-dismiss="modal">Não</button>
+																	</center>
+																</div>
+																<div class="modal-footer"></div>
+															</div>
+														</div>
+													</div>
+													<!-- Modal Editar comentario -->
 
-														</form>
-											
-											
-											
-											
-										</div>
-										<div class="modal-footer"></div>
-									</div>
-								</div>
-							</div>
-												
-												
-												
-												
+													<div class="modal fade"
+														id="modalEditComent${publicacao.id}${comentario.id}"
+														role="dialog">
+														<div class="modal-dialog">
+															<div class="modal-content">
+																<div class="modal-header">
+																	<h4>Editar Comentário</h4>
+
+																</div>
+																<div class="modal-body">
+																	<form action="comentarEdit"
+																		id="formComentEdit${publicacao.id}${comentario.id}"
+																		method="post"">
+
+																		<input type="hidden"
+																			id="idComent${publicacao.id}${comentario.id}"
+																			name="id" value="${comentario.id}"> <input
+																			type="hidden"
+																			id="idUsuComentEdit${publicacao.id}${comentario.id} "
+																			name="idUsuComentEdit" value="${usuarioLogado.id}" />
+																		<input type="hidden"
+																			id="idPubComentEdit${publicacao.id}"
+																			name="idPubComentEdit" value="${publicacao.id}" />
+
+																		<textarea style="resize: none;" rows="6" cols="5"
+																			class="form-control" minlength="1"
+																			form="formComentEdit${publicacao.id}${comentario.id}"
+																			name="conteudoComentEdit"
+																			placeholder="Escreva um comentário ">${comentario.conteudo}</textarea>
+
+																		<br> <input class="btn btn-primary" type="submit"
+																			value="Enviar Comentário"
+																			style="float: right; background-color: #555555;">
+																		<br> <br>
+
+																	</form>
+
+
+
+
+																</div>
+																<div class="modal-footer"></div>
+															</div>
+														</div>
+													</div>
+
+
+
+
 												</c:forEach>
 											</table>
 
@@ -441,8 +456,8 @@
 
 
 
-							</c:forEach>
-					
+						</c:forEach>
+
 					</div>
 				</div>
 			</div>
