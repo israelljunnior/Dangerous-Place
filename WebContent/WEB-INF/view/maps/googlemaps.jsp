@@ -1500,9 +1500,9 @@ function selectRM(controlDiv, map) {
 		]
 		
 		var rowsViolencia = [
-			{"ano" : result.mViolencia[0].ano , "TotalSex" : result.mViolencia[0].TotalSex},
-			{"ano" : result.mViolencia[1].ano , "TotalSex" : result.mViolencia[1].TotalSex},
-			{"ano" : result.mViolencia[2].ano , "TotalSex" : result.mViolencia[2].TotalSex}
+			{"ano" : result.mViolSex[0].ano , "TotalSex" : result.mViolSex[0].TotalSex},
+			{"ano" : result.mViolSex[1].ano , "TotalSex" : result.mViolSex[1].TotalSex},
+			{"ano" : result.mViolSex[2].ano , "TotalSex" : result.mViolSex[2].TotalSex}
 		];
 		
 
@@ -1511,7 +1511,7 @@ function selectRM(controlDiv, map) {
         var doc = new jsPDF('l', 'pt');
     	var startingPage = doc.internal.getCurrentPageInfo().pageNumber;
         doc.autoTable(columnsAssaltos, rowsAssaltos,{
-            styles: {fillColor: [255, 0, 0]},
+            styles: {fillColor: [0, 0, 0]},
             margin: {top: 60},
             avoidPageSplit: true,
             addPageContent: function(data) {
@@ -1520,8 +1520,8 @@ function selectRM(controlDiv, map) {
         });
         
         doc.autoTable(columnsAssaltos2, rowsAssaltos2,{
-            styles: {fillColor: [255, 0, 0], overflow: 'linebreak'},
-            margin: {top: 180},
+            styles: {fillColor: [0, 0, 0], overflow: 'linebreak'},
+            margin: {top: 160},
             addPageContent: function(data) {
             }        
         });
@@ -1529,7 +1529,7 @@ function selectRM(controlDiv, map) {
      
         doc.autoTable(columnsAssassinatos2, rowsAssassinatos2,{
             styles: {fillColor: [255, 0, 0], overflow: 'linebreak'},
-            margin: {top: 320},
+            margin: {top: 270},
             addPageContent: function(data) {
             }        
         });
@@ -1537,14 +1537,14 @@ function selectRM(controlDiv, map) {
         
         doc.autoTable(columnsAssassinatos, rowsAssassinatos,{
             styles: {fillColor: [255, 0, 0], overflow: 'linebreak'},
-            margin: {top: 450},
+            margin: {top: 370},
             addPageContent: function(data) {
             }        
         });
         
         doc.autoTable(columnsViolencia, rowsViolencia,{
-            styles: {fillColor: [255, 0, 0], overflow: 'linebreak'},
-            margin: {top: 650},
+            styles: {fillColor: [147, 112, 219], overflow: 'linebreak'},
+            margin: {top: 470},
             addPageContent: function(data) {
             }        
         });
@@ -1640,16 +1640,16 @@ function gerarRelatorioRegiao(mesorregiao) {
 		]
 		
 		var rowsViolencia = [
-			{"ano" : result.rViolencia[0].ano , "TotalSex" : result.rViolencia[0].TotalSex},
-			{"ano" : result.rViolencia[1].ano , "TotalSex" : result.rViolencia[1].TotalSex},
-			{"ano" : result.rViolencia[2].ano , "TotalSex" : result.rViolencia[2].TotalSex}
+			{"ano" : result.rViolSex[0].ano , "TotalSex" : result.rViolSex[0].TotalSex},
+			{"ano" : result.rViolSex[1].ano , "TotalSex" : result.rViolSex[1].TotalSex},
+			{"ano" : result.rViolSex[2].ano , "TotalSex" : result.rViolSex[2].TotalSex}
 		];
 
         // Only pt supported (not mm or in)
         var doc = new jsPDF('l', 'pt');
     	var startingPage = doc.internal.getCurrentPageInfo().pageNumber;
         doc.autoTable(columnsAssaltos, rowsAssaltos,{
-            styles: {fillColor: [255, 0, 0]},
+            styles: {fillColor: [0, 0, 0]},
             margin: {top: 60},
             avoidPageSplit: true,
             addPageContent: function(data) {
@@ -1658,8 +1658,8 @@ function gerarRelatorioRegiao(mesorregiao) {
         });
 
         doc.autoTable(columnsAssaltos2, rowsAssaltos2,{
-            styles: {fillColor: [255, 0, 0], overflow: 'linebreak'},
-            margin: {top: 180},
+            styles: {fillColor: [0, 0, 0], overflow: 'linebreak'},
+            margin: {top: 160},
             addPageContent: function(data) {
             }        
         });
@@ -1667,7 +1667,7 @@ function gerarRelatorioRegiao(mesorregiao) {
      
         doc.autoTable(columnsAssassinatos2, rowsAssassinatos2,{
             styles: {fillColor: [255, 0, 0], overflow: 'linebreak'},
-            margin: {top: 320},
+            margin: {top: 300},
             addPageContent: function(data) {
             }        
         });
@@ -1675,14 +1675,14 @@ function gerarRelatorioRegiao(mesorregiao) {
         
         doc.autoTable(columnsAssassinatos, rowsAssassinatos,{
             styles: {fillColor: [255, 0, 0], overflow: 'linebreak'},
-            margin: {top: 450},
+            margin: {top: 350},
             addPageContent: function(data) {
             }        
         });
         
         doc.autoTable(columnsViolencia, rowsViolencia,{
-            styles: {fillColor: [255, 0, 0], overflow: 'linebreak'},
-            margin: {top: 650},
+            styles: {fillColor: [147, 112, 219], overflow: 'linebreak'},
+            margin: {top: 450},
             addPageContent: function(data) {
             }        
         });
