@@ -141,7 +141,10 @@ prefix="fmt" %>
 							<div class="alert alert-danger" style="width: 80%;">${msgPrecisaLogin}
 							</div>
 						</c:if>
+						<a href="#modalCadastro" data-toggle="modal"
+							data-target="#modalCadastro">Sem conta? Se cadastra aqui</a>
 					</center>
+					
 				</div>
 				<div class="modal-body">
 					<form action="efetuarLogin" method="post">
@@ -163,15 +166,10 @@ prefix="fmt" %>
 							</div> <br><br>
 
 
-
-
-
-
 							<div class="btn-group btn-group" style="text-align: center";>
 								<button type="submit" class="btn btn-danger"
 									data-toggle="tooltip">Entrar</button>
 								</a>
-
 							</div>
 						</center>
 <br>
