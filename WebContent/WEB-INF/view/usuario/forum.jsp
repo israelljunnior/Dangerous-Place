@@ -60,7 +60,9 @@
 				onClick="fonte('d');">a -</button>
 		</div>
 
-		<div class="col-sm-8" id="todoBody">
+
+		<div class="col-sm-8" id="todoBody"
+			style="font-family: 'Montserrat', sans-serif;">
 
 			<div class="container" style="width: 100%; background-color: black;">
 				<center>
@@ -69,42 +71,29 @@
 
 			</div>
 			<br>
-			<table id="tablefilter" border="0" align="left">
-				<tr>
-					<!-- filtro -->
-					<form action="filtro" method="post">
+			<br>
+			<form action="filtro" method="post">
 
+				<div class="col-sm-4">
+					<input type="text" id="filtro" class="form-control" name="titulo"
+						style="width: 300px; height: 40px;" maxlength="100"
+						placeholder="Pesquisar..." />
+				</div>
+				<div class="col-sm-5">
+					<button style="height: 40px;" type="submit" class="btn btn-primary">
+						<i class="glyphicon glyphicon-search"></i>
+					</button>
+				</div>
+			</form>
+			<div class="col-sm-1">
+				<button class="btn btn-primary" align="right" data-toggle="modal"
+					data-target="#modalPublicar"
+					style="height: 40px; font-size: 17px; width: 150px; background-color: #555555; color: white;">Publicar</button>
+			</div>
 
-					<td><input type="text" id="filtro" class="form-control"
-						name="titulo" style="width: 300px; height: 30px;" maxlength="100"
-						placeholder="Pesquisar..." /></td>
-
-					<td>&nbsp;&nbsp;
-						<button style="height: 30px;" type="submit"
-							class="btn btn-primary">
-							<i class="glyphicon glyphicon-search"></i>
-						</button>
-					</td>
-
-					</form>
-					<!-- /filtro -->
-					<td>&nbsp;</td>
-
-					<td align="rigth">
-
-
-						<button type="button" class="btn btn-primary" data-toggle="modal"
-							data-target="#modalPublicar"
-							style="height: 40px;; width: 100%; background-color: #555555; color: white">Publicar</button>
-					</td>
-				</tr>
-
-
-
-			</table>
 			<br> <br>
-
-
+			<br>
+			<br>
 
 			<div class="row" style="font-family: 'Montserrat', sans-serif">
 
@@ -143,8 +132,6 @@
 												</c:otherwise>
 
 											</c:choose>
-
-
 										</div>
 
 
@@ -213,7 +200,7 @@
 														<option>Selecionar</option>
 														<c:forEach items="${listaTema}" var="tema">
 															<option class="form-control" required="required"
-															 <c:if test="${tema.id eq publicacao.tema.id}">selected="selected"</c:if>
+																<c:if test="${tema.id eq publicacao.tema.id}">selected="selected"</c:if>
 																value="${tema.id}">${tema.tema}</option>
 														</c:forEach>
 													</select>
@@ -295,36 +282,35 @@
 															<!-- Data que comentário foi postado -->
 
 															<td><fmt:formatDate value="${comentario.data}"
-																	pattern="dd/MM/yyyy" />
-															<br>
-															<fmt:formatDate value="${comentario.data}"
-																	pattern="HH:mm:ss" /></td>
-															
-																<div class="btn-group btn-group-xs"
-																	style="float: right;">
-																	<c:choose>
-																		<c:when
-																			test="${comentario.usuario.id == usuarioLogado.id}">
+																	pattern="dd/MM/yyyy" /> <br> <fmt:formatDate
+																	value="${comentario.data}" pattern="HH:mm:ss" /></td>
+
+															<div class="btn-group btn-group-xs" style="float: right;">
+																<c:choose>
+																	<c:when
+																		test="${comentario.usuario.id == usuarioLogado.id}">
+																		<!-- Opção de apagar o comentário -->
+																		<button type="button" class="btn btn-primary"
+																			data-toggle="modal"
+																			data-target="#modalEditComent${publicacao.id}${comentario.id}">Editar</button>
+																		<button type="button" class="btn btn-danger"
+																			data-toggle="modal"
+																			data-target="#modalExcluirComent${publicacao.id}${comentario.id}">Excluir</button>
+
+																	</c:when>
+																	<c:otherwise>
+																		<c:if
+																			test="${usuarioLogado.nivel_acesso == 'adm' || 'admSup' }">
 																			<!-- Opção de apagar o comentário -->
-																			<button type="button" class="btn btn-primary"
-																				data-toggle="modal"
-																				data-target="#modalEditComent${publicacao.id}${comentario.id}">Editar</button>
 																			<button type="button" class="btn btn-danger"
 																				data-toggle="modal"
-																				data-target="#modalExcluirComent${publicacao.id}${comentario.id}">Excluir</button>
+																				data-target="#modalExcluirComent${comentario.id}"
+																				onclick="apagarComentario(${comentario.id})">Excluir</button>
+																		</c:if>
+															</div>
+															</c:otherwise>
+															</c:choose>
 
-																		</c:when>
-																		<c:otherwise>
-																			<c:if
-																				test="${usuarioLogado.nivel_acesso == 'adm' || 'admSup' }">
-																				<!-- Opção de apagar o comentário -->
-																				<button type="button" class="btn btn-danger"
-																					data-toggle="modal"
-																					data-target="#modalExcluirComent${comentario.id}"
-																					onclick="apagarComentario(${comentario.id})">Excluir</button>
-																			</c:if>
-																</div> </c:otherwise> </c:choose>
-																</div>
 															</td>
 														</tr>
 
@@ -370,12 +356,13 @@
 															<div class="modal-content">
 																<div class="modal-header">
 																	<h4>Editar Comentário</h4>
-
+																	<button type="button" class="close"
+																		data-dismiss="modal" aria-label="Close">
 																</div>
 																<div class="modal-body">
 																	<form action="comentarEdit"
 																		id="formComentEdit${publicacao.id}${comentario.id}"
-																		method="post"">
+																		method="post">
 
 																		<input type="hidden"
 																			id="idComent${publicacao.id}${comentario.id}"
@@ -427,7 +414,7 @@
 													<td>
 														<!-- Campo de formulário pra enviar um novo comentário -->
 														<form action="comentar" id="formComent${publicacao.id}"
-															method="post"">
+															method="post">
 
 															<input type="hidden" id="idUsuComent${publicacao.id } "
 																name="idUsuComent" value="${usuarioLogado.id}" /> <input
@@ -465,6 +452,9 @@
 				</div>
 			</div>
 		</div>
+
+		<div class="col-sm-2"></div>
+
 	</div>
 
 	<!-- Modal para perfil no fórum -->
