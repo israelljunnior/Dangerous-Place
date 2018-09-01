@@ -274,7 +274,7 @@
 							<!-- Modal comentario -->
 							<div class="modal fade" id="modalComentario${ publicacao.id}"
 								role="dialog">
-								<div class="modal-dialog" style="width: 60%;">
+								<div class="modal-dialog">
 
 									<!-- Modal content-->
 									<div class="modal-content">
@@ -295,8 +295,11 @@
 															<!-- Data que comentário foi postado -->
 
 															<td><fmt:formatDate value="${comentario.data}"
-																	pattern="dd/MM/yyyy" /></td>
-															<td>
+																	pattern="dd/MM/yyyy" />
+															<br>
+															<fmt:formatDate value="${comentario.data}"
+																	pattern="HH:mm:ss" /></td>
+															
 																<div class="btn-group btn-group-xs"
 																	style="float: right;">
 																	<c:choose>
