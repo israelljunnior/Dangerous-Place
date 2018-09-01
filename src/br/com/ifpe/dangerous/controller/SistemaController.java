@@ -39,6 +39,7 @@ import br.com.ifpe.dangerous.model.Tema;
 import br.com.ifpe.dangerous.model.TemaDao;
 import br.com.ifpe.dangerous.model.Usuario;
 import br.com.ifpe.dangerous.model.UsuarioDao;
+import br.com.ifpe.dangerous.util.Criptografia;
 
 @Controller
 public class SistemaController {
@@ -62,6 +63,7 @@ public class SistemaController {
 	public String save(Usuario usuario, @RequestParam("selectSexo") String sexo) {
 		UsuarioDao dao = new UsuarioDao();
 		usuario.setSexo(sexo);
+		usuario.setSenha(Criptografia.criptografar(usuario.getSenha()));
 		dao.salvar(usuario);
 		
 		return "usuario/cadastroSucesso";
@@ -86,6 +88,7 @@ public class SistemaController {
 	@RequestMapping("efetuarLogin")
 	public String efetuarLogin(Usuario usuario, HttpSession session, Model model) {
 		UsuarioDao dao = new UsuarioDao();
+		usuario.setSenha(Criptografia.criptografar(usuario.getSenha()));
 		Usuario usuarioLogado = dao.buscarUsuario(usuario);
 		if (usuarioLogado != null) {
 			session.setAttribute("usuarioLogado", usuarioLogado);
