@@ -450,7 +450,7 @@ prefix="fmt" %>
 						<input type="hidden" id="idPublicar" name="usuario" value="${usuarioLogado.id }">
 						<div class="form-group">
 								<label for="inputTema">Tema da Publicação:</label> <select id="inputTema" name="Tema">
-								<option>Selecionar</option>
+								<option value="0">Selecionar</option>
 								<c:forEach items="${listaTema}" var="tema">
 
 									<option  class="form-control" required="required" value="${tema.id}">${tema.tema}</option>
@@ -639,4 +639,68 @@ prefix="fmt" %>
 										});
 
 					});
+	
+	
+	$(document) 
+	.ready(
+			function() {
+
+				$("#formModalPublicar")
+						.validate(
+								{
+									rules : {
+										Tema: {
+											required : true,
+											min:1
+											
+										},
+										
+										titulo: { 
+											required : true,
+											maxlength : 300
+										},
+										
+										textAreaPublicar: {
+											required : true,
+											maxlength : 4000
+										}
+									
+									
+									
+									
+									},
+									messages : {
+										Tema: {
+											required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+											min: "<div class='alert alert-danger alert-dismissible fade in' style=''>Selecione um Tema</div>"
+										},
+										
+										titulo: {
+											required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+											maxlength :"<div class='alert alert-danger alert-dismissible fade in' style=''>Deve conter no máximo 300 letras</div>"
+										},
+										
+										
+										textAreaPublicar: {
+											required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+											maxlength :"<div class='alert alert-danger alert-dismissible fade in' style=''>Deve conter no máximo 4000 letras</div>"
+										}
+									
+										
+									
+									}
+									
+										
+										
+										
+										
+									
+								});
+				
+			});
+
+	
+	
+	
+	
 </script>

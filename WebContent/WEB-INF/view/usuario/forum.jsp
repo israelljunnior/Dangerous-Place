@@ -76,11 +76,11 @@
 
 				<div class="col-sm-4">
 					<input type="text" id="filtro" class="form-control" name="titulo"
-						style="width: 300px; height: 40px;" maxlength="100"
+						style="width: 100%; height: 40px;" maxlength="100"
 						placeholder="Pesquisar..." />
 				</div>
 				<div class="col-sm-5">
-					<button style="height: 40px;" type="submit" class="btn btn-primary">
+					<button style="height: 40px; " type="submit" class="btn btn-primary">
 						<i class="glyphicon glyphicon-search"></i>
 					</button>
 				</div>
@@ -88,7 +88,7 @@
 			<div class="col-sm-1">
 				<button class="btn btn-primary" align="right" data-toggle="modal"
 					data-target="#modalPublicar"
-					style="height: 40px; font-size: 17px; width: 150px; background-color: #555555; color: white;">Publicar</button>
+					style="height: 40px; font-size: 17px; width: 180px; background-color: #555555; color: white;">Criar Publicação</button>
 			</div>
 
 			<br> <br>
@@ -197,7 +197,7 @@
 												<div class="form-group">
 													<label for="inputTema">Tema da Publicação:</label> <select
 														id="inputTemaEdit${publicacao.id}" name="TemaEdit">
-														<option>Selecionar</option>
+														<option value="0">Selecionar</option>
 														<c:forEach items="${listaTema}" var="tema">
 															<option class="form-control" required="required"
 																<c:if test="${tema.id eq publicacao.tema.id}">selected="selected"</c:if>
@@ -234,6 +234,70 @@
 								</div>
 							</div>
 							<!-- /miOdal EDIATAR -->
+
+<!-- validacao editar publicacao -->
+<script>
+$(document) 
+.ready(
+		function() {
+
+			$("#formModalPublicarEdit${publicacao.id}")
+					.validate(
+							{
+								rules : {
+									TemaEdit: {
+										required : true,
+										min:1
+										
+									},
+									
+									tituloEdit: { 
+										required : true,
+										maxlength : 300
+									},
+									
+									textAreaPublicarEdit: {
+										required : true,
+										maxlength : 4000
+									}
+								
+								
+								
+								
+								},
+								messages : {
+									TemaEdit: {
+										required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+										min: "<div class='alert alert-danger alert-dismissible fade in' style=''>Selecione um Tema</div>"
+									},
+									
+									tituloEdit: {
+										required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+										maxlength :"<div class='alert alert-danger alert-dismissible fade in' style=''>Deve conter no máximo 300 letras</div>"
+									},
+									
+									
+									textAreaPublicarEdit: {
+										required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+										maxlength :"<div class='alert alert-danger alert-dismissible fade in' style=''>Deve conter no máximo 4000 letras</div>"
+									}
+								
+									
+								
+								}
+								
+									
+									
+									
+									
+								
+							});
+			
+		});
+
+</script>
+
+
 
 							<!-- Modal excluir -->
 							<div class="modal fade" id="modalExcluir" role="dialog">
@@ -284,7 +348,7 @@
 															<td><fmt:formatDate value="${comentario.data}"
 																	pattern="dd/MM/yyyy" /> <br> <fmt:formatDate
 																	value="${comentario.data}" pattern="HH:mm:ss" /></td>
-
+<td>
 															<div class="btn-group btn-group-xs" style="float: right;">
 																<c:choose>
 																	<c:when
@@ -379,7 +443,7 @@
 																		<textarea style="resize: none;" rows="5" cols="5"
 																			class="form-control" 
 																			form="formComentEdit${publicacao.id}${comentario.id}"
-																			id="conteudoComentEdit${publicacao.id}${comentario.id}"
+																			
 																			name="conteudoComentEdit"
 																			placeholder="Escreva um comentário ">${comentario.conteudo}</textarea>
 
@@ -402,16 +466,17 @@
 
 
 <!--  Validacao editar comentario -->
-<script> 
+
+<script> /*
 $(document) 
 .ready(
-		function() {
+		function() {  
 
 			$("#formComentEdit${publicacao.id}${comentario.id}")
 					.validate(
 							{
 								rules : {
-									conteudoComentEdit${publicacao.id}${comentario.id}: {
+									conteudoComentEdit: {
 										required : true,
 										maxlength : 300
 									}
@@ -421,7 +486,7 @@ $(document)
 								
 								},
 								messages : {
-									conteudoComentEdit${publicacao.id}${comentario.id}: {
+									conteudoComentEdit: {
 										required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
 										maxlength :"<div class='alert alert-danger alert-dismissible fade in' style=''>Deve conter no máximo 300 letras</div>"
 									}
@@ -437,7 +502,7 @@ $(document)
 								
 							});
 			
-		});</script>
+		});*/</script>
 
 
 
