@@ -370,13 +370,16 @@
 																			type="hidden"
 																			id="idUsuComentEdit${publicacao.id}${comentario.id} "
 																			name="idUsuComentEdit" value="${usuarioLogado.id}" />
+																		
 																		<input type="hidden"
-																			id="idPubComentEdit${publicacao.id}"
+																			id="idPubComentEdit${publicacao.id}${comentario.id}"
 																			name="idPubComentEdit" value="${publicacao.id}" />
 
-																		<textarea style="resize: none;" rows="6" cols="5"
-																			class="form-control" minlength="1"
+																		
+																		<textarea style="resize: none;" rows="5" cols="5"
+																			class="form-control" 
 																			form="formComentEdit${publicacao.id}${comentario.id}"
+																			id="conteudoComentEdit${publicacao.id}${comentario.id}"
 																			name="conteudoComentEdit"
 																			placeholder="Escreva um comentário ">${comentario.conteudo}</textarea>
 
@@ -396,6 +399,45 @@
 														</div>
 													</div>
 
+
+
+<!--  Validacao editar comentario -->
+<script> 
+$(document) 
+.ready(
+		function() {
+
+			$("#formComentEdit${publicacao.id}${comentario.id}")
+					.validate(
+							{
+								rules : {
+									conteudoComentEdit${publicacao.id}${comentario.id}: {
+										required : true,
+										maxlength : 300
+									}
+									
+									
+								
+								
+								},
+								messages : {
+									conteudoComentEdit${publicacao.id}${comentario.id}: {
+										required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+										maxlength :"<div class='alert alert-danger alert-dismissible fade in' style=''>Deve conter no máximo 300 letras</div>"
+									}
+								
+									
+								
+								}
+								
+									
+									
+									
+									
+								
+							});
+			
+		});</script>
 
 
 
@@ -481,6 +523,9 @@
 										});
 						
 					});
+	
+	
+	
 </script>
 
 
