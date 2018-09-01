@@ -44,6 +44,12 @@ import br.com.ifpe.dangerous.util.Criptografia;
 @Controller
 public class SistemaController {
 
+	@RequestMapping("")
+	public String homePagee() {
+		System.out.println("Dangerous Places Running");
+		return "home";
+	}
+	
 	@RequestMapping("home")
 	public String homePage() {
 		System.out.println("Dangerous Places Running");
