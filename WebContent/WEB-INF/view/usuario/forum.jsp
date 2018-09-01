@@ -444,6 +444,45 @@
 							</div>
 
 
+<!--  validaçao do comentario -->
+<script>
+	$(document) 
+			.ready(
+					function() {
+
+						$("#formComent${publicacao.id}")
+								.validate(
+										{
+											rules : {
+												conteudoComent: {
+													required : true,
+													maxlength : 300
+												}
+												
+												
+											
+											
+											},
+											messages : {
+												conteudoComent: {
+													required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+													maxlength :"<div class='alert alert-danger alert-dismissible fade in' style=''>Deve conter no máximo 300 letras</div>"
+												}
+											
+												
+											
+											}
+											
+												
+												
+												
+												
+											
+										});
+						
+					});
+</script>
+
 
 
 						</c:forEach>
@@ -499,14 +538,3 @@
 </body>
 </html>
 
-<script>
-/*
-function apagarComentario(id) {
-	
-	$.post("apagarComentario",{"id": id}, function(newList){
-		
-	
-	});
-}	
-*/
-</script>
