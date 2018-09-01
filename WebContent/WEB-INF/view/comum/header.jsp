@@ -98,8 +98,6 @@ prefix="fmt" %>
 					</c:otherwise>
 				</c:choose>
 
-
-
 			</ul>
 		</div>
 	</nav>
@@ -141,8 +139,6 @@ prefix="fmt" %>
 							<div class="alert alert-danger" style="width: 80%;">${msgPrecisaLogin}
 							</div>
 						</c:if>
-						<a href="#modalCadastro" data-toggle="modal"
-							data-target="#modalCadastro">Sem conta? Se cadastra aqui</a>
 					</center>
 					
 				</div>
@@ -171,6 +167,10 @@ prefix="fmt" %>
 									data-toggle="tooltip">Entrar</button>
 								</a>
 							</div>
+							<br><br>
+							<a href="#modalCadastro" data-toggle="modal"
+							data-target="#modalCadastro">Sem conta? Se cadastra aqui</a>
+							
 						</center>
 <br>
 					<!--  	<div class="g-signin2" data-onsuccess="onSignIn"></div> -->
@@ -239,7 +239,8 @@ prefix="fmt" %>
 							<input type="hidden" name="nivel_acesso" value="usuario">
 
 							<button type="reset" class="btn btn-danger"
-								style="background-color: #B22222; color: white">Cancelar</button>
+								style="background-color: #B22222; color: white" data-dismiss="modal"
+						aria-label="Close">Cancelar</button>
 							&nbsp;
 							<button type="submit" class="btn btn-primary"
 								style="background-color: black; color: white; margin-left: 10px">&nbsp;
