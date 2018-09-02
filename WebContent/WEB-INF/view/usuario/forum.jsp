@@ -117,12 +117,19 @@
 														data-toggle="modal"
 														data-target="#modalPublicarEdit${publicacao.id}">Editar</button>
 													<button type="button" class="btn btn-danger"
-														data-toggle="modal" data-target="#modalExcluir">Excluir</button>
+														data-toggle="modal" data-target="#modalExcluir">Excluir</button>   
 
 												</c:when>
 												<c:otherwise>
 													<c:if
-														test="${usuarioLogado.nivel_acesso == 'admSup'|| 'adm' }">
+														test="${usuarioLogado.nivel_acesso == 'admSup'}">
+
+														<button type="button" class="btn btn-danger"
+															data-toggle="modal" data-target="#modalExcluir">Excluir</button>
+
+													</c:if>
+													<c:if
+														test="${usuarioLogado.nivel_acesso == 'adm' }">
 
 														<button type="button" class="btn btn-danger"
 															data-toggle="modal" data-target="#modalExcluir">Excluir</button>
@@ -338,7 +345,7 @@ $(document)
 
 												<c:forEach var="comentario" items="${listaComentario}">
 
-													<c:if test="${ comentario.publicacao.id == publicacao.id}">
+													<c:if test="${comentario.publicacao.id == publicacao.id}">
 														<tr>
 															<td><br> <br> <br></td>
 															<td><b>${comentario.usuario.nome }</b></td>
@@ -363,18 +370,30 @@ $(document)
 
 																	</c:when>
 																	<c:otherwise>
+												
+																		
 																		<c:if
-																			test="${usuarioLogado.nivel_acesso == 'adm' || 'admSup' }">
+																			test="${usuarioLogado.nivel_acesso == 'admSup'}">
 																			<!-- Opção de apagar o comentário -->
-																			<button type="button" class="btn btn-danger"
+																			                                                                 
+																			<button type="button" class="btn btn-danger"                     
 																				data-toggle="modal"
 																				data-target="#modalExcluirComent${comentario.id}"
 																				onclick="apagarComentario(${comentario.id})">Excluir</button>
 																		</c:if>
-															</div>
+																		<c:if
+																			test="${usuarioLogado.nivel_acesso == 'adm'}">
+																			<!-- Opção de apagar o comentário -->
+																			                                                                 
+																			<button type="button" class="btn btn-danger"                     
+																				data-toggle="modal"
+																				data-target="#modalExcluirComent${comentario.id}"
+																				onclick="apagarComentario(${comentario.id})">Excluir</button>
+																		</c:if>
+															
 															</c:otherwise>
 															</c:choose>
-
+																</div>
 															</td>
 														</tr>
 
