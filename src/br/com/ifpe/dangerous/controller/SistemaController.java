@@ -98,7 +98,7 @@ public class SistemaController {
 		Usuario usuarioLogado = dao.buscarUsuario(usuario);
 		if (usuarioLogado != null) {
 			session.setAttribute("usuarioLogado", usuarioLogado);
-			return "home";
+			return "forward:home";
 			 
 		}
 		model.addAttribute("msgNaoEncontrado", "Não foi encontrado um usuário com o login e senha informados.");
@@ -119,17 +119,22 @@ public class SistemaController {
 	}
 
 	@RequestMapping("update")
-	public String update(Usuario usuario, Model model, @RequestParam("inputNomeAlterar") String nome,
-			@RequestParam("inputEmailAlterar") String email, @RequestParam("inputSenhaAlterar") String senha,
+	public String update(Usuario usuario, Model model,HttpSession session,@RequestParam("inputNomeAlterar") String nome,
+			@RequestParam("inputEmailAlterar") String email, 
 			@RequestParam("inputEnderecoAlterar") String endereco, @RequestParam("selectSexo") String sexo) {
 		UsuarioDao dao = new UsuarioDao();
 		usuario.setNome(nome);
 		usuario.setEmail(email);
-		usuario.setSenha(senha);
 		usuario.setEndereco(endereco);
 		usuario.setSexo(sexo);
 		dao.alterar(usuario);
-
+		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+				usuarioLogado.setNome(nome);
+				usuarioLogado.setEmail(email);
+				usuarioLogado.setEndereco(endereco);
+				usuarioLogado.setSexo(sexo);
+				session.setAttribute("usuarioLogado", usuarioLogado);
+		
 		model.addAttribute("mensagem", "Usuario Alterado com Sucesso !");
 		return "home";
 	}

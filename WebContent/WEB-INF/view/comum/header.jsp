@@ -61,9 +61,9 @@ font-family: 'Montserrat', sans-serif;
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="/PP2-DangerousPlace/home">Home</a></li>
 				<li><a href="/PP2-DangerousPlace/forum">Fórum</a></li>
-				
+
 				<li><a href="/PP2-DangerousPlace/sobreNos">Sobre nós</a></li>
-				
+
 				<c:if test="${usuarioLogado.nivel_acesso == 'admSup'}">
 					<li><a type="submit" data-toggle="modal"
 						data-target="#modalCadastroADM">Cadastrar ADM</a></li>
@@ -86,11 +86,9 @@ font-family: 'Montserrat', sans-serif;
 
 
 				<c:choose>
-					<c:when test="${not empty usuarioLogado.nome}">					
-						<li><a data-toggle="modal"
-							data-target="#modalAlterarDados">Bem Vindo,
-								
-								${usuarioLogado.nome}</a></li>
+					<c:when test="${not empty usuarioLogado.nome}">
+						<li><a data-toggle="modal" data-target="#modalPerfil">Bem
+								Vindo, ${usuarioLogado.nome}</a></li>
 						<li><a href="<%=request.getContextPath()%>/logout">Sair</a></li>
 					</c:when>
 					<c:otherwise>
@@ -114,7 +112,7 @@ font-family: 'Montserrat', sans-serif;
 			});
 		</script>
 	</c:if>
-	
+
 	<c:if test="${msgPrecisaLogin != null }">
 		<script type="text/javascript">
 			$(document).ready(function() {
@@ -122,6 +120,8 @@ font-family: 'Montserrat', sans-serif;
 			});
 		</script>
 	</c:if>
+
+
 
 
 	<!-- Modal Login -->
@@ -135,7 +135,9 @@ font-family: 'Montserrat', sans-serif;
 						<span aria-hidden="true">&times;</span>
 					</button>
 					<center>
-						<h3><b>Login</b></h3>
+						<h3>
+							<b>Login</b>
+						</h3>
 						<c:if test="${msgNaoEncontrado ne null}">
 							<div class="alert alert-danger" style="width: 80%;">${msgNaoEncontrado}
 							</div>
@@ -145,26 +147,27 @@ font-family: 'Montserrat', sans-serif;
 							</div>
 						</c:if>
 					</center>
-					
+
 				</div>
 				<div class="modal-body">
 					<form action="efetuarLogin" method="post">
 						<center>
-							
+
 							<div class="input-group">
 								<span class="input-group-addon"><i
 									class="glyphicon glyphicon-user"></i></span> <input id="emailLogin"
-									type="text" class="form-control"  name="email"
+									type="text" class="form-control" name="email"
 									placeholder="Email">
 							</div>
-<br>
-							
+							<br>
+
 							<div class="input-group">
 								<span class="input-group-addon"><i
 									class="glyphicon glyphicon-lock"></i></span> <input id="senhaLogin"
 									type="password" class="form-control" name="senha"
 									placeholder="Senha">
-							</div> <br><br>
+							</div>
+							<br> <br>
 
 
 							<div class="btn-group btn-group" style="text-align: center";>
@@ -172,13 +175,12 @@ font-family: 'Montserrat', sans-serif;
 									data-toggle="tooltip">Entrar</button>
 								</a>
 							</div>
-							<br><br>
-							<a href="#modalCadastro" data-toggle="modal"
-							data-target="#modalCadastro">Sem conta? Se cadastra aqui</a>
-							
+							<br> <br> <a href="#modalCadastro" data-toggle="modal"
+								data-target="#modalCadastro">Sem conta? Se cadastra aqui</a>
+
 						</center>
-<br>
-					<!--  	<div class="g-signin2" data-onsuccess="onSignIn"></div> -->
+						<br>
+						<!--  	<div class="g-signin2" data-onsuccess="onSignIn"></div> -->
 
 					</form>
 				</div>
@@ -244,8 +246,8 @@ font-family: 'Montserrat', sans-serif;
 							<input type="hidden" name="nivel_acesso" value="usuario">
 
 							<button type="reset" class="btn btn-danger"
-								style="background-color: #B22222; color: white" data-dismiss="modal"
-						aria-label="Close">Cancelar</button>
+								style="background-color: #B22222; color: white"
+								data-dismiss="modal" aria-label="Close">Cancelar</button>
 							&nbsp;
 							<button type="submit" class="btn btn-primary"
 								style="background-color: black; color: white; margin-left: 10px">&nbsp;
@@ -258,7 +260,7 @@ font-family: 'Montserrat', sans-serif;
 
 
 	<!-- Modal cadastroADM -->
-	 <div class="modal fade" id="modalCadastroADM" tabindex="-1"
+	<div class="modal fade" id="modalCadastroADM" tabindex="-1"
 		role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
 		<div class="modal-dialog modal-xs" role="document">
 			<div class="modal-content">
@@ -281,9 +283,9 @@ font-family: 'Montserrat', sans-serif;
 									placeholder="Digite seu nome." />
 							</div>
 							<div class="form-group">
-								<label for="email">Email:</label> <input type="text" id="emailAdm"
-									class="form-control" name="emailAdm" style="width: 500px;"
-									placeholder="Digite seu Email..." />
+								<label for="email">Email:</label> <input type="text"
+									id="emailAdm" class="form-control" name="emailAdm"
+									style="width: 500px;" placeholder="Digite seu Email..." />
 							</div>
 							<div class="form-group">
 								<label for="senha">Senha:</label> <input type="password"
@@ -297,7 +299,8 @@ font-family: 'Montserrat', sans-serif;
 									placeholder="Repita sua senha..." />
 							</div>
 							<div class="form-group">
-								<label for="inputSexo">Sexo:</label> <select name="selectSexoAdm">
+								<label for="inputSexo">Sexo:</label> <select
+									name="selectSexoAdm">
 									<option id="inputSexo" class="form-control" required="required"
 										type="radio" value="F" name="sexo">Feminino</option>
 									<br />
@@ -332,10 +335,55 @@ font-family: 'Montserrat', sans-serif;
 				</div>
 			</div>
 		</div>
-	</div> 
+	</div>
+
+<!-- Modal Alterar Senha -->
+<div class="modal fade" id="modalAlterarSenha" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" media="all" data-backdrop="static">
+		<div class="modal-dialog modal-sm" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<center>
+						<h3>
+							<b>Alterar Senha</b>
+						</h3> </center>
+				</div>
+				<div class="modal-body">
+
+				<form action="updateSenha" method="post" id="updateSenha">
+				
+				<div class="form-group">
+									<label for="inputSenha">Senha Atual:</label> <input type="password"
+										id="inputSenhaAtual" class="form-control"
+										name="inputSenhaAtual" 
+										 />
+								</div>
+								
+								<div class="form-group">
+									<label for="inputNewSenha">Nova Senha:</label> <input type="password"
+										id="inputNewSenha" class="form-control"
+										name="inputNewSenha" 
+										 />
+								</div>
+				<center>
+				<button type="submit" class="btn btn-danger">Alterar</button>
+				</center>
+				</form>
 
 
+					
+				</div>
 
+
+			</div>
+		</div>
+	</div>
+	
+	
 	<!-- Modal AlterarDados -->
 	<div class="modal fade" id="modalAlterarDados" tabindex="-1"
 		role="dialog" aria-labelledby="myModalLabel" media="all"
@@ -359,6 +407,9 @@ font-family: 'Montserrat', sans-serif;
 							<center>
 
 								<input type="hidden" name="id" value="${usuarioLogado.id}">
+								
+								<input type="hidden" name="senha" value="${usuarioLogado.senha}">
+
 
 								<div class="form-group">
 									<label for="inputNome">Nome:</label> <input type="text"
@@ -373,27 +424,19 @@ font-family: 'Montserrat', sans-serif;
 										style="width: 500px;" /> <label style="display: none;"
 										id="mensagem">Este e-mail já existe</label>
 								</div>
-								<div class="form-group">
-									<label for="inputSenha">Senha:</label> <input type="password"
-										id="inputSenhaAlterar" class="form-control"
-										name="inputSenhaAlterar" value="${usuarioLogado.senha}"
-										style="width: 500px;"
-										title="Deve ser Preenchido com pelo menos 8 caracteres, mínimo uma letra minúscula, uma letra Maiúsculo e um número" />
-								</div>
+								
 
+								
 								<div class="form-group">
-									<label for="inputRepetirSenhaAlterar">Repita a senha:</label> <input
-										type="password" id="inputRepetirAlterar" class="form-control"
-										name="inputSenhaRepetirAlterar" style="width: 500px;"
-										placeholder="Repita sua senha..." />
-								</div>
-								<div class="form-group">
-									<label for="inputSexo">Sexo:</label> <select name="selectSexo">
+									<label for="inputSexo">Sexo:</label> <select  name="selectSexo">
+					
 										<option id="inputSexoAlterarF" class="form-control"
-											type="radio" value="F" name="sexo">Feminino</option>
+										<c:if test="${usuarioLogado.sexo eq 'F' }">selected="selected"</c:if>	type="radio" value="F" name="sexo">Feminino</option>
+										
 										<br />
 										<option id="selectSexoAlterarM" type="radio" value="M"
-											name="sexo">Masculino</option>
+											<c:if test="${usuarioLogado.sexo eq 'M' }">selected="selected"</c:if>  name="sexo">Masculino</option>
+										
 										<br />
 
 									</select>
@@ -418,12 +461,10 @@ font-family: 'Montserrat', sans-serif;
 									<input type="hidden" name="nivel_acesso" value="admSup">
 								</c:if>
 
-								<button type="reset" class="btn btn-danger"
-									style="background-color: #B22222; color: white">Cancelar</button>
-								&nbsp;
+								
 
-								<button type="submit" class="btn btn-primary"
-									style="background-color: black; color: white; margin-left: 10px"
+								<button type="submit" class="btn btn-danger"
+									style=" color: white; margin-left: 10px"
 									onClick="validarSenha()">&nbsp; Inserir&nbsp;</button>
 						</fieldset>
 					</form>
@@ -449,32 +490,37 @@ font-family: 'Montserrat', sans-serif;
 					</center>
 				</div>
 				<div class="modal-body">
-					<form action="publicar" id="formModalPublicar"method="post">
-					
-					
-						<input type="hidden" id="idPublicar" name="usuario" value="${usuarioLogado.id }">
+					<form action="publicar" id="formModalPublicar" method="post">
+
+
+						<input type="hidden" id="idPublicar" name="usuario"
+							value="${usuarioLogado.id }">
 						<div class="form-group">
-								<label for="inputTema">Tema da Publicação:</label> <select id="inputTema" name="Tema">
+							<label for="inputTema">Tema da Publicação:</label> <select
+								id="inputTema" name="Tema">
 								<option value="0">Selecionar</option>
 								<c:forEach items="${listaTema}" var="tema">
 
-									<option  class="form-control" required="required" value="${tema.id}">${tema.tema}</option>
-								
+									<option class="form-control" required="required"
+										value="${tema.id}">${tema.tema}</option>
+
 								</c:forEach>
-									</select>
-							</div>
-						
-						
-						<div class="form-group">
-					
-							<label for="inputTema">Titulo:</label> <input type="text"
-								id="inputTitulo" class="form-control" name="titulo"
-								style="width: 100%;" placeholder="Digite o titulo de sua publicação" />
+							</select>
 						</div>
 
 
 						<div class="form-group">
-							<textarea class="form-control" rows="5" form="formModalPublicar" name="textAreaPublicar" id="conteudo"
+
+							<label for="inputTema">Titulo:</label> <input type="text"
+								id="inputTitulo" class="form-control" name="titulo"
+								style="width: 100%;"
+								placeholder="Digite o titulo de sua publicação" />
+						</div>
+
+
+						<div class="form-group">
+							<textarea class="form-control" rows="5" form="formModalPublicar"
+								name="textAreaPublicar" id="conteudo"
 								placeholder="digite aqui o conteúdo de sua publicação"
 								style="resize: none;"></textarea>
 						</div>
@@ -487,13 +533,78 @@ font-family: 'Montserrat', sans-serif;
 		</div>
 	</div>
 
+	<!-- Modal Perfil -->
+	<div class="modal fade" id="modalPerfil" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" media="all" data-backdrop="static">
+		<div class="modal-dialog modal-sm" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<center>
+						<h3>
+							<b>Perfil</b>
+						</h3>
+				</div>
+				<div class="modal-body">
+
+
+
+					<div class="card" style="width: 100%">
+						<center>
+							<c:if test="${usuarioLogado.sexo == 'M' }">
+								<img class="card-img-top"
+									src="https://www.w3schools.com/bootstrap4/img_avatar1.png"
+									alt="Card image" style="width: 70%;">
+							</c:if>
+							<c:if test="${usuarioLogado.sexo == 'F' }">
+								<img class="card-img-top"
+									src="https://www.w3schools.com/bootstrap4/img_avatar5.png"
+									alt="Card image" style="width: 70%;">
+							</c:if>
+
+
+
+
+							<div class="card-body">
+								<h4 class="card-title">
+									<b>${usuarioLogado.nome}</b>
+								</h4>
+								<c:if
+									test="${usuarioLogado.nivel_acesso == 'admSup' or usuarioLogado.nivel_acesso == 'adm' }">
+									<h5>Administrador</h5>
+								</c:if>
+
+
+								<div class="btn-group btn-group-xs">
+
+									<button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="#modalAlterarSenha">Alterar
+										Senha</button>
+									<button type="button" class="btn btn-primary" data-dismiss="modal"
+										data-toggle="modal" data-target="#modalAlterarDados" Style="background-color:#555555;" >Alterar Dados</button>
+
+								</div>
+						</center>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+	</div>
+
+
+
 
 
 </body>
 
 
 <script>
-	$(document) 
+	$(document)
 			.ready(
 					function() {
 
@@ -516,7 +627,9 @@ font-family: 'Montserrat', sans-serif;
 														type : "post",
 														data : {
 															email : function() {
-																return $("#email").val();
+																return $(
+																		"#email")
+																		.val();
 															}
 														}
 													}
@@ -571,9 +684,7 @@ font-family: 'Montserrat', sans-serif;
 
 										});
 
-						
-
-					}); 
+					});
 
 	$(document)
 			.ready(
@@ -644,151 +755,134 @@ font-family: 'Montserrat', sans-serif;
 										});
 
 					});
-	
-	
-	$(document) 
-	.ready(
-			function() {
 
-				$("#formModalPublicar")
-						.validate(
-								{
-									rules : {
-										Tema: {
-											required : true,
-											min:1
-											
-										},
-										
-										titulo: { 
-											required : true,
-											maxlength : 300
-										},
-										
-										textAreaPublicar: {
-											required : true,
-											maxlength : 4000
-										}
-									
-									
-									
-									
-									},
-									messages : {
-										Tema: {
-											required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
-											min: "<div class='alert alert-danger alert-dismissible fade in' style=''>Selecione um Tema</div>"
-										},
-										
-										titulo: {
-											required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
-											maxlength :"<div class='alert alert-danger alert-dismissible fade in' style=''>Deve conter no máximo 300 letras</div>"
-										},
-										
-										
-										textAreaPublicar: {
-											required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
-											maxlength :"<div class='alert alert-danger alert-dismissible fade in' style=''>Deve conter no máximo 4000 letras</div>"
-										}
-									
-										
-									
-									}
-									
-										
-										
-										
-										
-									
-								});
-				
-			});
+	$(document)
+			.ready(
+					function() {
 
-	
-	$(document) 
-	.ready(
-			function() {
+						$("#formModalPublicar")
+								.validate(
+										{
+											rules : {
+												Tema : {
+													required : true,
+													min : 1
 
-				$("#formCadastroAdm")
-						.validate(
-								{
-									rules : {
-										nomeAdm : {
-											required : true,
-											minlength : 2,
-											maxlength : 50,
-											pattern : /^[a-zA-Z\s]+$/
-										},
-										emailAdm : {
-											required : true,
-											maxlength : 130,
-											email : true,
-											remote : {
-												url : "check",
-												type : "post",
-												data : {
-													email : function() {
-														return $("#email").val();
-													}
+												},
+
+												titulo : {
+													required : true,
+													maxlength : 300
+												},
+
+												textAreaPublicar : {
+													required : true,
+													maxlength : 4000
 												}
+
+											},
+											messages : {
+												Tema : {
+													required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+													min : "<div class='alert alert-danger alert-dismissible fade in' style=''>Selecione um Tema</div>"
+												},
+
+												titulo : {
+													required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+													maxlength : "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve conter no máximo 300 letras</div>"
+												},
+
+												textAreaPublicar : {
+													required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+													maxlength : "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve conter no máximo 4000 letras</div>"
+												}
+
 											}
-										},
-										senhaAdm : {
-											required : true,
-											minlength : 2,
-											maxlength : 10,
-											pattern : /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/,
-										},
 
-										repetirSenhaAdm : {
-											required : true,
-											minlength : 2,
-											maxlength : 10,
-											equalTo : "#senha"
-										},
-										
-										
-										enderecoAdm : {
-											required : true,
-											pattern : /[0-9]{8}/,
+										});
 
-										}
+					});
 
-									},
-									messages : {
-										nomeAdm : {
-											required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
-											minlength : "<div class='alert alert-danger alert-dismissible fade in' style=''>É necessário no mínimo duas letras</div>",
-											maxlength : "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve conter no máximo 50 letras</div>",
-											pattern : "<div class='alert alert-danger alert-dismissible fade in' style=''>É necessário Conter Somente Letras</div>"
-										},
-										emailAdm : {
-											required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
-											maxlength : "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve no máximo 130 caracteres</div>",
-											email : "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve conter o formato 'exemplo@exemplo.com'</div>",
-											remote : "<div class='alert alert-danger alert-dismissible fade in' style=''>Email não Está disponível</div>"
-										},
-										senhaAdm : {
-											required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
-											pattern : "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve conter pelo menos 1 letra maiúscula, 1 letra minúscula, numeros e pelo menos 8 caracteres. </div>",
-										},
-										repetirSenhaAdm : {
-											required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
-											equalTo : "<div class='alert alert-danger alert-dismissible fade in' style=''>As duas senhas devem ser iguais</div>",
-										},
-										enderecoAdm : {
-											required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
-											pattern : "<div class='alert alert-danger alert-dismissible fade in' style=''> Deve Conter Formato Válido</div>"
-										}
+	$(document)
+			.ready(
+					function() {
 
-									}
+						$("#formCadastroAdm")
+								.validate(
+										{
+											rules : {
+												nomeAdm : {
+													required : true,
+													minlength : 2,
+													maxlength : 50,
+													pattern : /^[a-zA-Z\s]+$/
+												},
+												emailAdm : {
+													required : true,
+													maxlength : 130,
+													email : true,
+													remote : {
+														url : "check",
+														type : "post",
+														data : {
+															email : function() {
+																return $(
+																		"#email")
+																		.val();
+															}
+														}
+													}
+												},
+												senhaAdm : {
+													required : true,
+													minlength : 2,
+													maxlength : 10,
+													pattern : /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/,
+												},
 
-								});
+												repetirSenhaAdm : {
+													required : true,
+													minlength : 2,
+													maxlength : 10,
+													equalTo : "#senha"
+												},
 
-				
+												enderecoAdm : {
+													required : true,
+													pattern : /[0-9]{8}/,
 
-			}); 
+												}
 
-	
-	
+											},
+											messages : {
+												nomeAdm : {
+													required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+													minlength : "<div class='alert alert-danger alert-dismissible fade in' style=''>É necessário no mínimo duas letras</div>",
+													maxlength : "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve conter no máximo 50 letras</div>",
+													pattern : "<div class='alert alert-danger alert-dismissible fade in' style=''>É necessário Conter Somente Letras</div>"
+												},
+												emailAdm : {
+													required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+													maxlength : "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve no máximo 130 caracteres</div>",
+													email : "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve conter o formato 'exemplo@exemplo.com'</div>",
+													remote : "<div class='alert alert-danger alert-dismissible fade in' style=''>Email não Está disponível</div>"
+												},
+												senhaAdm : {
+													required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+													pattern : "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve conter pelo menos 1 letra maiúscula, 1 letra minúscula, numeros e pelo menos 8 caracteres. </div>",
+												},
+												repetirSenhaAdm : {
+													required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+													equalTo : "<div class='alert alert-danger alert-dismissible fade in' style=''>As duas senhas devem ser iguais</div>",
+												},
+												enderecoAdm : {
+													required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+													pattern : "<div class='alert alert-danger alert-dismissible fade in' style=''> Deve Conter Formato Válido</div>"
+												}
+
+											}
+
+										});
+
+					});
 </script>
