@@ -566,7 +566,7 @@ prefix="fmt" %>
 
 										});
 
-						//Validação Login
+						
 
 					}); 
 
@@ -700,7 +700,90 @@ prefix="fmt" %>
 			});
 
 	
-	
+	$(document) 
+	.ready(
+			function() {
+
+				$("#formCadastroAdm")
+						.validate(
+								{
+									rules : {
+										nomeAdm : {
+											required : true,
+											minlength : 2,
+											maxlength : 50,
+											pattern : /^[a-zA-Z\s]+$/
+										},
+										emailAdm : {
+											required : true,
+											maxlength : 130,
+											email : true,
+											remote : {
+												url : "check",
+												type : "post",
+												data : {
+													email : function() {
+														return $("#email").val();
+													}
+												}
+											}
+										},
+										senhaAdm : {
+											required : true,
+											minlength : 2,
+											maxlength : 10,
+											pattern : /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/,
+										},
+
+										repetirSenhaAdm : {
+											required : true,
+											minlength : 2,
+											maxlength : 10,
+											equalTo : "#senha"
+										},
+										
+										
+										enderecoAdm : {
+											required : true,
+											pattern : /[0-9]{8}/,
+
+										}
+
+									},
+									messages : {
+										nomeAdm : {
+											required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+											minlength : "<div class='alert alert-danger alert-dismissible fade in' style=''>É necessário no mínimo duas letras</div>",
+											maxlength : "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve conter no máximo 50 letras</div>",
+											pattern : "<div class='alert alert-danger alert-dismissible fade in' style=''>É necessário Conter Somente Letras</div>"
+										},
+										emailAdm : {
+											required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+											maxlength : "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve no máximo 130 caracteres</div>",
+											email : "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve conter o formato 'exemplo@exemplo.com'</div>",
+											remote : "<div class='alert alert-danger alert-dismissible fade in' style=''>Email não Está disponível</div>"
+										},
+										senhaAdm : {
+											required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+											pattern : "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve conter pelo menos 1 letra maiúscula, 1 letra minúscula, numeros e pelo menos 8 caracteres. </div>",
+										},
+										repetirSenhaAdm : {
+											required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+											equalTo : "<div class='alert alert-danger alert-dismissible fade in' style=''>As duas senhas devem ser iguais</div>",
+										},
+										enderecoAdm : {
+											required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+											pattern : "<div class='alert alert-danger alert-dismissible fade in' style=''> Deve Conter Formato Válido</div>"
+										}
+
+									}
+
+								});
+
+				
+
+			}); 
+
 	
 	
 </script>
