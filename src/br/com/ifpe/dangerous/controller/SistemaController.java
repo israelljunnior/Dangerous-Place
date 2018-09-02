@@ -138,7 +138,28 @@ public class SistemaController {
 		model.addAttribute("mensagem", "Usuario Alterado com Sucesso !");
 		return "home";
 	}
-
+	
+	@RequestMapping("updateSenha")
+	public String updateSenha(Usuario usuario,HttpSession session,Model model,@RequestParam("inputSenhaAtual") String senhaAtual) {
+		
+		
+		UsuarioDao dao = new UsuarioDao();
+		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+		System.out.println(usuarioLogado.getSenha());
+		
+		if (usuarioLogado.getSenha().equals(Criptografia.criptografar(senhaAtual)) ) {
+		    usuario.setSenha(Criptografia.criptografar(usuario.getSenha()));
+	
+		    dao.alterar(usuario);
+		} 
+		
+		
+		
+		
+		return "home";
+	}
+	
+	
 	@RequestMapping("/forum")
 	public String listarPublicacao(Model model) {
 
@@ -340,6 +361,17 @@ public class SistemaController {
 		List<Publicacao> listaPublicacao = dao.filtrar(publicacao);
 		model.addAttribute("listaPublicacao", listaPublicacao);
 		return "usuario/forum";
+	}
+
+
+	@RequestMapping("checkSenhaAtual")	
+	public @ResponseBody String validarSenha(HttpSession session ,@RequestParam("inputSenhaAtual") String senhaAtual, UsuarioDao user) {
+		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+		Boolean atual = Criptografia.criptografar(senhaAtual).equals(usuarioLogado.getSenha());
+
+		System.out.println(senhaAtual);
+		System.out.println(usuarioLogado.getSenha());
+		return atual.toString();
 	}
 
 }

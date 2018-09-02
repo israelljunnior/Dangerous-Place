@@ -357,6 +357,15 @@ font-family: 'Montserrat', sans-serif;
 				<form action="updateSenha" method="post" id="updateSenha">
 				
 				<div class="form-group">
+									<input type="hidden" name="id" value="${usuarioLogado.id}">
+									<input type="hidden" name="nome" value="${usuarioLogado.nome }" >
+									<input type="hidden" name="email" value="${usuarioLogado.email }" >
+									<input type="hidden" name="sexo" value="${usuarioLogado.sexo }" >
+									<input type="hidden" name="endereco" value="${usuarioLogado.endereco }" >
+									<input type="hidden" name="nivel_acesso" value="${usuarioLogado.nivel_acesso }" >
+									
+									
+									
 									<label for="inputSenha">Senha Atual:</label> <input type="password"
 										id="inputSenhaAtual" class="form-control"
 										name="inputSenhaAtual" 
@@ -366,7 +375,13 @@ font-family: 'Montserrat', sans-serif;
 								<div class="form-group">
 									<label for="inputNewSenha">Nova Senha:</label> <input type="password"
 										id="inputNewSenha" class="form-control"
-										name="inputNewSenha" 
+										name="senha" 
+										 />
+								</div>
+								<div class="form-group">
+									<label for="inputNewSenhaConfirm">Confirmar Nova Senha:</label> <input type="password"
+										id="inputNewSenhaConfirm" class="form-control"
+										name="senhaConfirm" 
 										 />
 								</div>
 				<center>
@@ -575,6 +590,10 @@ font-family: 'Montserrat', sans-serif;
 								<c:if
 									test="${usuarioLogado.nivel_acesso == 'admSup' or usuarioLogado.nivel_acesso == 'adm' }">
 									<h5>Administrador</h5>
+								</c:if>
+								<c:if
+									test="${usuarioLogado.nivel_acesso == 'usuario'}">
+									<h5>Usuario</h5>
 								</c:if>
 
 
@@ -885,4 +904,75 @@ font-family: 'Montserrat', sans-serif;
 										});
 
 					});
-</script>
+
+	$(document)
+	.ready(
+			function() {
+
+				$("#updateSenha")
+						.validate(
+								{
+									rules : {
+										
+										
+										
+										senha : {
+											required : true,
+											
+											
+											pattern : /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/,
+										},
+
+										senhaConfirm : {
+											required : true,
+																					
+											equalTo : "#inputNewSenha"
+										
+										},
+
+										inputSenhaAtual : {
+											required : true,
+											
+											remote: {
+												
+												type: "post", 
+												url:  "checkSenhaAtual",
+												data:{ inputSenhaAtual: function (){
+													return $("#inputSenhaAtual").val();
+												}
+													
+												} 
+											}
+										}
+
+									},
+									messages : {
+										
+										
+										senha : {
+											required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+											pattern : "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve conter pelo menos 1 letra maiúscula, 1 letra minúscula, numeros e pelo menos 8 caracteres. </div>"
+										},
+										senhaConfirm : {
+											required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+											equalTo : "<div class='alert alert-danger alert-dismissible fade in' style=''>As duas senhas devem ser iguais</div>"
+										}, 
+										inputSenhaAtual: {
+											required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+											remote : "<div class='alert alert-danger alert-dismissible fade in' style=''>Senha Atual incorreta</div>"
+											
+											
+											
+										}
+										
+										
+
+									}
+
+								});
+
+			});
+
+	
+	
+	</script>
