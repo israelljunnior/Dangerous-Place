@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <div id="map"></div>
 <div id='containerGraficos' style='width: 100%;'></div>
+
 <script>
 
 var style = [
@@ -194,6 +195,8 @@ function initMap() {
 	geocoder = new google.maps.Geocoder();
 
      //buttons
+     
+
   
     var cleanControlDiv = document.createElement('div');
     var cleanControl = new CleanControl(cleanControlDiv, map);
@@ -212,6 +215,12 @@ function initMap() {
 
     localitionControlDiv.index = 2;
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(localitionControlDiv);
+    
+    var tutorialControlDiv = document.createElement('div');
+    var tutoControl = new tutorialControl(tutorialControlDiv, map);
+    
+    tutoControl.index = 6;
+    map.controls[google.maps.ControlPosition.RIGHT_CENTER].push(tutorialControlDiv);
 
 	google.maps.event.addListener(map, 'click', function(event) {
 		
@@ -809,6 +818,9 @@ function LocalitionControl(controlDiv, map) {
     controlUI.style.textAlign = 'center';
     controlUI.title = 'Click to recenter the map';
     controlDiv.appendChild(controlUI);
+    controlUI.style.borderTop="5px solid transparent";
+    controlUI.style.borderBottom="5px solid transparent";
+    controlUI.style.borderLeft="5px solid black";
     // Set CSS for the control interior.
     var controlText = document.createElement('div');
     controlText.style.color = 'rgb(25,25,25)';
@@ -1152,6 +1164,9 @@ function CleanControl(controlDiv, map) {
     controlUI.style.textAlign = 'center';
     controlUI.title = 'Click to recenter the map';
     controlDiv.appendChild(controlUI);
+    controlUI.style.borderTop="5px solid transparent";
+    controlUI.style.borderBottom="5px solid transparent";
+    controlUI.style.borderLeft="5px solid black";
     // Set CSS for the control interior.
     var controlText = document.createElement('div');
     controlText.style.color = 'rgb(25,25,25)';
@@ -1177,212 +1192,7 @@ function CleanControl(controlDiv, map) {
     
   }
   
-/*<select  id="selectMunicipioOrRegiao" class="selectpicker" >
 
-
-<option value="A">Caruaru</option>
-<option value="A">Ibirajuba</option>
-<option value="A">Alagoinha</option>
-<option value="A">Sairé</option>
-<option value="A">Riacho das Almas</option>
-<option value="A">Jataúba</option>
-<option value="A"> Sanharó</option>
-<option value="A">Tacaimbó</option>
-<option value="A">Camocim de São Félix</option>
-<option value="A">Agrestina</option>
-<option value="A">Panelas</option>
-<option value="A">Cachoeirinha</option>
-<option value="A">Bezerros</option>
-<option value="A">Belo Jardim</option>
-<option value="A"> Gravatá</option>
-<option value="A">Poção</option>
-<option value="A"> Barra de Guabiraba</option>
-<option value="A"> Lagoa dos Gatos</option>
-<option value="A">Altinho</option>
-<option value="A"> São Caitano</option>
-<option value="A">Pesqueira</option>
-<option value="A">Bonito</option>
-<option value="A">Brejo da Madre de Deus</option>
-<option value="A">São Joaquim do Monte</option>
-<option value="A">São Bento do Una</option>
-<option value="A">Cupira</option>
-  <option value="A">Garanhuns</option>
-  <option value="A">Calçado</option>
-  <option value="A">Saloá</option>
-  <option value="A">Correntes</option>
-  <option value="A">Iati</option>
-  <option value="A">Jurema</option>
-  <option value="A">Bom Conselho</option>
-  <option value="A">Jupi</option>
-  <option value="A">Itaíba</option>
- 	<option value="A"> Pedra</option>
-  <option value="A">Caetés</option>
-  <option value="A">Águas Belas</option>
-  <option value="A">Buíque</option>
-  <option value="A">Lajedo</option>
-  <option value="A">Garanhuns</option>
-  <option value="A">Lagoa do Ouro</option>
-  <option value="A">Palmeirina</option>
-  <option value="A">Terezinha</option>
-  <option value="A">Angelim</option>
-  <option value="A">Jucati</option>
-  <option value="A">Paranatama</option>
-  <option value="A">Brejão</option>
-  <option value="A">Canhotinh</option>
-
- 
- <option value="A">Capoeira</option>
- <option value="A">Tupanating</option>
- <option value="A">São Joã</option>
- <option value="A">Venturos</option>
- <option value="A">Cumar</option>
- <option value="A">Salgadinh</option>
- <option value="A">Frei Miguelinh</option>
- <option value="A">Feira Nov</option>
- <option value="A">Machado</option>
- <option value="A">João Alfred</option>
- <option value="A">Vertente</option>
- <option value="A">Limoeir</option>
- <option value="A">Surubi</option>
- <option value="A">Taquaritinga do Nort</option>
- <option value="A">Bom Jardi</option>
- <option value="A">Santa Cruz do Capibarib</option>
- <option value="A">Toritam</option>
- <option value="A">Vertente do Léri</option>
- <option value="A">Orob</option>
- <option value="A">Passir</option>
- <option value="A">Casinha</option>
- <option value="A">Santa Maria do Cambuc</option>
- <option value="A">São Vicente Ferre</option>
- <option value="A">Camutang</option>
- <option value="A">Ferreiro</option>
- <option value="A">Itaquiting</option>
- <option value="A">Buenos Aire</option>
- <option value="A">Chã de Alegri</option>
- <option value="A">Macaparan</option>
- <option value="A">Condad</option>
- <option value="A">Glória do Goit</option>
- <option value="A">Nazaré da Mat</option>
- <option value="A">Lagoa de Itaeng</option>
- <option value="A">Lagoa do Carr</option>
- <option value="A">Timbaúb</option>
- <option value="A">Paudalh</option>
- <option value="A">Tracunhaé</option>
- <option value="A">Alianç</option>
- <option value="A">Vicênci</option>
- <option value="A">Itamb</option>
- <option value="A">Goian</option>
- <option value="A">Carpin</option>
- <option value="A">Vitória de Santo Antã</option>
- <option value="A">Belém de Mari</option>
- <option value="A">Joaquim Nabuc</option>
- <option value="A">Quipap</option>
- <option value="A">Cortê</option>
- <option value="A">Jaqueir</option>
- <option value="A">Maraia</option>
- <option value="A">Água Pret</option>
- <option value="A">Chã Grand</option>
- <option value="A">São Benedito do Su</option>
- <option value="A">Barreiro</option>
- <option value="A">Palmare</option>
- <option value="A">São José da Coroa Grand</option>
- <option value="A">Sirinhaé</option>
- <option value="A">Escad</option>
- <option value="A">Primaver</option>
- <option value="A">Xexé</option>
- <option value="A">Tamandar</option>
- <option value="A">Pombo</option>
- <option value="A">Rio Formos</option>
- <option value="A">Amaraj</option>
- <option value="A">Catend</option>
- <option value="A">Gameleir</option>
- <option value="A">Ribeirã</option>
- <option value="A">Cabo de Santo Agostinh</option>
- <option value="A">Camaragib</option>
- <option value="A">Igarass</option>
- <option value="A">Jaboatão dos Guararape</option>
- <option value="A">Olind</option>
- <option value="A">Paulist</option>
- <option value="A">Recif</option>
- <option value="A">São Lourenço da Mat</option>
- <option value="A">Fernando de Noronh</option>
- <option value="A">Itapissum</option>
- <option value="A">Ilha de Itamarac</option>
- <option value="A">Moren</option>
- <option value="A">Abreu e Lim</option>
- <option value="A">Ipojuc</option>
- <option value="A">Araçoiab</option>
- <option value="A">Mirandib</option>
- <option value="A">Cedr</option>
- <option value="A">Salgueir</option>
- <option value="A">Serrit</option>
- <option value="A">Terra Nov</option>
- <option value="A">Verdejant</option>
- <option value="A">Parnamiri</option>
- <option value="A">São José do Belmont</option>
- <option value="A">Itacurub</option>
- <option value="A">Jatob</option>
- <option value="A">Carnaubeira da Penh</option>
- <option value="A">Belém do São Francisc</option>
- <option value="A">Tacarat</option>
- <option value="A">Petrolândi</option>
- <option value="A">Florest</option>
- <option value="A">Granit</option>
- <option value="A">Moreilândi</option>
- <option value="A">Santa Cru</option>
- <option value="A">Santa Filomen</option>
- <option value="A">Bodoc</option>
- <option value="A">Ipub</option>
- <option value="A">Ex</option>
- <option value="A">Ouricur</option>
- <option value="A">Trindad</option>
- <option value="A">Araripina</option>
-  <option value="A">Betânia</option>
-  <option value="A">Manari</option>
-  <option value="A">Custódia</option>
-  <option value="A">Ibimirim</option>
-  <option value="A">Inajá</option>
-  <option value="A">Sertânia</option>
-  <option value="A">Arcoverde</option>
-  <option value="A">Brejinho</option>
-  <option value="A">Carnaíba</option>
-  <option value="A">Flores</option>
-  <option value="A">Santa Cruz da Baixa Verde</option>
-  <option value="A">Itapetim</option>
-  <option value="A">Ingazeira</option>
-  <option value="A">Calumbi</option>
-  <option value="A">Quixaba</option>
-  <option value="A">Solidão</option>
-  <option value="A">Iguaraci</option>
-  <option value="A">Triunfo</option>
-  <option value="A">Tuparetama</option>
-  <option value="A">Santa Terezinha</option>
-  <option value="A">Tabira</option>
-  <option value="A">São José do Egito</option>
-  <option value="A">Afogados da Ingazeira</option>
-  <option value="A">Serra Talhada</option>
-  <option value="A">Petrolina</option>
-  <option value="A">Afrânio</option>
-  <option value="A">Dormentes</option>
-  <option value="A">Orocó</option>
-  <option value="A">Cabrobó</option>
-  <option value="A">Lagoa Grande</option>
-  <option value="A">Santa Maria da Boa Vista</option>
-
-  
-   <option value="B">Agreste Central</option>
-   <option value="B">Agreste Meridional</option>
-   <option value="B">Agreste Setentrional</option>
-   <option value="B">Mata Norte</option>
-   <option value="B">Mata Sul</option>
-   <option value="B">Metropolitana</option>
-   <option value="B">Sertão Central</option>
-   <option value="B">Sertão De Itaparica</option>
-   <option value="B">Sertão Do Araripe</option>
-   <option value="B">Sertão Do Moxoto</option>
-   <option value="B">Sertão Do Pajeu</option>
-   <option value="B">Sertão Do São Francisco</option>
-<select>*/
 
   
 function selectRM(controlDiv, map) {
@@ -1398,6 +1208,9 @@ function selectRM(controlDiv, map) {
     controlUI.style.textAlign = 'center';
     controlUI.title = 'Click to recenter the map';
     controlDiv.appendChild(controlUI);
+    controlUI.style.borderTop="5px solid transparent";
+    controlUI.style.borderBottom="5px solid transparent";
+    controlUI.style.borderLeft="5px solid black";
     // Set CSS for the control interior.
     var controlText = document.createElement('div');
     controlText.style.color = 'rgb(25,25,25)';
@@ -1414,6 +1227,46 @@ function selectRM(controlDiv, map) {
     	var select = document.getElementById("selectMunicipioOrRegiao");
     	selected = select.options[select.selectedIndex].value;
     }
+    
+    function tutorialControl(controlDiv, map) {
+
+    	// Set CSS for the control border.
+        var controlUI = document.createElement('div');
+        controlUI.style.backgroundColor = '#fff';
+        controlUI.style.border = '1px solid #fff';
+        controlUI.style.borderRadius = '2px';
+        controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+        controlUI.style.cursor = 'pointer';
+        controlUI.style.marginBottom = '40px';
+        controlUI.style.borderTop="5px solid transparent";
+        controlUI.style.borderBottom="5px solid transparent";
+        controlUI.style.borderLeft="5px solid red";
+        
+        controlUI.style.textAlign = 'center';
+        controlUI.title = 'Click to recenter the map';
+        controlDiv.appendChild(controlUI);
+        // Set CSS for the control interior.
+        var controlText = document.createElement('div');
+        controlText.style.color = 'rgb(25,25,25)';
+        controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+        controlText.style.fontSize = '100%';
+        controlText.style.lineHeight = '38px';
+        controlText.style.paddingLeft = '5px';
+        controlText.style.paddingRight = '5px';
+        controlText.innerHTML = 'Tutorial Mapa <div id="wrapper"><div id="page-content-wrapper"><button href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Tutorial</button> <div id="sidebar-wrapper"> Conteúdo do tutorial fica aqui!!</div> </div> </div>';
+        controlUI.appendChild(controlText);
+		
+        controlUI.addEventListener('click', function(e) {
+                 e.preventDefault();
+                 $("#wrapper").toggleClass("toggled");
+             }); 
+                  	
+       
+        
+        // Setup the click event listeners: simply set the map to Chicago.
+      }
+    
+    
     
     function gerarRelatorioMunicipio(municipio) {
 
@@ -1921,5 +1774,6 @@ function gerarRelatorioRegiao(mesorregiao) {
 
 
 </script>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/sidebar.css">
 <script
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAU4tZgF7qKxiAMdKz8j0Pa3_TVyNdZgjM&callback=initMap"></script>
