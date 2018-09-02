@@ -43,6 +43,11 @@ prefix="fmt" %>
 	font-size: 16px;
 	color: white;
 }
+
+div{
+font-family: 'Montserrat', sans-serif;
+
+}
 </style>
 <body>
 

@@ -7,6 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="initial-scale=1.0">
 
+<link rel="icon"  href="<%=request.getContextPath()%>/resources/assets/dp.jpg">
+
 <title>Dangerous Place</title>
 <style>
       /* Always set the map height explicitly to define the size of the div
