@@ -28,7 +28,7 @@ var style = [
                 "visibility": "on"
             },
             {
-                "color": "#000000"
+                "color": "#000000" 
             },
             {
                 "lightness": 16
