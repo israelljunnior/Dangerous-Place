@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<div id="map"></div>
-<div id='containerGraficos' style='width: 100%;'></div>
+
+<div id='containerGraficos' style='width: 100%;'></div><div id="wrapper"><div id="page-content-wrapper"><div id="sidebar-wrapper"> Conteúdo do tutorial fica aqui!!</div> </div> </div><div id="map"></div>
 
 <script>
 
@@ -1253,7 +1253,7 @@ function selectRM(controlDiv, map) {
         controlText.style.lineHeight = '38px';
         controlText.style.paddingLeft = '5px';
         controlText.style.paddingRight = '5px';
-        controlText.innerHTML = 'Tutorial Mapa <div id="wrapper"><div id="page-content-wrapper"><button href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Tutorial</button> <div id="sidebar-wrapper"> Conteúdo do tutorial fica aqui!!</div> </div> </div>';
+        controlText.innerHTML = 'Tutorial Mapa';
         controlUI.appendChild(controlText);
 		
         controlUI.addEventListener('click', function(e) {
