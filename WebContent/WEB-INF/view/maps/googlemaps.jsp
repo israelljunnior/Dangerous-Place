@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<div id='containerGraficos' style='width: 100%;'></div><div id="wrapper"><div id="page-content-wrapper"><div id="sidebar-wrapper"> Conteúdo do tutorial fica aqui!!</div> </div> </div><div id="map"></div>
+<div id='containerGraficos' style='width: 100%;'></div><div id="wrapper"><div id="sidebar-wrapper"> Conteúdo do tutorial fica aqui!!</div></div><div id="map"></div>
 
 <script>
 
