@@ -669,7 +669,6 @@ body.inverter {
 
 
 
-
 </body>
 <<script type="text/javascript">
 $(document).ready(function() {
