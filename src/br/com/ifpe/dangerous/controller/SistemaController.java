@@ -354,12 +354,17 @@ public class SistemaController {
 	}
 	
 	@RequestMapping("filtro")
-	public String filtrar(Publicacao publicacao, Model model) {
+	public String filtrar(Publicacao publicacao, Model model) { 
 		System.out.println(publicacao.getTitulo());
 	
 		PublicacaoDao dao = new PublicacaoDao();
 		List<Publicacao> listaPublicacao = dao.filtrar(publicacao);
+		
+		TemaDao daoTema= new TemaDao();
+		List<Tema> listaTema =  daoTema.listar();
+		
 		model.addAttribute("listaPublicacao", listaPublicacao);
+		model.addAttribute("listaTema", listaTema);
 		return "usuario/forum";
 	}
 

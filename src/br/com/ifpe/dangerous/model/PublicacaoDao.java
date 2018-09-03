@@ -55,17 +55,12 @@ public class PublicacaoDao {
 		Query query = null;
 		String Titulo = Publicacao != null ? Publicacao.getTitulo() : "";
 		String Tema = Publicacao != null ? Publicacao.getTitulo() : "";
-		if (!Titulo.equals("") && Tema.equals("")) {
-			query = manager.createQuery("FROM Publicacao WHERE Titulo LIKE :paramTitulo ORDER BY id_publicacao DESC");
-			query.setParameter("paramTitulo", "%" + Titulo + "%");
-		} else if (Titulo.equals("") && !Tema.equals("")) {
-			query = manager.createQuery("FROM Publicacao WHERE tema.tema LIKE :paramTema ORDER BY id_publicacao DESC");
-			query.setParameter("paramTema", "%" + Tema + "%");
-		} else if (!Titulo.equals("") && !Tema.equals("")) {
-			query = manager.createQuery(
-					"FROM Publicacao WHERE titulo LIKE :paramTitulo OR tema.tema LIKE :paramTema ORDER BY id_publicacao DESC");
+		String Conteudo = Publicacao != null ? Publicacao.getTitulo() : "";
+		if (!Titulo.equals("")) {
+			query = manager.createQuery("FROM Publicacao WHERE titulo LIKE :paramTitulo OR tema.tema LIKE :paramTema OR conteudo like :paramConteudo ORDER BY id_publicacao DESC");
 			query.setParameter("paramTitulo", "%" + Titulo + "%");
 			query.setParameter("paramTema", "%" + Tema + "%");
+			query.setParameter("paramConteudo", "%" + Conteudo + "%");
 		} else {
 			query = manager.createQuery("FROM Publicacao ORDER BY id_publicacao DESC");
 		}

@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"
-prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <script src="http://www.chartjs.org/dist/2.7.2/Chart.bundle.js"></script>
-	<script src="http://www.chartjs.org/samples/latest/utils.js"></script>
-
+<script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://rawgit.com/RobinHerbots/jquery.inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	crossorigin="anonymous"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <!-- google -->
@@ -18,7 +20,8 @@ prefix="fmt" %>
 <!-- jspdf  -->
 <script src="<%=request.getContextPath()%>/resources/jspdf.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/jspdf.debug.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.3.4/jspdf.plugin.autotable.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.3.4/jspdf.plugin.autotable.js"></script>
 <!-- /jspdf -->
 
 <script
@@ -44,14 +47,42 @@ prefix="fmt" %>
 	color: white;
 }
 
-div{
-font-family: 'Montserrat', sans-serif;
+div {
+	font-family: 'Montserrat', sans-serif;
+}
 
+#inverterCores {
+	font-size: 15px;
+	color: #FFF;
+	position: fixed;
+	z-index: 123456789;
+	padding: 5px 10px;
+	background: rgba(60, 60, 60, .5);
+	top: 50px;
+	right: 10px;
+}
+
+.inverter {
+	filter: invert(100%);
+	-webkit-filter: invert(100%);
+}
+
+body.inverter {
+	background: black;
 }
 </style>
+
+<script>
+	$(window).ready(function() {
+		$("#inverterCores").click(function invertColors() {
+			$("body").toggleClass("inverter");
+		});
+	});
+</script>
 <body>
-
-
+	<script
+		src="http://s.codigofonte.com.br/wp-content/js/codigofonte-bar.js"></script>
+	<a id="inverterCores" href="#"><span>Inverter Cores</span></a>
 
 	<nav class="navbar-inverse names">
 		<div class="container-fluid">
@@ -240,9 +271,28 @@ font-family: 'Montserrat', sans-serif;
 
 							<div class="form-group">
 								<label for="inputEndereco">CEP:</label> <input type="text"
-									id="inputDescricao" class="form-control" name="endereco"
+									id="cep" class="form-control" name="endereco"
 									style="width: 85%;" placeholder="Digite seu CEP" />
 							</div>
+
+							<div class="form-group">
+								<label for="inputEndereco">Rua:</label> <input type="text"
+									id="rua" class="form-control" name="rua" style="width: 85%;"
+									placeholder="..." />
+							</div>
+
+							<div class="form-group">
+								<label for="inputEndereco">Bairro:</label> <input type="text"
+									id="bairro" class="form-control" name="bairro"
+									style="width: 85%;" placeholder="..." />
+							</div>
+
+							<div class="form-group">
+								<label for="inputEndereco">Cidade:</label> <input type="text"
+									id="cidade" class="form-control" name="cidade"
+									style="width: 85%;" placeholder="..." />
+							</div>
+
 							<input type="hidden" name="nivel_acesso" value="usuario">
 
 							<button type="reset" class="btn btn-danger"
@@ -337,9 +387,10 @@ font-family: 'Montserrat', sans-serif;
 		</div>
 	</div>
 
-<!-- Modal Alterar Senha -->
-<div class="modal fade" id="modalAlterarSenha" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" media="all" data-backdrop="static">
+	<!-- Modal Alterar Senha -->
+	<div class="modal fade" id="modalAlterarSenha" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" media="all"
+		data-backdrop="static">
 		<div class="modal-dialog modal-sm" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -350,55 +401,51 @@ font-family: 'Montserrat', sans-serif;
 					<center>
 						<h3>
 							<b>Alterar Senha</b>
-						</h3> </center>
+						</h3>
+					</center>
 				</div>
 				<div class="modal-body">
 
-				<form action="updateSenha" method="post" id="updateSenha">
-				
-				<div class="form-group">
-									<input type="hidden" name="id" value="${usuarioLogado.id}">
-									<input type="hidden" name="nome" value="${usuarioLogado.nome }" >
-									<input type="hidden" name="email" value="${usuarioLogado.email }" >
-									<input type="hidden" name="sexo" value="${usuarioLogado.sexo }" >
-									<input type="hidden" name="endereco" value="${usuarioLogado.endereco }" >
-									<input type="hidden" name="nivel_acesso" value="${usuarioLogado.nivel_acesso }" >
-									
-									
-									
-									<label for="inputSenha">Senha Atual:</label> <input type="password"
-										id="inputSenhaAtual" class="form-control"
-										name="inputSenhaAtual" 
-										 />
-								</div>
-								
-								<div class="form-group">
-									<label for="inputNewSenha">Nova Senha:</label> <input type="password"
-										id="inputNewSenha" class="form-control"
-										name="senha" 
-										 />
-								</div>
-								<div class="form-group">
-									<label for="inputNewSenhaConfirm">Confirmar Nova Senha:</label> <input type="password"
-										id="inputNewSenhaConfirm" class="form-control"
-										name="senhaConfirm" 
-										 />
-								</div>
-				<center>
-				<button type="submit" class="btn btn-danger">Alterar</button>
-				</center>
-				</form>
+					<form action="updateSenha" method="post" id="updateSenha">
+
+						<div class="form-group">
+							<input type="hidden" name="id" value="${usuarioLogado.id}">
+							<input type="hidden" name="nome" value="${usuarioLogado.nome }">
+							<input type="hidden" name="email" value="${usuarioLogado.email }">
+							<input type="hidden" name="sexo" value="${usuarioLogado.sexo }">
+							<input type="hidden" name="endereco"
+								value="${usuarioLogado.endereco }"> <input type="hidden"
+								name="nivel_acesso" value="${usuarioLogado.nivel_acesso }">
+							<label for="inputSenha">Senha Atual:</label> <input
+								type="password" id="inputSenhaAtual" class="form-control"
+								name="inputSenhaAtual" />
+						</div>
+
+						<div class="form-group">
+							<label for="inputNewSenha">Nova Senha:</label> <input
+								type="password" id="inputNewSenha" class="form-control"
+								name="senha" />
+						</div>
+						<div class="form-group">
+							<label for="inputNewSenhaConfirm">Confirmar Nova Senha:</label> <input
+								type="password" id="inputNewSenhaConfirm" class="form-control"
+								name="senhaConfirm" />
+						</div>
+						<center>
+							<button type="submit" class="btn btn-danger">Alterar</button>
+						</center>
+					</form>
 
 
-					
+
 				</div>
 
 
 			</div>
 		</div>
 	</div>
-	
-	
+
+
 	<!-- Modal AlterarDados -->
 	<div class="modal fade" id="modalAlterarDados" tabindex="-1"
 		role="dialog" aria-labelledby="myModalLabel" media="all"
@@ -422,7 +469,7 @@ font-family: 'Montserrat', sans-serif;
 							<center>
 
 								<input type="hidden" name="id" value="${usuarioLogado.id}">
-								
+
 								<input type="hidden" name="senha" value="${usuarioLogado.senha}">
 
 
@@ -439,19 +486,21 @@ font-family: 'Montserrat', sans-serif;
 										style="width: 500px;" /> <label style="display: none;"
 										id="mensagem">Este e-mail já existe</label>
 								</div>
-								
 
-								
+
+
 								<div class="form-group">
-									<label for="inputSexo">Sexo:</label> <select  name="selectSexo">
-					
+									<label for="inputSexo">Sexo:</label> <select name="selectSexo">
+
 										<option id="inputSexoAlterarF" class="form-control"
-										<c:if test="${usuarioLogado.sexo eq 'F' }">selected="selected"</c:if>	type="radio" value="F" name="sexo">Feminino</option>
-										
+											<c:if test="${usuarioLogado.sexo eq 'F' }">selected="selected"</c:if>
+											type="radio" value="F" name="sexo">Feminino</option>
+
 										<br />
 										<option id="selectSexoAlterarM" type="radio" value="M"
-											<c:if test="${usuarioLogado.sexo eq 'M' }">selected="selected"</c:if>  name="sexo">Masculino</option>
-										
+											<c:if test="${usuarioLogado.sexo eq 'M' }">selected="selected"</c:if>
+											name="sexo">Masculino</option>
+
 										<br />
 
 									</select>
@@ -476,10 +525,10 @@ font-family: 'Montserrat', sans-serif;
 									<input type="hidden" name="nivel_acesso" value="admSup">
 								</c:if>
 
-								
+
 
 								<button type="submit" class="btn btn-danger"
-									style=" color: white; margin-left: 10px"
+									style="color: white; margin-left: 10px"
 									onClick="validarSenha()">&nbsp; Inserir&nbsp;</button>
 						</fieldset>
 					</form>
@@ -591,18 +640,20 @@ font-family: 'Montserrat', sans-serif;
 									test="${usuarioLogado.nivel_acesso == 'admSup' or usuarioLogado.nivel_acesso == 'adm' }">
 									<h5>Administrador</h5>
 								</c:if>
-								<c:if
-									test="${usuarioLogado.nivel_acesso == 'usuario'}">
+								<c:if test="${usuarioLogado.nivel_acesso == 'usuario'}">
 									<h5>Usuario</h5>
 								</c:if>
 
 
 								<div class="btn-group btn-group-xs">
 
-									<button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="#modalAlterarSenha">Alterar
-										Senha</button>
-									<button type="button" class="btn btn-primary" data-dismiss="modal"
-										data-toggle="modal" data-target="#modalAlterarDados" Style="background-color:#555555;" >Alterar Dados</button>
+									<button type="button" class="btn btn-danger"
+										data-dismiss="modal" data-toggle="modal"
+										data-target="#modalAlterarSenha">Alterar Senha</button>
+									<button type="button" class="btn btn-primary"
+										data-dismiss="modal" data-toggle="modal"
+										data-target="#modalAlterarDados"
+										Style="background-color: #555555;">Alterar Dados</button>
 
 								</div>
 						</center>
@@ -618,8 +669,69 @@ font-family: 'Montserrat', sans-serif;
 
 
 
-
 </body>
+<<script type="text/javascript">
+$(document).ready(function() {
+
+            function limpa_formulário_cep() {
+                // Limpa valores do formulário de cep.
+                $("#rua").val("");
+                $("#bairro").val("");
+                $("#cidade").val("");
+            }
+            
+            //Quando o campo cep perde o foco.
+            $("#cep").blur(function() {
+
+                //Nova variável "cep" somente com dígitos.
+                var cep = $(this).val().replace(/\D/g, '');
+
+                //Verifica se campo cep possui valor informado.
+                if (cep != "") {
+
+                    //Expressão regular para validar o CEP.
+                    var validacep = /^[0-9]{8}$/;
+
+                    //Valida o formato do CEP.
+                    if(validacep.test(cep)) {
+
+                        //Preenche os campos com "..." enquanto consulta webservice.
+                        $("#rua").val("...");
+                        $("#bairro").val("...");
+                        $("#cidade").val("...");
+
+                        //Consulta o webservice viacep.com.br/
+                        $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+
+                            if (!("erro" in dados)) {
+                                //Atualiza os campos com os valores da consulta.
+                                $("#rua").val(dados.logradouro);
+                                $("#bairro").val(dados.bairro);
+                                $("#cidade").val(dados.localidade);
+                            } //end if.
+                            else {
+                                //CEP pesquisado não foi encontrado.
+                                limpa_formulário_cep();
+                                alert("CEP não encontrado.");
+                            }
+                        });
+                    } //end if.
+                    else {
+                        //cep é inválido.
+                        limpa_formulário_cep();
+                        alert("Formato de CEP inválido.");
+                    }
+                } //end if.
+                else {
+                    //cep sem valor, limpa formulário.
+                    limpa_formulário_cep();
+                }
+            });
+        });
+
+    </script>
+
+
 
 
 <script>
@@ -906,73 +1018,65 @@ font-family: 'Montserrat', sans-serif;
 					});
 
 	$(document)
-	.ready(
-			function() {
+			.ready(
+					function() {
 
-				$("#updateSenha")
-						.validate(
-								{
-									rules : {
-										
-										
-										
-										senha : {
-											required : true,
-											
-											
-											pattern : /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/,
-										},
+						$("#updateSenha")
+								.validate(
+										{
+											rules : {
 
-										senhaConfirm : {
-											required : true,
-																					
-											equalTo : "#inputNewSenha"
-										
-										},
+												senha : {
+													required : true,
 
-										inputSenhaAtual : {
-											required : true,
-											
-											remote: {
-												
-												type: "post", 
-												url:  "checkSenhaAtual",
-												data:{ inputSenhaAtual: function (){
-													return $("#inputSenhaAtual").val();
+													pattern : /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/,
+												},
+
+												senhaConfirm : {
+													required : true,
+
+													equalTo : "#inputNewSenha"
+
+												},
+
+												inputSenhaAtual : {
+													required : true,
+
+													remote : {
+
+														type : "post",
+														url : "checkSenhaAtual",
+														data : {
+															inputSenhaAtual : function() {
+																return $(
+																		"#inputSenhaAtual")
+																		.val();
+															}
+
+														}
+													}
 												}
-													
-												} 
+
+											},
+											messages : {
+
+												senha : {
+													required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+													pattern : "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve conter pelo menos 1 letra maiúscula, 1 letra minúscula, numeros e pelo menos 8 caracteres. </div>"
+												},
+												senhaConfirm : {
+													required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+													equalTo : "<div class='alert alert-danger alert-dismissible fade in' style=''>As duas senhas devem ser iguais</div>"
+												},
+												inputSenhaAtual : {
+													required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
+													remote : "<div class='alert alert-danger alert-dismissible fade in' style=''>Senha Atual incorreta</div>"
+
+												}
+
 											}
-										}
 
-									},
-									messages : {
-										
-										
-										senha : {
-											required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
-											pattern : "<div class='alert alert-danger alert-dismissible fade in' style=''>Deve conter pelo menos 1 letra maiúscula, 1 letra minúscula, numeros e pelo menos 8 caracteres. </div>"
-										},
-										senhaConfirm : {
-											required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
-											equalTo : "<div class='alert alert-danger alert-dismissible fade in' style=''>As duas senhas devem ser iguais</div>"
-										}, 
-										inputSenhaAtual: {
-											required : "<div class='alert alert-danger alert-dismissible fade in' style=''>Campo deve ser preenchido</div>",
-											remote : "<div class='alert alert-danger alert-dismissible fade in' style=''>Senha Atual incorreta</div>"
-											
-											
-											
-										}
-										
-										
+										});
 
-									}
-
-								});
-
-			});
-
-	
-	
-	</script>
+					});
+</script>
