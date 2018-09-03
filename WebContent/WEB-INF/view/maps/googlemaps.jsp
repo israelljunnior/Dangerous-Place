@@ -1,6 +1,178 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<div id='containerGraficos' style='width: 100%;'></div><div id="wrapper"><div id="sidebar-wrapper"> Conteúdo do tutorial fica aqui!!</div></div><div id="map"></div>
+<div id='containerGraficos' style='width: 100%;'></div>
+<style>
+
+	* {box-sizing:border-box}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides {
+    display: none;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+</style>
+<div id="wrapper">
+
+	<div id="sidebar-wrapper">
+
+		<!-- Slideshow container -->
+		<div class="slideshow-container">
+
+			<!-- Full-width images with number and caption text -->
+			<div class="mySlides fade">
+				<div class="numbertext">1 / 3</div>
+				<img src="img1.jpg" style="width: 100%">
+				<div class="text">Caption Text</div>
+			</div>
+
+			<div class="mySlides fade">
+				<div class="numbertext">2 / 3</div>
+				<img src="img2.jpg" style="width: 100%">
+				<div class="text">Caption Two</div>
+			</div>
+
+			<div class="mySlides fade">
+				<div class="numbertext">3 / 3</div>
+				<img src="img3.jpg" style="width: 100%">
+				<div class="text">Caption Three</div>
+			</div>
+
+			<!-- Next and previous buttons -->
+			<a class="prev" onclick="plusSlides(-1)">&#10094;</a> <a class="next"
+				onclick="plusSlides(1)">&#10095;</a>
+		</div>
+		<br>
+
+		<!-- The dots/circles -->
+		<div style="text-align: center">
+			<span class="dot" onclick="currentSlide(1)"></span> <span class="dot"
+				onclick="currentSlide(2)"></span> <span class="dot"
+				onclick="currentSlide(3)"></span>
+		</div>
+	</div>
+</div>
+
+<div id="map"></div>
+
+<script>
+
+var slideIndex = 1;
+showSlides(slideIndex);
+
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1} 
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none"; 
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block"; 
+  dots[slideIndex-1].className += " active";
+}
+
+</script>
 
 <script>
 
@@ -186,6 +358,8 @@ function initMap() {
         },
         mapTypeControl: false,
 		zoom: 9,
+        zoomControl: false,
+            streetViewControl: false,
 		styles:style
     });
     
@@ -1232,7 +1406,7 @@ function selectRM(controlDiv, map) {
 
     	// Set CSS for the control border.
         var controlUI = document.createElement('div');
-        controlUI.style.backgroundColor = '#fff';
+        controlUI.style.backgroundColor = '#000000';
         controlUI.style.border = '1px solid #fff';
         controlUI.style.borderRadius = '2px';
         controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
@@ -1240,14 +1414,14 @@ function selectRM(controlDiv, map) {
         controlUI.style.marginBottom = '40px';
         controlUI.style.borderTop="5px solid transparent";
         controlUI.style.borderBottom="5px solid transparent";
-        controlUI.style.borderLeft="5px solid red";
+        controlUI.style.borderLeft="5px solid white";
         
         controlUI.style.textAlign = 'center';
         controlUI.title = 'Click to recenter the map';
         controlDiv.appendChild(controlUI);
         // Set CSS for the control interior.
         var controlText = document.createElement('div');
-        controlText.style.color = 'rgb(25,25,25)';
+        controlText.style.color = 'rgb(255, 255, 255)';
         controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
         controlText.style.fontSize = '100%';
         controlText.style.lineHeight = '38px';
@@ -1774,6 +1948,7 @@ function gerarRelatorioRegiao(mesorregiao) {
 
 
 </script>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/sidebar.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/css/sidebar.css">
 <script
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAU4tZgF7qKxiAMdKz8j0Pa3_TVyNdZgjM&callback=initMap"></script>
