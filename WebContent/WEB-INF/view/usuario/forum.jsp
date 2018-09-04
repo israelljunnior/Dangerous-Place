@@ -7,7 +7,8 @@
 <head>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="icon"  href="<%=request.getContextPath()%>/resources/assets/dp.jpg">
+<link rel="icon"
+	href="<%=request.getContextPath()%>/resources/assets/dp.jpg">
 
 <title>Fórum</title>
 
@@ -70,31 +71,29 @@
 				</center>
 
 			</div>
-			<br>
-			<br>
+			<br> <br>
 			<form action="filtro" method="post">
 
-				<div class="col-sm-4"  >
+				<div class="col-sm-4">
 					<input type="text" id="filtro" class="form-control" name="titulo"
 						style="width: 100%; height: 40px;" maxlength="100"
 						placeholder="Pesquisar..." />
-				
+
 				</div>
-				<div class="col-sm-5" style="right:2%;" >
-					<button style="height: 40px;  " type="submit" class="btn btn-primary">
+				<div class="col-sm-5" style="right: 2%;">
+					<button style="height: 40px;" type="submit" class="btn btn-primary">
 						<i class="glyphicon glyphicon-search"></i>
 					</button>
 				</div>
 			</form>
-			<div class="col-sm-1" style="left:8%;" >
-				<button class="btn btn-primary"  data-toggle="modal"
+			<div class="col-sm-1" style="left: 8%;">
+				<button class="btn btn-primary" data-toggle="modal"
 					data-target="#modalPublicar"
-					style="height: 40px; font-size: 17px; width: 180px; background-color: #555555; color: white;">Criar Publicação</button>
+					style="height: 40px; font-size: 17px; width: 180px; background-color: #555555; color: white;">Criar
+					Publicação</button>
 			</div>
 
-			<br> <br>
-			<br>
-			<br>
+			<br> <br> <br> <br>
 
 			<div class="row" style="font-family: 'Montserrat', sans-serif">
 
@@ -118,19 +117,17 @@
 														data-toggle="modal"
 														data-target="#modalPublicarEdit${publicacao.id}">Editar</button>
 													<button type="button" class="btn btn-danger"
-														data-toggle="modal" data-target="#modalExcluir">Excluir</button>   
+														data-toggle="modal" data-target="#modalExcluir">Excluir</button>
 
 												</c:when>
 												<c:otherwise>
-													<c:if
-														test="${usuarioLogado.nivel_acesso == 'admSup'}">
+													<c:if test="${usuarioLogado.nivel_acesso == 'admSup'}">
 
 														<button type="button" class="btn btn-danger"
 															data-toggle="modal" data-target="#modalExcluir">Excluir</button>
 
 													</c:if>
-													<c:if
-														test="${usuarioLogado.nivel_acesso == 'adm' }">
+													<c:if test="${usuarioLogado.nivel_acesso == 'adm' }">
 
 														<button type="button" class="btn btn-danger"
 															data-toggle="modal" data-target="#modalExcluir">Excluir</button>
@@ -218,13 +215,13 @@
 
 													<label for="inputTitulo">Titulo:</label> <input type="text"
 														id="inputTituloEdit${publicacao.id}" class="form-control"
-														name="tituloEdit" style="width: 100%;"
+														maxlength="70" name="tituloEdit" style="width: 100%;"
 														value="${publicacao.titulo }" />
 												</div>
 
 												<!-- ESSE AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII -->
 												<div class="form-group">
-													<textarea class="form-control" rows="5"
+													<textarea class="form-control" rows="5" maxlength="340"
 														form="formModalPublicarEdit${publicacao.id}"
 														name="textAreaPublicarEdit"
 														id="conteudoEdit${publicacao.id}" style="resize: none;">${publicacao.conteudo}</textarea>
@@ -242,8 +239,8 @@
 							</div>
 							<!-- /miOdal EDIATAR -->
 
-<!-- validacao editar publicacao -->
-<script>
+							<!-- validacao editar publicacao -->
+							<script>
 $(document) 
 .ready(
 		function() {
@@ -355,44 +352,44 @@ $(document)
 															<td><fmt:formatDate value="${comentario.data}"
 																	pattern="dd/MM/yyyy" /> <br> <fmt:formatDate
 																	value="${comentario.data}" pattern="HH:mm:ss" /></td>
-<td>
-															<div class="btn-group btn-group-xs" style="float: right;">
-																<c:choose>
-																	<c:when
-																		test="${comentario.usuario.id == usuarioLogado.id}">
-																		<!-- Opção de apagar o comentário -->
-																		<button type="button" class="btn btn-primary"
-																			data-toggle="modal"
-																			data-target="#modalEditComent${publicacao.id}${comentario.id}">Editar</button>
-																		<button type="button" class="btn btn-danger"
-																			data-toggle="modal"
-																			data-target="#modalExcluirComent${publicacao.id}${comentario.id}">Excluir</button>
+															<td>
+																<div class="btn-group btn-group-xs"
+																	style="float: right;">
+																	<c:choose>
+																		<c:when
+																			test="${comentario.usuario.id == usuarioLogado.id}">
+																			<!-- Opção de apagar o comentário -->
+																			<button type="button" class="btn btn-primary"
+																				data-toggle="modal"
+																				data-target="#modalEditComent${publicacao.id}${comentario.id}">Editar</button>
+																			<button type="button" class="btn btn-danger"
+																				data-toggle="modal"
+																				data-target="#modalExcluirComent${publicacao.id}${comentario.id}">Excluir</button>
 
-																	</c:when>
-																	<c:otherwise>
-												
-																		
-																		<c:if
-																			test="${usuarioLogado.nivel_acesso == 'admSup'}">
-																			<!-- Opção de apagar o comentário -->
-																			                                                                 
-																			<button type="button" class="btn btn-danger"                     
-																				data-toggle="modal"
-																				data-target="#modalExcluirComent${comentario.id}"
-																				onclick="apagarComentario(${comentario.id})">Excluir</button>
-																		</c:if>
-																		<c:if
-																			test="${usuarioLogado.nivel_acesso == 'adm'}">
-																			<!-- Opção de apagar o comentário -->
-																			                                                                 
-																			<button type="button" class="btn btn-danger"                     
-																				data-toggle="modal"
-																				data-target="#modalExcluirComent${comentario.id}"
-																				onclick="apagarComentario(${comentario.id})">Excluir</button>
-																		</c:if>
-															
-															</c:otherwise>
-															</c:choose>
+																		</c:when>
+																		<c:otherwise>
+
+
+																			<c:if
+																				test="${usuarioLogado.nivel_acesso == 'admSup'}">
+																				<!-- Opção de apagar o comentário -->
+
+																				<button type="button" class="btn btn-danger"
+																					data-toggle="modal"
+																					data-target="#modalExcluirComent${comentario.id}"
+																					onclick="apagarComentario(${comentario.id})">Excluir</button>
+																			</c:if>
+																			<c:if test="${usuarioLogado.nivel_acesso == 'adm'}">
+																				<!-- Opção de apagar o comentário -->
+
+																				<button type="button" class="btn btn-danger"
+																					data-toggle="modal"
+																					data-target="#modalExcluirComent${comentario.id}"
+																					onclick="apagarComentario(${comentario.id})">Excluir</button>
+																			</c:if>
+
+																		</c:otherwise>
+																	</c:choose>
 																</div>
 															</td>
 														</tr>
@@ -412,13 +409,16 @@ $(document)
 														role="dialog">
 														<div class="modal-dialog">
 															<div class="modal-content">
-																<div class="modal-header"></div>
+																<div class="modal-header">
+																	<button type="button" class="close"
+																		data-dismiss="modal" aria-label="Close">
+																</div>
 																<div class="modal-body">
 																	<center>
 																		<h4>
 																			<p>Você tem certeza que deseja excluir?</p>
 																		</h4>
-																		<p>${comentario.id}</p>
+
 																		<a method="post"
 																			href="deleteComent?id=${comentario.id}"><button
 																				type="button" class="btn btn-danger">Sim</button></a>
@@ -453,16 +453,15 @@ $(document)
 																			type="hidden"
 																			id="idUsuComentEdit${publicacao.id}${comentario.id} "
 																			name="idUsuComentEdit" value="${usuarioLogado.id}" />
-																		
+
 																		<input type="hidden"
 																			id="idPubComentEdit${publicacao.id}${comentario.id}"
 																			name="idPubComentEdit" value="${publicacao.id}" />
 
-																		
-																		<textarea style="resize: none;" rows="5" cols="5"
-																			class="form-control" 
+
+																		<textarea style="resize: none;" maxlength="200"
+																			rows="5" cols="5" class="form-control"
 																			form="formComentEdit${publicacao.id}${comentario.id}"
-																			
 																			name="conteudoComentEdit"
 																			placeholder="Escreva um comentário ">${comentario.conteudo}</textarea>
 
@@ -484,9 +483,9 @@ $(document)
 
 
 
-<!--  Validacao editar comentario -->
+													<!--  Validacao editar comentario -->
 
-<script> /*
+													<script> /*
 $(document) 
 .ready(
 		function() {  
@@ -547,8 +546,8 @@ $(document)
 																type="hidden" id="idPubComent${publicacao.id }"
 																name="idPubComent" value="${publicacao.id}" />
 
-															<textarea style="resize: none;" rows="6" cols="5"
-																class="form-control" minlength="1"
+															<textarea style="resize: none;" maxlength="200" rows="6"
+																cols="5" class="form-control" minlength="1"
 																form="formComent${publicacao.id}" name="conteudoComent"
 																placeholder="Escreva um comentário "></textarea>
 
@@ -570,8 +569,8 @@ $(document)
 							</div>
 
 
-<!--  validaçao do comentario -->
-<script>
+							<!--  validaçao do comentario -->
+							<script>
 	$(document) 
 			.ready(
 					function() {

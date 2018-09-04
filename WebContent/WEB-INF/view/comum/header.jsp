@@ -545,7 +545,7 @@ body.inverter {
 							value="${usuarioLogado.id }">
 						<div class="form-group">
 							<label for="inputTema">Tema da Publicação:</label> <select
-								id="inputTema" name="Tema">
+								id="inputTema" name="Tema" maxlength="70">
 								<option value="0">Selecionar</option>
 								<c:forEach items="${listaTema}" var="tema">
 
@@ -567,8 +567,8 @@ body.inverter {
 
 
 						<div class="form-group">
-							<textarea class="form-control" rows="5" form="formModalPublicar"
-								name="textAreaPublicar" id="conteudo"
+							<textarea class="form-control" maxlength="340" rows="5" form="formModalPublicar"
+								name="textAreaPublicar" id="conteudo" 
 								placeholder="digite aqui o conteúdo de sua publicação"
 								style="resize: none;"></textarea>
 						</div>
