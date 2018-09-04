@@ -1,178 +1,162 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <div id='containerGraficos' style='width: 100%;'></div>
 <style>
-
-	* {box-sizing:border-box}
+* {
+	box-sizing: border-box
+}
 
 /* Slideshow container */
 .slideshow-container {
-  max-width: 1000px;
-  position: relative;
-  margin: auto;
+	max-width: 100%;
+	margin: auto;
 }
 
 /* Hide the images by default */
 .mySlides {
-    display: none;
+	display: none;
 }
 
 /* Next & previous buttons */
 .prev, .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  margin-top: -22px;
-  padding: 16px;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
+	cursor: pointer;
+	position: absolute;
+	top: 50%;
+	width: auto;
+	margin-top: -22px;
+	padding: 16px;
+	color: white;
+	font-weight: bold;
+	font-size: 18px;
+	transition: 0.6s ease;
+	border-radius: 0 3px 3px 0;
 }
 
 /* Position the "next button" to the right */
 .next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
+	right: 0;
+	border-radius: 3px 0 0 3px;
 }
 
 /* On hover, add a black background color with a little bit see-through */
 .prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
+	background-color: rgba(0, 0, 0, 0.8);
 }
 
 /* Caption text */
 .text {
-  color: #f2f2f2;
-  font-size: 15px;
-  padding: 8px 12px;
-  position: absolute;
-  bottom: 8px;
-  width: 100%;
-  text-align: center;
+	color: #f2f2f2;
+	font-size: 15px;
+	padding: 8px 12px;
+	position: absolute;
+	bottom: 8px;
+	width: 100%;
+	text-align: center;
 }
 
 /* Number text (1/3 etc) */
 .numbertext {
-  color: #f2f2f2;
-  font-size: 12px;
-  padding: 8px 12px;
-  position: absolute;
-  top: 0;
+	color: #f2f2f2;
+	font-size: 12px;
+	padding: 8px 12px;
+	position: absolute;
+	top: 0;
 }
 
 /* The dots/bullets/indicators */
 .dot {
-  cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
+	cursor: pointer;
+	height: 15px;
+	width: 15px;
+	margin: 0 2px;
+	background-color: #bbb;
+	border-radius: 50%;
+	display: inline-block;
+	transition: background-color 0.6s ease;
 }
 
 .active, .dot:hover {
-  background-color: #717171;
+	background-color: #717171;
 }
 
 /* Fading animation */
 .fade {
-  -webkit-animation-name: fade;
-  -webkit-animation-duration: 1.5s;
-  animation-name: fade;
-  animation-duration: 1.5s;
+	-webkit-animation-name: fade;
+	-webkit-animation-duration: 1.5s;
+	animation-name: fade;
+	animation-duration: 1.5s;
 }
 
-@-webkit-keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
+@
+-webkit-keyframes fade {
+	from {opacity: .4
 }
 
-@keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
+to {
+	opacity: 1
 }
 
+}
+@
+keyframes fade {
+	from {opacity: .4
+}
+
+to {
+	opacity: 1
+}
+}
 </style>
-<div id="wrapper">
+		
+<div id="wrapper" >
 
-	<div id="sidebar-wrapper">
+		<div id="sidebar-wrapper">
+	
+			
+			
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
 
-		<!-- Slideshow container -->
-		<div class="slideshow-container">
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+      <div class="item active">
+					<img src="<%= request.getContextPath()%>/resources/img/tutorialMapGrafico.png" alt="Los Angeles" style="width: 100%;">
+				</div>
 
-			<!-- Full-width images with number and caption text -->
-			<div class="mySlides fade">
-				<div class="numbertext">1 / 3</div>
-				<img src="img1.jpg" style="width: 100%">
-				<div class="text">Caption Text</div>
-			</div>
+      <div class="item">
+        <img src="<%= request.getContextPath()%>/resources/img/tutorialMapGrafico.png"  alt="Chicago" style="width:100%;">
+      </div>
+    
+      <div class="item">
+        <img src="<%= request.getContextPath()%>/resources/img/tutorialMapGrafico.png"  alt="New york" style="width:100%;">
+      </div>
+    </div>
 
-			<div class="mySlides fade">
-				<div class="numbertext">2 / 3</div>
-				<img src="img2.jpg" style="width: 100%">
-				<div class="text">Caption Two</div>
-			</div>
-
-			<div class="mySlides fade">
-				<div class="numbertext">3 / 3</div>
-				<img src="img3.jpg" style="width: 100%">
-				<div class="text">Caption Three</div>
-			</div>
-
-			<!-- Next and previous buttons -->
-			<a class="prev" onclick="plusSlides(-1)">&#10094;</a> <a class="next"
-				onclick="plusSlides(1)">&#10095;</a>
-		</div>
-		<br>
-
-		<!-- The dots/circles -->
-		<div style="text-align: center">
-			<span class="dot" onclick="currentSlide(1)"></span> <span class="dot"
-				onclick="currentSlide(2)"></span> <span class="dot"
-				onclick="currentSlide(3)"></span>
-		</div>
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </di>
+	
+				
 	</div>
 </div>
+</div>
+
 
 <div id="map"></div>
 
-<script>
 
-var slideIndex = 1;
-showSlides(slideIndex);
-
-// Next/previous controls
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
-
-// Thumbnail image controls
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
-
-function showSlides(n) {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {slideIndex = 1} 
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none"; 
-  }
-  for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block"; 
-  dots[slideIndex-1].className += " active";
-}
-
-</script>
 
 <script>
 
