@@ -546,14 +546,7 @@ function initMap() {
 					    		buttonGerar.appendChild(buttonTextGerar);
                                 buttonGerar.setAttribute("onclick", "gerarRelatorioMunicipio('"+result.mAssaltos[0].municipio+"')");
 
-					    		var buttonComen = document.createElement("BUTTON");
-					    		var buttonTextComen = document.createTextNode("Comentários");
 					    		
-					    		buttonComen.setAttribute("class", "btn btn-danger pull-right");
-					    		buttonComen.appendChild(buttonTextComen);
-                                
-
-                                divWithin.appendChild(buttonComen);
 					    		divWithin.appendChild(buttonGerar);
                                
 
@@ -651,14 +644,8 @@ function initMap() {
 					    		buttonGerar.appendChild(buttonTextGerar);
                                 buttonGerar.setAttribute("onclick", "gerarRelatorioRegiao('"+result.rAssaltos[0].regiao+"')");
 
-					    		var buttonComen = document.createElement("BUTTON");
-					    		var buttonTextComen = document.createTextNode("Comentários");
 					    		
-					    		buttonComen.setAttribute("class", "btn btn-danger pull-right");
-					    		buttonComen.appendChild(buttonTextComen);
-                                
 
-                                divWithin.appendChild(buttonComen);
 					    		divWithin.appendChild(buttonGerar);
                                
 
@@ -814,11 +801,7 @@ if(selected == "m") {
 					    		buttonGerar.appendChild(buttonTextGerar);
                                 buttonGerar.setAttribute("onclick", "gerarRelatorioMunicipio('"+result.mAssaltos[0].municipio+"')");
 
-					    		var buttonComen = document.createElement("BUTTON");
-					    		var buttonTextComen = document.createTextNode("Comentários");
-					    		
-					    		buttonComen.setAttribute("class", "btn btn-danger pull-right");
-					    		buttonComen.appendChild(buttonTextComen);
+					    	
                                 
 
                                 divWithin.appendChild(buttonComen);
@@ -918,11 +901,7 @@ if(selected == "m") {
 					    		buttonGerar.appendChild(buttonTextGerar);
                                 buttonGerar.setAttribute("onclick", "gerarRelatorioMunicipio('"+result.mAssaltos[0].regiao+"')");
 
-					    		var buttonComen = document.createElement("BUTTON");
-					    		var buttonTextComen = document.createTextNode("Comentários");
-					    		
-					    		buttonComen.setAttribute("class", "btn btn-danger pull-right");
-					    		buttonComen.appendChild(buttonTextComen);
+					   
                                 
 
                                 divWithin.appendChild(buttonComen);
@@ -1160,14 +1139,9 @@ function LocalitionControl(controlDiv, map) {
 					    		buttonGerar.appendChild(buttonTextGerar);
                                 buttonGerar.setAttribute("onclick", "gerarRelatorioMunicipio('"+result.mAssaltos[0].municipio+"')");
 
-					    		var buttonComen = document.createElement("BUTTON");
-					    		var buttonTextComen = document.createTextNode("Comentários");
 					    		
-					    		buttonComen.setAttribute("class", "btn btn-danger pull-right");
-					    		buttonComen.appendChild(buttonTextComen);
                                 
 
-                                divWithin.appendChild(buttonComen);
 					    		divWithin.appendChild(buttonGerar);
                                
 
@@ -1259,14 +1233,6 @@ function LocalitionControl(controlDiv, map) {
 					    		buttonGerar.appendChild(buttonTextGerar);
                                 buttonGerar.setAttribute("onclick", "gerarRelatorioRegiao('"+result.rAssaltos[0].regiao+"')");
 
-					    		var buttonComen = document.createElement("BUTTON");
-					    		var buttonTextComen = document.createTextNode("Comentários");
-					    		
-					    		buttonComen.setAttribute("class", "btn btn-danger pull-right");
-					    		buttonComen.appendChild(buttonTextComen);
-                                
-
-                                divWithin.appendChild(buttonComen);
 					    		divWithin.appendChild(buttonGerar);
                                
 
