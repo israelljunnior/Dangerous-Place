@@ -47,7 +47,9 @@ create table publicacao(
 	id_usuario int not null,
 
 
+
 	FOREIGN KEY (tema) references tema_publicacao (id),
+	
 	FOREIGN KEY (id_usuario) references usuario (id_usuario)
 
 );
@@ -197,7 +199,7 @@ create table dados_municipio_assalt(
 	ano int not null,
 
 	regiao varchar(35) not null,
-
+	
 	municipio varchar (35) not null,
 
 	total_assalt int not null,
@@ -225,24 +227,15 @@ create table dados_municipio_assalt(
 
 create table dados_municipio_viol_sex(
 
-
-
 	id_dados_municipio_viol_sex int AUTO_INCREMENT PRIMARY KEY,
-
 
 	ano int not null,
 
-
-
 	regiao varchar(35) not null,
-
-
 
 	municipio varchar (35) not null,
 
-
 	total_viol_sex int not null
-
 
 );
 
@@ -252,60 +245,12 @@ create table dados_municipio_viol_sex(
 
 create table dados_regiao_viol_sex(
 
-
 	id_dados_regiao_viol_sex int AUTO_INCREMENT PRIMARY KEY,
 
-
 	ano int not null,
-
-
+	
 	regiao varchar(35) not null,
-
-
-
+	
 	total_viol_sex int not null
 
-
 );
-
-
-
-
-create table comentario_municipio(
-
-    id_comentario_municipio int AUTO_INCREMENT PRIMARY KEY,
-
-    conteudo varchar(300) not null,
-
-    data_hora timestamp not null,
-
-    id_usuario int not null,
-
-    id_municipio int not null,
-
-    FOREIGN KEY (id_usuario) references usuario (id_usuario),
-
-    FOREIGN KEY (id_municipio) references dados_municipio_assalt (id_dados_mun_assalt)
-
-    );
-
-    
-
-create table comentario_regiao(
-
-    id_comentario_regiao int AUTO_INCREMENT PRIMARY KEY, 
-
-    conteudo varchar(300) not null,
-
-    data_hora timestamp not null,
-
-    id_usuario int not null,
-
-    id_regiao int not null,
-
-    FOREIGN KEY (id_usuario) references usuario (id_usuario),
-
-    FOREIGN KEY (id_regiao) references dados_regiao_assalt (id_dados_regiao_assalt)
-
-    );
-
