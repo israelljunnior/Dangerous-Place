@@ -48,29 +48,39 @@
 				<p class="center-block">
 					<strong>Chirleny França</strong>
 				</p>
-				<br> <a href="#demo" data-toggle="collapse"> <img src=""
+				<br> <a href="#demo" data-toggle="collapse"> <img src="<%=request.getContextPath()%>/resources/img/Chirleny.jpeg"
 					class="img-responsive" alt="Random Name" width="255" height="255">
 				</a>
 				<div id="demo" class="collapse">
-					<span class="glyphicon glyphicon-heart"><p>Sorridente e
-							prestativa</p></span> <span class="glyphicon glyphicon-cloud"><p>GitHub:
-							Chirleny França</p></span> <span class="glyphicon glyphicon-envelope"><p>Gmail:
-							chirlenyfrancaa@gmail.com</p></span>
+					<span class="glyphicon glyphicon-heart">
+					<p>Sorridente e prestativa</p>
+					</span> <br>
+					<span class="glyphicon glyphicon-cloud">
+					<p>GitHub: Chirleny França</p>
+					</span>
+					 <span class="glyphicon glyphicon-envelope">
+					 <p>Gmail: chirlenyfrancaa@gmail.com</p>
+					 </span>
 				</div>
 			</div>
-
+			
 			<div class="col-sm-4">
 				<p class="text-center">
 					<strong>Diego Passos</strong>
 				</p>
-				<br> <a href="#demo2" data-toggle="collapse"> <img src=""
+				<br> <a href="#demo2" data-toggle="collapse"> <img src="<%=request.getContextPath()%>/resources/img/Passos.jpeg"
 					class="img-responsive" alt="Random Name" width="255" height="255">
 				</a>
 				<div id="demo2" class="collapse">
-					<span class="glyphicon glyphicon-heart"><p>Comunicativo
-							e simpático</p></span> <span class="glyphicon glyphicon-cloud"><p>GitHub:
-							diegopss</p></span> <span class="glyphicon glyphicon-envelope"><p>Gmail:
-						</p></span>
+					<span class="glyphicon glyphicon-heart">
+					<p>Comunicativo e simpático</p>
+					</span> <br>
+					<span class="glyphicon glyphicon-cloud">
+					<p>GitHub: diegopss</p>
+					</span> 
+					<span class="glyphicon glyphicon-envelope">
+					<p>Email:die-gops@hotmail.com </p>
+					</span>
 				</div>
 			</div>
 
@@ -78,14 +88,19 @@
 				<p class="text-center">
 					<strong>Gleice Kelly</strong>
 				</p>
-				<br> <a href="#demo3" data-toggle="collapse"> <img src=""
+				<br> <a href="#demo3" data-toggle="collapse"> <img src="<%=request.getContextPath()%>/resources/img/kelly.jpeg"
 					class="img-responsive" alt="Random Name" width="255" height="255">
 				</a>
 				<div id="demo3" class="collapse">
-					<span class="glyphicon glyphicon-heart"><p>Sorridente e
-							prestativa</p></span> <span class="glyphicon glyphicon-cloud"><p>GitHub:
-							kelly-u</p></span> <span class="glyphicon glyphicon-envelope"><p>Gmail:
-						</p></span>
+					<span class="glyphicon glyphicon-heart">
+					<p>Sorridente e prestativa</p>
+					</span> <br>
+					 <span class="glyphicon glyphicon-cloud">
+					 <p>GitHub: kelly-u</p>
+					 </span> 
+					 <span class="glyphicon glyphicon-envelope">
+					 <p>Gmail:gleicekellymacedodd@gmail.com </p>
+					 </span>
 				</div>
 			</div>
 
@@ -93,14 +108,19 @@
 				<p class="text-center">
 					<strong>Israel Junnior</strong>
 				</p>
-				<br> <a href="#demo4" data-toggle="collapse"> <img src=""
+				<br> <a href="#demo4" data-toggle="collapse"> <img src="<%=request.getContextPath()%>/resources/img/Israel.jpeg"
 					class="img-responsive" alt="Random Name" width="255" height="255">
 				</a>
 				<div id="demo4" class="collapse">
-					<span class="glyphicon glyphicon-heart"><p>Comunicativo
-							e simpático</p></span> <span class="glyphicon glyphicon-cloud"><p>GitHub:
-							israelljunnior</p></span> <span class="glyphicon glyphicon-envelope"><p>Gmail:
-						</p></span>
+					<span class="glyphicon glyphicon-heart">
+					<p>Comunicativo e simpático</p>
+					</span> <br>
+					<span class="glyphicon glyphicon-cloud">
+					<p>GitHub: israelljunnior</p>
+					</span> 
+					<span class="glyphicon glyphicon-envelope">
+					<p>Gmail: israeljunniorbbl123@gmail.com </p>
+					</span>
 				</div>
 			</div>
 
@@ -109,14 +129,19 @@
 				<p class="text-center">
 					<strong>Yuri Ferreira</strong>
 				</p>
-				<br> <a href="#demo5" data-toggle="collapse"> <img src=""
+				<br> <a href="#demo5" data-toggle="collapse"> <img src="<%=request.getContextPath()%>/resources/img/Yuri.jpg"
 					class="img-responsive" alt="Random Name" width="255" height="255">
 				</a>
 				<div id="demo5" class="collapse">
-					<span class="glyphicon glyphicon-heart"><p>Comunicativo
-							e simpático</p></span> <span class="glyphicon glyphicon-cloud"><p>GitHub:
-							ferreirayuri456</p></span> <span class="glyphicon glyphicon-envelope"><p>Gmail:
-							ferreirayuri456@gmail.com</p></span>
+					<span class="glyphicon glyphicon-heart">
+					<p>Comunicativo e simpático</p>
+					</span> <br>
+					<span class="glyphicon glyphicon-cloud">
+					<p>GitHub: ferreirayuri456</p>
+					</span> 
+					<span class="glyphicon glyphicon-envelope">
+					<p>Gmail: ferreirayuri456@gmail.com</p>
+					</span>
 				</div>
 			</div>
 
