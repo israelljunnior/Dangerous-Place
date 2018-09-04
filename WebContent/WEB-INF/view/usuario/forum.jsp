@@ -74,19 +74,20 @@
 			<br>
 			<form action="filtro" method="post">
 
-				<div class="col-sm-4">
+				<div class="col-sm-4"  >
 					<input type="text" id="filtro" class="form-control" name="titulo"
 						style="width: 100%; height: 40px;" maxlength="100"
 						placeholder="Pesquisar..." />
+				
 				</div>
-				<div class="col-sm-5">
-					<button style="height: 40px; " type="submit" class="btn btn-primary">
+				<div class="col-sm-5" style="right:2%;" >
+					<button style="height: 40px;  " type="submit" class="btn btn-primary">
 						<i class="glyphicon glyphicon-search"></i>
 					</button>
 				</div>
 			</form>
-			<div class="col-sm-1">
-				<button class="btn btn-primary" align="right" data-toggle="modal"
+			<div class="col-sm-1" style="left:8%;" >
+				<button class="btn btn-primary"  data-toggle="modal"
 					data-target="#modalPublicar"
 					style="height: 40px; font-size: 17px; width: 180px; background-color: #555555; color: white;">Criar Publicação</button>
 			</div>
@@ -144,8 +145,7 @@
 
 										<td>Tema: ${publicacao.tema.tema}</td>
 										<br>
-										<td><a data-toggle="modal" data-target="#modal">
-												${publicacao.usuario.nome}</a></td>
+										<td><b>${publicacao.usuario.nome}</b></td>
 										<br>
 										<td>Publicado em: <fmt:formatDate
 												value="${publicacao.data}" pattern="dd/MM/yyyy" /></td>
@@ -625,7 +625,7 @@ $(document)
 
 	</div>
 
-	<!-- Modal para perfil no fórum -->
+	<!-- Modal para perfil no fórum 
 	<div class="modal fade" id="modal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -661,7 +661,7 @@ $(document)
 			</div>
 		</div>
 	</div>
-
+-->
 	</div>
 	</div>
 </body>

@@ -98,12 +98,12 @@ body.inverter {
 				<c:if test="${usuarioLogado.nivel_acesso == 'admSup'}">
 					<li><a type="submit" data-toggle="modal"
 						data-target="#modalCadastroADM">Cadastrar ADM</a></li>
-					<li><a href="#">Inserir Dados</a></li>
+					
 
 				</c:if>
 				<c:if test="${usuarioLogado.nivel_acesso == 'adm'}">
 
-					<li><a href="#">Inserir Dados</a></li>
+					
 					</li>
 
 				</c:if>
@@ -275,23 +275,7 @@ body.inverter {
 									style="width: 85%;" placeholder="Digite seu CEP" />
 							</div>
 
-							<div class="form-group">
-								<label for="inputEndereco">Rua:</label> <input type="text"
-									id="rua" class="form-control" name="rua" style="width: 85%;"
-									placeholder="..." />
-							</div>
-
-							<div class="form-group">
-								<label for="inputEndereco">Bairro:</label> <input type="text"
-									id="bairro" class="form-control" name="bairro"
-									style="width: 85%;" placeholder="..." />
-							</div>
-
-							<div class="form-group">
-								<label for="inputEndereco">Cidade:</label> <input type="text"
-									id="cidade" class="form-control" name="cidade"
-									style="width: 85%;" placeholder="..." />
-							</div>
+							
 
 							<input type="hidden" name="nivel_acesso" value="usuario">
 
@@ -670,7 +654,7 @@ body.inverter {
 
 
 </body>
-<<script type="text/javascript">
+<script type="text/javascript">
 $(document).ready(function() {
 
             function limpa_formulário_cep() {
