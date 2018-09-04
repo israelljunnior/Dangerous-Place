@@ -181,8 +181,8 @@ var municipio;
 function initMap() {
 	map = new google.maps.Map(document.getElementById('map'), {
 		center : {
-			lat : -8.23271878,
-			lng : -37.80602193
+			lat : -8.3980279,
+			lng : -37.21321001
         },
         mapTypeControl: false,
 		zoom: 9,
